@@ -36,7 +36,7 @@ A simple game with player, enemies, and pickups using Brine2D's flexible hybrid 
 ```csharp
 public class GameScene : Scene
 {
-    // ✅ World is available automatically - no injection needed!
+    // ? World is available automatically - no injection needed!
     
     protected override Task OnLoadAsync(CancellationToken ct)
     {
@@ -85,7 +85,7 @@ public class GameScene : Scene
 {
     protected override Task OnLoadAsync(CancellationToken ct)
     {
-        // ✅ World is fresh - no leftover menu buttons!
+        // ? World is fresh - no leftover menu buttons!
         Logger.LogInformation("Game has {Count} entities", World.Entities.Count); // 0
         
         // Create game entities
@@ -162,7 +162,7 @@ public class HealthComponent : Component
     
     public bool IsDead => Current <= 0;
     
-    // ✅ Methods allowed in Brine2D!
+    // ? Methods allowed in Brine2D!
     public void TakeDamage(int amount)
     {
         Current = Math.Max(0, Current - amount);
@@ -179,7 +179,7 @@ public class HealthComponent : Component
         Current = Math.Min(Max, Current + amount);
     }
     
-    // ✅ Lifecycle methods available
+    // ? Lifecycle methods available
     protected internal override void OnUpdate(GameTime gameTime)
     {
         // Optional: Health regeneration over time
@@ -205,7 +205,7 @@ public class TransformComponent : Component
     public float Rotation { get; set; }
     public Vector2 Scale { get; set; } = Vector2.One;
     
-    // ✅ Helper methods
+    // ? Helper methods
     public void Move(Vector2 delta)
     {
         Position += delta;
@@ -232,7 +232,7 @@ public class VelocityComponent : Component
     public Vector2 Value { get; set; }
     public float Speed { get; set; } = 100f;
     
-    // ✅ Lifecycle method - auto-movement
+    // ? Lifecycle method - auto-movement
     protected internal override void OnUpdate(GameTime gameTime)
     {
         if (Value != Vector2.Zero)
@@ -258,7 +258,7 @@ public class SpriteComponent : Component
     public int Height { get; set; }
     public Color Color { get; set; } = Color.White;
     
-    // ✅ Render itself
+    // ? Render itself
     protected internal override void OnRender(IRenderer renderer)
     {
         var transform = GetComponent<TransformComponent>();
@@ -305,7 +305,7 @@ public class GameScene : Scene
     
     protected override Task OnLoadAsync(CancellationToken ct)
     {
-        // ✅ World available automatically!
+        // ? World available automatically!
         CreatePlayer();
         CreateEnemies();
         CreatePickups();
@@ -317,7 +317,7 @@ public class GameScene : Scene
     
     private void CreatePlayer()
     {
-        // ✅ Create entity via World
+        // ? Create entity via World
         _player = World.CreateEntity("Player");
         
         // Add components
@@ -406,7 +406,7 @@ protected override void OnUpdate(GameTime gameTime)
 
 private void HandlePlayerInput()
 {
-    // ✅ Find player by tag
+    // ? Find player by tag
     var players = World.GetEntitiesByTag("Player");
     if (players.Count == 0) return;
     
@@ -431,7 +431,7 @@ private void HandlePlayerInput()
 
 private void CheckCollisions()
 {
-    // ✅ Get player
+    // ? Get player
     var players = World.GetEntitiesByTag("Player");
     if (players.Count == 0) return;
     
@@ -441,7 +441,7 @@ private void CheckCollisions()
     
     if (playerTransform == null || playerHealth == null) return;
     
-    // ✅ Check collisions with enemies
+    // ? Check collisions with enemies
     var enemies = World.GetEntitiesByTag("Enemy");
     foreach (var enemy in enemies)
     {
@@ -461,7 +461,7 @@ private void CheckCollisions()
         }
     }
     
-    // ✅ Check pickups
+    // ? Check pickups
     var pickups = World.GetEntitiesByTag("Pickup");
     foreach (var pickup in pickups)
     {
@@ -585,7 +585,7 @@ using ECSDemo.Components;
 
 namespace ECSDemo.Systems;
 
-// ✅ Optional: Use systems for batch processing (performance)
+// ? Optional: Use systems for batch processing (performance)
 public class MovementSystem : IUpdateSystem
 {
     private readonly IEntityWorld _world;
@@ -602,7 +602,7 @@ public class MovementSystem : IUpdateSystem
     {
         var deltaTime = (float)gameTime.DeltaTime;
         
-        // ✅ Batch process all moving entities
+        // ? Batch process all moving entities
         var entities = _world.GetEntitiesWithComponents<
             TransformComponent, 
             VelocityComponent>();
@@ -724,7 +724,7 @@ Use in `GameScene.cs`:
 ```csharp
 protected override Task OnLoadAsync(CancellationToken ct)
 {
-    // ✅ Clean entity creation via factory
+    // ? Clean entity creation via factory
     _player = EntityFactory.CreatePlayer(World, new Vector2(400, 300));
     
     var random = new Random();
@@ -773,7 +773,7 @@ public class GameScene : Scene
     
     protected override Task OnLoadAsync(CancellationToken ct)
     {
-        // ✅ World available automatically - scoped per scene!
+        // ? World available automatically - scoped per scene!
         
         // Create entities via factory
         _player = EntityFactory.CreatePlayer(World, new Vector2(400, 300));
@@ -920,7 +920,7 @@ public class GameScene : Scene
     
     protected override Task OnUnloadAsync(CancellationToken ct)
     {
-        // ✅ No cleanup needed - World disposed automatically!
+        // ? No cleanup needed - World disposed automatically!
         return Task.CompletedTask;
     }
 }
@@ -970,10 +970,10 @@ dotnet run
 
 **Recommended workflow:**
 
-1. ✅ Start with **components with methods** (beginner-friendly)
-2. ✅ Use **entity factories** to encapsulate creation
-3. ✅ Query entities with **World.GetEntitiesByTag()** or **World.GetEntitiesWithComponent<T>()**
-4. ✅ Add **systems** only if profiling shows performance issues
+1. ? Start with **components with methods** (beginner-friendly)
+2. ? Use **entity factories** to encapsulate creation
+3. ? Query entities with **World.GetEntitiesByTag()** or **World.GetEntitiesWithComponent<T>()**
+4. ? Add **systems** only if profiling shows performance issues
 
 ---
 
@@ -987,4 +987,4 @@ dotnet run
 
 ---
 
-**Remember:** Brine2D's hybrid ECS is beginner-friendly - components can have methods, systems are optional, and World is automatically scoped per scene! 🎮
+**Remember:** Brine2D's hybrid ECS is beginner-friendly - components can have methods, systems are optional, and World is automatically scoped per scene! ??

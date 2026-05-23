@@ -88,9 +88,9 @@ The FPS counter tracks frames per second with historical data:
 - **Average FPS** - Rolling average (last 60 frames)
 
 **Color Coding:**
-- ✅ **Green** - 60+ FPS (excellent)
-- 🟡 **Yellow** - 30-59 FPS (acceptable)
-- 🔴 **Red** - Below 30 FPS (poor)
+- ? **Green** - 60+ FPS (excellent)
+- ?? **Yellow** - 30-59 FPS (acceptable)
+- ?? **Red** - Below 30 FPS (poor)
 
 ```csharp
 // Access FPS metrics programmatically
@@ -117,9 +117,9 @@ Frame time measures how long each frame takes to render (in milliseconds):
 - **Target Line** - 16.67ms line (60 FPS target)
 
 **Interpreting Frame Time:**
-- **< 16.67ms** - Running at 60+ FPS ✅
-- **16.67-33.33ms** - Running at 30-60 FPS ⚠️
-- **> 33.33ms** - Below 30 FPS ❌
+- **< 16.67ms** - Running at 60+ FPS ?
+- **16.67-33.33ms** - Running at 30-60 FPS ??
+- **> 33.33ms** - Below 30 FPS ?
 
 ```csharp
 // Access frame time metrics
@@ -195,9 +195,9 @@ Logger.LogDebug("Rendered {Sprites} sprites in {Calls} batches ({Efficiency:F1}x
 ```
 
 **Batch Efficiency:**
-- **1x** - No batching (poor) 🔴
-- **5-10x** - Moderate batching (acceptable) 🟡
-- **10+x** - Excellent batching ✅
+- **1x** - No batching (poor) ??
+- **5-10x** - Moderate batching (acceptable) ??
+- **10+x** - Excellent batching ?
 
 ---
 
@@ -398,7 +398,7 @@ if (efficiency < 5f)
 **Solutions:**
 
 ```csharp
-// ❌ Bad - creates garbage
+// ? Bad - creates garbage
 var results = world.Query()
     .With<EnemyComponent>()
     .Execute()
@@ -409,7 +409,7 @@ foreach (var enemy in results)
     var message = "Enemy: " + enemy.Name; // Allocation!
 }
 
-// ✅ Good - zero allocation
+// ? Good - zero allocation
 var enemies = world.CreateCachedQuery<EnemyComponent>();
 
 foreach (var enemy in enemies.Execute())
@@ -460,13 +460,13 @@ var sprites = world.Query()
 
 2. **Profile before optimizing**
    ```csharp
-   // ✅ Good - measure first, optimize second
+   // ? Good - measure first, optimize second
    // Don't guess where bottlenecks are!
    ```
 
 3. **Set performance budgets**
    ```csharp
-   // ✅ Good - define acceptable performance
+   // ? Good - define acceptable performance
    const float MAX_FRAME_TIME = 16.67f; // 60 FPS
    
    if (monitor.CurrentFrameTime > MAX_FRAME_TIME)
@@ -478,7 +478,7 @@ var sprites = world.Query()
 
 4. **Monitor Gen 2 collections**
    ```csharp
-   // ✅ Good - track expensive GC events
+   // ? Good - track expensive GC events
    var gen2Count = monitor.Gen2Collections;
    if (gen2Count > _lastGen2Count + 1)
    {
@@ -489,7 +489,7 @@ var sprites = world.Query()
 
 5. **Use profiling in context**
    ```csharp
-   // ✅ Good - profile specific scenarios
+   // ? Good - profile specific scenarios
    // Profile during heavy action scenes, not just menus!
    ```
 
@@ -497,16 +497,16 @@ var sprites = world.Query()
 
 1. **Don't optimize prematurely**
    ```csharp
-   // ❌ Bad - optimizing without measuring
+   // ? Bad - optimizing without measuring
    // Profile first to identify actual bottlenecks
    ```
 
 2. **Don't leave overlay enabled in production**
    ```csharp
-   // ❌ Bad - always on
+   // ? Bad - always on
    options.EnableOverlay = true;
    
-   // ✅ Good - only in debug builds
+   // ? Good - only in debug builds
    #if !RELEASE
    options.EnableOverlay = true;
    #endif
@@ -514,22 +514,22 @@ var sprites = world.Query()
 
 3. **Don't ignore Gen 2 collections**
    ```csharp
-   // ❌ Bad - ignoring memory pressure
+   // ? Bad - ignoring memory pressure
    // Frequent Gen 2 GCs indicate serious memory problems
    ```
 
 4. **Don't profile with overlay rendering**
    ```csharp
-   // ❌ Bad - overlay adds overhead
+   // ? Bad - overlay adds overhead
    // Disable overlay when benchmarking actual performance
    ```
 
 5. **Don't trust single-frame measurements**
    ```csharp
-   // ❌ Bad - one frame isn't representative
+   // ? Bad - one frame isn't representative
    var fps = monitor.CurrentFPS;
    
-   // ✅ Good - use averages
+   // ? Good - use averages
    var avgFPS = monitor.AverageFPS;
    ```
 
@@ -673,4 +673,4 @@ if (sw.ElapsedMilliseconds > 5)
 
 ---
 
-**Remember:** Measure first, optimize second! 📊
+**Remember:** Measure first, optimize second! ??

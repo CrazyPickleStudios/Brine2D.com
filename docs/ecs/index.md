@@ -74,15 +74,15 @@ Brine2D uses a **hybrid ECS** - beginner-friendly with optional performance opti
 
 | Feature | Brine2D | Strict ECS (Unity DOTS) |
 |---------|---------|
-| **Components with methods** | ✅ Allowed | ❌ Data only |
-| **Entity logic** | ✅ Allowed | ❌ System only |
-| **Easy to learn** | ✅ Yes | ⚠️ Steep learning curve |
+| **Components with methods** | ? Allowed | ? Data only |
+| **Entity logic** | ? Allowed | ? System only |
+| **Easy to learn** | ? Yes | ?? Steep learning curve |
 | **Performance optimization** | Optional systems | Required |
 
 Start with simple per-entity logic; switch to systems only when profiling shows a need.
 
 ```csharp
-// ✅ Brine2D - beginner-friendly
+// ? Brine2D - beginner-friendly
 public class HealthComponent : Component
 {
     public int Current { get; set; }
@@ -95,7 +95,7 @@ public class HealthComponent : Component
     }
 }
 
-// ❌ Strict ECS - data only
+// ? Strict ECS - data only
 public struct HealthComponent
 {
     public int Current;
@@ -115,7 +115,7 @@ Every scene has a `World` property, automatically assigned by the framework:
 ```csharp
 public class GameScene : Scene
 {
-    // ✅ World available automatically - no injection!
+    // ? World available automatically - no injection!
     
     protected override Task OnLoadAsync(CancellationToken ct)
     {
@@ -348,7 +348,7 @@ public class VelocityComponent : Component
 
 ## Best Practices
 
-### ✅ DO
+### ? DO
 
 1. **Use composition over inheritance** - Combine components for behavior
 2. **Keep components focused** - One responsibility per component
@@ -357,7 +357,7 @@ public class VelocityComponent : Component
 5. **Add systems when needed** - Optimize bottlenecks only
 
 ```csharp
-// ✅ Good - composition
+// ? Good - composition
 var player = World.CreateEntity("Player");
 player.AddComponent<HealthComponent>();
 player.AddComponent<TransformComponent>();
@@ -368,7 +368,7 @@ player.AddComponent<PlayerInputComponent>();
 
 ---
 
-### ❌ DON'T
+### ? DON'T
 
 1. **Don't inject IEntityWorld** - Use framework property
 2. **Don't manually clear World** - Automatic on scene unload
@@ -377,13 +377,13 @@ player.AddComponent<PlayerInputComponent>();
 5. **Don't store entities in static fields** - Prevents garbage collection
 
 ```csharp
-// ❌ Bad - don't inject World
+// ? Bad - don't inject World
 public GameScene(IEntityWorld world)
 {
     // Framework property is better!
 }
 
-// ❌ Bad - deep inheritance
+// ? Bad - deep inheritance
 public class Enemy : Character : GameObject
 {
     // Use composition instead!
@@ -452,13 +452,13 @@ public class MovementSystem : GameSystem
 **Solution:** Use lifecycle methods
 
 ```csharp
-// ❌ Wrong
+// ? Wrong
 public GameScene()
 {
     World.CreateEntity("Player");  // NULL!
 }
 
-// ✅ Correct
+// ? Correct
 protected override Task OnLoadAsync(CancellationToken ct)
 {
     World.CreateEntity("Player");  // Works!
@@ -477,11 +477,11 @@ protected override Task OnLoadAsync(CancellationToken ct)
 1. **Use `GetRequiredComponent<T>()`** - Throws if missing
 
 ```csharp
-// ❌ May return null
+// ? May return null
 var health = entity.GetComponent<HealthComponent>();
 health.Current = 100;  // NullReferenceException if not found!
 
-// ✅ Throws if missing
+// ? Throws if missing
 var health = entity.GetRequiredComponent<HealthComponent>();
 health.Current = 100;  // Safe - component guaranteed to exist
 ```
@@ -507,18 +507,18 @@ if (entity.HasComponent<HealthComponent>())
 **Solution:** Don't store entity references outside scene scope
 
 ```csharp
-// ❌ Bad - prevents garbage collection
+// ? Bad - prevents garbage collection
 public static Entity GlobalPlayer;
 
 public class GameState  // Singleton service
 {
-    public Entity Player { get; set; }  // ❌ Bad
+    public Entity Player { get; set; }  // ? Bad
 }
 
-// ✅ Good - store in scene
+// ? Good - store in scene
 public class GameScene : Scene
 {
-    private Entity? _player;  // ✅ Destroyed with scene
+    private Entity? _player;  // ? Destroyed with scene
 }
 ```
 

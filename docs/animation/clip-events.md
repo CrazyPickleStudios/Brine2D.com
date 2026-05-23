@@ -5,7 +5,7 @@ description: Time-offset animation callbacks with ClipEvent in Brine2D
 
 # Clip Events
 
-    **Namespace:** `Brine2D.Animation`
+**Namespace:** `Brine2D.Animation`
 
 Clip events are named callbacks attached to an `AnimationClip` at a specific time offset. `SpriteAnimator` fires them automatically when playback crosses the event's time. They are the correct way to trigger sounds, particle bursts, hitbox toggles, or any side-effect that is tied to a specific moment in an animation.
 
@@ -89,12 +89,12 @@ clip.RemoveEvent("footstep");
 
 ## Guaranteed Delivery
 
-`SpriteAnimator` fires every event whose time falls within the window `[prevTime, newTime]` advanced in a single `Update` tick, including events that would have been skipped due to a large delta or frame-skip. Events are never double-fired within a single update, and they are never missed due to frame-skipping â€” the event window covers the full elapsed time, not just the boundary of the current frame.
+`SpriteAnimator` fires every event whose time falls within the window `[prevTime, newTime]` advanced in a single `Update` tick, including events that would have been skipped due to a large delta or frame-skip. Events are never double-fired within a single update, and they are never missed due to frame-skipping — the event window covers the full elapsed time, not just the boundary of the current frame.
 
 !!! warning "No delivery during time-clamped frames"
     When `GameTime.IsTimeClamped` is `true` (unusually large delta detected by the game loop),
     `AnimationSystem` ticks with zero delta. No playback advances and no events fire that tick.
-    This is intentional â€” see `AnimationSystem` remarks.
+    This is intentional — see `AnimationSystem` remarks.
 
 ---
 
@@ -110,7 +110,7 @@ animator.OnFrameChanged += frame =>
 };
 ```
 
-For guaranteed timing accuracy, prefer `AddEventAtFrame` over `OnFrameChanged` when the exact moment within the frame matters â€” `OnFrameChanged` fires at the first tick the new frame becomes active, while a clip event fires at the precise accumulated time offset.
+For guaranteed timing accuracy, prefer `AddEventAtFrame` over `OnFrameChanged` when the exact moment within the frame matters — `OnFrameChanged` fires at the first tick the new frame becomes active, while a clip event fires at the precise accumulated time offset.
 
 ---
 

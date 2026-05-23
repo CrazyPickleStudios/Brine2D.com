@@ -173,11 +173,11 @@ await game.RunAsync<GameScene>();
 
 | Platform | GPU Backend | Status |
 |----------|-------------|--------|
-| **Windows 10+** | D3D12 / Vulkan | âœ… Supported |
-| **Linux** | Vulkan | âœ… Supported |
-| **macOS 10.14+** | Metal | âœ… Supported |
-| **iOS** | Metal | âœ… Supported |
-| **Android** | Vulkan | âœ… Supported |
+| **Windows 10+** | D3D12 / Vulkan | ✅ Supported |
+| **Linux** | Vulkan | ✅ Supported |
+| **macOS 10.14+** | Metal | ✅ Supported |
+| **iOS** | Metal | ✅ Supported |
+| **Android** | Vulkan | ✅ Supported |
 
 ---
 
@@ -205,11 +205,11 @@ await game.RunAsync<GameScene>();
 
 **Checklist:**
 
-1. âœ… Is `OnRender()` being called?
-2. âœ… Is the texture loaded (not null)?
-3. âœ… Are coordinates within the viewport?
-4. âœ… Is the texture's `IsLoaded` property `true`?
-5. âœ… Is alpha > 0 in the draw color?
+1. ✅ Is `OnRender()` being called?
+2. ✅ Is the texture loaded (not null)?
+3. ✅ Are coordinates within the viewport?
+4. ✅ Is the texture's `IsLoaded` property `true`?
+5. ✅ Is alpha > 0 in the draw color?
 
 ---
 

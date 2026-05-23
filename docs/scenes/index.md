@@ -273,10 +273,10 @@ public GameScene(GameState gameState) => _gameState = gameState;
 Use lifecycle methods, not the constructor:
 
 ```csharp
-// âŒ Wrong
+// ❌ Wrong
 public GameScene() { Logger.LogInformation("Created"); }
 
-// âœ… Correct
+// ✅ Correct
 protected override void OnEnter() { Logger.LogInformation("Scene entered"); }
 ```
 

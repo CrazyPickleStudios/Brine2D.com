@@ -5,7 +5,7 @@ description: Rebindable logical input actions and action maps in Brine2D
 
 # Input Actions
 
-Input actions decouple your game logic from physical inputs. A "Jump" action can be bound to the spacebar, a gamepad button, and a trigger simultaneously â€” the action fires when any binding is active, and bindings can be changed at runtime without touching game code.
+Input actions decouple your game logic from physical inputs. A "Jump" action can be bound to the spacebar, a gamepad button, and a trigger simultaneously — the action fires when any binding is active, and bindings can be changed at runtime without touching game code.
 
 ---
 

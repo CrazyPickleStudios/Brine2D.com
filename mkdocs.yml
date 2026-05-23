@@ -1,4 +1,7 @@
 site_name: Brine2D Documentation
+site_author: CrazyPickleStudios
+docs_dir: docs
+
 
 theme:
   name: material

@@ -5,9 +5,9 @@ description: AnimationStateMachine, AnimationTransition, AnimationParameters, an
 
 # State Machine
 
-    **Namespace:** `Brine2D.Animation`
+**Namespace:** `Brine2D.Animation`
 
-`AnimationStateMachine` is a lightweight code-driven state machine that evaluates transition conditions each frame and calls `SpriteAnimator.Play` automatically when one passes. You never manually poll input and call `Play` in `OnUpdate` â€” the state machine does that for you once you've declared the transitions.
+`AnimationStateMachine` is a lightweight code-driven state machine that evaluates transition conditions each frame and calls `SpriteAnimator.Play` automatically when one passes. You never manually poll input and call `Play` in `OnUpdate` — the state machine does that for you once you've declared the transitions.
 
 ## Overview
 
@@ -119,13 +119,13 @@ p.SetBool("isAttacking", isAttackButtonHeld);
 
 !!! warning "Trigger short-circuit hazard"
     `GetTrigger` consumes the trigger immediately on read. Do **not** use it in compound conditions
-    like `() => p.GetTrigger("attack") && isGrounded` â€” if `isGrounded` short-circuits to `false`
+    like `() => p.GetTrigger("attack") && isGrounded` — if `isGrounded` short-circuits to `false`
     first, the trigger is still consumed.
 
 Use `IsTriggerArmed` as the guard and let `AddTriggerTransition` consume it safely via `OnFired`:
 
 ```csharp
-// Safe trigger transition â€” uses IsTriggerArmed as condition, ResetTrigger in OnFired
+// Safe trigger transition — uses IsTriggerArmed as condition, ResetTrigger in OnFired
 sm.AddTriggerTransition("idle",   "attack", p, "attackPressed");
 sm.AddTriggerTransition("walk",   "attack", p, "attackPressed");
 sm.AddAnyTriggerTransition("hurt", p, "tookDamage", canInterrupt: true);
@@ -185,7 +185,7 @@ The `OnStateChanged` event fires for every state change regardless of name:
 ```csharp
 sm.OnStateChanged += (prev, next) =>
 {
-    Logger.LogDebug("Transition: {Prev} â†’ {Next}", prev, next);
+    Logger.LogDebug("Transition: {Prev} → {Next}", prev, next);
 };
 ```
 

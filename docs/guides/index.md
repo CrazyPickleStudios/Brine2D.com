@@ -174,7 +174,7 @@ public class GameScene : Scene
 
 **Problem:**
 ```csharp
-// ❌ Creates garbage every frame
+// ? Creates garbage every frame
 protected override void OnUpdate(GameTime gameTime)
 {
     if (_input.IsMouseButtonPressed(MouseButton.Left))

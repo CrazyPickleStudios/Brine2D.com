@@ -7,11 +7,11 @@ description: Deep dive into Brine2D architecture, patterns, and internals for ad
 
 Understand the **core architecture and design patterns** that power Brine2D. This section is for developers who want to:
 
-- 🏗️ Understand how Brine2D works internally
-- 🔧 Extend the engine with custom systems
-- 🎯 Build custom renderers or input backends
-- 🚀 Optimize advanced scenarios
-- 🤝 Contribute to Brine2D development
+- ??? Understand how Brine2D works internally
+- ?? Extend the engine with custom systems
+- ?? Build custom renderers or input backends
+- ?? Optimize advanced scenarios
+- ?? Contribute to Brine2D development
 
 !!! info "New to Brine2D?"
     If you're just getting started, begin with [Get Started](../getting-started/index.md) instead. This section assumes you've already built games with Brine2D and want to go deeper.
@@ -128,7 +128,7 @@ graph TB
 
 **Key Insight:** Each scene gets its own **isolated scope** with fresh `IEntityWorld` instances. This prevents memory leaks and provides automatic cleanup.
 
-→ [Learn more in Dependency Injection](dependency-injection.md#service-lifetimes)
+? [Learn more in Dependency Injection](dependency-injection.md#service-lifetimes)
 
 ---
 
@@ -147,7 +147,7 @@ Brine2D's architecture mirrors **ASP.NET Core** patterns you already know:
 
 **If you've built ASP.NET apps**, Brine2D will feel immediately familiar.
 
-→ [Learn more in Architecture](architecture.md#aspnet-parallels)
+? [Learn more in Architecture](architecture.md#aspnet-parallels)
 
 ---
 
@@ -194,7 +194,7 @@ stateDiagram-v2
     Unloaded --> [*]
 ```
 
-→ [Learn more in Scene Management](scene-management.md#lifecycle)
+? [Learn more in Scene Management](scene-management.md#lifecycle)
 
 ---
 
@@ -204,11 +204,11 @@ If you're coming from other engines:
 
 | Feature | Unity | Godot | Brine2D |
 |---|---|
-| **DI Container** | ❌ Manual | ❌ Manual | ✅ Built-in (ASP.NET style) |
-| **Scene Isolation** | ⚠️ Manual cleanup | ⚠️ Manual cleanup | ✅ Automatic (scoped services) |
-| **ECS** | ✅ DOTS (strict) | ❌ None | ✅ Hybrid (flexible) |
-| **Configuration** | ⚠️ ScriptableObjects | ⚠️ .tres files | ✅ JSON with hot reload |
-| **Async/Await** | ⚠️ Limited | ⚠️ Limited | ✅ First-class .NET async |
+| **DI Container** | ? Manual | ? Manual | ? Built-in (ASP.NET style) |
+| **Scene Isolation** | ?? Manual cleanup | ?? Manual cleanup | ? Automatic (scoped services) |
+| **ECS** | ? DOTS (strict) | ? None | ? Hybrid (flexible) |
+| **Configuration** | ?? ScriptableObjects | ?? .tres files | ? JSON with hot reload |
+| **Async/Await** | ?? Limited | ?? Limited | ? First-class .NET async |
 
 **Brine2D's advantage:** Leverages **battle-tested .NET patterns** from enterprise web development.
 
@@ -229,7 +229,7 @@ public class MyCustomRenderer : IRenderer
 // builder.Services.AddSingleton<IRenderer, MyCustomRenderer>();
 ```
 
-→ [Full guide in Architecture](architecture.md#custom-implementations)
+? [Full guide in Architecture](architecture.md#custom-implementations)
 
 ---
 
@@ -245,7 +245,7 @@ public class MyCustomInputService : IInputContext
 // builder.Services.AddSingleton<IInputContext, MyCustomInputService>();
 ```
 
-→ [Full guide in Dependency Injection](dependency-injection.md#custom-services)
+? [Full guide in Dependency Injection](dependency-injection.md#custom-services)
 
 ---
 
@@ -265,13 +265,13 @@ public class GameScene : Scene
 }
 ```
 
-→ [Full guide in Scene Management](scene-management.md#scoped-services)
+? [Full guide in Scene Management](scene-management.md#scoped-services)
 
 ---
 
 ## Best Practices
 
-### ✅ DO
+### ? DO
 
 - **Read Architecture first** - Understand the big picture before diving into specifics
 - **Use scoped services** - For scene-specific state (prevents leaks)
@@ -279,7 +279,7 @@ public class GameScene : Scene
 - **Leverage async/await** - Don't block the game loop
 - **Test with DI** - Mock dependencies for unit tests
 
-### ❌ DON'T
+### ? DON'T
 
 - **Don't create singletons manually** - Use DI container
 - **Don't share state between scenes** - Use scoped services
@@ -303,7 +303,7 @@ public class GameScene : Scene
 
 **Rule of thumb:** Use the **most restrictive lifetime** that makes sense.
 
-→ [Learn more in Dependency Injection](dependency-injection.md#performance)
+? [Learn more in Dependency Injection](dependency-injection.md#performance)
 
 ---
 
@@ -323,12 +323,12 @@ public class GameScene : Scene
         }
     }
     
-    // ✅ No cleanup needed - World disposed automatically when scene unloads!
+    // ? No cleanup needed - World disposed automatically when scene unloads!
     // All 1000 entities destroyed, no memory leaks
 }
 ```
 
-→ [Learn more in Scene Management](scene-management.md#memory-management)
+? [Learn more in Scene Management](scene-management.md#memory-management)
 
 ---
 
@@ -353,9 +353,9 @@ public class GameScene : Scene
 
 Found an issue or have a question about Brine2D's internals?
 
-- 📝 [Open an issue](https://github.com/CrazyPickleStudios/Brine2D/issues)
-- 💬 [Start a discussion](https://github.com/CrazyPickleStudios/Brine2D/discussions)
-- 🤝 [Contributing guide](../contributing/index.md)
+- ?? [Open an issue](https://github.com/CrazyPickleStudios/Brine2D/issues)
+- ?? [Start a discussion](https://github.com/CrazyPickleStudios/Brine2D/discussions)
+- ?? [Contributing guide](../contributing/index.md)
 
 ---
 

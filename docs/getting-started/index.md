@@ -197,8 +197,8 @@ Start here and follow in order:
 
 Jump to what you need:
 
-- **Want to understand architecture?** → [Fundamentals](../fundamentals/scenes.md)
-- **Need specific features?** → [Rendering](../rendering/index.md), [Input](../input/index.md)
+- **Want to understand architecture?** ? [Fundamentals](../fundamentals/scenes.md)
+- **Need specific features?** ? [Rendering](../rendering/index.md), [Input](../input/index.md)
 
 ### ASP.NET Developers
 

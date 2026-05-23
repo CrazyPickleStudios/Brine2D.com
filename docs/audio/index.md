@@ -283,11 +283,11 @@ Audio.SetBusVolume("sfx", 0.5f);
 
 ### :white_check_mark: DO
 
-1. **Load sounds in OnLoadAsync** â€” Keep OnUpdate fast
-2. **Use appropriate formats** â€” WAV for SFX, OGG for music
-3. **Control volume** â€” Don't max out everything
-4. **Use track handles for looping sounds** â€” Stop them when done
-5. **Use buses for group control** â€” Pause all SFX during menus
+1. **Load sounds in OnLoadAsync** — Keep OnUpdate fast
+2. **Use appropriate formats** — WAV for SFX, OGG for music
+3. **Control volume** — Don't max out everything
+4. **Use track handles for looping sounds** — Stop them when done
+5. **Use buses for group control** — Pause all SFX during menus
 
 ```csharp
 protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>? progress = null)
@@ -312,11 +312,11 @@ protected override void OnExit()
 
 ### :x: DON'T
 
-1. **Don't load sounds in OnUpdate** â€” Causes lag
-2. **Don't play too many sounds** â€” Use `MaxConcurrentInstances` on `SoundEffectSourceComponent` or priority-based eviction
-3. **Don't forget to stop music** â€” It plays between scenes
-4. **Don't use MP3 for SFX** â€” Decoding overhead
-5. **Don't max out volume** â€” Causes clipping/distortion
+1. **Don't load sounds in OnUpdate** — Causes lag
+2. **Don't play too many sounds** — Use `MaxConcurrentInstances` on `SoundEffectSourceComponent` or priority-based eviction
+3. **Don't forget to stop music** — It plays between scenes
+4. **Don't use MP3 for SFX** — Decoding overhead
+5. **Don't max out volume** — Causes clipping/distortion
 
 ---
 
@@ -330,8 +330,8 @@ protected override void OnExit()
         Audio.MasterVolume, Audio.MusicVolume, Audio.SoundVolume);
     ```
 
-2. **Verify sound loaded** â€” `GetOrLoadSoundAsync` returns null on failure
-3. **Check file exists** â€” Verify path and that assets are copied to output
+2. **Verify sound loaded** — `GetOrLoadSoundAsync` returns null on failure
+3. **Check file exists** — Verify path and that assets are copied to output
 
 ### Music Continues Between Scenes
 
@@ -348,10 +348,10 @@ protected override void OnExit()
 
 ## Related Topics
 
-- [Getting Started](getting-started.md) â€” Audio basics
-- [Sound Effects](sound-effects.md) â€” Play sounds
-- [Music Playback](music.md) â€” Background music
-- [Spatial Audio](spatial-audio.md) â€” Positional audio
+- [Getting Started](getting-started.md) — Audio basics
+- [Sound Effects](sound-effects.md) — Play sounds
+- [Music Playback](music.md) — Background music
+- [Spatial Audio](spatial-audio.md) — Positional audio
 
 ---
 

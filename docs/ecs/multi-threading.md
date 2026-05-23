@@ -65,7 +65,7 @@ graph TB
 ```csharp
 public class ThreadSafetyExample
 {
-    // âœ… SAFE: Multiple threads reading same data
+    // ✅ SAFE: Multiple threads reading same data
     public void ReadOnlyOperation()
     {
         var entities = world.QueryEntities()
@@ -79,7 +79,7 @@ public class ThreadSafetyExample
         });
     }
     
-    // âŒ UNSAFE: Multiple threads writing same data
+    // ❌ UNSAFE: Multiple threads writing same data
     public void WriteOperation()
     {
         var entities = world.QueryEntities()
@@ -92,7 +92,7 @@ public class ThreadSafetyExample
         });
     }
     
-    // âœ… SAFE: Each thread writes to different data
+    // ✅ SAFE: Each thread writes to different data
     public void IsolatedWriteOperation()
     {
         var entities = world.QueryEntities()
@@ -112,10 +112,10 @@ public class ThreadSafetyExample
 
 | Access Pattern | Thread Safety | Example |
 |----------------|---------------|---------|
-| **Multiple reads** | âœ… Safe | Reading positions |
-| **Single write** | âœ… Safe | One thread updates |
-| **Multiple writes to different data** | âœ… Safe | Each entity separate |
-| **Multiple writes to same data** | âŒ Unsafe | Shared counter |
+| **Multiple reads** | ✅ Safe | Reading positions |
+| **Single write** | ✅ Safe | One thread updates |
+| **Multiple writes to different data** | ✅ Safe | Each entity separate |
+| **Multiple writes to same data** | ❌ Unsafe | Shared counter |
 
 ---
 
@@ -621,7 +621,7 @@ public class RaceConditionExample
 {
     private int _counter = 0;
     
-    // âŒ BAD: Race condition!
+    // ❌ BAD: Race condition!
     public void UnsafeIncrement()
     {
         var entities = world.QueryEntities()
@@ -636,7 +636,7 @@ public class RaceConditionExample
         });
     }
     
-    // âœ… GOOD: Use Interlocked
+    // ✅ GOOD: Use Interlocked
     public void SafeIncrement()
     {
         var entities = world.QueryEntities()
@@ -649,7 +649,7 @@ public class RaceConditionExample
         });
     }
     
-    // âœ… GOOD: Use lock
+    // ✅ GOOD: Use lock
     public void SafeIncrementWithLock()
     {
         var lockObj = new object();
@@ -675,7 +675,7 @@ public class RaceConditionExample
 ```csharp
 public class SharedComponentExample
 {
-    // âŒ BAD: Multiple threads modifying same component
+    // ❌ BAD: Multiple threads modifying same component
     public void UnsafeSharedAccess()
     {
         var playerEntity = GetPlayer();
@@ -692,7 +692,7 @@ public class SharedComponentExample
         });
     }
     
-    // âœ… GOOD: Accumulate changes, apply on main thread
+    // ✅ GOOD: Accumulate changes, apply on main thread
     public void SafeSharedAccess()
     {
         var playerEntity = GetPlayer();
@@ -727,7 +727,7 @@ public class SharedComponentExample
 
 1. **Materialize queries before parallel processing**
    ```csharp
-   // âœ… Good - materialize first
+   // ✅ Good - materialize first
    var entities = world.QueryEntities()
        .With<TransformComponent>()
        .ToList(); // Important!
@@ -737,7 +737,7 @@ public class SharedComponentExample
 
 2. **Use concurrent collections for shared data**
    ```csharp
-   // âœ… Good - thread-safe collection
+   // ✅ Good - thread-safe collection
    var results = new ConcurrentBag<Result>();
    
    Parallel.ForEach(entities, entity =>
@@ -748,7 +748,7 @@ public class SharedComponentExample
 
 3. **Benchmark before and after parallelization**
    ```csharp
-   // âœ… Good - measure actual improvement
+   // ✅ Good - measure actual improvement
    var stopwatch = Stopwatch.StartNew();
    // ... parallel code
    stopwatch.Stop();
@@ -757,7 +757,7 @@ public class SharedComponentExample
 
 4. **Use threshold checks**
    ```csharp
-   // âœ… Good - only parallelize when beneficial
+   // ✅ Good - only parallelize when beneficial
    if (entities.Count > 1000)
    {
        Parallel.ForEach(entities, ProcessEntity);
@@ -771,7 +771,7 @@ public class SharedComponentExample
 
 5. **Keep work per entity substantial**
    ```csharp
-   // âœ… Good - expensive operation per entity
+   // ✅ Good - expensive operation per entity
    Parallel.ForEach(entities, entity =>
    {
        var path = CalculateExpensivePath(entity); // Worth parallelizing
@@ -782,7 +782,7 @@ public class SharedComponentExample
 
 1. **Don't query during parallel processing**
    ```csharp
-   // âŒ Bad - query during parallel processing
+   // ❌ Bad - query during parallel processing
    Parallel.ForEach(entities, entity =>
    {
        var nearby = world.QueryEntities() // UNSAFE!
@@ -790,7 +790,7 @@ public class SharedComponentExample
            .ToList();
    });
    
-   // âœ… Good - query before parallel processing
+   // ✅ Good - query before parallel processing
    var entities = world.QueryEntities().With<Component>().ToList();
    var nearby = world.QueryEntities().With<EnemyComponent>().ToList();
    
@@ -799,14 +799,14 @@ public class SharedComponentExample
 
 2. **Don't modify shared state without synchronization**
    ```csharp
-   // âŒ Bad - race condition
+   // ❌ Bad - race condition
    int counter = 0;
    Parallel.ForEach(entities, entity =>
    {
        counter++; // UNSAFE!
    });
    
-   // âœ… Good - use Interlocked
+   // ✅ Good - use Interlocked
    int counter = 0;
    Parallel.ForEach(entities, entity =>
    {
@@ -816,11 +816,11 @@ public class SharedComponentExample
 
 3. **Don't parallelize small workloads**
    ```csharp
-   // âŒ Bad - too few entities
+   // ❌ Bad - too few entities
    var entities = world.QueryEntities().Take(10).ToList();
    Parallel.ForEach(entities, ProcessEntity); // Overhead > benefit
    
-   // âœ… Good - use single-threaded
+   // ✅ Good - use single-threaded
    foreach (var entity in entities)
    {
        ProcessEntity(entity);
@@ -829,14 +829,14 @@ public class SharedComponentExample
 
 4. **Don't create/destroy entities in parallel**
    ```csharp
-   // âŒ Bad - modifying world structure
+   // ❌ Bad - modifying world structure
    Parallel.ForEach(entities, entity =>
    {
        world.CreateEntity(); // UNSAFE!
        world.DestroyEntity(entity); // UNSAFE!
    });
    
-   // âœ… Good - collect entities to destroy, process on main thread
+   // ✅ Good - collect entities to destroy, process on main thread
    var toDestroy = new ConcurrentBag<Entity>();
    
    Parallel.ForEach(entities, entity =>
@@ -856,7 +856,7 @@ public class SharedComponentExample
 
 5. **Don't use excessive locking**
    ```csharp
-   // âŒ Bad - lock every iteration
+   // ❌ Bad - lock every iteration
    var lockObj = new object();
    Parallel.ForEach(entities, entity =>
    {
@@ -866,7 +866,7 @@ public class SharedComponentExample
        }
    });
    
-   // âœ… Good - minimize locked sections
+   // ✅ Good - minimize locked sections
    Parallel.ForEach(entities, entity =>
    {
        var result = ProcessEntity(entity); // Parallel
@@ -947,13 +947,13 @@ public class SharedComponentExample
 
 1. **Avoid nested locks:**
    ```csharp
-   // âŒ Bad - potential deadlock
+   // ❌ Bad - potential deadlock
    lock (lockA)
    {
        lock (lockB) { ... }
    }
    
-   // âœ… Good - consistent lock ordering
+   // ✅ Good - consistent lock ordering
    // Always acquire locks in same order
    ```
 
@@ -1013,10 +1013,10 @@ public class SharedComponentExample
 
 | Pattern | Safe? | Notes |
 |---------|-------|-------|
-| **Multiple reads** | âœ… Yes | No synchronization needed |
-| **Isolated writes** | âœ… Yes | Each entity independent |
-| **Shared writes** | âŒ No | Need synchronization |
-| **World modifications** | âŒ No | Main thread only |
+| **Multiple reads** | ✅ Yes | No synchronization needed |
+| **Isolated writes** | ✅ Yes | Each entity independent |
+| **Shared writes** | ❌ No | Need synchronization |
+| **World modifications** | ❌ No | Main thread only |
 
 **Synchronization tools:**
 
@@ -1029,15 +1029,15 @@ public class SharedComponentExample
 
 **Best practices:**
 
-- âœ… Materialize queries before parallelization
-- âœ… Use concurrent collections
-- âœ… Benchmark performance
-- âœ… Keep work substantial per entity
-- âœ… Minimize shared state
-- âŒ Don't modify world structure in parallel
-- âŒ Don't query during parallel processing
-- âŒ Don't parallelize small workloads
-- âŒ Don't use excessive locking
+- ✅ Materialize queries before parallelization
+- ✅ Use concurrent collections
+- ✅ Benchmark performance
+- ✅ Keep work substantial per entity
+- ✅ Minimize shared state
+- ❌ Don't modify world structure in parallel
+- ❌ Don't query during parallel processing
+- ❌ Don't parallelize small workloads
+- ❌ Don't use excessive locking
 
 ---
 

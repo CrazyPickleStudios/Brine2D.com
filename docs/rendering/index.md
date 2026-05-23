@@ -54,24 +54,24 @@ public class RenderingScene : Scene
 
 | Guide | Description |
 |-------|-------------|
-| **[Rendering Architecture](choosing-renderer.md)** | Interfaces, GPU drivers, headless mode | â­ Beginner |
-| **[GPU Renderer](gpu-renderer.md)** | Render targets, scissor rects, blend modes, text | â­ Beginner |
-| **[Sprites & Textures](sprites.md)** | Load and draw images | â­ Beginner |
-| **[Drawing Primitives](primitives.md)** | Shapes, lines, and basic graphics | â­ Beginner |
+| **[Rendering Architecture](choosing-renderer.md)** | Interfaces, GPU drivers, headless mode | ⭐ Beginner |
+| **[GPU Renderer](gpu-renderer.md)** | Render targets, scissor rects, blend modes, text | ⭐ Beginner |
+| **[Sprites & Textures](sprites.md)** | Load and draw images | ⭐ Beginner |
+| **[Drawing Primitives](primitives.md)** | Shapes, lines, and basic graphics | ⭐ Beginner |
 
 ### Intermediate
 
 | Guide | Description |
 |-------|-------------|
-| **[Cameras](cameras.md)** | Camera movement, zoom, and rotation | â­â­ Intermediate |
-| **[Texture Atlasing](texture-atlasing.md)** | Optimize draw calls with sprite packing | â­â­ Intermediate |
+| **[Cameras](cameras.md)** | Camera movement, zoom, and rotation | ⭐⭐ Intermediate |
+| **[Texture Atlasing](texture-atlasing.md)** | Optimize draw calls with sprite packing | ⭐⭐ Intermediate |
 
 ### Advanced
 
 | Guide | Description |
 |-------|-------------|
-| **[Particles](particles.md)** | Particle systems for visual effects | â­â­â­ Advanced |
-| **[Post-Processing](post-processing.md)** | Off-screen rendering and effects | â­â­â­ Advanced |
+| **[Particles](particles.md)** | Particle systems for visual effects | ⭐⭐⭐ Advanced |
+| **[Post-Processing](post-processing.md)** | Off-screen rendering and effects | ⭐⭐⭐ Advanced |
 
 ---
 
@@ -140,7 +140,7 @@ The `Renderer` property is **automatically set** by the framework:
 ```csharp
 public class GameScene : Scene
 {
-    // âœ… No injection needed!
+    // ✅ No injection needed!
     // Renderer is a framework property
 
     protected override void OnRender(GameTime gameTime)
@@ -281,13 +281,13 @@ Renderer.DrawTexture(atlas.AtlasTexture, region.SourceRect, destRect);
 **Solution:** Use texture atlasing to batch sprites.
 
 ```csharp
-// âŒ Bad - each sprite may use a different texture, causing many draw calls
+// ❌ Bad - each sprite may use a different texture, causing many draw calls
 for (int i = 0; i < 100; i++)
 {
     Renderer.DrawTexture(_sprites[i], x[i], y[i]);
 }
 
-// âœ… Good - all sprites in one atlas, batched automatically
+// ✅ Good - all sprites in one atlas, batched automatically
 var atlas = await AtlasBuilder.BuildAtlasAsync(Renderer, sprites);
 Renderer.DrawTexture(atlas.AtlasTexture, ...); // Batched!
 ```
@@ -303,7 +303,7 @@ Renderer.DrawTexture(atlas.AtlasTexture, ...); // Batched!
 **Solution:** Load once in `OnLoadAsync`, cache references, or use `AssetManifest` for parallel loading.
 
 ```csharp
-// âœ… Good - load once
+// ✅ Good - load once
 private ITexture? _sprite;
 
 protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>? progress = null)
@@ -316,7 +316,7 @@ protected override void OnRender(GameTime gameTime)
     Renderer.DrawTexture(_sprite, ...);  // Use cached texture
 }
 
-// âŒ Bad - loads every frame!
+// ❌ Bad - loads every frame!
 protected override void OnRender(GameTime gameTime)
 {
     var tex = await _assets.GetOrLoadTextureAsync("assets/sprite.png");  // NO!
@@ -345,7 +345,7 @@ Use built-in performance monitoring:
 
 ## Best Practices
 
-### âœ… DO
+### ✅ DO
 
 1. **Load textures in `OnLoadAsync`** - keep `OnRender` fast
 2. **Use texture atlasing** - batch sprites that render together
@@ -354,7 +354,7 @@ Use built-in performance monitoring:
 5. **Use `AssetManifest`** - parallel loading with ref counting
 
 ```csharp
-// âœ… Good pattern
+// ✅ Good pattern
 protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>? progress = null)
 {
     await _assets.PreloadAsync(_manifest, cancellationToken: ct);
@@ -369,7 +369,7 @@ protected override void OnRender(GameTime gameTime)
 
 ---
 
-### âŒ DON'T
+### ❌ DON'T
 
 1. **Don't inject `IRenderer`** - use the `Renderer` framework property
 2. **Don't load assets in `OnRender`** - causes lag
@@ -377,7 +377,7 @@ protected override void OnRender(GameTime gameTime)
 4. **Don't draw thousands of individual sprites** - use atlasing
 
 ```csharp
-// âŒ Bad pattern
+// ❌ Bad pattern
 protected override void OnRender(GameTime gameTime)
 {
     // Don't load in render!
@@ -417,11 +417,11 @@ protected override void OnRender(GameTime gameTime)
 
 **Checklist:**
 
-1. âœ… Is `OnRender()` being called? (Add logger)
-2. âœ… Is texture loaded? (Check `_sprite != null`)
-3. âœ… Are coordinates on screen? (Try `x=0, y=0`)
-4. âœ… Is texture size non-zero? (Check `Width`, `Height`)
-5. âœ… Is alpha > 0? (Check color alpha channel)
+1. ✅ Is `OnRender()` being called? (Add logger)
+2. ✅ Is texture loaded? (Check `_sprite != null`)
+3. ✅ Are coordinates on screen? (Try `x=0, y=0`)
+4. ✅ Is texture size non-zero? (Check `Width`, `Height`)
+5. ✅ Is alpha > 0? (Check color alpha channel)
 
 ```csharp
 protected override void OnRender(GameTime gameTime)

@@ -5,7 +5,7 @@ description: Independent parallel animation tracks with AnimationLayer in Brine2
 
 # Animation Layers
 
-    **Namespace:** `Brine2D.Animation`
+**Namespace:** `Brine2D.Animation`
 
 Animation layers let you run multiple independent animation tracks on the same entity simultaneously. Each layer has its own `SpriteAnimator`, `AnimationStateMachine`, `AnimationParameters`, and optional blend tree. The base animator is always priority `0`; layers are applied in ascending priority order on top of it.
 
@@ -43,14 +43,14 @@ layer.Animator.Play("slash");
 
 | Property | Type | Default | Purpose |
 |---|---|---|---|
-| `Name` | `string` | â€” | Human-readable identifier |
-| `Priority` | `int` | `1` | Evaluation order; higher values win. Must be â‰¥ 1 |
+| `Name` | `string` | — | Human-readable identifier |
+| `Priority` | `int` | `1` | Evaluation order; higher values win. Must be ≥ 1 |
 | `Weight` | `float` | `1.0` | Blend weight `[0, 1]`; `1.0` = full effect, `0.0` = no effect |
 | `Mask` | `AnimationLayerMask` | `Default` | Which `SpriteComponent` properties this layer writes |
 | `BlendMode` | `AnimationLayerBlendMode` | `Override` | How values are combined with lower-priority results |
-| `Animator` | `SpriteAnimator` | â€” | The layer's animator |
-| `StateMachine` | `AnimationStateMachine` | â€” | The layer's state machine |
-| `Parameters` | `AnimationParameters` | â€” | Named parameter store for this layer's transitions |
+| `Animator` | `SpriteAnimator` | — | The layer's animator |
+| `StateMachine` | `AnimationStateMachine` | — | The layer's state machine |
+| `Parameters` | `AnimationParameters` | — | Named parameter store for this layer's transitions |
 | `BlendSelector1D` | `AnimationBlendSelector1D?` | `null` | Optional 1D blend tree for this layer |
 | `BlendSelector2D` | `AnimationBlendSelector2D?` | `null` | Optional 2D blend tree for this layer |
 
@@ -68,7 +68,7 @@ layer.Animator.Play("slash");
 | `FlipY` | Vertical flip |
 | `Tint` | Sprite tint colour |
 | `Texture` | The sprite texture reference |
-| `Default` | `SourceRect \| Origin` â€” the default for new layers |
+| `Default` | `SourceRect \| Origin` — the default for new layers |
 | `All` | All of the above |
 
 ```csharp
@@ -117,7 +117,7 @@ var legs  = animComp.AddLayer("legs",  priority: 1);
 var torso = animComp.AddLayer("torso", priority: 2);
 var face  = animComp.AddLayer("face",  priority: 3);
 
-// Change priority at runtime â€” list re-sorts automatically
+// Change priority at runtime — list re-sorts automatically
 torso.Priority = 5;
 ```
 
@@ -133,7 +133,7 @@ bool removed = animComp.RemoveLayer("upper_body"); // disposes the layer
 
 ## Layer State Machines and Parameters
 
-Each layer's `StateMachine` and `Parameters` work exactly like the base animator's â€” see [State Machine](state-machine.md) for the full API. The layer state machine is evaluated independently each frame by `AnimationSystem`.
+Each layer's `StateMachine` and `Parameters` work exactly like the base animator's — see [State Machine](state-machine.md) for the full API. The layer state machine is evaluated independently each frame by `AnimationSystem`.
 
 ```csharp
 var layer = animComp.AddLayer("face", priority: 2);

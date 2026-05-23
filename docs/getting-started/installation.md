@@ -65,12 +65,12 @@ dotnet add package Brine2D
 
 ```
 MyGame/
-├── MyGame.csproj
-├── Program.cs
-└── assets/          (create this folder)
-    ├── images/
-    ├── audio/
-    └── fonts/
++-- MyGame.csproj
++-- Program.cs
++-- assets/          (create this folder)
+    +-- images/
+    +-- audio/
+    +-- fonts/
 ```
 
 ---
@@ -290,9 +290,9 @@ FileNotFoundException: Could not find file 'assets/player.png'
 3. **Use centralized asset folders**
    ```
    assets/
-   ├── images/
-   ├── audio/
-   └── fonts/
+   +-- images/
+   +-- audio/
+   +-- fonts/
    ```
 
 ### DON'T

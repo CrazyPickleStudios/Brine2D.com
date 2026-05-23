@@ -567,7 +567,7 @@ var renderPosition = Vector2.Lerp(_previousPosition, _currentPosition, (float)al
 
 1. **Always use delta time** for movement/animation
    ```csharp
-   position += velocity * deltaTime;  // ✅ Good
+   position += velocity * deltaTime;  // ? Good
    ```
 
 2. **Keep Update and Render separate**
@@ -583,25 +583,25 @@ var renderPosition = Vector2.Lerp(_previousPosition, _currentPosition, (float)al
 
 4. **Exit gracefully**
    ```csharp
-   _gameContext.RequestExit(); // ✅ Clean shutdown
+   _gameContext.RequestExit(); // ? Clean shutdown
    ```
 
 ### DON'T
 
 1. **Don't use fixed values**
    ```csharp
-   position += velocity; // ❌ Bad - frame-rate dependent
+   position += velocity; // ? Bad - frame-rate dependent
    ```
 
 2. **Don't do expensive work in Update**
    ```csharp
-   // ❌ Bad - loads every frame!
+   // ? Bad - loads every frame!
    OnUpdate(gameTime)
    {
        var texture = LoadTexture("sprite.png");
    }
    
-   // ✅ Good - load once
+   // ? Good - load once
    OnLoadAsync(ct)
    {
        _texture = await LoadTextureAsync("sprite.png", ct);
@@ -612,13 +612,13 @@ var renderPosition = Vector2.Lerp(_previousPosition, _currentPosition, (float)al
    ```csharp
    OnUpdate(gameTime)
    {
-       _renderer.DrawRectangle(...); // ❌ Wrong phase!
+       _renderer.DrawRectangle(...); // ? Wrong phase!
    }
    ```
 
 4. **Don't block the main thread**
    ```csharp
-   Thread.Sleep(1000); // ❌ Freezes entire game!
+   Thread.Sleep(1000); // ? Freezes entire game!
    ```
 
 ---
@@ -673,7 +673,7 @@ var renderPosition = Vector2.Lerp(_previousPosition, _currentPosition, (float)al
 **Solutions:**
 1. Disable triple buffering
 2. Optimize Update phase
-3. Input is polled first (✅ Brine2D does this)
+3. Input is polled first (? Brine2D does this)
 
 ---
 
@@ -681,7 +681,7 @@ var renderPosition = Vector2.Lerp(_previousPosition, _currentPosition, (float)al
 
 | Concept | Key Point |
 |---------|-----------|
-| **Loop Structure** | Input → Update → Render → Limit |
+| **Loop Structure** | Input ? Update ? Render ? Limit |
 | **Frame Rate** | Default 60 FPS (16.67ms/frame) |
 | **Delta Time** | Essential for frame-rate independence |
 | **Threading** | Single-threaded (SDL3 requirement) |

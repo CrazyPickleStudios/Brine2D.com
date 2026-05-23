@@ -5,9 +5,9 @@ description: Building AnimationClips and SpriteFrames manually in Brine2D
 
 # Clips & Frames
 
-    **Namespace:** `Brine2D.Animation`
+**Namespace:** `Brine2D.Animation`
 
-An `AnimationClip` is an ordered sequence of `SpriteFrame`s that a `SpriteAnimator` steps through over time. Both types are plain C# objects â€” no ECS required to construct them.
+An `AnimationClip` is an ordered sequence of `SpriteFrame`s that a `SpriteAnimator` steps through over time. Both types are plain C# objects — no ECS required to construct them.
 
 ## SpriteFrame
 
@@ -22,7 +22,7 @@ var frame = new SpriteFrame(new Rectangle(0, 0, 32, 32), 0.08f); // explicit dur
 
 | Property | Type | Default | Purpose |
 |---|---|---|---|
-| `SourceRect` | `Rectangle` | â€” | Pixel region in the sprite sheet |
+| `SourceRect` | `Rectangle` | — | Pixel region in the sprite sheet |
 | `Duration` | `float` | `0.1` | Seconds to display this frame (min 0.001) |
 | `Origin` | `Vector2` | `(0.5, 0.5)` | Normalised pivot point written to `SpriteComponent.Origin` |
 | `DrawOffset` | `Vector2` | `(0, 0)` | Canvas-space pixel offset; used by Aseprite trim to correct trimmed sprite positions |
@@ -47,7 +47,7 @@ Rectangle  head    = frame.GetHitBox("head");        // throws if absent
 frame.RemoveHitBox("head");
 ```
 
-`SpriteFrame.HitBox` is a shorthand for the box stored under `AsepriteClipLoader.HitBoxSliceName` (`"hitbox"` by default). All named boxes from Aseprite slice data are loaded automatically â€” see [Aseprite Integration](aseprite.md).
+`SpriteFrame.HitBox` is a shorthand for the box stored under `AsepriteClipLoader.HitBoxSliceName` (`"hitbox"` by default). All named boxes from Aseprite slice data are loaded automatically — see [Aseprite Integration](aseprite.md).
 
 ### Frame Lifecycle Events
 
@@ -70,13 +70,13 @@ var clip = new AnimationClip("walk");
 
 | Property | Type | Default | Purpose |
 |---|---|---|---|
-| `Name` | `string` | â€” | Identifies the clip; used as state name in the state machine |
-| `PlaybackMode` | `PlaybackMode` | `Loop` | How the clip loops â€” see below |
+| `Name` | `string` | — | Identifies the clip; used as state name in the state machine |
+| `PlaybackMode` | `PlaybackMode` | `Loop` | How the clip loops — see below |
 | `Loop` | `bool` | `true` | Shorthand: `false` maps current mode to its non-looping equivalent |
 | `RepeatCount` | `int` | `0` | Loop/PingPong only: number of passes before `OnAnimationComplete`. `0` = infinite |
 | `TotalDuration` | `float` | computed | Sum of all frame durations; cached and auto-invalidated |
-| `Frames` | `IReadOnlyList<SpriteFrame>` | â€” | Read-only view; mutate via the methods below |
-| `Events` | `IReadOnlyList<ClipEvent>` | â€” | Read-only view of time-offset callbacks |
+| `Frames` | `IReadOnlyList<SpriteFrame>` | — | Read-only view; mutate via the methods below |
+| `Events` | `IReadOnlyList<ClipEvent>` | — | Read-only view of time-offset callbacks |
 
 ### Optional Clip-Level Overrides
 

@@ -9,8 +9,8 @@ Post-processing effects are applied to the entire screen after the main scene is
 
 **Built-in effects:**
 
-- **Grayscale** â€” adjustable intensity desaturation
-- **Blur** â€” two-pass Gaussian blur (horizontal + vertical)
+- **Grayscale** — adjustable intensity desaturation
+- **Blur** — two-pass Gaussian blur (horizontal + vertical)
 
 **Custom effects** are supported via the `ISDL3PostProcessEffect` interface.
 
@@ -37,7 +37,7 @@ graph LR
 2. The pipeline runs each enabled effect in order, ping-ponging between textures
 3. The final effect writes directly to the swapchain
 
-The pipeline manages the render targets and ping-pong buffers â€” you don't need to create or manage them yourself.
+The pipeline manages the render targets and ping-pong buffers — you don't need to create or manage them yourself.
 
 ---
 
@@ -92,7 +92,7 @@ builder.Services.AddGrayscaleEffect(intensity: 1.0f);
 
 ### Blur
 
-Two-pass Gaussian blur â€” horizontal then vertical â€” using a single shader with direction uniforms.
+Two-pass Gaussian blur — horizontal then vertical — using a single shader with direction uniforms.
 
 ```csharp
 builder.Services.AddBlurEffect(blurRadius: 3.0f);
@@ -203,7 +203,7 @@ blurEffect.BlurRadius = 4.0f;
 
 | Property | Default | Description |
 |----------|---------|-------------|
-| `Enabled` | `false` | Master toggle â€” when disabled, the scene renders directly to the swapchain |
+| `Enabled` | `false` | Master toggle — when disabled, the scene renders directly to the swapchain |
 | `RenderTargetFormat` | `null` | Texture format override; `null` uses the swapchain format |
 
 ```csharp
@@ -224,11 +224,11 @@ The pipeline handles resize automatically. When the renderer recreates its rende
 
 ## Performance
 
-- Each effect is one or more GPU render passes â€” keep the total pass count low
+- Each effect is one or more GPU render passes — keep the total pass count low
 - Blur is two passes (horizontal + vertical) plus the pipeline's own source/target management
-- Effects use pre-compiled SPIR-V / DXIL / DXBC / MSL shaders â€” no runtime compilation
+- Effects use pre-compiled SPIR-V / DXIL / DXBC / MSL shaders — no runtime compilation
 - Render targets are created once and reused; they're only recreated on resize
-- Disable effects you aren't using â€” disabled effects are skipped entirely (zero cost)
+- Disable effects you aren't using — disabled effects are skipped entirely (zero cost)
 
 ### Resolution Scaling
 
@@ -249,24 +249,24 @@ The GPU blit to the swapchain handles upscaling with linear filtering.
 
 ### Black screen after enabling post-processing
 
-1. **Check `Enabled = true`** â€” `PostProcessingOptions.Enabled` defaults to `false`
-2. **Check effect registration order** â€” `AddPostProcessing()` must come before `AddGrayscaleEffect()` / `AddBlurEffect()`
-3. **Check logs** â€” the pipeline logs effect initialization and errors at Info/Error levels
+1. **Check `Enabled = true`** — `PostProcessingOptions.Enabled` defaults to `false`
+2. **Check effect registration order** — `AddPostProcessing()` must come before `AddGrayscaleEffect()` / `AddBlurEffect()`
+3. **Check logs** — the pipeline logs effect initialization and errors at Info/Error levels
 
 ### Effects not visible
 
-1. **Check `effect.Enabled`** â€” effects default to enabled, but verify nothing is toggling them off
-2. **Check effect parameters** â€” `Intensity = 0` or `BlurRadius = 0` produces no visible change
+1. **Check `effect.Enabled`** — effects default to enabled, but verify nothing is toggling them off
+2. **Check effect parameters** — `Intensity = 0` or `BlurRadius = 0` produces no visible change
 
 ### Artifacts or incorrect colors
 
-1. **Check render target format** â€” mismatched formats between the pipeline and effect shaders can cause issues. Leave `RenderTargetFormat` as `null` unless you have a reason to override it
+1. **Check render target format** — mismatched formats between the pipeline and effect shaders can cause issues. Leave `RenderTargetFormat` as `null` unless you have a reason to override it
 
 ---
 
 ## Next Steps
 
-- **[GPU Renderer](gpu-renderer.md)** â€” Render targets, scissor rects, blend modes
-- **[Sprites](sprites.md)** â€” Sprite rendering
-- **[Cameras](cameras.md)** â€” Camera follow, zoom, and shake
-- **[Performance](../performance/optimization.md)** â€” Rendering optimization
+- **[GPU Renderer](gpu-renderer.md)** — Render targets, scissor rects, blend modes
+- **[Sprites](sprites.md)** — Sprite rendering
+- **[Cameras](cameras.md)** — Camera follow, zoom, and shake
+- **[Performance](../performance/optimization.md)** — Rendering optimization

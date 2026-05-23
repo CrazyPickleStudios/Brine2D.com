@@ -170,7 +170,7 @@ Scissor rectangles clip all rendering to a specific screen-space region. Anythin
 ### Basic Usage
 
 ```csharp
-// Clip to a 200Ã—200 region
+// Clip to a 200×200 region
 Renderer.SetScissorRect(new Rectangle(10, 10, 200, 200));
 Renderer.DrawTexture(largeTexture, 0, 0); // Only the part inside the rect is visible
 
@@ -217,9 +217,9 @@ Renderer.SetBlendMode(BlendMode.Alpha); // Restore default
 
 | Mode | Formula | Use Case |
 |------|---------|----------|
-| `BlendMode.Alpha` | `Src Ã— SrcA + Dst Ã— (1 âˆ’ SrcA)` | **Default** - sprites, UI |
+| `BlendMode.Alpha` | `Src × SrcA + Dst × (1 − SrcA)` | **Default** - sprites, UI |
 | `BlendMode.Additive` | `Src + Dst` | Fire, explosions, lights |
-| `BlendMode.Multiply` | `Src Ã— Dst` | Shadows, darkening |
+| `BlendMode.Multiply` | `Src × Dst` | Shadows, darkening |
 | `BlendMode.None` | `Src` | Opaque objects |
 
 The default blend mode is `BlendMode.Alpha` and resets each frame.
@@ -366,7 +366,7 @@ Renderer.SetDefaultFont(customFont);
 | **Render Targets** | Synchronous creation, push/pop stack |
 | **Scissor Rects** | Nested clipping with auto-intersection |
 | **Blend Modes** | Alpha, Additive, Multiply, None |
-| **Render Layers** | 0â€“255 for draw ordering |
+| **Render Layers** | 0–255 for draw ordering |
 | **Text** | Basic + rich options (wrap, align, shadow, outline) |
 | **VSync** | Enabled by default |
 

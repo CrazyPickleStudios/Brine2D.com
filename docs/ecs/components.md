@@ -11,18 +11,18 @@ Components in Brine2D's **hybrid ECS** can contain both **data and methods** - m
 
 **What makes Brine2D components unique?**
 
-- âœ… **Methods allowed** - components can have logic (Unity-style)
-- âœ… **Lifecycle hooks** - OnAdded, OnUpdate, OnEnabled, OnDisabled, OnRemoved
-- âœ… **Helper methods** - GetComponent, GetRequiredComponent, TryGetComponent
-- âœ… **Entity access** - easy access to sibling components and entity properties
-- âœ… **Enable/disable** - runtime control via IsEnabled flag
+- ✅ **Methods allowed** - components can have logic (Unity-style)
+- ✅ **Lifecycle hooks** - OnAdded, OnUpdate, OnEnabled, OnDisabled, OnRemoved
+- ✅ **Helper methods** - GetComponent, GetRequiredComponent, TryGetComponent
+- ✅ **Entity access** - easy access to sibling components and entity properties
+- ✅ **Enable/disable** - runtime control via IsEnabled flag
 
 **Two approaches:**
 
 | Approach | When to Use | Complexity |
 |----------|-------------|------------|
-| **Components with methods** | Most games (recommended) | â­ Beginner |
-| **Pure data + systems** | Performance-critical (1000+ entities) | â­â­â­ Advanced |
+| **Components with methods** | Most games (recommended) | ⭐ Beginner |
+| **Pure data + systems** | Performance-critical (1000+ entities) | ⭐⭐⭐ Advanced |
 
 ---
 
@@ -105,7 +105,7 @@ public class HealthComponent : Component
     public bool IsDead => Current <= 0;
     public float HealthPercent => (float)Current / Max;
     
-    // âœ… Methods allowed in Brine2D!
+    // ✅ Methods allowed in Brine2D!
     public void TakeDamage(int amount)
     {
         Current = Math.Max(0, Current - amount);
@@ -159,7 +159,7 @@ public class VelocityComponent : Component
     public float Speed { get; set; } = 100f;
     public float MaxSpeed { get; set; } = 500f;
     
-    // âœ… Lifecycle method - auto-movement
+    // ✅ Lifecycle method - auto-movement
     protected internal override void OnUpdate(GameTime gameTime)
     {
         if (!IsEnabled) return;
@@ -181,7 +181,7 @@ public class VelocityComponent : Component
         }
     }
     
-    // âœ… Helper methods
+    // ✅ Helper methods
     public void AddForce(Vector2 force)
     {
         Value += force;
@@ -269,7 +269,7 @@ public class MyComponent : Component
     
     protected internal override void OnAdded()
     {
-        // âœ… Called once when added to entity
+        // ✅ Called once when added to entity
         // Use for: Initialization, resource loading, event subscription
         
         base.OnAdded();
@@ -314,7 +314,7 @@ public class MyComponent : Component
     
     protected internal override void OnRemoved()
     {
-        // âœ… Called once when removed from entity
+        // ✅ Called once when removed from entity
         // Use for: Cleanup, resource disposal, event unsubscription
         
         Logger.LogInformation("Component removed from {Entity}", EntityName);
@@ -349,7 +349,7 @@ public class MyComponent : Component
 {
     protected internal override void OnEnabled()
     {
-        // âœ… Called when IsEnabled changes from false to true
+        // ✅ Called when IsEnabled changes from false to true
         // Use for: Resume logic, re-enable features
         
         base.OnEnabled();
@@ -377,7 +377,7 @@ public class MyComponent : Component
 {
     protected internal override void OnDisabled()
     {
-        // âœ… Called when IsEnabled changes from true to false
+        // ✅ Called when IsEnabled changes from true to false
         // Use for: Pause logic, disable features
         
         base.OnDisabled();
@@ -407,7 +407,7 @@ public class MyComponent : Component
     
     protected internal override void OnUpdate(GameTime gameTime)
     {
-        // âœ… Called every frame (if IsEnabled = true)
+        // ✅ Called every frame (if IsEnabled = true)
         // Use for: Per-frame logic, animation, timers
         
         if (!IsEnabled) return; // Safety check
@@ -878,12 +878,12 @@ follow.MinDistance = 20f;
 
 ## Best Practices
 
-### âœ… DO
+### ✅ DO
 
 **1. Use methods in components (beginner-friendly)**
 
 ```csharp
-// âœ… Good - intuitive methods
+// ✅ Good - intuitive methods
 public class HealthComponent : Component
 {
     public int Current { get; set; }
@@ -902,7 +902,7 @@ health.TakeDamage(25);
 **2. Use lifecycle methods for automatic behavior**
 
 ```csharp
-// âœ… Good - component updates itself
+// ✅ Good - component updates itself
 public class VelocityComponent : Component
 {
     public Vector2 Value { get; set; }
@@ -918,7 +918,7 @@ public class VelocityComponent : Component
 **3. Use GetRequiredComponent for essential dependencies**
 
 ```csharp
-// âœ… Good - fail fast if missing
+// ✅ Good - fail fast if missing
 protected internal override void OnUpdate(GameTime gameTime)
 {
     var transform = GetRequiredComponent<TransformComponent>();
@@ -929,7 +929,7 @@ protected internal override void OnUpdate(GameTime gameTime)
 **4. Clean up in OnRemoved**
 
 ```csharp
-// âœ… Good - proper cleanup
+// ✅ Good - proper cleanup
 protected internal override void OnRemoved()
 {
     _texture?.Dispose();
@@ -940,12 +940,12 @@ protected internal override void OnRemoved()
 
 ---
 
-### âŒ DON'T
+### ❌ DON'T
 
 **1. Don't avoid methods for no reason**
 
 ```csharp
-// âŒ Bad - missing methods makes code verbose
+// ❌ Bad - missing methods makes code verbose
 public class HealthComponent : Component
 {
     public int Current { get; set; }
@@ -954,7 +954,7 @@ public class HealthComponent : Component
 // Usage is tedious
 health.Current = Math.Max(0, health.Current - 25);
 
-// âœ… Good - add methods
+// ✅ Good - add methods
 public void TakeDamage(int amount)
 {
     Current = Math.Max(0, Current - amount);
@@ -964,13 +964,13 @@ public void TakeDamage(int amount)
 **2. Don't store entity references**
 
 ```csharp
-// âŒ Bad - entity reference can become invalid
+// ❌ Bad - entity reference can become invalid
 public class FollowComponent : Component
 {
     public Entity? Target { get; set; } // Can be destroyed!
 }
 
-// âœ… Good - store entity ID
+// ✅ Good - store entity ID
 public class FollowComponent : Component
 {
     public Guid TargetId { get; set; }
@@ -986,13 +986,13 @@ public class FollowComponent : Component
 **3. Don't forget to check IsEnabled**
 
 ```csharp
-// âŒ Bad - doesn't respect IsEnabled
+// ❌ Bad - doesn't respect IsEnabled
 protected internal override void OnUpdate(GameTime gameTime)
 {
     // Always runs even if disabled!
 }
 
-// âœ… Good - check IsEnabled
+// ✅ Good - check IsEnabled
 protected internal override void OnUpdate(GameTime gameTime)
 {
     if (!IsEnabled) return;
@@ -1003,7 +1003,7 @@ protected internal override void OnUpdate(GameTime gameTime)
 **4. Don't put unrelated logic in one component**
 
 ```csharp
-// âŒ Bad - doing too much
+// ❌ Bad - doing too much
 public class PlayerComponent : Component
 {
     // Movement
@@ -1018,7 +1018,7 @@ public class PlayerComponent : Component
     // Too much responsibility!
 }
 
-// âœ… Good - separate concerns
+// ✅ Good - separate concerns
 public class VelocityComponent : Component { }
 public class HealthComponent : Component { }
 public class InventoryComponent : Component { }
@@ -1045,8 +1045,8 @@ public class InventoryComponent : Component { }
 |--------|-------------|---------|
 | **OnAdded()** | Once (when added) | Setup, initialization |
 | **OnRemoved()** | Once (when removed) | Cleanup, disposal |
-| **OnEnabled()** | IsEnabled true â†’ false | Resume logic |
-| **OnDisabled()** | IsEnabled false â†’ true | Pause logic |
+| **OnEnabled()** | IsEnabled true → false | Resume logic |
+| **OnDisabled()** | IsEnabled false → true | Pause logic |
 | **OnUpdate(gameTime)** | Every frame (if enabled) | Game logic, animation |
 
 **Helper methods:**
@@ -1071,4 +1071,4 @@ public class InventoryComponent : Component { }
 
 ---
 
-**Remember:** Brine2D components can have methods and lifecycle hooks - this makes them beginner-friendly while still allowing optional system-based optimization for performance! ðŸŽ®
+**Remember:** Brine2D components can have methods and lifecycle hooks - this makes them beginner-friendly while still allowing optional system-based optimization for performance! 🎮

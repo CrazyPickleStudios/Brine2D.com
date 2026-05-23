@@ -305,7 +305,7 @@ _uiCanvas.AddElement(dialog);
 
 ## Best Practices
 
-### ✅ DO
+### ? DO
 
 1. **Use UICanvas** - One per scene
 2. **Position with X/Y** - Absolute screen coordinates
@@ -314,7 +314,7 @@ _uiCanvas.AddElement(dialog);
 5. **Z-order matters** - Last added = on top
 
 ```csharp
-// ✅ Good pattern
+// ? Good pattern
 protected override Task OnLoadAsync(CancellationToken ct)
 {
     // Create all UI
@@ -340,7 +340,7 @@ protected override void OnRender(GameTime gameTime)
 
 ---
 
-### ❌ DON'T
+### ? DON'T
 
 1. **Don't create multiple UICanvas** - One per scene
 2. **Don't forget to update** - Call Update() in OnUpdate()
@@ -349,10 +349,10 @@ protected override void OnRender(GameTime gameTime)
 5. **Don't hardcode positions** - Use layouts or calculate from screen size
 
 ```csharp
-// ❌ Bad - hardcoded for 800x600
+// ? Bad - hardcoded for 800x600
 var button = new Button { X = 400, Y = 300 };
 
-// ✅ Good - centered
+// ? Good - centered
 var button = new Button 
 { 
     X = (screenWidth - buttonWidth) / 2,

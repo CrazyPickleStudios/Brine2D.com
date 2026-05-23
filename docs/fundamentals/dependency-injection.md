@@ -223,8 +223,8 @@ builder.Services.AddSingleton<GameState>(); // Don't forget!
 Change from Singleton to Scoped:
 
 ```csharp
-builder.Services.AddSingleton<CollisionSystem>(); // âŒ Persists forever
-builder.Services.AddScoped<CollisionSystem>();     // âœ… Fresh per scene
+builder.Services.AddSingleton<CollisionSystem>(); // ❌ Persists forever
+builder.Services.AddScoped<CollisionSystem>();     // ✅ Fresh per scene
 ```
 
 ---
