@@ -227,8 +227,8 @@
     margin-top: -0.5rem;
 }
 
-/* Prevent code identifiers in table first columns from wrapping mid-word */
-.md-typeset table:not([class]) td:first-child code,
-.md-typeset table:not([class]) th:first-child code {
+/* Prevent code identifiers in table cells from wrapping mid-word */
+.md-typeset table:not([class]) td code,
+.md-typeset table:not([class]) th code {
     white-space: nowrap;
 }

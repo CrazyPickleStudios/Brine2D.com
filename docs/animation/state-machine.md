@@ -11,14 +11,7 @@ description: AnimationStateMachine, AnimationTransition, AnimationParameters, an
 
 ## Overview
 
-```
-Transitions are evaluated in descending Priority order.
-Within the same priority, insertion order wins.
-The first passing condition fires; evaluation stops.
-
-AnyState transitions are evaluated after all regular transitions for the current state.
-Non-looping clips block outgoing transitions unless CanInterrupt = true.
-```
+Transitions are evaluated in descending `Priority` order. Within the same priority, insertion order wins. The first passing condition fires and evaluation stops. AnyState transitions are evaluated after all regular transitions for the current state. Non-looping clips block outgoing transitions unless `CanInterrupt = true`.
 
 `AnimationSystem` calls `StateMachine.Update(delta)` before advancing the animator each tick.
 
