@@ -11,24 +11,24 @@ Brine2D is an open-source project and welcomes contributions from the community.
 
 ## Quick Links
 
-- 🐛 [Report a Bug](https://github.com/CrazyPickleStudios/Brine2D/issues/new?template=bug_report.md)
-- 💡 [Request a Feature](https://github.com/CrazyPickleStudios/Brine2D/issues/new?template=feature_request.md)
-- 💬 [Ask Questions](https://github.com/CrazyPickleStudios/Brine2D/discussions)
-- 📝 [Submit Documentation](https://github.com/CrazyPickleStudios/Brine2D-Documentation)
-- 🤝 [Pull Requests](https://github.com/CrazyPickleStudios/Brine2D/pulls)
+- ðŸ› [Report a Bug](https://github.com/CrazyPickleStudios/Brine2D/issues/new?template=bug_report.md)
+- ðŸ’¡ [Request a Feature](https://github.com/CrazyPickleStudios/Brine2D/issues/new?template=feature_request.md)
+- ðŸ’¬ [Ask Questions](https://github.com/CrazyPickleStudios/Brine2D/discussions)
+- ðŸ“ [Submit Documentation](https://github.com/CrazyPickleStudios/Brine2D-Documentation)
+- ðŸ¤ [Pull Requests](https://github.com/CrazyPickleStudios/Brine2D/pulls)
 
 ---
 
 ## Ways to Contribute
 
-### 1. Report Bugs 🐛
+### 1. Report Bugs ðŸ›
 
 **Found a bug?** Help us fix it!
 
 **Before reporting:**
-- ✅ Search [existing issues](https://github.com/CrazyPickleStudios/Brine2D/issues)
-- ✅ Check if bug exists in latest version
-- ✅ Try to reproduce consistently
+- âœ… Search [existing issues](https://github.com/CrazyPickleStudios/Brine2D/issues)
+- âœ… Check if bug exists in latest version
+- âœ… Try to reproduce consistently
 
 **Include in your report:**
 - Brine2D version (v0.9.0-beta)
@@ -56,15 +56,15 @@ var builder = GameApplication.CreateBuilder();
 
 ---
 
-### 2. Request Features 💡
+### 2. Request Features ðŸ’¡
 
 **Have an idea?** We'd love to hear it!
 
 **Good feature requests:**
-- ✅ Solve a real problem
-- ✅ Include use case examples
-- ✅ Consider alternatives
-- ✅ Respect project scope
+- âœ… Solve a real problem
+- âœ… Include use case examples
+- âœ… Consider alternatives
+- âœ… Respect project scope
 
 **Template:**
 ```
@@ -86,7 +86,7 @@ animator.BlendTo("Run", duration: 0.3f);
 
 ---
 
-### 3. Improve Documentation 📝
+### 3. Improve Documentation ðŸ“
 
 **Documentation is code!** Help make it better.
 
@@ -120,7 +120,7 @@ git push origin improve-collision-docs
 
 ---
 
-### 4. Write Code 💻
+### 4. Write Code ðŸ’»
 
 **Ready to code?** Here's how to get started.
 
@@ -190,7 +190,7 @@ git push origin feature/my-awesome-feature
 **Follow .NET conventions:**
 
 ```csharp
-// ✅ Good
+// âœ… Good
 public class AudioService
 {
     private readonly IAudioDevice _device;
@@ -203,7 +203,7 @@ public class AudioService
     }
 }
 
-// ❌ Bad
+// âŒ Bad
 public class audioservice  // lowercase class name
 {
     private IAudioDevice device;  // missing underscore
@@ -230,21 +230,21 @@ public class audioservice  // lowercase class name
 
 ```
 Brine2D/
-├── src/
-│   ├── Brine2D/           # Core framework
-│   └── Brine2D.SDL/       # SDL3 backend (being merged)
-├── tests/
-│   └── Brine2D.Tests/     # Unit tests
-├── samples/
-│   └── BasicGame/         # Sample projects
-└── docs/                  # Inline documentation
+â”œâ”€â”€ src/
+â”‚   â”œâ”€â”€ Brine2D/           # Core framework
+â”‚   â””â”€â”€ Brine2D.SDL/       # SDL3 backend (being merged)
+â”œâ”€â”€ tests/
+â”‚   â””â”€â”€ Brine2D.Tests/     # Unit tests
+â”œâ”€â”€ samples/
+â”‚   â””â”€â”€ BasicGame/         # Sample projects
+â””â”€â”€ docs/                  # Inline documentation
 ```
 
 **Where to add code:**
-- Core features → `src/Brine2D/`
-- SDL3 implementations → `src/Brine2D.SDL/` (temporary)
-- Tests → `tests/Brine2D.Tests/`
-- Samples → `samples/NewSample/`
+- Core features â†’ `src/Brine2D/`
+- SDL3 implementations â†’ `src/Brine2D.SDL/` (temporary)
+- Tests â†’ `tests/Brine2D.Tests/`
+- Samples â†’ `samples/NewSample/`
 
 ---
 
@@ -338,19 +338,19 @@ git checkout -b feature/descriptive-name
 ### 2. Make Changes
 
 **Best practices:**
-- ✅ Small, focused PRs (easier to review)
-- ✅ One logical change per commit
-- ✅ Clear commit messages
-- ✅ Add tests for new code
-- ✅ Update documentation
+- âœ… Small, focused PRs (easier to review)
+- âœ… One logical change per commit
+- âœ… Clear commit messages
+- âœ… Add tests for new code
+- âœ… Update documentation
 
 **Commit messages:**
 ```bash
-# ✅ Good
+# âœ… Good
 git commit -m "Add spatial audio distance attenuation"
 git commit -m "Fix collision detection for rotated rectangles"
 
-# ❌ Bad
+# âŒ Bad
 git commit -m "stuff"
 git commit -m "WIP"
 git commit -m "asdf"
@@ -528,12 +528,12 @@ dotnet run --project samples/BasicGame -c Release
 
 ### Be Respectful
 
-- ✅ Constructive feedback
-- ✅ Patient with newcomers
-- ✅ Assume good intentions
-- ❌ Personal attacks
-- ❌ Harassment
-- ❌ Discrimination
+- âœ… Constructive feedback
+- âœ… Patient with newcomers
+- âœ… Assume good intentions
+- âŒ Personal attacks
+- âŒ Harassment
+- âŒ Discrimination
 
 ---
 
@@ -561,9 +561,9 @@ Save everyone's time!
 ## Recognition
 
 **Contributors are credited:**
-- 🎖️ Listed in CONTRIBUTORS.md
-- 🎖️ Mentioned in release notes
-- 🎖️ GitHub contributions graph
+- ðŸŽ–ï¸ Listed in CONTRIBUTORS.md
+- ðŸŽ–ï¸ Mentioned in release notes
+- ðŸŽ–ï¸ GitHub contributions graph
 
 **Top contributors may receive:**
 - Collaborator access
@@ -576,9 +576,9 @@ Save everyone's time!
 
 **Need help contributing?**
 
-- 💬 [GitHub Discussions](https://github.com/CrazyPickleStudios/Brine2D/discussions)
-- 📧 Email: contribute@brine2d.dev (coming soon)
-- 🐦 Twitter: [@Brine2D](https://twitter.com/Brine2D) (coming soon)
+- ðŸ’¬ [GitHub Discussions](https://github.com/CrazyPickleStudios/Brine2D/discussions)
+- ðŸ“§ Email: contribute@brine2d.dev (coming soon)
+- ðŸ¦ Twitter: [@Brine2D](https://twitter.com/Brine2D) (coming soon)
 
 **We're here to help!** Don't be shy - even small contributions matter.
 
@@ -592,4 +592,4 @@ See [LICENSE](https://github.com/CrazyPickleStudios/Brine2D/blob/main/LICENSE) f
 
 ---
 
-**Thank you for making Brine2D better!** 🎮✨
+**Thank you for making Brine2D better!** ðŸŽ®âœ¨

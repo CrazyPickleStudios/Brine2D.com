@@ -1,4 +1,4 @@
-﻿---
+---
 title: Brine2D.Rendering API
 description: Brine2D.Rendering API in Brine2D
 ---

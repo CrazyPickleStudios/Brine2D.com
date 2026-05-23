@@ -124,7 +124,7 @@ emitter.EndRotation = MathF.PI * 2; // End angle (full rotation)
 emitter.RotationSpeed = 2f; // Radians per second (constant spin)
 
 // Random rotation variance
-emitter.RotationSpread = MathF.PI / 4; // ±45 degrees initial rotation
+emitter.RotationSpread = MathF.PI / 4; // Â±45 degrees initial rotation
 ```
 
 **Rotation Modes:**
@@ -141,7 +141,7 @@ emitter.RotationSpeed = 3f; // Spin at 3 rad/s regardless of lifetime
 
 // Random initial rotation
 emitter.StartRotation = 0f;
-emitter.RotationSpread = MathF.PI; // Random ±180 degrees
+emitter.RotationSpread = MathF.PI; // Random Â±180 degrees
 emitter.RotationSpeed = 1f; // All spin at same speed
 ```
 
@@ -302,9 +302,9 @@ Control particle movement:
 emitter.InitialVelocity = new Vector2(0, -100); // Upward
 
 // Velocity spread (random angle variance in degrees)
-emitter.VelocitySpread = 45f; // ±45° cone
+emitter.VelocitySpread = 45f; // Â±45Â° cone
 
-// Gravity (acceleration, pixels per second²)
+// Gravity (acceleration, pixels per secondÂ²)
 emitter.Gravity = new Vector2(0, 200); // Pull down
 
 // No gravity (floating particles)

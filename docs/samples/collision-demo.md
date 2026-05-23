@@ -1,4 +1,4 @@
-﻿---
+---
 title: Collision Demo
 description: Collision Demo in Brine2D
 ---

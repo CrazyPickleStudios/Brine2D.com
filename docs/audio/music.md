@@ -5,7 +5,7 @@ description: Streaming music, crossfading, and the MusicSourceComponent in Brine
 
 # Music Playback
 
-This guide covers music streaming — loading, playback, crossfading, seeking, and the ECS-driven `MusicSourceComponent`.
+This guide covers music streaming â€” loading, playback, crossfading, seeking, and the ECS-driven `MusicSourceComponent`.
 
 For a quick introduction to audio in general, see [Getting Started](getting-started.md).
 
@@ -44,12 +44,12 @@ public class LevelAssets : AssetManifest
 
 | Format | Extension | Notes |
 |---|---|---|
-| OGG Vorbis | `.ogg` | Recommended — good compression, seamless looping |
+| OGG Vorbis | `.ogg` | Recommended â€” good compression, seamless looping |
 | MP3 | `.mp3` | Widely supported |
 | WAV | `.wav` | Uncompressed, large files |
 | FLAC | `.flac` | Lossless compression |
 
-`.ogg` is the best choice for most game music — it supports gapless looping and has good compression.
+`.ogg` is the best choice for most game music â€” it supports gapless looping and has good compression.
 
 !!! note "One Music Track"
     SDL3_mixer supports a single music stream at a time. Playing new music replaces the current track. Use `CrossfadeMusic` for smooth transitions between tracks.
@@ -153,7 +153,7 @@ Query the current position and total duration:
 double currentMs = Audio.MusicPositionMs;
 double totalMs   = Audio.MusicDurationMs;
 
-double progress = currentMs / totalMs;  // 0.0 – 1.0
+double progress = currentMs / totalMs;  // 0.0 â€“ 1.0
 ```
 
 ---
@@ -173,8 +173,8 @@ bool fading   = Audio.IsMusicFadingOut;
 Adjust the playing music track in real time:
 
 ```csharp
-Audio.SetMusicPitch(0.8f);         // slow down (0.5 – 2.0)
-Audio.SetMusicTrackVolume(0.5f);   // per-track volume (0.0 – 1.0)
+Audio.SetMusicPitch(0.8f);         // slow down (0.5 â€“ 2.0)
+Audio.SetMusicTrackVolume(0.5f);   // per-track volume (0.0 â€“ 1.0)
 ```
 
 ### Volume Hierarchy
@@ -182,7 +182,7 @@ Audio.SetMusicTrackVolume(0.5f);   // per-track volume (0.0 – 1.0)
 Music volume flows through the same hierarchy as sound effects:
 
 ```
-Final volume = MasterVolume × MusicVolume × per-track volume
+Final volume = MasterVolume Ã— MusicVolume Ã— per-track volume
 ```
 
 ```csharp
@@ -190,7 +190,7 @@ Audio.MasterVolume = 0.8f;          // affects everything
 Audio.MusicVolume  = 0.7f;          // affects all music
 Audio.SetMusicTrackVolume(0.5f);    // affects the current track
 
-// Effective volume: 0.8 × 0.7 × 0.5 = 0.28
+// Effective volume: 0.8 Ã— 0.7 Ã— 0.5 = 0.28
 ```
 
 ---
@@ -229,8 +229,8 @@ World.CreateEntity("BGM")
 
 | Property | Type | Default | Description |
 |---|---|---|---|
-| `Volume` | `float` | `1.0` | Base volume (0.0 – 1.0) |
-| `Pitch` | `float` | `1.0` | Playback pitch (0.5 – 2.0) |
+| `Volume` | `float` | `1.0` | Base volume (0.0 â€“ 1.0) |
+| `Pitch` | `float` | `1.0` | Playback pitch (0.5 â€“ 2.0) |
 | `Priority` | `int` | `0` | Track priority |
 | `Bus` | `string?` | `"music"` | Bus name (defaults to "music") |
 | `PlayOnEnable` | `bool` | `false` | Auto-play when entity is enabled |
@@ -249,7 +249,7 @@ World.CreateEntity("BGM")
 
 ### Trigger Properties
 
-Same as `SoundEffectSourceComponent` — the `AudioSystem` reads and resets these each frame:
+Same as `SoundEffectSourceComponent` â€” the `AudioSystem` reads and resets these each frame:
 
 ```csharp
 var music = entity.GetComponent<MusicSourceComponent>()!;
@@ -314,6 +314,6 @@ bgm.TriggerSeek    = true;
 
 ## What's Next?
 
-- [Sound Effects](sound-effects.md) — one-shot and looping sound effects, track management
-- [Spatial Audio](spatial-audio.md) — distance attenuation, panning, Doppler
-- [Getting Started](getting-started.md) — full audio tutorial from scratch
+- [Sound Effects](sound-effects.md) â€” one-shot and looping sound effects, track management
+- [Spatial Audio](spatial-audio.md) â€” distance attenuation, panning, Doppler
+- [Getting Started](getting-started.md) â€” full audio tutorial from scratch

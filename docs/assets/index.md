@@ -1,4 +1,4 @@
-﻿---
+---
 title: Assets
 description: Load, cache, and manage game assets in Brine2D - textures, sounds, music, and fonts
 ---
@@ -20,10 +20,10 @@ public class GameScene : Scene
 
     protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>? progress = null)
     {
-        var texture = await _assets.GetOrLoadTextureAsync(""assets/images/player.png"", cancellationToken: ct);
-        var sound   = await _assets.GetOrLoadSoundAsync(""assets/audio/jump.wav"", ct);
-        var music   = await _assets.GetOrLoadMusicAsync(""assets/audio/theme.ogg"", ct);
-        var font    = await _assets.GetOrLoadFontAsync(""assets/fonts/ui.ttf"", size: 16, ct);
+        var texture = await _assets.GetOrLoadTextureAsync("assets/images/player.png", cancellationToken: ct);
+        var sound   = await _assets.GetOrLoadSoundAsync("assets/audio/jump.wav", ct);
+        var music   = await _assets.GetOrLoadMusicAsync("assets/audio/theme.ogg", ct);
+        var font    = await _assets.GetOrLoadFontAsync("assets/fonts/ui.ttf", size: 16, ct);
     }
 }
 ```
@@ -79,7 +79,7 @@ Ensure your assets are copied to the output directory:
 ```xml
 <!-- In your .csproj -->
 <ItemGroup>
-  <None Update=""assets\**\*"">
+  <None Update="assets\**\*">
     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   </None>
 </ItemGroup>

@@ -1,4 +1,4 @@
-﻿---
+---
 title: UI Components
 description: UI Components in Brine2D
 ---

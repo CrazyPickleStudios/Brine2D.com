@@ -1,4 +1,4 @@
-﻿---
+---
 title: Deployment
 description: Publishing and distributing your Brine2D game
 ---

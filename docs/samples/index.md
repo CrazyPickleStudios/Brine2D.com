@@ -1,4 +1,4 @@
-﻿---
+---
 title: Samples
 description: Samples in Brine2D
 ---

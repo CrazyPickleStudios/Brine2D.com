@@ -1,6 +1,6 @@
 ---
 title: Animation System
-description: Overview of Brine2D's animation system — clips, the state machine, blend trees, layers, and Aseprite integration
+description: Overview of Brine2D's animation system â€” clips, the state machine, blend trees, layers, and Aseprite integration
 ---
 
 # Animation System
@@ -9,24 +9,24 @@ description: Overview of Brine2D's animation system — clips, the state machine
     Sprite animation from individual frames and clips through to a full layered state machine with
     blend trees, Aseprite loading, and time-offset event callbacks.
 
-    **Namespaces:** `Brine2D.Animation` · `Brine2D.Systems.Animation`
+    **Namespaces:** `Brine2D.Animation` Â· `Brine2D.Systems.Animation`
 
-Brine2D's animation system is built around a small set of composable types that work together to drive sprite playback. You can use as much or as little of the system as your game needs — from a single looping clip to a full layered state machine with 2D blend trees.
+Brine2D's animation system is built around a small set of composable types that work together to drive sprite playback. You can use as much or as little of the system as your game needs â€” from a single looping clip to a full layered state machine with 2D blend trees.
 
 ## Architecture at a Glance
 
 ```
 AnimatorComponent  (ECS component)
-├── SpriteAnimator          ← plays AnimationClips, fires events
-├── AnimationStateMachine   ← evaluates transitions each frame
-├── AnimationParameters     ← named parameter store (bool/float/int/trigger)
-├── BlendSelector1D?        ← drives clip selection from one float
-├── BlendSelector2D?        ← drives clip selection from two floats
-└── AnimationLayer[]        ← additional independent tracks
-     ├── SpriteAnimator
-     ├── AnimationStateMachine
-     ├── AnimationParameters
-     └── BlendSelector1D/2D?
+â”œâ”€â”€ SpriteAnimator          â† plays AnimationClips, fires events
+â”œâ”€â”€ AnimationStateMachine   â† evaluates transitions each frame
+â”œâ”€â”€ AnimationParameters     â† named parameter store (bool/float/int/trigger)
+â”œâ”€â”€ BlendSelector1D?        â† drives clip selection from one float
+â”œâ”€â”€ BlendSelector2D?        â† drives clip selection from two floats
+â””â”€â”€ AnimationLayer[]        â† additional independent tracks
+     â”œâ”€â”€ SpriteAnimator
+     â”œâ”€â”€ AnimationStateMachine
+     â”œâ”€â”€ AnimationParameters
+     â””â”€â”€ BlendSelector1D/2D?
 ```
 
 `AnimationSystem` (registered in the scene) ticks all of this every frame and writes the result to the entity's `SpriteComponent`.
@@ -72,10 +72,10 @@ animator.Animator.Play("idle");
 
 ## Pages in This Section
 
-- [Clips & Frames](clips-and-frames.md) — building `AnimationClip`s and `SpriteFrame`s manually
-- [Animator Component](animator-component.md) — ECS setup, `SpriteAnimator` playback API, cross-fades, queuing
-- [State Machine](state-machine.md) — transitions, parameters, callbacks, forced states
-- [Blend Trees](blend-trees.md) — 1D and 2D clip selection from continuous parameters
-- [Layers](layers.md) — independent parallel animation tracks and blending
-- [Aseprite Integration](aseprite.md) — loading clips from Aseprite JSON exports
-- [Clip Events](clip-events.md) — time-offset callbacks fired during playback
+- [Clips & Frames](clips-and-frames.md) â€” building `AnimationClip`s and `SpriteFrame`s manually
+- [Animator Component](animator-component.md) â€” ECS setup, `SpriteAnimator` playback API, cross-fades, queuing
+- [State Machine](state-machine.md) â€” transitions, parameters, callbacks, forced states
+- [Blend Trees](blend-trees.md) â€” 1D and 2D clip selection from continuous parameters
+- [Layers](layers.md) â€” independent parallel animation tracks and blending
+- [Aseprite Integration](aseprite.md) â€” loading clips from Aseprite JSON exports
+- [Clip Events](clip-events.md) â€” time-offset callbacks fired during playback

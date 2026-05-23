@@ -1,4 +1,4 @@
-﻿---
+---
 title: Architecture
 description: Understanding Brine2D's architecture - ASP.NET Core-inspired design with scoped services per scene
 ---
@@ -13,8 +13,8 @@ Brine2D's architecture is inspired by **ASP.NET Core**, bringing familiar patter
 
 | Principle | Description |
 |-----------|-------------|
-| **Dependency Injection** | Services injected via constructor (testable, maintainable) |
-| **Scoped Services** | EntityWorld scoped per scene (automatic cleanup!) |
+| **Dependency Injection** | Services injected via constructor |
+| **Scoped Services** | EntityWorld scoped per scene — automatically disposed on scene unload |
 | **Configuration** | Options pattern (appsettings.json, environment variables) |
 | **Hosting Model** | GameApplication builder (like WebApplication) |
 | **Lifecycle Hooks** | Scene lifecycle (Initialize → Load → Update → Render → Unload) |
@@ -90,7 +90,7 @@ Brine2D uses **three DI lifetimes** (same as ASP.NET Core):
 
 ---
 
-### Scoped EntityWorld (NEW!)
+### Scoped EntityWorld
 
 **Each scene gets its own isolated EntityWorld** - automatic cleanup!
 
@@ -146,13 +146,12 @@ graph TB
     style EW3 fill:#333,stroke:#666,stroke-width:1px,stroke-dasharray: 5 5,color:#666
 ```
 
-**Key benefits:**
-- ✅ **Automatic cleanup** - entities destroyed when scene unloads
-- ✅ **Isolation** - scenes can't interfere with each other
-- ✅ **No memory leaks** - impossible to forget cleanup
-- ✅ **Fresh slate** - each scene starts with empty World
+Each scene scope provides:
+- Automatic entity cleanup when the scene unloads
+- Isolation between scenes
+- A fresh `EntityWorld` with no leftover state
 
-**Pattern:** This matches ASP.NET's request scope - each HTTP request gets its own scope, and Brine2D scenes work the same way!
+This mirrors ASP.NET's request scope — each HTTP request gets its own scope, and Brine2D scenes work the same way.
 
 ---
 
@@ -307,7 +306,7 @@ public class EntityWorld : IEntityWorld, IDisposable
     
     public IReadOnlyList<Entity> Entities => _entities.AsReadOnly();
     
-    public Entity CreateEntity(string name = "")
+    public Entity CreateEntity(string name = ")
     {
         var entity = new Entity { Name = name, World = this };
         _entities.Add(entity);

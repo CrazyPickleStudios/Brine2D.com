@@ -1,4 +1,4 @@
-﻿---
+---
 title: Loading Tilemaps
 description: Loading Tilemaps in Brine2D
 ---

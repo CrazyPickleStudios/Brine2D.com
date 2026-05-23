@@ -1,4 +1,4 @@
-﻿---
+---
 title: ECS Getting Started
 description: Get started with Entity Component System in Brine2D - build your first hybrid ECS game
 ---

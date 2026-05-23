@@ -1,4 +1,4 @@
-﻿---
+---
 title: Loading Assets
 description: Load textures, sounds, music, and fonts with IAssetLoader
 ---
@@ -28,11 +28,11 @@ public class GameScene : Scene
 
 ```csharp
 // Default (linear filtering - smooth scaling)
-var texture = await _assets.GetOrLoadTextureAsync(""assets/images/background.png"", cancellationToken: ct);
+var texture = await _assets.GetOrLoadTextureAsync("assets/images/background.png", cancellationToken: ct);
 
 // Nearest filtering - sharp pixel art
 var pixelArt = await _assets.GetOrLoadTextureAsync(
-    ""assets/images/player.png"",
+    "assets/images/player.png",
     TextureScaleMode.Nearest,
     ct);
 ```
@@ -42,21 +42,21 @@ The `(path, scaleMode)` pair is the cache key - the same file at different scale
 ### Sound Effects
 
 ```csharp
-var jump = await _assets.GetOrLoadSoundAsync(""assets/audio/jump.wav"", ct);
+var jump = await _assets.GetOrLoadSoundAsync("assets/audio/jump.wav", ct);
 Audio.PlaySound(jump);
 ```
 
 ### Music
 
 ```csharp
-var theme = await _assets.GetOrLoadMusicAsync(""assets/audio/theme.ogg"", ct);
+var theme = await _assets.GetOrLoadMusicAsync("assets/audio/theme.ogg", ct);
 Audio.PlayMusic(theme);
 ```
 
 ### Fonts
 
 ```csharp
-var font = await _assets.GetOrLoadFontAsync(""assets/fonts/ui.ttf"", size: 16, ct);
+var font = await _assets.GetOrLoadFontAsync("assets/fonts/ui.ttf", size: 16, ct);
 Renderer.SetDefaultFont(font);
 ```
 
@@ -70,15 +70,15 @@ Assets loaded through a scoped `IAssetLoader` are released automatically when th
 
 ```csharp
 // Release a specific texture
-_assets.ReleaseTexture(""assets/images/player.png"");
+_assets.ReleaseTexture("assets/images/player.png");
 
 // Release with scale mode (if loaded with non-default)
-_assets.ReleaseTexture(""assets/images/player.png"", TextureScaleMode.Nearest);
+_assets.ReleaseTexture("assets/images/player.png", TextureScaleMode.Nearest);
 
 // Release other types
-_assets.ReleaseSound(""assets/audio/jump.wav"");
-_assets.ReleaseMusic(""assets/audio/theme.ogg"");
-_assets.ReleaseFont(""assets/fonts/ui.ttf"", size: 16);
+_assets.ReleaseSound("assets/audio/jump.wav");
+_assets.ReleaseMusic("assets/audio/theme.ogg");
+_assets.ReleaseFont("assets/fonts/ui.ttf", size: 16);
 
 // Release everything
 _assets.UnloadAll();
@@ -93,13 +93,13 @@ Report progress to a loading screen:
 ```csharp
 protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>? progress = null)
 {
-    _texture = await _assets.GetOrLoadTextureAsync(""assets/images/player.png"", cancellationToken: ct);
+    _texture = await _assets.GetOrLoadTextureAsync("assets/images/player.png", cancellationToken: ct);
     progress?.Report(0.33f);
 
-    _sound = await _assets.GetOrLoadSoundAsync(""assets/audio/jump.wav"", ct);
+    _sound = await _assets.GetOrLoadSoundAsync("assets/audio/jump.wav", ct);
     progress?.Report(0.66f);
 
-    _music = await _assets.GetOrLoadMusicAsync(""assets/audio/theme.ogg"", ct);
+    _music = await _assets.GetOrLoadMusicAsync("assets/audio/theme.ogg", ct);
     progress?.Report(1.0f);
 }
 ```

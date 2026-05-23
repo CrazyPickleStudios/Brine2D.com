@@ -113,10 +113,10 @@ public class MovementSystem : GameSystem
 ```
 
 **Benefits:**
-- ✅ **Zero allocation** - No garbage collection pressure
-- ✅ **Automatic updates** - Stays in sync with world changes
-- ✅ **Type-safe** - Compile-time component checking
-- ✅ **Fast iteration** - Direct component access
+- âœ… **Zero allocation** - No garbage collection pressure
+- âœ… **Automatic updates** - Stays in sync with world changes
+- âœ… **Type-safe** - Compile-time component checking
+- âœ… **Fast iteration** - Direct component access
 
 ### Multi-Component Cached Queries
 
@@ -147,7 +147,7 @@ foreach (var (transform, sprite, animator) in query3)
 ### Query Performance Comparison
 
 ```csharp
-// ❌ Slow - Creates new list every frame
+// âŒ Slow - Creates new list every frame
 public override void Update(GameTime gameTime)
 {
     var moving = _world.GetEntitiesWithComponents<TransformComponent, VelocityComponent>();
@@ -160,7 +160,7 @@ public override void Update(GameTime gameTime)
     }
 }
 
-// ✅ Fast - Cached query, zero allocation
+// âœ… Fast - Cached query, zero allocation
 public override void Update(GameTime gameTime)
 {
     foreach (var (transform, velocity) in _movingEntities)
@@ -391,29 +391,29 @@ var nearbyEnemies = world.GetEntitiesByTag("Enemy")
 ### Do's and Don'ts
 
 ```csharp
-// ✅ DO: Use cached queries in systems
+// âœ… DO: Use cached queries in systems
 var _cachedQuery = world.CreateCachedQuery<TransformComponent, VelocityComponent>();
 
-// ❌ DON'T: Query every frame without caching
+// âŒ DON'T: Query every frame without caching
 var moving = world.GetEntitiesWithComponents<TransformComponent, VelocityComponent>();
 
-// ✅ DO: Use fluent API for complex queries
+// âœ… DO: Use fluent API for complex queries
 var targets = world.Query()
     .With<HealthComponent>()
     .WithTag("Enemy")
     .Without<DeadComponent>()
     .Execute();
 
-// ❌ DON'T: Chain LINQ Where clauses unnecessarily
+// âŒ DON'T: Chain LINQ Where clauses unnecessarily
 var targets = world.Entities
     .Where(e => e.HasComponent<HealthComponent>())
     .Where(e => e.Tags.Contains("Enemy"))
     .Where(e => !e.Tags.Contains("Dead"));
 
-// ✅ DO: Use Any() for existence checks
+// âœ… DO: Use Any() for existence checks
 var hasEnemies = world.GetEntitiesByTag("Enemy").Any();
 
-// ❌ DON'T: Use Count() for existence checks
+// âŒ DON'T: Use Count() for existence checks
 var hasEnemies = world.GetEntitiesByTag("Enemy").Count() > 0;
 ```
 

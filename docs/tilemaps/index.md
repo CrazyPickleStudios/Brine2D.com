@@ -1,4 +1,4 @@
-﻿---
+---
 title: Tilemaps
 description: Load and render tilemaps from Tiled editor in Brine2D
 ---
@@ -42,10 +42,10 @@ public class TilemapScene : Scene
 
 ## Topics
 
-| Guide | Description | Difficulty |
-|-------|-------------|------------|
-| **[Loading Tilemaps](loading.md)** | Load tilemaps from Tiled JSON format | ⭐ Beginner |
-| **[Rendering Tiles](rendering.md)** | Render tilemap layers efficiently | ⭐⭐ Intermediate |
+| Guide | Description |
+|---|---|
+| **[Loading Tilemaps](loading.md)** | Load tilemaps from Tiled JSON format|
+| **[Rendering Tiles](rendering.md)** | Render tilemap layers efficiently|
 
 ---
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Asset Manifests
 description: Parallel asset preloading with typed AssetManifest and AssetRef<T>
 ---
@@ -14,11 +14,11 @@ Asset manifests let you declare all assets a scene needs upfront, then load them
 ```csharp
 public class LevelAssets : AssetManifest
 {
-    public readonly AssetRef<ITexture>     Player  = Texture(""assets/images/player.png"", TextureScaleMode.Nearest);
-    public readonly AssetRef<ITexture>     Tileset = Texture(""assets/images/tileset.png"", TextureScaleMode.Nearest);
-    public readonly AssetRef<ISoundEffect> Jump    = Sound(""assets/audio/jump.wav"");
-    public readonly AssetRef<IMusic>       Theme   = Music(""assets/audio/theme.ogg"");
-    public readonly AssetRef<IFont>        HUD     = Font(""assets/fonts/ui.ttf"", size: 20);
+    public readonly AssetRef<ITexture>     Player  = Texture("assets/images/player.png", TextureScaleMode.Nearest);
+    public readonly AssetRef<ITexture>     Tileset = Texture("assets/images/tileset.png", TextureScaleMode.Nearest);
+    public readonly AssetRef<ISoundEffect> Jump    = Sound("assets/audio/jump.wav");
+    public readonly AssetRef<IMusic>       Theme   = Music("assets/audio/theme.ogg");
+    public readonly AssetRef<IFont>        HUD     = Font("assets/fonts/ui.ttf", size: 20);
 }
 ```
 
@@ -54,11 +54,11 @@ A manifest is a class extending `AssetManifest` with `AssetRef<T>` fields:
 ```csharp
 public class MenuAssets : AssetManifest
 {
-    public readonly AssetRef<ITexture> Logo       = Texture(""assets/images/logo.png"");
-    public readonly AssetRef<ITexture> Background = Texture(""assets/images/menu-bg.png"");
-    public readonly AssetRef<IFont>    Title      = Font(""assets/fonts/title.ttf"", size: 48);
-    public readonly AssetRef<IFont>    Body       = Font(""assets/fonts/body.ttf"", size: 16);
-    public readonly AssetRef<IMusic>   MenuTheme  = Music(""assets/audio/menu.ogg"");
+    public readonly AssetRef<ITexture> Logo       = Texture("assets/images/logo.png");
+    public readonly AssetRef<ITexture> Background = Texture("assets/images/menu-bg.png");
+    public readonly AssetRef<IFont>    Title      = Font("assets/fonts/title.ttf", size: 48);
+    public readonly AssetRef<IFont>    Body       = Font("assets/fonts/body.ttf", size: 16);
+    public readonly AssetRef<IMusic>   MenuTheme  = Music("assets/audio/menu.ogg");
 }
 ```
 
@@ -84,7 +84,7 @@ await _assets.PreloadAsync(_manifest, progress, cancellationToken: ct);
 `AssetRef<T>` wraps a loaded asset with implicit conversion:
 
 ```csharp
-AssetRef<ITexture> playerRef = Texture(""assets/images/player.png"");
+AssetRef<ITexture> playerRef = Texture("assets/images/player.png");
 
 // After PreloadAsync completes:
 ITexture texture = playerRef;           // Implicit conversion

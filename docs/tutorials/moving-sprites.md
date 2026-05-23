@@ -1,4 +1,4 @@
-﻿---
+---
 title: Moving Sprites Tutorial
 description: Learn to load textures, draw sprites, and create smooth movement in Brine2D
 ---
@@ -68,14 +68,14 @@ Override `OnLoadAsync` to load your texture:
 ```csharp
 protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>? progress = null)
 {
-    Logger.LogInformation(""Loading player sprite..."");
+    Logger.LogInformation("Loading player sprite...");
 
     _playerTexture = await _assets.GetOrLoadTextureAsync(
-        ""assets/images/player.png"",
+        "assets/images/player.png",
         TextureScaleMode.Nearest,  // Sharp scaling for pixel art
         ct);
 
-    Logger.LogInformation(""Sprite loaded: {W}x{H}"",
+    Logger.LogInformation("Sprite loaded: {W}x{H}",
         _playerTexture.Width, _playerTexture.Height);
 }
 ```
@@ -157,7 +157,7 @@ var builder = GameApplication.CreateBuilder(args);
 
 builder.Configure(options =>
 {
-    options.Window.Title = ""Moving Sprites Tutorial"";
+    options.Window.Title = "Moving Sprites Tutorial";
     options.Window.Width = 1280;
     options.Window.Height = 720;
 });
@@ -195,7 +195,7 @@ public class MovingSpriteScene : Scene
     protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>? progress = null)
     {
         _playerTexture = await _assets.GetOrLoadTextureAsync(
-            ""assets/images/player.png"",
+            "assets/images/player.png",
             TextureScaleMode.Nearest,
             ct);
     }

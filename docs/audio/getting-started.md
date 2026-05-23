@@ -11,13 +11,13 @@ Learn how to add sound effects, music, and audio to your Brine2D games.
 
 Brine2D's audio system provides:
 
-- **Sound Effects** — Short audio clips (explosions, jumps, shots)
-- **Music** — Long-form background audio (looping tracks, crossfade)
-- **Volume Control** — Master, music, and sound volume channels
-- **Track Management** — Control individual playing sounds (pause, resume, stop, volume, pan, pitch)
-- **Bus System** — Group tracks for batch operations (pause/stop/volume by bus)
-- **Spatial Audio** — ECS-based positional sound via `SoundEffectSourceComponent`
-- **Priority Eviction** — Lowest-priority tracks evicted when all tracks are in use
+- **Sound Effects** â€” Short audio clips (explosions, jumps, shots)
+- **Music** â€” Long-form background audio (looping tracks, crossfade)
+- **Volume Control** â€” Master, music, and sound volume channels
+- **Track Management** â€” Control individual playing sounds (pause, resume, stop, volume, pan, pitch)
+- **Bus System** â€” Group tracks for batch operations (pause/stop/volume by bus)
+- **Spatial Audio** â€” ECS-based positional sound via `SoundEffectSourceComponent`
+- **Priority Eviction** â€” Lowest-priority tracks evicted when all tracks are in use
 
 **Powered by:** SDL3_mixer (high-quality audio mixing)
 
@@ -136,7 +136,7 @@ protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>
 }
 ```
 
-All calls share a thread-safe cache — loading the same path twice returns the cached instance.
+All calls share a thread-safe cache â€” loading the same path twice returns the cached instance.
 
 **When to use:** Short duration (< 5 seconds), played frequently, may play simultaneously.
 
@@ -581,9 +581,9 @@ assets/
 
 ### DON'T
 
-1. **Don't load in OnUpdate** — causes lag
-2. **Don't play too many sounds** — use priority eviction or `MaxConcurrentInstances`
-3. **Don't max out volume** — causes clipping
+1. **Don't load in OnUpdate** â€” causes lag
+2. **Don't play too many sounds** â€” use priority eviction or `MaxConcurrentInstances`
+3. **Don't max out volume** â€” causes clipping
 4. **Don't forget to copy assets to output**
 
 ---
@@ -605,7 +605,7 @@ Audio.PlayMusic(_music!, loops: -1);
 
 ### Track handle is zero
 
-The sound couldn't be played — all tracks are in use and the new sound's priority was too low. Increase `priority` or reduce concurrent sounds.
+The sound couldn't be played â€” all tracks are in use and the new sound's priority was too low. Increase `priority` or reduce concurrent sounds.
 
 ---
 
@@ -615,9 +615,9 @@ The sound couldn't be played — all tracks are in use and the new sound's prior
 
 | Volume | Controls | Range |
 |--------|----------|-------|
-| **MasterVolume** | All audio | 0.0–1.0 |
-| **MusicVolume** | Music only | 0.0–1.0 |
-| **SoundVolume** | Sound effects only | 0.0–1.0 |
+| **MasterVolume** | All audio | 0.0â€“1.0 |
+| **MusicVolume** | Music only | 0.0â€“1.0 |
+| **SoundVolume** | Sound effects only | 0.0â€“1.0 |
 
 **Key methods:**
 

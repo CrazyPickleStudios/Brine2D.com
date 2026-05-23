@@ -11,7 +11,7 @@ description: KinematicCharacterBody and KinematicCharacterSystem for platformers
 
 ## Setup
 
-Register physics with `AddPhysics()` — the kinematic character systems are included automatically:
+Register physics with `AddPhysics()` â€” the kinematic character systems are included automatically:
 
 ```csharp
 services.AddPhysics(opts => { opts.Gravity = new Vector2(0, 980); });

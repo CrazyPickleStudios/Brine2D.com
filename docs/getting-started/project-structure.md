@@ -1,4 +1,4 @@
-﻿---
+---
 title: Project Structure
 description: Organize your Brine2D project for maintainability and scalability
 ---

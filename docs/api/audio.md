@@ -1,4 +1,4 @@
-﻿---
+---
 title: Brine2D.Audio API
 description: Brine2D.Audio API in Brine2D
 ---

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Quick Start
 description: Create your first Brine2D game in 5 minutes - from zero to a running window
 ---
@@ -221,7 +221,7 @@ These are **available in all lifecycle methods** (after constructor):
 | Property | Type | Purpose |
 |----------|------|---------|
 | `Logger` | `ILogger` | Logging for this scene (typed automatically) |
-| `World` | `IEntityWorld` | Entity world (scoped per scene, auto-cleanup!) |
+| `World` | `IEntityWorld` | Entity world, scoped per scene — disposed automatically on scene unload |
 | `Renderer` | `IRenderer` | Drawing + render state (clear color, camera, etc.) |
 | `Input` | `IInputContext` | Keyboard, mouse, and gamepad input |
 | `Audio` | `IAudioPlayer` | Play sounds and music |

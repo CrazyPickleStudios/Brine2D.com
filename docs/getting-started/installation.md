@@ -1,4 +1,4 @@
-﻿---
+---
 title: Installation
 description: Install Brine2D and set up your development environment for .NET 10 game development
 ---

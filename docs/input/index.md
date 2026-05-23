@@ -43,15 +43,15 @@ public class GameScene : Scene
 
 ### Getting Started
 
-| Guide | Description | Difficulty |
-|-------|-------------|------------|
+| Guide | Description |
+|-------|-------------|
 | **[Keyboard](keyboard.md)** | Handle keyboard input | :star: Beginner |
 | **[Mouse](mouse.md)** | Mouse position, clicks, and scroll wheel | :star: Beginner |
 
 ### Advanced
 
-| Guide | Description | Difficulty |
-|-------|-------------|------------|
+| Guide | Description |
+|-------|-------------|
 | **[Gamepad Support](gamepad.md)** | Controller/gamepad input | :star::star: Intermediate |
 | **[Input Actions](actions.md)** | Rebindable logical actions with multiple bindings | :star::star: Intermediate |
 | **[Input Layers](layers.md)** | Priority-based input routing for UI | :star::star::star: Advanced |

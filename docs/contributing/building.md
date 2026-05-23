@@ -1,4 +1,4 @@
-﻿---
+---
 title: Building from Source
 description: Building from Source in Brine2D
 ---

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Getting Started
 description: Installation, quick start, and first game tutorials
 ---

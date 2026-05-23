@@ -308,7 +308,7 @@ Applies forces and gravity:
 public class PhysicsSystem : IUpdateSystem
 {
     private readonly World _world;
-    private const float Gravity = 980f; // pixels/sec²
+    private const float Gravity = 980f; // pixels/secÂ²
     
     public string Name => "PhysicsSystem";
     public int UpdateOrder => 50;
@@ -951,7 +951,7 @@ public class ParallelMovementSystem : IUpdateSystem
 ### Cache Queries
 
 ```csharp
-// ❌ Bad - queries every frame
+// âŒ Bad - queries every frame
 public void Update(GameTime gameTime)
 {
     for (int i = 0; i < 100; i++)
@@ -961,7 +961,7 @@ public void Update(GameTime gameTime)
     }
 }
 
-// ✅ Good - query once
+// âœ… Good - query once
 public void Update(GameTime gameTime)
 {
     var entities = _world.QueryEntities()
@@ -1201,7 +1201,7 @@ public class DebugRenderSystem : IRenderSystem
 
 1. **Keep systems focused**
    ```csharp
-   // ✅ Good - single responsibility
+   // âœ… Good - single responsibility
    public class MovementSystem : IUpdateSystem
    {
        // Only handles movement
@@ -1215,7 +1215,7 @@ public class DebugRenderSystem : IRenderSystem
 
 2. **Use explicit ordering**
    ```csharp
-   // ✅ Good - clear order
+   // âœ… Good - clear order
    public class InputSystem : IUpdateSystem
    {
        public int UpdateOrder => 10;
@@ -1229,7 +1229,7 @@ public class DebugRenderSystem : IRenderSystem
 
 3. **Cache query results**
    ```csharp
-   // ✅ Good - query once
+   // âœ… Good - query once
    var entities = _world.QueryEntities()
        .With<TransformComponent>()
        .ToList();
@@ -1242,13 +1242,13 @@ public class DebugRenderSystem : IRenderSystem
 
 4. **Use events for system communication**
    ```csharp
-   // ✅ Good - loose coupling
+   // âœ… Good - loose coupling
    _eventBus.Publish(new EntityDiedEvent { Entity = entity });
    ```
 
 5. **Make systems stateless when possible**
    ```csharp
-   // ✅ Good - no state
+   // âœ… Good - no state
    public class MovementSystem : IUpdateSystem
    {
        private readonly World _world; // Dependency, not state
@@ -1264,13 +1264,13 @@ public class DebugRenderSystem : IRenderSystem
 
 1. **Don't store entity-specific state in systems**
    ```csharp
-   // ❌ Bad - state in system
+   // âŒ Bad - state in system
    public class MovementSystem : IUpdateSystem
    {
        private Vector2 _playerPosition; // Wrong!
    }
    
-   // ✅ Good - state in component
+   // âœ… Good - state in component
    public class TransformComponent : Component
    {
        public Vector2 Position { get; set; }
@@ -1279,13 +1279,13 @@ public class DebugRenderSystem : IRenderSystem
 
 2. **Don't query inside loops**
    ```csharp
-   // ❌ Bad - queries every iteration
+   // âŒ Bad - queries every iteration
    for (int i = 0; i < 100; i++)
    {
        var entities = _world.QueryEntities().With<EnemyComponent>();
    }
    
-   // ✅ Good - query once
+   // âœ… Good - query once
    var entities = _world.QueryEntities()
        .With<EnemyComponent>()
        .ToList();
@@ -1298,13 +1298,13 @@ public class DebugRenderSystem : IRenderSystem
 
 3. **Don't create tight dependencies**
    ```csharp
-   // ❌ Bad - tight coupling
+   // âŒ Bad - tight coupling
    public class SystemA : IUpdateSystem
    {
        private readonly SystemB _systemB; // Coupled to another system!
    }
    
-   // ✅ Good - use events
+   // âœ… Good - use events
    public class SystemA : IUpdateSystem
    {
        private readonly EventBus _eventBus; // Loose coupling
@@ -1313,10 +1313,10 @@ public class DebugRenderSystem : IRenderSystem
 
 4. **Don't forget deltaTime**
    ```csharp
-   // ❌ Bad - frame-rate dependent
+   // âŒ Bad - frame-rate dependent
    transform.Position += velocity.Velocity;
    
-   // ✅ Good - frame-rate independent
+   // âœ… Good - frame-rate independent
    transform.Position += velocity.Velocity * deltaTime;
    ```
 
@@ -1358,7 +1358,7 @@ public class DebugRenderSystem : IRenderSystem
 **Solution:** Set UpdateOrder correctly:
 
 ```csharp
-// ✅ Correct ordering
+// âœ… Correct ordering
 public class InputSystem : IUpdateSystem { public int UpdateOrder => 10; }
 public class MovementSystem : IUpdateSystem { public int UpdateOrder => 100; }
 public class CollisionSystem : IUpdateSystem { public int UpdateOrder => 150; }
@@ -1390,7 +1390,7 @@ public class CollisionSystem : IUpdateSystem { public int UpdateOrder => 150; }
 
 3. **Use spatial partitioning:**
    - Only check nearby entities
-   - Reduces O(n²) to ~O(n)
+   - Reduces O(nÂ²) to ~O(n)
 
 ---
 
@@ -1401,11 +1401,11 @@ public class CollisionSystem : IUpdateSystem { public int UpdateOrder => 150; }
 **Solution:** Check system ordering:
 
 ```csharp
-// ✅ Correct - CollisionSystem runs after MovementSystem
+// âœ… Correct - CollisionSystem runs after MovementSystem
 public class MovementSystem : IUpdateSystem { public int UpdateOrder => 100; }
 public class CollisionSystem : IUpdateSystem { public int UpdateOrder => 150; }
 
-// ❌ Wrong - CollisionSystem runs before MovementSystem
+// âŒ Wrong - CollisionSystem runs before MovementSystem
 public class CollisionSystem : IUpdateSystem { public int UpdateOrder => 50; }
 public class MovementSystem : IUpdateSystem { public int UpdateOrder => 100; }
 ```

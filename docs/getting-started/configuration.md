@@ -1,4 +1,4 @@
-﻿---
+---
 title: Configuration
 description: Configure Brine2D with code-based options
 ---

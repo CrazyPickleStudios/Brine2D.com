@@ -44,7 +44,7 @@ graph TD
 Every `new` allocation creates garbage that must eventually be collected:
 
 ```csharp
-// ❌ BAD: Allocates every frame
+// âŒ BAD: Allocates every frame
 protected override void OnUpdate(GameTime gameTime)
 {
     var enemies = new List<Entity>(); // Allocation!
@@ -75,7 +75,7 @@ Use `ArrayPool<T>` for temporary buffers:
 ```csharp
 using System.Buffers;
 
-// ✅ GOOD: Zero allocation
+// âœ… GOOD: Zero allocation
 protected override void OnUpdate(GameTime gameTime)
 {
     var enemyCount = World.GetEntitiesWithComponent<EnemyComponent>().Count();
@@ -136,7 +136,7 @@ public class MovementSystem : ECSSystem
     {
         var deltaTime = (float)gameTime.DeltaTime;
         
-        // ✅ Zero allocation per frame!
+        // âœ… Zero allocation per frame!
         foreach (var entity in _movingEntities.Execute())
         {
             var transform = entity.GetComponent<TransformComponent>();
@@ -165,7 +165,7 @@ public class MovementSystem : ECSSystem
 LINQ is convenient but allocates:
 
 ```csharp
-// ❌ BAD: LINQ allocates enumerators
+// âŒ BAD: LINQ allocates enumerators
 var weakEnemies = World.Query()
     .With<EnemyComponent>()
     .With<HealthComponent>()
@@ -173,7 +173,7 @@ var weakEnemies = World.Query()
     .Where(e => e.GetComponent<HealthComponent>().CurrentHealth < 50) // Allocation!
     .ToList(); // More allocation!
 
-// ✅ GOOD: Manual iteration
+// âœ… GOOD: Manual iteration
 var weakEnemies = new List<Entity>(capacity: 10); // Pre-allocate once
 
 foreach (var entity in World.Query()
@@ -192,7 +192,7 @@ foreach (var entity in World.Query()
 **Even Better:**
 
 ```csharp
-// ✅ BEST: Use query predicates
+// âœ… BEST: Use query predicates
 var weakEnemies = World.Query()
     .With<EnemyComponent>()
     .With<HealthComponent>(h => h.CurrentHealth < 50) // Filtered at query level!
@@ -327,7 +327,7 @@ public class WeaponSystem : ECSSystem
     
     public void FireWeapon(Vector2 position, Vector2 direction)
     {
-        // ✅ Zero allocation - bullet is pooled!
+        // âœ… Zero allocation - bullet is pooled!
         var bullet = _bulletPool.SpawnBullet(position, direction * 500f);
     }
     
@@ -343,14 +343,14 @@ public class WeaponSystem : ECSSystem
 ### Pool Guidelines
 
 **When to Pool:**
-- ✅ Frequently spawned/destroyed objects (bullets, particles, effects)
-- ✅ Large objects (expensive to allocate)
-- ✅ Objects with complex initialization
+- âœ… Frequently spawned/destroyed objects (bullets, particles, effects)
+- âœ… Large objects (expensive to allocate)
+- âœ… Objects with complex initialization
 
 **When NOT to Pool:**
-- ❌ Rarely spawned objects (bosses, level geometry)
-- ❌ Objects with unique state
-- ❌ Small, simple structs (use stack allocation instead)
+- âŒ Rarely spawned objects (bosses, level geometry)
+- âŒ Objects with unique state
+- âŒ Small, simple structs (use stack allocation instead)
 
 **Pool Sizing:**
 - Set `maxSize` to expected maximum concurrent instances
@@ -378,7 +378,7 @@ var sprite2 = entity2.AddComponent<SpriteComponent>();
 sprite2.TexturePath = "assets/enemy.png"; // Same texture!
 sprite2.Layer = 10; // Same layer!
 
-// Both sprites rendered in 1 draw call! ✅
+// Both sprites rendered in 1 draw call! âœ…
 ```
 
 **Check Batching Efficiency:**
@@ -403,13 +403,13 @@ if (efficiency < 5f)
 Combine multiple textures into one atlas:
 
 ```csharp
-// ❌ BAD: Many textures = many batches
+// âŒ BAD: Many textures = many batches
 sprite1.TexturePath = "assets/enemy1.png";  // Batch 1
 sprite2.TexturePath = "assets/enemy2.png";  // Batch 2
 sprite3.TexturePath = "assets/player.png";  // Batch 3
 // 3 draw calls for 3 sprites!
 
-// ✅ GOOD: One atlas = one batch
+// âœ… GOOD: One atlas = one batch
 sprite1.TexturePath = "assets/atlas.png";
 sprite1.SourceRect = new Rectangle(0, 0, 32, 32);    // Enemy 1
 
@@ -419,7 +419,7 @@ sprite2.SourceRect = new Rectangle(32, 0, 32, 32);   // Enemy 2
 sprite3.TexturePath = "assets/atlas.png";
 sprite3.SourceRect = new Rectangle(64, 0, 32, 32);   // Player
 
-// 1 draw call for 3 sprites! ✅
+// 1 draw call for 3 sprites! âœ…
 ```
 
 **Tools for Creating Atlases:**
@@ -434,7 +434,7 @@ sprite3.SourceRect = new Rectangle(64, 0, 32, 32);   // Player
 Group sprites by layer to minimize state changes:
 
 ```csharp
-// ✅ GOOD: Group by layer
+// âœ… GOOD: Group by layer
 background.Layer = 0;   // All backgrounds
 terrain.Layer = 1;      // All terrain
 enemies.Layer = 10;     // All enemies
@@ -442,7 +442,7 @@ player.Layer = 15;      // Player
 effects.Layer = 20;     // All effects
 ui.Layer = 100;         // All UI
 
-// Rendered in order: 0 → 1 → 10 → 15 → 20 → 100
+// Rendered in order: 0 â†’ 1 â†’ 10 â†’ 15 â†’ 20 â†’ 100
 // Minimal layer switches = better batching!
 ```
 
@@ -455,7 +455,7 @@ ui.Layer = 100;         // All UI
 Use spatial queries to reduce iteration:
 
 ```csharp
-// ❌ BAD: Check all entities
+// âŒ BAD: Check all entities
 foreach (var entity in World.Query().With<EnemyComponent>().Execute())
 {
     var distance = Vector2.Distance(entity.Position, playerPosition);
@@ -465,7 +465,7 @@ foreach (var entity in World.Query().With<EnemyComponent>().Execute())
     }
 }
 
-// ✅ GOOD: Only iterate nearby entities
+// âœ… GOOD: Only iterate nearby entities
 var nearbyEnemies = World.Query()
     .WithinRadius(playerPosition, 200f)
     .With<EnemyComponent>()
@@ -484,7 +484,7 @@ foreach (var enemy in nearbyEnemies)
 Filter at query level, not in loops:
 
 ```csharp
-// ❌ BAD: Filter in loop
+// âŒ BAD: Filter in loop
 foreach (var entity in World.Query().With<HealthComponent>().Execute())
 {
     var health = entity.GetComponent<HealthComponent>();
@@ -494,7 +494,7 @@ foreach (var entity in World.Query().With<HealthComponent>().Execute())
     }
 }
 
-// ✅ GOOD: Filter in query
+// âœ… GOOD: Filter in query
 var lowHealthEntities = World.Query()
     .With<HealthComponent>(h => h.CurrentHealth < 50)
     .Execute();
@@ -512,12 +512,12 @@ foreach (var entity in lowHealthEntities)
 Keep queries simple for best performance:
 
 ```csharp
-// ⚠️ ACCEPTABLE: Simple predicate
+// âš ï¸ ACCEPTABLE: Simple predicate
 var result = World.Query()
     .With<HealthComponent>(h => h.CurrentHealth < 50)
     .Execute();
 
-// ❌ BAD: Complex predicate (executes per entity!)
+// âŒ BAD: Complex predicate (executes per entity!)
 var result = World.Query()
     .With<TransformComponent>()
     .Where(e => 
@@ -529,7 +529,7 @@ var result = World.Query()
     })
     .Execute();
 
-// ✅ BETTER: Split into multiple simpler queries
+// âœ… BETTER: Split into multiple simpler queries
 var nearbyLowHealth = World.Query()
     .WithinRadius(playerPos, 200f)
     .With<HealthComponent>(h => h.CurrentHealth < 50)
@@ -543,13 +543,13 @@ var nearbyLowHealth = World.Query()
 ### Avoid String Allocations
 
 ```csharp
-// ❌ BAD: Concatenation allocates
+// âŒ BAD: Concatenation allocates
 var message = "Player: " + player.Name + " HP: " + player.Health;
 
-// ✅ GOOD: Interpolation is optimized by compiler
+// âœ… GOOD: Interpolation is optimized by compiler
 var message = $"Player: {player.Name} HP: {player.Health}";
 
-// ✅ BEST: StringBuilder for complex cases
+// âœ… BEST: StringBuilder for complex cases
 var sb = new StringBuilder(capacity: 100); // Pre-allocate
 sb.Append("Player: ");
 sb.Append(player.Name);
@@ -566,7 +566,7 @@ sb.Clear(); // Reuse!
 Use structs for small, immutable data:
 
 ```csharp
-// ✅ GOOD: Struct for small data (no allocation)
+// âœ… GOOD: Struct for small data (no allocation)
 public struct Velocity
 {
     public float X;
@@ -584,10 +584,10 @@ var velocity = new Velocity(10, 20); // Stack allocated!
 ```
 
 **Guidelines:**
-- ✅ Use structs for < 16 bytes
-- ✅ Use structs for immutable data
-- ❌ Avoid large structs (copying is expensive)
-- ❌ Avoid mutable structs (confusing semantics)
+- âœ… Use structs for < 16 bytes
+- âœ… Use structs for immutable data
+- âŒ Avoid large structs (copying is expensive)
+- âŒ Avoid mutable structs (confusing semantics)
 
 ---
 
@@ -596,14 +596,14 @@ var velocity = new Velocity(10, 20); // Stack allocated!
 Pre-allocate collections with known sizes:
 
 ```csharp
-// ❌ BAD: Grows dynamically (allocates multiple times)
+// âŒ BAD: Grows dynamically (allocates multiple times)
 var list = new List<Entity>();
 for (int i = 0; i < 1000; i++)
 {
     list.Add(CreateEntity()); // Reallocates at 4, 8, 16, 32...
 }
 
-// ✅ GOOD: Pre-allocate
+// âœ… GOOD: Pre-allocate
 var list = new List<Entity>(capacity: 1000);
 for (int i = 0; i < 1000; i++)
 {
@@ -704,49 +704,49 @@ Before shipping, verify:
 
 ### DO
 
-✅ **Profile before optimizing**
+âœ… **Profile before optimizing**
 
 Use the [Performance Monitor](monitoring.md) to identify real bottlenecks.
 
-✅ **Use cached queries in systems**
+âœ… **Use cached queries in systems**
 
 ```csharp
 private readonly CachedQuery<T1, T2> _query = world.CreateCachedQuery<T1, T2>();
 ```
 
-✅ **Pool frequently spawned objects**
+âœ… **Pool frequently spawned objects**
 
 Bullets, particles, effects, projectiles.
 
-✅ **Pre-allocate collections**
+âœ… **Pre-allocate collections**
 
 ```csharp
 var list = new List<Entity>(capacity: expectedSize);
 ```
 
-✅ **Use structs for small data**
+âœ… **Use structs for small data**
 
 Position, velocity, color (< 16 bytes).
 
 ### DON'T
 
-❌ **Don't use LINQ in hot paths**
+âŒ **Don't use LINQ in hot paths**
 
 LINQ allocates enumerators.
 
-❌ **Don't create new objects every frame**
+âŒ **Don't create new objects every frame**
 
 Use pooling or reuse.
 
-❌ **Don't use `ToList()` on queries**
+âŒ **Don't use `ToList()` on queries**
 
 Iterate directly with `foreach`.
 
-❌ **Don't ignore GC warnings**
+âŒ **Don't ignore GC warnings**
 
 Gen 2 collections = serious problem!
 
-❌ **Don't optimize prematurely**
+âŒ **Don't optimize prematurely**
 
 Measure first!
 

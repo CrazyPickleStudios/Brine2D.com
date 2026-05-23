@@ -54,9 +54,9 @@ public class GameScene : Scene
 
 ## Topics
 
-| Guide | Description | Difficulty |
-|-------|-------------|------------|
-| **[Window Events](window-events.md)** | Handle window resize, focus, minimize, etc. | ⭐ Beginner |
+| Guide | Description |
+|-------|-------------|
+| **[Window Events](window-events.md)** | Handle window resize, focus, minimize, etc. | â­ Beginner |
 
 ---
 
@@ -169,7 +169,7 @@ public class Player
     
     public void Die()
     {
-        _gameManager.OnPlayerDied(this);  // ❌ Tight coupling
+        _gameManager.OnPlayerDied(this);  // âŒ Tight coupling
     }
 }
 
@@ -180,7 +180,7 @@ public class Player
     
     public void Die()
     {
-        _eventBus.Publish(new PlayerDiedEvent { ... });  // ✅ Decoupled
+        _eventBus.Publish(new PlayerDiedEvent { ... });  // âœ… Decoupled
     }
 }
 
@@ -221,7 +221,7 @@ _eventBus.Subscribe<WeaponFiredEvent>(e =>
 
 ## Best Practices
 
-### ✅ DO
+### âœ… DO
 
 1. **Unsubscribe in OnUnloadAsync()** - Prevent memory leaks
 2. **Use EventBus for decoupling** - Loose coupling between systems
@@ -230,7 +230,7 @@ _eventBus.Subscribe<WeaponFiredEvent>(e =>
 5. **Use singleton EventBus** - Shared across scenes
 
 ```csharp
-// ✅ Good pattern
+// âœ… Good pattern
 protected override Task OnInitializeAsync(CancellationToken ct)
 {
     _eventBus.Subscribe<WindowResizedEvent>(OnWindowResized);
@@ -251,7 +251,7 @@ private void OnWindowResized(WindowResizedEvent e)
 
 ---
 
-### ❌ DON'T
+### âŒ DON'T
 
 1. **Don't forget to unsubscribe** - Memory leaks
 2. **Don't use for high-frequency events** - Performance overhead
@@ -260,7 +260,7 @@ private void OnWindowResized(WindowResizedEvent e)
 5. **Don't create circular event chains** - Stack overflow
 
 ```csharp
-// ❌ Bad - forgot to unsubscribe
+// âŒ Bad - forgot to unsubscribe
 protected override Task OnInitializeAsync(CancellationToken ct)
 {
     _eventBus.Subscribe<WindowResizedEvent>(OnWindowResized);
@@ -268,13 +268,13 @@ protected override Task OnInitializeAsync(CancellationToken ct)
 }
 // OnUnloadAsync missing - memory leak!
 
-// ❌ Bad - high frequency
+// âŒ Bad - high frequency
 protected override void OnUpdate(GameTime gameTime)
 {
     _eventBus.Publish(new FrameUpdateEvent());  // 60 times per second - slow!
 }
 
-// ❌ Bad - circular events
+// âŒ Bad - circular events
 _eventBus.Subscribe<EventA>(e => _eventBus.Publish(new EventB()));
 _eventBus.Subscribe<EventB>(e => _eventBus.Publish(new EventA()));  // Stack overflow!
 ```
@@ -373,7 +373,7 @@ protected override Task OnInitializeAsync(CancellationToken ct)
 
 protected override Task OnUnloadAsync(CancellationToken ct)
 {
-    _eventBus.Unsubscribe(_resizeHandler);  // ✅ Prevents leak
+    _eventBus.Unsubscribe(_resizeHandler);  // âœ… Prevents leak
     return Task.CompletedTask;
 }
 ```
@@ -389,11 +389,11 @@ protected override Task OnUnloadAsync(CancellationToken ct)
 1. **Check event type matches:**
 
 ```csharp
-// ❌ Different types won't match
+// âŒ Different types won't match
 _eventBus.Publish(new PlayerDiedEvent());
 _eventBus.Subscribe<EnemyDiedEvent>(e => { }); // Won't fire
 
-// ✅ Same type
+// âœ… Same type
 _eventBus.Publish(new PlayerDiedEvent());
 _eventBus.Subscribe<PlayerDiedEvent>(e => { }); // Will fire
 ```
@@ -446,15 +446,15 @@ public void Publish<TEvent>(TEvent eventData)
 - Notify: O(n) - Iterate all subscribers
 
 **Recommendation:**
-- ✅ Use for infrequent events (player died, level complete)
-- ❌ Avoid for high-frequency events (every frame update)
+- âœ… Use for infrequent events (player died, level complete)
+- âŒ Avoid for high-frequency events (every frame update)
 
 ```csharp
-// ✅ Good - infrequent
+// âœ… Good - infrequent
 _eventBus.Publish(new LevelCompleteEvent());
 _eventBus.Publish(new PlayerDiedEvent());
 
-// ❌ Bad - every frame
+// âŒ Bad - every frame
 protected override void OnUpdate(GameTime gameTime)
 {
     _eventBus.Publish(new FrameUpdateEvent());  // 60 times per second!

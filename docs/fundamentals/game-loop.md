@@ -1,4 +1,4 @@
-﻿---
+---
 title: Game Loop
 description: Understanding Brine2D's game loop architecture and frame timing
 ---

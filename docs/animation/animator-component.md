@@ -5,12 +5,7 @@ description: ECS setup, SpriteAnimator playback API, cross-fades, and animation 
 
 # Animator Component
 
-!!! abstract "In this article"
-    ECS setup with `AnimatorComponent` and `AnimationSystem`, the full `SpriteAnimator` playback
-    API (`Play`, `PlayWithCrossFade`, `PlayQueued`, `Stop`, `Pause`, `Resume`), playback events,
-    and standalone (non-ECS) usage.
-
-    **Namespaces:** `Brine2D.Animation` · `Brine2D.Systems.Animation`
+    **Namespaces:** `Brine2D.Animation` Â· `Brine2D.Systems.Animation`
 
 `AnimatorComponent` is the ECS entry point for the animation system. It owns the primary `SpriteAnimator`, an `AnimationStateMachine`, an `AnimationParameters` store, optional blend trees, and any additional `AnimationLayer`s.
 
@@ -50,7 +45,7 @@ anim.Animator.AddAnimation(idle);
 anim.Animator.Play("idle");
 ```
 
-`AnimationSystem` calls `Update` and writes `CurrentFrame` to `SpriteComponent` automatically — you do **not** call `animator.Update()` yourself.
+`AnimationSystem` calls `Update` and writes `CurrentFrame` to `SpriteComponent` automatically â€” you do **not** call `animator.Update()` yourself.
 
 ---
 
@@ -107,7 +102,7 @@ animator.PlayQueued("land");
 ### Speed and Direction
 
 ```csharp
-animator.Speed    = 2.0f;  // 2× faster
+animator.Speed    = 2.0f;  // 2Ã— faster
 animator.Speed    = 0.5f;  // half speed / slow-motion
 animator.Reversed = true;  // play backwards
 ```
@@ -182,7 +177,7 @@ Rectangle? head   = anim.GetCurrentHitBox("head");
 
 ## Without ECS
 
-`SpriteAnimator` can be used standalone — for example in a scene that doesn't use the full ECS, or in unit tests.
+`SpriteAnimator` can be used standalone â€” for example in a scene that doesn't use the full ECS, or in unit tests.
 
 ```csharp
 var animator = new SpriteAnimator();

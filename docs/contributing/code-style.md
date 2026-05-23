@@ -1,4 +1,4 @@
-﻿---
+---
 title: Code Style
 description: Code Style in Brine2D
 ---

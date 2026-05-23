@@ -1,4 +1,4 @@
-﻿---
+---
 title: Fundamentals
 description: Deep dive into Brine2D architecture, patterns, and internals for advanced users
 ---
@@ -23,18 +23,18 @@ Understand the **core architecture and design patterns** that power Brine2D. Thi
 ### Core Architecture
 
 | Topic | Description | Level |
-|-------|-------------|-------|
-| **[Architecture](architecture.md)** | High-level system design, ASP.NET-inspired patterns, and service scoping | ⭐⭐⭐ Advanced |
-| **[Dependency Injection](dependency-injection.md)** | DI container internals, service lifetimes, and registration patterns | ⭐⭐⭐ Advanced |
-| **[Scene Management](scene-management.md)** | How SceneManager works, scene scoping, and lifecycle implementation | ⭐⭐⭐ Advanced |
+|---|---|
+| **[Architecture](architecture.md)** | High-level system design, ASP.NET-inspired patterns, and service scoping|
+| **[Dependency Injection](dependency-injection.md)** | DI container internals, service lifetimes, and registration patterns|
+| **[Scene Management](scene-management.md)** | How SceneManager works, scene scoping, and lifecycle implementation|
 
 ### Engine Systems
 
 | Topic | Description | Level |
-|-------|-------------|-------|
-| **[Game Loop](game-loop.md)** | Frame timing, update/render loop, and execution order | ⭐⭐ Intermediate |
-| **[Builder Pattern](builder-pattern.md)** | GameApplicationBuilder internals and service configuration | ⭐⭐ Intermediate |
-| **[ECS Deep Dive](entity-component-system.md)** | Entity-Component-System architecture, queries, and performance | ⭐⭐⭐ Advanced |
+|---|---|
+| **[Game Loop](game-loop.md)** | Frame timing, update/render loop, and execution order|
+| **[Builder Pattern](builder-pattern.md)** | GameApplicationBuilder internals and service configuration|
+| **[ECS Deep Dive](entity-component-system.md)** | Entity-Component-System architecture, queries, and performance|
 
 ---
 
@@ -137,7 +137,7 @@ graph TB
 Brine2D's architecture mirrors **ASP.NET Core** patterns you already know:
 
 | ASP.NET Core | Brine2D | What It Does |
-|--------------|---------|--------------|
+|---|---|
 | `WebApplication.CreateBuilder()` | `GameApplication.CreateBuilder()` | Configure services |
 | Controllers | Scenes | Handle logic |
 | `ILogger<T>` | `ILogger<T>` | Structured logging |
@@ -203,7 +203,7 @@ stateDiagram-v2
 If you're coming from other engines:
 
 | Feature | Unity | Godot | Brine2D |
-|---------|-------|-------|---------|
+|---|---|
 | **DI Container** | ❌ Manual | ❌ Manual | ✅ Built-in (ASP.NET style) |
 | **Scene Isolation** | ⚠️ Manual cleanup | ⚠️ Manual cleanup | ✅ Automatic (scoped services) |
 | **ECS** | ✅ DOTS (strict) | ❌ None | ✅ Hybrid (flexible) |
@@ -296,7 +296,7 @@ public class GameScene : Scene
 **Service resolution is fast**, but not free:
 
 | Lifetime | Resolution Cost | When to Use |
-|----------|----------------|-------------|
+|---|---|
 | **Singleton** | Once (cached) | Heavy objects, global state |
 | **Scoped** | Once per scene (cached) | Scene-specific state |
 | **Transient** | Every resolution | Lightweight, stateless |

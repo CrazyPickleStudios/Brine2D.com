@@ -21,19 +21,19 @@ public class GameScene : Scene
     protected override void OnUpdate(GameTime gameTime)
     {
         // All available as properties - no constructor injection needed
-        Logger.LogDebug(""Frame {Frame}"", Game.GameTime.FrameCount);
+        Logger.LogDebug("Frame {Frame}", Game.GameTime.FrameCount);
         if (Input.IsKeyPressed(Key.Escape)) Game.RequestExit();
     }
 
     protected override void OnRender(GameTime gameTime)
     {
-        Renderer.DrawText(""Hello"", 10, 10, Color.White);
+        Renderer.DrawText("Hello", 10, 10, Color.White);
     }
 
     protected override void OnEnter()
     {
         Audio.PlayMusic(_theme);
-        var player = World.CreateEntity(""Player"");
+        var player = World.CreateEntity("Player");
     }
 }
 ```
@@ -89,7 +89,7 @@ public class GameScene : Scene
     protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>? progress = null)
     {
         // Assets loaded here are tracked by this scene's IAssetLoader
-        _texture = await _assets.GetOrLoadTextureAsync(""assets/images/player.png"", cancellationToken: ct);
+        _texture = await _assets.GetOrLoadTextureAsync("assets/images/player.png", cancellationToken: ct);
     }
 
     // When scene unloads: _assets releases all tracked assets automatically
@@ -167,7 +167,7 @@ public class PlayerMovementBehavior : Behavior
 }
 
 // Add to entity
-var player = World.CreateEntity(""Player"");
+var player = World.CreateEntity("Player");
 player.AddBehavior<PlayerMovementBehavior>(); // DI resolves IInputContext automatically
 ```
 
@@ -180,7 +180,7 @@ Configure services with `IOptions<T>`, just like ASP.NET:
 ```csharp
 builder.Configure(options =>
 {
-    options.Window.Title = ""My Game"";
+    options.Window.Title = "My Game";
     options.Window.Width = 1280;
     options.Window.Height = 720;
     options.Rendering.VSync = true;
@@ -210,7 +210,7 @@ builder.Configure(options =>
 
 ## Troubleshooting
 
-### ""Service not found"" Error
+### "Service not found" Error
 
 Make sure you registered the service in `Program.cs`:
 
@@ -223,8 +223,8 @@ builder.Services.AddSingleton<GameState>(); // Don't forget!
 Change from Singleton to Scoped:
 
 ```csharp
-builder.Services.AddSingleton<CollisionSystem>(); // ❌ Persists forever
-builder.Services.AddScoped<CollisionSystem>();     // ✅ Fresh per scene
+builder.Services.AddSingleton<CollisionSystem>(); // âŒ Persists forever
+builder.Services.AddScoped<CollisionSystem>();     // âœ… Fresh per scene
 ```
 
 ---

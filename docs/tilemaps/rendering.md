@@ -1,4 +1,4 @@
-﻿---
+---
 title: Rendering Tiles
 description: Rendering Tiles in Brine2D
 ---

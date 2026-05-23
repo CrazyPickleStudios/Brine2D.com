@@ -1,4 +1,4 @@
-﻿---
+---
 title: What's New in Brine2D
 description: Release history, changelogs, and version information for Brine2D
 ---

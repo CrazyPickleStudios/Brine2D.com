@@ -1,4 +1,4 @@
-﻿---
+---
 title: Performance Monitoring
 description: Monitor and profile your game's performance in Brine2D
 ---

@@ -1,4 +1,4 @@
-﻿---
+---
 title: ECS Demo
 description: ECS Demo in Brine2D
 ---

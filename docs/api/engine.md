@@ -1,4 +1,4 @@
-﻿---
+---
 title: Brine2D.Engine API
 description: Brine2D.Engine API in Brine2D
 ---

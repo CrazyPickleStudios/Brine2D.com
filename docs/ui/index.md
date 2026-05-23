@@ -1,4 +1,4 @@
-﻿---
+---
 title: UI Framework
 description: Build user interfaces with Brine2D's UI component system
 ---
@@ -62,10 +62,10 @@ public class MenuScene : Scene
 
 ## Topics
 
-| Guide | Description | Difficulty |
-|-------|-------------|------------|
-| **[UI Components](components.md)** | 15+ built-in UI components | ⭐ Beginner |
-| **[Custom UI](custom.md)** | Create custom UI elements | ⭐⭐ Intermediate |
+| Guide | Description |
+|---|---|
+| **[UI Components](components.md)** | 15+ built-in UI components|
+| **[Custom UI](custom.md)** | Create custom UI elements|
 
 ---
 

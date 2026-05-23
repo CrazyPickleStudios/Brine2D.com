@@ -1,4 +1,4 @@
-﻿---
+---
 title: ECS Deep Dive
 description: Understanding Brine2D's hybrid Entity Component System architecture
 ---
@@ -43,7 +43,7 @@ public class DamageFlashBehavior : Behavior
 // 3. Use in a scene
 protected override void OnEnter()
 {
-    var player = World.CreateEntity(""Player"");
+    var player = World.CreateEntity("Player");
     player.AddComponent<HealthComponent>();
     player.AddBehavior<DamageFlashBehavior>();
 }
@@ -67,8 +67,8 @@ Each scene gets its own `IEntityWorld`. Entities are destroyed automatically whe
 ```csharp
 protected override void OnEnter()
 {
-    World.CreateEntity(""Player"");
-    World.CreateEntity(""Enemy"");
+    World.CreateEntity("Player");
+    World.CreateEntity("Enemy");
     // Both destroyed automatically when scene unloads - no cleanup needed!
 }
 ```

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Scene Management
 description: How scenes organize your Brine2D game into distinct states
 ---
@@ -37,12 +37,12 @@ public class GameScene : Scene
 
     protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>? progress = null)
     {
-        _texture = await _assets.GetOrLoadTextureAsync(""assets/images/player.png"", cancellationToken: ct);
+        _texture = await _assets.GetOrLoadTextureAsync("assets/images/player.png", cancellationToken: ct);
     }
 
     protected override void OnEnter()
     {
-        var player = World.CreateEntity(""Player"");
+        var player = World.CreateEntity("Player");
         player.AddComponent<TransformComponent>().Position = new Vector2(400, 300);
     }
 
@@ -57,7 +57,7 @@ public class GameScene : Scene
 
     protected override void OnRender(GameTime gameTime)
     {
-        Renderer.DrawText(""Score: "" + _score, 10, 10, Color.White);
+        Renderer.DrawText("Score: " + _score, 10, 10, Color.White);
     }
 }
 ```

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Drawing Primitives
 description: Learn to draw shapes, lines, and primitives in Brine2D
 ---

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Performance
 description: Monitor, profile, and optimize your Brine2D games for maximum performance
 ---
@@ -37,10 +37,10 @@ await game.RunAsync<GameScene>();
 
 ## Topics
 
-| Guide | Description | Difficulty |
-|-------|-------------|------------|
-| **[Monitoring](monitoring.md)** | Built-in performance overlay and metrics | ⭐ Beginner |
-| **[Optimization](optimization.md)** | Improve performance and reduce lag | ⭐⭐⭐ Advanced |
+| Guide | Description |
+|---|---|
+| **[Monitoring](monitoring.md)** | Built-in performance overlay and metrics|
+| **[Optimization](optimization.md)** | Improve performance and reduce lag|
 
 ---
 
@@ -376,7 +376,7 @@ protected override void OnUpdate(GameTime gameTime)
 ### .NET Profilers
 
 | Tool | Platform | Use For |
-|------|----------|---------|
+|---|---|
 | **dotTrace** | Windows/macOS | CPU profiling |
 | **dotMemory** | Windows/macOS | Memory profiling |
 | **PerfView** | Windows | CPU/GC analysis (free) |
@@ -504,7 +504,7 @@ Logger.LogInformation("Gen0: {Gen0}, Gen1: {Gen1}, Gen2: {Gen2}",
 ## Performance Targets
 
 | Metric | Target | Acceptable | Poor |
-|--------|--------|-----------|------|
+|---|---|
 | **FPS** | 60 | 45-60 | <45 |
 | **Frame Time** | <16.67ms | <22ms | >22ms |
 | **Draw Calls** | <50 | <100 | >100 |

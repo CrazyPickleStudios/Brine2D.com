@@ -1,4 +1,4 @@
-﻿---
+---
 title: Basic Game
 description: Basic Game in Brine2D
 ---

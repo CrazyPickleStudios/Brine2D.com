@@ -24,7 +24,7 @@ If you know ASP.NET, you already know how this works.</p>
 
 Brine2D is a full 2D game engine - not a rendering library. Scenes, entities, audio, input, collision, particles, UI, and a DI container all ship together and work out of the box. Everything you'd normally spend the first two weeks building yourself is already here.
 
-It follows the same hosting model as ASP.NET Core: `GameApplicationBuilder` → configure → build → run. If you've written a `WebApplication`, you'll be writing games in about ten minutes.
+It follows the same hosting model as ASP.NET Core: `GameApplicationBuilder` â†’ configure â†’ build â†’ run. If you've written a `WebApplication`, you'll be writing games in about ten minutes.
 
 ```csharp
 var builder = GameApplication.CreateBuilder(args);
@@ -85,15 +85,15 @@ One NuGet package. No separate renderer or platform packages.
 
 ```
 Brine2D/
-├── Assets        # Loading, caching, manifests
-├── Audio         # Playback, spatial audio, SDL3 backend
-├── Core          # GameTime, Color, math helpers
-├── ECS           # Entities, components, behaviors, systems, queries
-├── Engine        # Game loop, scenes, transitions, loading screens
-├── Hosting       # Builder, options, DI wiring
-├── Input         # Keyboard, mouse, gamepad, input layers
-├── Rendering     # Sprites, text, cameras, particles, SDL3 GPU backend
-└── UI            # Components, layout, input handling
+â”œâ”€â”€ Assets        # Loading, caching, manifests
+â”œâ”€â”€ Audio         # Playback, spatial audio, SDL3 backend
+â”œâ”€â”€ Core          # GameTime, Color, math helpers
+â”œâ”€â”€ ECS           # Entities, components, behaviors, systems, queries
+â”œâ”€â”€ Engine        # Game loop, scenes, transitions, loading screens
+â”œâ”€â”€ Hosting       # Builder, options, DI wiring
+â”œâ”€â”€ Input         # Keyboard, mouse, gamepad, input layers
+â”œâ”€â”€ Rendering     # Sprites, text, cameras, particles, SDL3 GPU backend
+â””â”€â”€ UI            # Components, layout, input handling
 ```
 
 ---

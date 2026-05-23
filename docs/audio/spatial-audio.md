@@ -13,27 +13,27 @@ Spatial audio adjusts sound based on the distance and direction between a sound 
 
 **Key Features:**
 
-- **Distance attenuation** — Sounds fade as they move away from the listener
-- **Stereo panning** — Sounds pan left/right based on horizontal position
-- **Doppler effect** — Pitch shifts based on relative velocity
-- **Real-time updates** — Audio adjusts every frame as entities move
-- **Configurable curves** — Linear, quadratic, or custom falloff
-- **ECS integration** — Component-based via `SoundEffectSourceComponent` and `AudioListenerComponent`
-- **Pitch and volume variation** — Randomized per-play for natural-sounding repetition
-- **Fade in/out** — Smooth volume transitions on start and stop
-- **Max concurrent instances** — Limit how many copies of the same sound can overlap
+- **Distance attenuation** â€” Sounds fade as they move away from the listener
+- **Stereo panning** â€” Sounds pan left/right based on horizontal position
+- **Doppler effect** â€” Pitch shifts based on relative velocity
+- **Real-time updates** â€” Audio adjusts every frame as entities move
+- **Configurable curves** â€” Linear, quadratic, or custom falloff
+- **ECS integration** â€” Component-based via `SoundEffectSourceComponent` and `AudioListenerComponent`
+- **Pitch and volume variation** â€” Randomized per-play for natural-sounding repetition
+- **Fade in/out** â€” Smooth volume transitions on start and stop
+- **Max concurrent instances** â€” Limit how many copies of the same sound can overlap
 
 ## Basic Concepts
 
 ### Audio Listener
 
-The listener represents the "ears" in your game world — typically attached to the player or camera.
+The listener represents the "ears" in your game world â€” typically attached to the player or camera.
 
 **Properties:**
 
 | Property | Description | Default |
 |----------|-------------|---------|
-| `GlobalSpatialVolume` | Master volume for all spatial audio (0.0–1.0) | 1.0 |
+| `GlobalSpatialVolume` | Master volume for all spatial audio (0.0â€“1.0) | 1.0 |
 | `SpeedOfSound` | World units per second for Doppler calculations | 343 |
 
 ### Sound Effect Source
@@ -44,8 +44,8 @@ A positioned sound emitter. Uses `SoundEffectSourceComponent` (extends `AudioSou
 
 | Property | Description | Default |
 |----------|-------------|---------|
-| `Volume` | Base volume (0.0–1.0) | 1.0 |
-| `Pitch` | Playback speed (0.25–4.0) | 1.0 |
+| `Volume` | Base volume (0.0â€“1.0) | 1.0 |
+| `Pitch` | Playback speed (0.25â€“4.0) | 1.0 |
 | `Priority` | Eviction priority (higher = less likely evicted) | 0 |
 | `Bus` | Bus name for group operations | `"sfx"` |
 | `PlayOnEnable` | Auto-play when enabled | `false` |
@@ -54,9 +54,9 @@ A positioned sound emitter. Uses `SoundEffectSourceComponent` (extends `AudioSou
 | `TriggerStop` | Set `true` to stop next frame | `false` |
 | `TriggerPause` | Set `true` to pause next frame | `false` |
 | `TriggerResume` | Set `true` to resume next frame | `false` |
-| `IsPlaying` | Read-only, managed by AudioSystem | — |
-| `IsPaused` | Read-only, managed by AudioSystem | — |
-| `PlaybackEnded` | Set by system when playback ends naturally | — |
+| `IsPlaying` | Read-only, managed by AudioSystem | â€” |
+| `IsPaused` | Read-only, managed by AudioSystem | â€” |
+| `PlaybackEnded` | Set by system when playback ends naturally | â€” |
 
 **Spatial properties on `SoundEffectSourceComponent`:**
 
@@ -70,8 +70,8 @@ A positioned sound emitter. Uses `SoundEffectSourceComponent` (extends `AudioSou
 | `SpatialBlend` | Stereo strength (0.0 = mono, 1.0 = full) | 1.0 |
 | `DopplerFactor` | Doppler intensity (0 = off, 1 = realistic, max 5) | 0 |
 | `MaxConcurrentInstances` | Global cap on simultaneous instances of same sound (0 = unlimited) | 0 |
-| `PitchVariation` | Random pitch offset per play (0–1) | 0 |
-| `VolumeVariation` | Random volume reduction per play (0–1) | 0 |
+| `PitchVariation` | Random pitch offset per play (0â€“1) | 0 |
+| `VolumeVariation` | Random volume reduction per play (0â€“1) | 0 |
 | `FadeInDuration` | Seconds to fade in on play | 0 |
 | `FadeOutDuration` | Seconds to fade out on stop | 0 |
 | `TriggerStopOldest` | Stop oldest overlapping track on this entity | `false` |
@@ -86,7 +86,7 @@ For positional music triggers, use `MusicSourceComponent` (extends `AudioSourceC
 | `CrossfadeDuration` | Crossfade when replacing another music entity | 0 |
 | `FadeOutDuration` | Fade when stopped | 0 |
 | `LoopStartMs` | Loop point offset in ms (allows intro) | 0 |
-| `TriggerSeek` / `SeekPositionMs` | Seek to position | — |
+| `TriggerSeek` / `SeekPositionMs` | Seek to position | â€” |
 | `Bus` | Default `"music"` | `"music"` |
 
 ### Distance Attenuation
@@ -113,7 +113,7 @@ Listener rotation affects panning direction.
 
 ### AudioSystem
 
-`AudioSystem` is a default system — it's added automatically to every scene. No registration needed.
+`AudioSystem` is a default system â€” it's added automatically to every scene. No registration needed.
 
 ### Create Audio Listener
 
@@ -346,19 +346,19 @@ If both `TriggerPlay` and `TriggerStop` are set in the same frame, both are clea
 
 ### Do
 
-- **Use spatial audio for diegetic sounds** — In-world sounds (enemies, pickups, effects)
-- **Disable for non-diegetic sounds** — UI, narration
-- **Match distances to game scale** — Larger worlds need larger distances
-- **Test with headphones** — Stereo panning is clearest with headphones
-- **Use `PitchVariation`** — Avoids repetitive-sounding effects
-- **Use `FadeOutDuration`** — Prevents clicks on stop
+- **Use spatial audio for diegetic sounds** â€” In-world sounds (enemies, pickups, effects)
+- **Disable for non-diegetic sounds** â€” UI, narration
+- **Match distances to game scale** â€” Larger worlds need larger distances
+- **Test with headphones** â€” Stereo panning is clearest with headphones
+- **Use `PitchVariation`** â€” Avoids repetitive-sounding effects
+- **Use `FadeOutDuration`** â€” Prevents clicks on stop
 
 ### Don't
 
-- **Don't enable spatial audio globally** — Only for positioned sounds
-- **Don't use tiny MinDistance** — Causes abrupt volume changes
-- **Don't use huge MaxDistance** — Wastes processing on inaudible sounds
-- **Don't overlap too many sources** — Use `MaxConcurrentInstances` to limit
+- **Don't enable spatial audio globally** â€” Only for positioned sounds
+- **Don't use tiny MinDistance** â€” Causes abrupt volume changes
+- **Don't use huge MaxDistance** â€” Wastes processing on inaudible sounds
+- **Don't overlap too many sources** â€” Use `MaxConcurrentInstances` to limit
 
 ## Troubleshooting
 
@@ -397,6 +397,6 @@ src.MaxConcurrentInstances = 3;
 
 ## See Also
 
-- [Sound Effects](sound-effects.md) — Basic sound playback
-- [Music Playback](music.md) — Background music
-- [Getting Started](getting-started.md) — Audio basics
+- [Sound Effects](sound-effects.md) â€” Basic sound playback
+- [Music Playback](music.md) â€” Background music
+- [Getting Started](getting-started.md) â€” Audio basics

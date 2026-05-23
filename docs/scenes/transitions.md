@@ -1,4 +1,4 @@
-﻿---
+---
 title: Scene Transitions
 description: Smooth visual effects and loading screens when transitioning between scenes
 ---

@@ -5,11 +5,6 @@ description: AnimationBlendSelector1D and AnimationBlendSelector2D in Brine2D
 
 # Blend Trees
 
-!!! abstract "In this article"
-    `AnimationBlendSelector1D` (threshold-based clip selection with speed interpolation) and
-    `AnimationBlendSelector2D` (nearest-neighbor Voronoi selection from a 2D parameter). Includes
-    per-layer blend trees and coexistence patterns with the state machine.
-
     **Namespace:** `Brine2D.Animation`
 
 Blend trees drive clip selection continuously from runtime parameter values rather than discrete transitions. They are ideal for movement animations (walk/run based on speed), directional facing (eight-way movement), and any situation where a float value should smoothly pick between clips.
@@ -55,7 +50,7 @@ When adjacent nodes carry a speed override, `SpriteAnimator.Speed` is linearly i
 ```csharp
 sel.AddNode(0f, "walk", speed: 0.5f);
 sel.AddNode(4f, "run",  speed: 2.0f);
-// At Value = 2.0, Speed ≈ 1.25
+// At Value = 2.0, Speed â‰ˆ 1.25
 ```
 
 ### Key Properties
@@ -67,8 +62,8 @@ sel.AddNode(4f, "run",  speed: 2.0f);
 | `RespectNonLoopingClips` | `true` | Yield to non-looping clips started outside the tree |
 | `AllowZeroSpeed` | `false` | Allow a speed node value of exactly `0` |
 | `IsEnabled` | `true` | When `false`, tree evaluation is skipped |
-| `NodeCount` | — | Number of registered nodes |
-| `ActiveClip` | — | Name of the currently selected clip |
+| `NodeCount` | â€” | Number of registered nodes |
+| `ActiveClip` | â€” | Name of the currently selected clip |
 
 ### Events
 
@@ -149,8 +144,8 @@ sel.AllowZeroSpeed = true; // allow the idle node's speed = 0
 | `RespectNonLoopingClips` | `true` | Yield to non-looping clips started outside the tree |
 | `AllowZeroSpeed` | `false` | Allow a speed node value of exactly `0` |
 | `IsEnabled` | `true` | When `false`, tree evaluation is skipped |
-| `NodeCount` | — | Number of registered nodes |
-| `ActiveClip` | — | Name of the currently selected clip |
+| `NodeCount` | â€” | Number of registered nodes |
+| `ActiveClip` | â€” | Name of the currently selected clip |
 
 ### Events
 

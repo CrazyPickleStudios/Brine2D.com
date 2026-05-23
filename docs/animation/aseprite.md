@@ -5,32 +5,27 @@ description: Loading AnimationClips directly from Aseprite JSON exports in Brine
 
 # Aseprite Integration
 
-!!! abstract "In this article"
-    Loading `AnimationClip`s from Aseprite JSON exports: tag directions → `PlaybackMode`, slice data
-    → hit boxes, trim offsets → `DrawOffset`, `ConfigureAnimator`, `RepeatCount`, and per-tag/per-frame
-    `UserData` fields.
-
     **Namespace:** `Brine2D.Animation`
 
 `AsepriteClipLoader` loads `AnimationClip`s directly from Aseprite's JSON sprite-sheet export. Each frame tag in the Aseprite file becomes one named `AnimationClip`. Frame durations, hitbox slices, trim offsets, tag directions, repeat counts, and user data fields are all mapped automatically.
 
 ## Exporting from Aseprite
 
-In Aseprite: **File → Export Sprite Sheet**
+In Aseprite: **File â†’ Export Sprite Sheet**
 
 - **Output:** check *JSON Data*
-- **Data format:** `JSON Array` or `JSON Hash` — both are supported
+- **Data format:** `JSON Array` or `JSON Hash` â€” both are supported
 - **Layers:** optional; only the final composite matters for the loader
 - **Meta:** enable *Frame Tags*, *Slices* (for hitboxes), and *Layers* as needed
 
 The loader reads:
-- `meta.frameTags` → one `AnimationClip` per tag
-- `meta.slices` → hit boxes per frame
-- Per-frame `duration` (ms) → `SpriteFrame.Duration`
-- Per-frame `spriteSourceSize` / `sourceSize` → `SpriteFrame.DrawOffset` (trim correction)
-- Per-frame `data` field → `SpriteFrame.UserData`
-- Per-tag `repeat` field → `AnimationClip.RepeatCount`
-- Per-tag `data` field → `AnimationClip.UserData`
+- `meta.frameTags` â†’ one `AnimationClip` per tag
+- `meta.slices` â†’ hit boxes per frame
+- Per-frame `duration` (ms) â†’ `SpriteFrame.Duration`
+- Per-frame `spriteSourceSize` / `sourceSize` â†’ `SpriteFrame.DrawOffset` (trim correction)
+- Per-frame `data` field â†’ `SpriteFrame.UserData`
+- Per-tag `repeat` field â†’ `AnimationClip.RepeatCount`
+- Per-tag `data` field â†’ `AnimationClip.UserData`
 
 ---
 
@@ -113,7 +108,7 @@ Rectangle? headZone = frame?.TryGetHitBox("head");
 var loader = new AsepriteClipLoader { HitBoxSliceName = "attack_box" };
 ```
 
-### Slice pivot → frame origin
+### Slice pivot â†’ frame origin
 
 When a slice carries a Aseprite `pivot` field, it is normalised by the original canvas `sourceSize` and written to `SpriteFrame.Origin`. This keeps pivots correct on trimmed exports.
 
@@ -123,7 +118,7 @@ When a slice carries a Aseprite `pivot` field, it is normalised by the original 
 
 When Aseprite's **Trim** export option is active, frames carry `spriteSourceSize` (the sub-rect of the original canvas covered by non-transparent pixels) and `sourceSize` (the full untrimmed canvas size).
 
-`AsepriteClipLoader` maps the trim offset to `SpriteFrame.DrawOffset` so that trimmed sprites render at the correct canvas-relative position. `AnimationSystem` applies `DrawOffset` to the entity's draw position each frame — you do not need to handle it manually.
+`AsepriteClipLoader` maps the trim offset to `SpriteFrame.DrawOffset` so that trimmed sprites render at the correct canvas-relative position. `AnimationSystem` applies `DrawOffset` to the entity's draw position each frame â€” you do not need to handle it manually.
 
 ---
 
@@ -131,7 +126,7 @@ When Aseprite's **Trim** export option is active, frames carry `spriteSourceSize
 
 - The Aseprite tag `repeat` field is written to `AnimationClip.RepeatCount`. On `Loop` and `PingPong` clips this makes the clip fire `OnAnimationComplete` after N passes instead of looping forever.
 - The tag `data` field (set via Aseprite **Tag User Data**) is written to `AnimationClip.UserData` as a `string` (unless direction logic already set it, e.g. `PingPongReverseTag`).
-- The per-frame `data` field (set via right-click → **Frame Properties** in Aseprite) is written to `SpriteFrame.UserData` as a `string`. Frames with no `data` field leave `UserData` as `null`.
+- The per-frame `data` field (set via right-click â†’ **Frame Properties** in Aseprite) is written to `SpriteFrame.UserData` as a `string`. Frames with no `data` field leave `UserData` as `null`.
 
 ```csharp
 // Read clip user data after loading

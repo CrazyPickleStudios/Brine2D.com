@@ -1,4 +1,4 @@
-﻿---
+---
 title: Brine2D.Core API
 description: Brine2D.Core API in Brine2D
 ---

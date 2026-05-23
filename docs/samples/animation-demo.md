@@ -1,4 +1,4 @@
-﻿---
+---
 title: Animation Demo
 description: Animation Demo sample in Brine2D
 ---

@@ -5,7 +5,7 @@ description: Loading, playing, and managing sound effects in Brine2D
 
 # Sound Effects
 
-This guide covers everything you need to work with sound effects — loading, playback, track management, and the ECS-driven `SoundEffectSourceComponent`.
+This guide covers everything you need to work with sound effects â€” loading, playback, track management, and the ECS-driven `SoundEffectSourceComponent`.
 
 For a quick introduction to audio in general, see [Getting Started](getting-started.md).
 
@@ -13,7 +13,7 @@ For a quick introduction to audio in general, see [Getting Started](getting-star
 
 ## Loading Sound Effects
 
-Sound effects are loaded through `ISoundLoader` (part of `IAudioService`). All loaded sounds are cached — loading the same path twice returns the cached instance.
+Sound effects are loaded through `ISoundLoader` (part of `IAudioService`). All loaded sounds are cached â€” loading the same path twice returns the cached instance.
 
 ```csharp
 public class GameScene : Scene
@@ -81,7 +81,7 @@ This plays the sound once at full volume, centered pan, normal pitch, default pr
 ```csharp
 Audio.PlaySound(
     _assets.Jump,
-    volume: 0.8f,       // 0.0 – 1.0 (default: 1.0)
+    volume: 0.8f,       // 0.0 â€“ 1.0 (default: 1.0)
     loops: 0,           // 0 = play once, -1 = loop forever, n = play n+1 times
     pan: -0.5f,         // -1.0 (left) to 1.0 (right), 0.0 = center
     pitch: 1.2f,        // 0.5 = half speed, 1.0 = normal, 2.0 = double speed
@@ -125,13 +125,13 @@ if (Audio.IsTrackAlive(track))
 ### Adjusting a Playing Track
 
 ```csharp
-// Volume (0.0 – 1.0)
+// Volume (0.0 â€“ 1.0)
 Audio.SetTrackVolume(track, 0.5f);
 
 // Pan (-1.0 left to 1.0 right)
 Audio.SetTrackPan(track, -0.3f);
 
-// Pitch (0.5 – 2.0)
+// Pitch (0.5 â€“ 2.0)
 Audio.SetTrackPitch(track, 1.5f);
 
 // Volume and pan together (slightly more efficient than two separate calls)
@@ -193,18 +193,18 @@ Sounds are assigned to a bus via the `bus` parameter on `PlaySound`, via `TagTra
 Sound effect volume flows through a three-level hierarchy:
 
 ```
-Final volume = MasterVolume × SoundVolume × per-track volume
+Final volume = MasterVolume Ã— SoundVolume Ã— per-track volume
 ```
 
 ```csharp
-// Global volumes (0.0 – 1.0)
+// Global volumes (0.0 â€“ 1.0)
 Audio.MasterVolume = 0.8f;   // affects everything (sounds + music)
 Audio.SoundVolume  = 0.6f;   // affects all sound effects
 
 // Per-track volume
 Audio.SetTrackVolume(track, 0.5f);
 
-// Effective volume: 0.8 × 0.6 × 0.5 = 0.24
+// Effective volume: 0.8 Ã— 0.6 Ã— 0.5 = 0.24
 ```
 
 ---
@@ -217,13 +217,13 @@ SDL3_mixer has a finite number of mixing channels (`MaxSoundTracks`). When all c
 - A new sound with **equal or lower priority** than all playing sounds is **dropped silently**.
 
 ```csharp
-// UI feedback — low priority, okay to drop
+// UI feedback â€” low priority, okay to drop
 Audio.PlaySound(_assets.Click, priority: 0);
 
-// Player attack — medium priority
+// Player attack â€” medium priority
 Audio.PlaySound(_assets.Slash, priority: 5);
 
-// Boss roar — high priority, should always play
+// Boss roar â€” high priority, should always play
 Audio.PlaySound(_assets.BossRoar, priority: 10);
 ```
 
@@ -258,8 +258,8 @@ These properties are shared with `MusicSourceComponent`:
 
 | Property | Type | Default | Description |
 |---|---|---|---|
-| `Volume` | `float` | `1.0` | Base volume (0.0 – 1.0) |
-| `Pitch` | `float` | `1.0` | Playback pitch (0.5 – 2.0) |
+| `Volume` | `float` | `1.0` | Base volume (0.0 â€“ 1.0) |
+| `Pitch` | `float` | `1.0` | Playback pitch (0.5 â€“ 2.0) |
 | `Priority` | `int` | `0` | Track priority for eviction |
 | `Bus` | `string?` | `null` | Bus name for group control |
 | `PlayOnEnable` | `bool` | `false` | Auto-play when entity is enabled |
@@ -300,8 +300,8 @@ source.TriggerResume = true;   // resume next frame
 | `SpatialBlend` | `float` | `1.0` | 0 = fully non-spatial, 1 = fully spatial |
 | `DopplerFactor` | `float` | `0.0` | Doppler pitch shift intensity |
 | `MaxConcurrentInstances` | `int` | `0` | Max simultaneous plays (0 = unlimited) |
-| `PitchVariation` | `float` | `0.0` | Random pitch offset per play (±) |
-| `VolumeVariation` | `float` | `0.0` | Random volume offset per play (±) |
+| `PitchVariation` | `float` | `0.0` | Random pitch offset per play (Â±) |
+| `VolumeVariation` | `float` | `0.0` | Random volume offset per play (Â±) |
 | `FadeInDuration` | `float` | `0.0` | Fade-in time in seconds |
 | `FadeOutDuration` | `float` | `0.0` | Fade-out time in seconds |
 | `TriggerStopOldest` | `bool` | `false` | Stop oldest instance when `MaxConcurrentInstances` is exceeded |
@@ -312,8 +312,8 @@ source.TriggerResume = true;   // resume next frame
 entity.AddComponent<SoundEffectSourceComponent>(s =>
 {
     s.SoundEffect     = _assets.Footstep;
-    s.PitchVariation  = 0.15f;   // ±15% random pitch each play
-    s.VolumeVariation = 0.1f;    // ±10% random volume each play
+    s.PitchVariation  = 0.15f;   // Â±15% random pitch each play
+    s.VolumeVariation = 0.1f;    // Â±10% random volume each play
     s.Priority        = 1;
 });
 ```
@@ -348,6 +348,6 @@ entity.AddComponent<SoundEffectSourceComponent>(s =>
 
 ## What's Next?
 
-- [Music Playback](music.md) — streaming music, crossfading, and seeking
-- [Spatial Audio](spatial-audio.md) — distance attenuation, panning, Doppler
-- [Getting Started](getting-started.md) — full audio tutorial from scratch
+- [Music Playback](music.md) â€” streaming music, crossfading, and seeking
+- [Spatial Audio](spatial-audio.md) â€” distance attenuation, panning, Doppler
+- [Getting Started](getting-started.md) â€” full audio tutorial from scratch

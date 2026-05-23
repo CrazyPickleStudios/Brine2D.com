@@ -1,4 +1,4 @@
-﻿---
+---
 title: Brine2D.Input API
 description: Brine2D.Input API in Brine2D
 ---

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Brine2D.Build
 description: Optional MSBuild tooling that generates compile-time asset path constants
 ---
@@ -7,7 +7,7 @@ description: Optional MSBuild tooling that generates compile-time asset path con
 
 Optional MSBuild package that generates a strongly-typed `Assets` class from your `assets/` folder on every build. Full IntelliSense, compile-time safety, no content pipeline.
 
-!!! note ""Not Yet Published""
+!!! note "Not Yet Published"
     Brine2D.Build will be published alongside Brine2D 1.0 after cross-platform MSBuild validation.
 
 ---
@@ -33,12 +33,12 @@ public static partial class Assets
 {
     public static class Audio
     {
-        public const string Jump = ""assets/audio/jump.wav"";
+        public const string Jump = "assets/audio/jump.wav";
     }
 
     public static class Images
     {
-        public const string Player = ""assets/images/player.png"";
+        public const string Player = "assets/images/player.png";
     }
 }
 ```
@@ -87,7 +87,7 @@ public static partial class Assets
 {
     public static class Runtime
     {
-        public static string LevelPath(int level) => $""assets/levels/level_{level:D2}.tmj"";
+        public static string LevelPath(int level) => $"assets/levels/level_{level:D2}.tmj";
     }
 }
 ```
@@ -101,7 +101,7 @@ Brine2D.Build is entirely optional. Manifests work with string paths:
 ```csharp
 public class LevelAssets : AssetManifest
 {
-    public readonly AssetRef<ITexture> Player = Texture(""assets/images/player.png"");
+    public readonly AssetRef<ITexture> Player = Texture("assets/images/player.png");
 }
 ```
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Entity Component System
 description: Build flexible game objects with Brine2D's hybrid ECS architecture
 ---
@@ -45,24 +45,24 @@ public class GameScene : Scene
 
 ### Getting Started
 
-| Guide | Description | Difficulty |
-|-------|-------------|------------|
-| **[Getting Started](getting-started.md)** | ECS basics and World access | ⭐ Beginner |
-| **[Entities](entities.md)** | Create and manage entities | ⭐ Beginner |
-| **[Components](components.md)** | Build components with data and methods | ⭐ Beginner |
+| Guide | Description |
+|-------|-------------|
+| **[Getting Started](getting-started.md)** | ECS basics and World access|
+| **[Entities](entities.md)** | Create and manage entities|
+| **[Components](components.md)** | Build components with data and methods|
 
 ### Intermediate
 
-| Guide | Description | Difficulty |
-|-------|-------------|------------|
-| **[Systems](systems.md)** | Optional systems for performance | ⭐⭐ Intermediate |
-| **[Queries](queries.md)** | Find entities with specific components | ⭐⭐ Intermediate |
+| Guide | Description |
+|-------|-------------|
+| **[Systems](systems.md)** | Optional systems for performance|
+| **[Queries](queries.md)** | Find entities with specific components|
 
 ### Advanced
 
-| Guide | Description | Difficulty |
-|-------|-------------|------------|
-| **[Multi-Threading](multi-threading.md)** | Parallel entity processing | ⭐⭐⭐ Advanced |
+| Guide | Description |
+|-------|-------------|
+| **[Multi-Threading](multi-threading.md)** | Parallel entity processing|
 
 ---
 
@@ -73,13 +73,13 @@ public class GameScene : Scene
 Brine2D uses a **hybrid ECS** - beginner-friendly with optional performance optimizations:
 
 | Feature | Brine2D | Strict ECS (Unity DOTS) |
-|---------|---------|-------------------------|
+|---------|---------|
 | **Components with methods** | ✅ Allowed | ❌ Data only |
 | **Entity logic** | ✅ Allowed | ❌ System only |
 | **Easy to learn** | ✅ Yes | ⚠️ Steep learning curve |
 | **Performance optimization** | Optional systems | Required |
 
-**Philosophy:** Start simple, optimize when needed.
+Start with simple per-entity logic; switch to systems only when profiling shows a need.
 
 ```csharp
 // ✅ Brine2D - beginner-friendly
@@ -110,7 +110,7 @@ public struct HealthComponent
 
 ### World Property
 
-**Every scene has a `World` property** - automatically set by the framework:
+Every scene has a `World` property, automatically assigned by the framework:
 
 ```csharp
 public class GameScene : Scene

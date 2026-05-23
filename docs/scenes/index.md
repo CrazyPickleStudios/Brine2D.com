@@ -151,13 +151,13 @@ public class GameScene : Scene
 
     protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>? progress = null)
     {
-        Logger.LogInformation(""Loading game assets..."");
-        _texture = await _assets.GetOrLoadTextureAsync(""assets/images/player.png"", cancellationToken: ct);
+        Logger.LogInformation("Loading game assets...");
+        _texture = await _assets.GetOrLoadTextureAsync("assets/images/player.png", cancellationToken: ct);
     }
 
     protected override void OnEnter()
     {
-        var player = World.CreateEntity(""Player"");
+        var player = World.CreateEntity("Player");
         player.AddComponent<TransformComponent>().Position = new Vector2(400, 300);
         Audio.PlayMusic(_bgMusic);
     }
@@ -170,7 +170,7 @@ public class GameScene : Scene
 
     protected override void OnRender(GameTime gameTime)
     {
-        Renderer.DrawText(""Score: "" + _score, 10, 10, Color.White);
+        Renderer.DrawText("Score: " + _score, 10, 10, Color.White);
     }
 
     protected override void OnExit()
@@ -195,10 +195,10 @@ public class GameScene : Scene
 ```csharp
 protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>? progress = null)
 {
-    _texture = await _assets.GetOrLoadTextureAsync(""assets/images/player.png"", cancellationToken: ct);
+    _texture = await _assets.GetOrLoadTextureAsync("assets/images/player.png", cancellationToken: ct);
     progress?.Report(0.5f);
 
-    _music = await _assets.GetOrLoadMusicAsync(""assets/audio/theme.ogg"", ct);
+    _music = await _assets.GetOrLoadMusicAsync("assets/audio/theme.ogg", ct);
     progress?.Report(1.0f);
 }
 ```
@@ -208,10 +208,10 @@ protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>
 ```csharp
 public class LevelAssets : AssetManifest
 {
-    public readonly AssetRef<ITexture>     Player = Texture(""assets/images/player.png"");
-    public readonly AssetRef<ISoundEffect> Jump   = Sound(""assets/audio/jump.wav"");
-    public readonly AssetRef<IMusic>       Theme  = Music(""assets/audio/theme.ogg"");
-    public readonly AssetRef<IFont>        HUD    = Font(""assets/fonts/ui.ttf"", size: 20);
+    public readonly AssetRef<ITexture>     Player = Texture("assets/images/player.png");
+    public readonly AssetRef<ISoundEffect> Jump   = Sound("assets/audio/jump.wav");
+    public readonly AssetRef<IMusic>       Theme  = Music("assets/audio/theme.ogg");
+    public readonly AssetRef<IFont>        HUD    = Font("assets/fonts/ui.ttf", size: 20);
 }
 
 private readonly LevelAssets _manifest = new();
@@ -223,7 +223,7 @@ protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>
 
 protected override void OnEnter()
 {
-    var sprite = World.CreateEntity(""Player"").AddComponent<SpriteComponent>();
+    var sprite = World.CreateEntity("Player").AddComponent<SpriteComponent>();
     sprite.Texture = _manifest.Player; // Implicit conversion
 }
 ```
@@ -273,11 +273,11 @@ public GameScene(GameState gameState) => _gameState = gameState;
 Use lifecycle methods, not the constructor:
 
 ```csharp
-// ❌ Wrong
-public GameScene() { Logger.LogInformation(""Created""); }
+// âŒ Wrong
+public GameScene() { Logger.LogInformation("Created"); }
 
-// ✅ Correct
-protected override void OnEnter() { Logger.LogInformation(""Scene entered""); }
+// âœ… Correct
+protected override void OnEnter() { Logger.LogInformation("Scene entered"); }
 ```
 
 ### Scene Doesn't Load

@@ -22,7 +22,7 @@ public class GameScene : Scene
     protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>? progress = null)
     {
         _playerTexture = await _assets.GetOrLoadTextureAsync(
-            ""assets/images/player.png"",
+            "assets/images/player.png",
             cancellationToken: ct);
     }
 
@@ -42,17 +42,17 @@ public class GameScene : Scene
 
 ```csharp
 // Basic load
-var texture = await _assets.GetOrLoadTextureAsync(""assets/images/player.png"", cancellationToken: ct);
+var texture = await _assets.GetOrLoadTextureAsync("assets/images/player.png", cancellationToken: ct);
 
 // Pixel art - use Nearest filtering for sharp scaling
 var pixelArt = await _assets.GetOrLoadTextureAsync(
-    ""assets/images/player.png"",
+    "assets/images/player.png",
     TextureScaleMode.Nearest,
     ct);
 
 // Smooth graphics - use Linear filtering (default)
 var smooth = await _assets.GetOrLoadTextureAsync(
-    ""assets/images/background.png"",
+    "assets/images/background.png",
     TextureScaleMode.Linear,
     ct);
 ```
@@ -111,9 +111,9 @@ For multiple textures, use an `AssetManifest` for parallel loading:
 ```csharp
 public class LevelAssets : AssetManifest
 {
-    public readonly AssetRef<ITexture> Player     = Texture(""assets/images/player.png"", TextureScaleMode.Nearest);
-    public readonly AssetRef<ITexture> Background = Texture(""assets/images/background.png"");
-    public readonly AssetRef<ITexture> Tileset    = Texture(""assets/images/tileset.png"", TextureScaleMode.Nearest);
+    public readonly AssetRef<ITexture> Player     = Texture("assets/images/player.png", TextureScaleMode.Nearest);
+    public readonly AssetRef<ITexture> Background = Texture("assets/images/background.png");
+    public readonly AssetRef<ITexture> Tileset    = Texture("assets/images/tileset.png", TextureScaleMode.Nearest);
 }
 
 public class GameScene : Scene
@@ -157,7 +157,7 @@ public class GameScene : Scene
 5. **Batch by texture** - draw all sprites using the same texture together
 
 ```csharp
-// ✅ Good - all enemies share one texture
+// âœ… Good - all enemies share one texture
 foreach (var enemy in _enemies)
 {
     Renderer.DrawTexture(_enemyTexture, enemy.Position);
@@ -185,7 +185,7 @@ foreach (var enemy in _enemies)
 Use `TextureScaleMode.Nearest` for pixel art:
 
 ```csharp
-await _assets.GetOrLoadTextureAsync(""assets/images/player.png"", TextureScaleMode.Nearest, ct);
+await _assets.GetOrLoadTextureAsync("assets/images/player.png", TextureScaleMode.Nearest, ct);
 ```
 
 ---

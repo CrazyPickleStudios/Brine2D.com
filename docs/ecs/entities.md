@@ -22,8 +22,8 @@ Entities in Brine2D are:
 
 | Approach | When to Use | Complexity |
 |----------|-------------|------------|
-| **Simple entities** | Most games (component-based) | ⭐ Beginner |
-| **Custom entities** | Specialized objects (inheritance) | ⭐⭐ Intermediate |
+| **Simple entities** | Most games (component-based) | â­ Beginner |
+| **Custom entities** | Specialized objects (inheritance) | â­â­ Intermediate |
 
 ---
 
@@ -132,7 +132,7 @@ public class PlayerEntity : Entity
         // Custom player logic here
         HandleMovement(gameTime);
         
-        // ✅ Call base to update components
+        // âœ… Call base to update components
         base.OnUpdate(gameTime);
     }
     
@@ -147,7 +147,7 @@ public class PlayerEntity : Entity
         // Cleanup logic
         Logger.LogInformation("Player destroyed");
         
-        // ✅ Call base to cleanup components
+        // âœ… Call base to cleanup components
         base.OnDestroy();
     }
     
@@ -219,7 +219,7 @@ stateDiagram-v2
 ```csharp
 public override void OnInitialize()
 {
-    // ✅ Called once when entity is created
+    // âœ… Called once when entity is created
     // Use for: Setup, adding components, initializing state
     
     Name = "MyEntity";
@@ -246,7 +246,7 @@ public override void OnInitialize()
 ```csharp
 public override void OnUpdate(GameTime gameTime)
 {
-    // ✅ Called every frame (if IsActive = true)
+    // âœ… Called every frame (if IsActive = true)
     // Use for: Game logic, movement, state changes
     
     var transform = GetComponent<TransformComponent>();
@@ -256,7 +256,7 @@ public override void OnUpdate(GameTime gameTime)
         transform.Position += new Vector2(100, 0) * (float)gameTime.DeltaTime;
     }
     
-    // ✅ ALWAYS call base to update components!
+    // âœ… ALWAYS call base to update components!
     base.OnUpdate(gameTime);
 }
 ```
@@ -276,7 +276,7 @@ public override void OnUpdate(GameTime gameTime)
 ```csharp
 public override void OnRender(IRenderer renderer)
 {
-    // ✅ Called every frame during render phase
+    // âœ… Called every frame during render phase
     // Use for: Custom rendering, debug visualization
     
     var transform = GetComponent<TransformComponent>();
@@ -308,7 +308,7 @@ public override void OnRender(IRenderer renderer)
 ```csharp
 public override void OnDestroy()
 {
-    // ✅ Called once when entity is destroyed
+    // âœ… Called once when entity is destroyed
     // Use for: Cleanup, disposing resources, saving state
     
     Logger.LogInformation("Entity {Name} destroyed", Name);
@@ -316,7 +316,7 @@ public override void OnDestroy()
     // Cleanup custom resources
     _customTexture?.Dispose();
     
-    // ✅ ALWAYS call base to cleanup components!
+    // âœ… ALWAYS call base to cleanup components!
     base.OnDestroy();
 }
 ```
@@ -349,7 +349,7 @@ var sprite = new SpriteComponent
 };
 entity.AddComponent(sprite);
 
-// ✅ Adding duplicate components returns existing
+// âœ… Adding duplicate components returns existing
 var transform2 = entity.AddComponent<TransformComponent>();
 // transform2 == transform (same instance)
 ```
@@ -463,8 +463,8 @@ enemy.IsActive = false; // Won't be updated or rendered
 // Re-enable
 enemy.IsActive = true;
 
-// ✅ World.Update() skips inactive entities
-// ✅ Queries can filter by IsActive
+// âœ… World.Update() skips inactive entities
+// âœ… Queries can filter by IsActive
 ```
 
 **Pattern:** Use `IsActive` to temporarily disable entities without destroying them.
@@ -480,7 +480,7 @@ World.DestroyEntity(entity);
 // Method 2: Self-destruct
 entity.Destroy(); // Calls World.DestroyEntity(this)
 
-// ✅ Destruction is deferred if called during frame update
+// âœ… Destruction is deferred if called during frame update
 // Entity marked inactive immediately, removed at frame boundary
 ```
 
@@ -508,7 +508,7 @@ var turret = World.CreateEntity("Turret");
 var turretTransform = turret.AddComponent<TransformComponent>();
 turretTransform.Position = new Vector2(0, -20); // Relative to parent
 
-// ✅ Set parent via extension method
+// âœ… Set parent via extension method
 turret.SetParent(tank);
 
 // Child moves with parent
@@ -761,15 +761,15 @@ projectilePool.Return(projectile);
 
 ## Best Practices
 
-### ✅ DO
+### âœ… DO
 
 **1. Use factories for complex entities**
 
 ```csharp
-// ✅ Good - encapsulated creation
+// âœ… Good - encapsulated creation
 var player = EntityFactory.CreatePlayer(World, position);
 
-// ❌ Bad - scattered creation logic
+// âŒ Bad - scattered creation logic
 var player = World.CreateEntity("Player");
 player.AddComponent<TransformComponent>().Position = position;
 player.AddComponent<SpriteComponent>().Width = 32;
@@ -779,26 +779,26 @@ player.AddComponent<SpriteComponent>().Width = 32;
 **2. Use tags for categorization**
 
 ```csharp
-// ✅ Good - tags for quick lookup
+// âœ… Good - tags for quick lookup
 entity.Tags.Add("Enemy");
 entity.Tags.Add("Flying");
 var enemies = World.GetEntitiesByTag("Enemy");
 
-// ❌ Bad - tag components for simple categories
+// âŒ Bad - tag components for simple categories
 public class EnemyTag : Component { } // Overkill for simple flag
 ```
 
 **3. Call base in lifecycle methods**
 
 ```csharp
-// ✅ Good - components update
+// âœ… Good - components update
 public override void OnUpdate(GameTime gameTime)
 {
     // Custom logic
     base.OnUpdate(gameTime); // Updates components
 }
 
-// ❌ Bad - components never update
+// âŒ Bad - components never update
 public override void OnUpdate(GameTime gameTime)
 {
     // Custom logic
@@ -809,11 +809,11 @@ public override void OnUpdate(GameTime gameTime)
 **4. Use GetRequiredComponent for essential components**
 
 ```csharp
-// ✅ Good - fail fast if missing
+// âœ… Good - fail fast if missing
 var transform = entity.GetRequiredComponent<TransformComponent>();
 transform.Position += Vector2.One;
 
-// ❌ Bad - null checks everywhere
+// âŒ Bad - null checks everywhere
 var transform = entity.GetComponent<TransformComponent>();
 if (transform != null)
 {
@@ -823,12 +823,12 @@ if (transform != null)
 
 ---
 
-### ❌ DON'T
+### âŒ DON'T
 
 **1. Don't store entity references long-term**
 
 ```csharp
-// ❌ Bad - entity reference can become invalid
+// âŒ Bad - entity reference can become invalid
 private Entity? _target;
 
 public void SetTarget(Entity target)
@@ -836,7 +836,7 @@ public void SetTarget(Entity target)
     _target = target; // Might be destroyed later!
 }
 
-// ✅ Good - store entity ID
+// âœ… Good - store entity ID
 private Guid _targetId;
 
 public void SetTarget(Entity target)
@@ -853,13 +853,13 @@ public Entity? GetTarget()
 **2. Don't create entities during iteration**
 
 ```csharp
-// ❌ Bad - modifying collection during iteration
+// âŒ Bad - modifying collection during iteration
 foreach (var entity in World.Entities)
 {
-    World.CreateEntity("New"); // ❌ Can cause issues
+    World.CreateEntity("New"); // âŒ Can cause issues
 }
 
-// ✅ Good - defer creation
+// âœ… Good - defer creation
 var entitiesToCreate = new List<Action>();
 
 foreach (var entity in World.Entities)
@@ -876,14 +876,14 @@ foreach (var create in entitiesToCreate)
 **3. Don't forget to call base in OnDestroy**
 
 ```csharp
-// ❌ Bad - components not cleaned up
+// âŒ Bad - components not cleaned up
 public override void OnDestroy()
 {
     // Cleanup
     // Missing base.OnDestroy() - components leak!
 }
 
-// ✅ Good - components cleaned up
+// âœ… Good - components cleaned up
 public override void OnDestroy()
 {
     // Cleanup
@@ -894,11 +894,11 @@ public override void OnDestroy()
 **4. Don't use entities for simple data**
 
 ```csharp
-// ❌ Bad - entity for simple value
+// âŒ Bad - entity for simple value
 var scoreEntity = World.CreateEntity("Score");
 scoreEntity.AddComponent<ScoreComponent>().Value = 0;
 
-// ✅ Good - use a field/property
+// âœ… Good - use a field/property
 private int _score = 0;
 ```
 
@@ -949,4 +949,4 @@ private int _score = 0;
 
 ---
 
-**Remember:** Entities are flexible - use them as simple component containers or derive custom classes for specialized behavior. Tags make lookups fast, and World scoping means automatic cleanup! 🎮
+**Remember:** Entities are flexible - use them as simple component containers or derive custom classes for specialized behavior. Tags make lookups fast, and World scoping means automatic cleanup! ðŸŽ®

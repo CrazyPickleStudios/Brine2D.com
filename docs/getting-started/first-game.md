@@ -7,21 +7,7 @@ description: Build a complete game with sprites, audio, collision detection, and
 
 Build a complete game from scratch in 30 minutes. You'll create an asteroid dodging game with sprites, audio, collision detection, and scoring.
 
-## What You'll Build
-
-**Asteroid Dodge** - A simple but complete game where you:
-- Control a spaceship with WASD or arrow keys
-- Dodge incoming asteroids
-- Collect power-ups for bonus points
-- Compete for a high score
-
-**What you'll learn:**
-- Loading and displaying sprites via `IAssetLoader`
-- Handling player input via the `Input` framework property
-- Collision detection
-- Playing sound effects via the `Audio` framework property
-- Score tracking
-- Game state management
+You'll build **Asteroid Dodge** — a spaceship game where you dodge incoming asteroids, collect power-ups, and track a high score. It covers sprite loading, player input, collision, audio, and cross-scene state.
 
 ---
 
@@ -346,13 +332,13 @@ protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>
 **Solution:**
 
 ```csharp
-// ❌ Wrong - World is null in constructor!
+// âŒ Wrong - World is null in constructor!
 public GameScene()
 {
     var player = World.CreateEntity("Player"); // Throws!
 }
 
-// ✅ Correct - Use OnEnter or OnLoadAsync
+// âœ… Correct - Use OnEnter or OnLoadAsync
 protected override void OnEnter()
 {
     var player = World.CreateEntity("Player"); // Works!

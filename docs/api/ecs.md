@@ -1,4 +1,4 @@
-﻿---
+---
 title: Brine2D.ECS API
 description: Brine2D.ECS API in Brine2D
 ---

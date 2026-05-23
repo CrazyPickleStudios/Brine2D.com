@@ -1,4 +1,4 @@
-﻿---
+---
 title: Guides
 description: Advanced guides and deep-dives for mastering Brine2D
 ---
@@ -27,41 +27,41 @@ Advanced topics and in-depth guides for building production-ready games with Bri
 
 ### Architecture & Patterns
 
-| Guide | Topic | Difficulty |
-|-------|-------|------------|
-| **[Scene Management](scene-management.md)** | Advanced scene patterns | ⭐⭐ Intermediate |
-| **[State Management](state-management.md)** | Game state across scenes | ⭐⭐ Intermediate |
-| **[Service Patterns](service-patterns.md)** | Custom services & DI | ⭐⭐⭐ Advanced |
+| Guide | Topic |
+|---|---|
+| **[Scene Management](scene-management.md)** | Advanced scene patterns|
+| **[State Management](state-management.md)** | Game state across scenes|
+| **[Service Patterns](service-patterns.md)** | Custom services & DI|
 
 ---
 
 ### Performance
 
-| Guide | Topic | Difficulty |
-|-------|-------|------------|
-| **[Object Pooling](object-pooling.md)** | Reduce GC pressure | ⭐⭐⭐ Advanced |
-| **[Batch Rendering](batch-rendering.md)** | Optimize draw calls | ⭐⭐⭐ Advanced |
-| **[Memory Management](memory-management.md)** | Avoid allocations | ⭐⭐⭐ Advanced |
+| Guide | Topic |
+|---|---|
+| **[Object Pooling](object-pooling.md)** | Reduce GC pressure|
+| **[Batch Rendering](batch-rendering.md)** | Optimize draw calls|
+| **[Memory Management](memory-management.md)** | Avoid allocations|
 
 ---
 
 ### Game Systems
 
-| Guide | Topic | Difficulty |
-|-------|-------|------------|
-| **[Physics Integration](physics-integration.md)** | Custom physics | ⭐⭐⭐ Advanced |
-| **[Save System](save-system.md)** | Serialization & persistence | ⭐⭐ Intermediate |
-| **[Achievement System](achievement-system.md)** | Unlockables & progress | ⭐⭐ Intermediate |
+| Guide | Topic |
+|---|---|
+| **[Physics Integration](physics-integration.md)** | Custom physics|
+| **[Save System](save-system.md)** | Serialization & persistence|
+| **[Achievement System](achievement-system.md)** | Unlockables & progress|
 
 ---
 
 ### Production
 
-| Guide | Topic | Difficulty |
-|-------|-------|------------|
-| **[Deployment](deployment.md)** | Publishing your game | ⭐⭐ Intermediate |
-| **[Debugging](debugging.md)** | Advanced debugging | ⭐⭐ Intermediate |
-| **[Testing](testing.md)** | Testing strategies | ⭐⭐⭐ Advanced |
+| Guide | Topic |
+|---|---|
+| **[Deployment](deployment.md)** | Publishing your game|
+| **[Debugging](debugging.md)** | Advanced debugging|
+| **[Testing](testing.md)** | Testing strategies|
 
 ---
 
@@ -116,7 +116,7 @@ public class GameState
 {
     public int Level { get; set; }
     public int Score { get; set; }
-    public string PlayerName { get; set; } = "";
+    public string PlayerName { get; set; } = ";
 }
 
 // Register
@@ -544,7 +544,7 @@ dotnet publish -c Release -r linux-x64 \
 ### By Experience Level
 
 | Level | Guides | Prerequisites |
-|-------|--------|---------------|
+|---|---|
 | **Intermediate** | Scene Management, Save System, Deployment | Completed tutorials |
 | **Advanced** | Object Pooling, Batch Rendering, Testing | Production experience |
 | **Expert** | Service Patterns, Memory Management, Physics | Deep .NET knowledge |
