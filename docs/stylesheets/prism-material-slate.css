@@ -254,11 +254,10 @@
 /* On true mobile widths, MkDocs Material bleeds pre blocks to the full
    container edge with negative margins. Override so code blocks align
    with the rest of the page content instead. */
-@media screen and (max-width: 44.9375em) {
-    .md-typeset pre {
+@media screen and (max-width: 44.9844em) {
+    .md-content__inner > .highlight {
         margin-left: 0;
         margin-right: 0;
-        border-radius: 4px;
     }
 }
 
