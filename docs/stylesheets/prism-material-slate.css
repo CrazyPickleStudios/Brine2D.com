@@ -232,3 +232,30 @@
 .md-typeset table:not([class]) th code {
     white-space: nowrap;
 }
+
+/* Mobile improvements */
+@media screen and (max-width: 76.1875em) {
+    /* Give code blocks breathing room on mobile */
+    .md-typeset pre {
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 4px;
+    }
+
+    /* Slightly smaller hero logo on mobile so it doesn't dominate */
+    .hero-logo {
+        width: 140px;
+    }
+
+    /* Reduce hero tagline size slightly on small screens */
+    .hero-tagline {
+        font-size: 1rem;
+    }
+
+    /* Give badges room to wrap cleanly */
+    .hero-center p img {
+        margin: 2px;
+    }
+}
+
+

@@ -1,13 +1,15 @@
 ---
 title: Home
+hide:
+  - toc
 ---
 
 <div class="hero-center" markdown>
 
 <img src="images/logo.png" alt="Brine2D Logo" class="hero-logo">
 
-<p class="hero-tagline">A 2D game engine for .NET 10, built on SDL3.<br>
-If you know ASP.NET, you already know how this works.</p>
+<p class="hero-tagline">A code-first 2D game engine for .NET 10.<br>
+No editor. No visual tools. Just C#.</p>
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4)](https://dotnet.microsoft.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -22,9 +24,15 @@ If you know ASP.NET, you already know how this works.</p>
 
 ## What is Brine2D?
 
-Brine2D is a full 2D game engine - not a rendering library. Scenes, entities, audio, input, collision, particles, UI, and a DI container all ship together and work out of the box. Everything you'd normally spend the first two weeks building yourself is already here.
+Brine2D is a full 2D game engine — not a rendering library. Scenes, entities, audio, input, collision, particles, UI, and dependency injection all ship in a single NuGet package and work out of the box. Everything you'd normally spend the first two weeks wiring up is already here.
 
-It follows the same hosting model as ASP.NET Core: `GameApplicationBuilder` → configure → build → run. If you've written a `WebApplication`, you'll be writing games in about ten minutes.
+There is no built-in editor. Everything is configured in code. For content creation, Brine2D integrates with the tools you likely already use:
+
+- **[Aseprite](https://www.aseprite.org/)** — sprite and animation authoring, imported directly via JSON export
+- **[Tiled](https://www.mapeditor.org/)** — tile map editor, loaded natively at runtime
+- **[TexturePacker](https://www.codeandweb.com/texturepacker)** — sprite atlas packing, supported out of the box
+
+These are best-in-class tools with their own communities and years of polish. You get a better result than any built-in editor would provide, and you don't have to learn a new one. [Read more about why Brine2D has no editor.](fundamentals/no-editor.md)
 
 ```csharp
 var builder = GameApplication.CreateBuilder(args);
@@ -59,6 +67,23 @@ public class GameScene : Scene
 ```
 
 That's a window, a game loop, input, and rendering. No boilerplate, no XML, no content pipeline.
+
+---
+
+## Common tasks
+
+| I want to... | Go here |
+|---|---|
+| Create my first game | [Quickstart](getting-started/quickstart.md) |
+| Understand entities, components, and behaviors | [ECS Overview](ecs/index.md) |
+| Load and play sprite animations | [Animation](animation/index.md) |
+| Handle keyboard, mouse, and gamepad input | [Input](features/input.md) |
+| Play audio with spatial sound | [Audio](features/audio/index.md) |
+| Load a Tiled map | [Tilemaps](tilemaps/index.md) |
+| Add a UI button or dialog | [UI](ui/index.md) |
+| Detect collisions between objects | [Collision](features/collision/index.md) |
+| Switch between scenes | [Scene Management](fundamentals/scenes.md) |
+| Understand the overall architecture | [Architecture](fundamentals/architecture.md) |
 
 ---
 

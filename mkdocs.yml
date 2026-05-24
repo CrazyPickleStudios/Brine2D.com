@@ -66,6 +66,7 @@ nav:
 
   - Fundamentals:
       - Overview: fundamentals/index.md
+      - Why No Editor?: fundamentals/no-editor.md
       - Architecture: fundamentals/architecture.md
       - Dependency Injection: fundamentals/dependency-injection.md
       - Game Loop: fundamentals/game-loop.md
