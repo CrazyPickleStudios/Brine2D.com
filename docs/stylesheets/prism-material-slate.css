@@ -235,14 +235,7 @@
 
 /* Mobile improvements */
 @media screen and (max-width: 76.1875em) {
-    /* Give code blocks breathing room on mobile */
-    .md-typeset pre {
-        margin-left: 0;
-        margin-right: 0;
-        border-radius: 4px;
-    }
-
-    /* Slightly smaller hero logo on mobile so it doesn't dominate */
+    /* Slightly smaller hero logo so it doesn't dominate the viewport */
     .hero-logo {
         width: 140px;
     }
@@ -255,6 +248,17 @@
     /* Give badges room to wrap cleanly */
     .hero-center p img {
         margin: 2px;
+    }
+}
+
+/* On true mobile widths, MkDocs Material bleeds pre blocks to the full
+   container edge with negative margins. Override so code blocks align
+   with the rest of the page content instead. */
+@media screen and (max-width: 44.9375em) {
+    .md-typeset pre {
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 4px;
     }
 }
 
