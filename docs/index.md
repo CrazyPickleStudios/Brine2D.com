@@ -1,5 +1,4 @@
 ---
-title: Home
 hide:
   - toc
 ---
@@ -11,13 +10,8 @@ hide:
 <p class="hero-tagline">A code-first 2D game engine for .NET 10.<br>
 No editor. No visual tools. Just C#.</p>
 
-[![.NET](https://img.shields.io/badge/.NET-10.0-512BD4)](https://dotnet.microsoft.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub](https://img.shields.io/badge/GitHub-CrazyPickleStudios-181717?logo=github)](https://github.com/CrazyPickleStudios/Brine2D)
-
 <div class="hero-buttons" markdown>
 [Get Started :material-arrow-right:](getting-started/quickstart.md){ .md-button .md-button--primary }
-[View on GitHub :material-github:](https://github.com/CrazyPickleStudios/Brine2D){ .md-button }
 </div>
 
 </div>
