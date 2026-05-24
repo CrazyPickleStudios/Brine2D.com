@@ -15,8 +15,10 @@ No editor. No visual tools. Just C#.</p>
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub](https://img.shields.io/badge/GitHub-CrazyPickleStudios-181717?logo=github)](https://github.com/CrazyPickleStudios/Brine2D)
 
+<div class="hero-buttons">
 [Get Started :material-arrow-right:](getting-started/quickstart.md){ .md-button .md-button--primary }
 [View on GitHub :material-github:](https://github.com/CrazyPickleStudios/Brine2D){ .md-button }
+</div>
 
 </div>
 
