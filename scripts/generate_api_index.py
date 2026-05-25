@@ -139,13 +139,14 @@ Use the search bar at the top of the page to find a specific type or method, or 
             if ns.startswith(parent_ns + ".") and ns.count(".") == parent_ns.count(".") + 1
         )
         lp = all_namespaces[parent_ns]
+        label = parent_ns.split(".")[-1]
         if direct_children:
-            lines.append(f'{indent}- "{parent_ns}":')
+            lines.append(f'{indent}- {label}:')
             lines.append(f'{indent}    - Overview: api/{lp}')
             for child_ns in direct_children:
                 lines.extend(build_nav_lines(child_ns, indent + "    "))
         else:
-            lines.append(f'{indent}- "{parent_ns}": api/{lp}')
+            lines.append(f'{indent}- {label}: api/{lp}')
         return lines
 
     top_level = sorted(ns for ns in all_namespaces if ns.count(".") == 1)
