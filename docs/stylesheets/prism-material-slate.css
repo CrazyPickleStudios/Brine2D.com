@@ -8,6 +8,12 @@
                     "Liberation Mono", monospace;
 }
 
+[data-md-color-scheme="slate"] {
+    --md-default-bg-color: #1a1c1f;
+    --md-default-fg-color: #e8e8e8;
+    --md-code-bg-color: #222428;
+}
+
 /* Hide pilcrow permalink anchors on generated API pages */
 [data-md-color-scheme] .md-content__inner h1 .headerlink,
 [data-md-color-scheme] .md-content__inner h2 .headerlink,
