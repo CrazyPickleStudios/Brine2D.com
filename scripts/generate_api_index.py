@@ -137,17 +137,18 @@ Use the search bar at the top of the page to find a specific type or method, or 
 
     nav_lines = ["      - Overview: api/index.md"]
     for ns, lp in top_level:
-        nav_lines.append(f"      - {ns}: api/{lp}")
+        nav_lines.append(f'      - "{ns}": api/{lp}')
         for child_ns, child_lp in children:
             if child_ns.startswith(ns + ".") and child_ns.count(".") == ns.count(".") + 1:
-                nav_lines.append(f"          - {child_ns}: api/{child_lp}")
+                nav_lines.append(f'          - "{child_ns}": api/{child_lp}')
+
+    import re
 
     new_block = "\n".join(nav_lines)
 
-    import re
     mkdocs = re.sub(
-        r"(  - API Reference:\n).*?(\n  - [A-Z])",
-        lambda m: f"  - API Reference:\n{new_block}{m.group(2)}",
+        r"  - API Reference:.*?(?=\n  - [A-Z])",
+        f"  - API Reference:\n{new_block}\n",
         mkdocs,
         flags=re.DOTALL,
     )
