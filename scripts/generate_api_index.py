@@ -1,0 +1,95 @@
+"""
+Generates docs/api/index.md by scanning the DefaultDocumentation output
+for namespace-level pages (files matching Brine2D.*.md).
+Run after defaultdocumentation and before mkdocs build.
+"""
+
+import os
+import re
+import sys
+
+API_DIR = os.path.join(os.path.dirname(__file__), "..", "docs", "api")
+OUTPUT = os.path.join(API_DIR, "index.md")
+
+
+def namespace_description(name: str) -> str:
+    descriptions = {
+        "Brine2D.Animation": "Clips, frames, animator component, state machines, blend trees",
+        "Brine2D.Assets": "Asset loading, caching, manifests",
+        "Brine2D.Audio": "Sound effects, music, spatial audio",
+        "Brine2D.Collision": "Collision detection, shapes, events",
+        "Brine2D.Common": "Shared utilities and helpers",
+        "Brine2D.Core": "GameTime, Color, Rectangle, math helpers",
+        "Brine2D.ECS": "Entities, components, systems, queries",
+        "Brine2D.ECS.Components": "Built-in ECS components",
+        "Brine2D.ECS.Components.Joints": "Physics joint components",
+        "Brine2D.ECS.Query": "Query types and filters",
+        "Brine2D.ECS.Serialization": "ECS serialization support",
+        "Brine2D.ECS.Systems": "Built-in ECS systems",
+        "Brine2D.Engine": "Game loop, scene management",
+        "Brine2D.Engine.Transitions": "Scene transition effects",
+        "Brine2D.Events": "Event bus, window events",
+        "Brine2D.Hosting": "Builder pattern, options, DI wiring",
+        "Brine2D.Input": "Keyboard, mouse, gamepad, input actions",
+        "Brine2D.Performance": "Diagnostics and performance monitoring",
+        "Brine2D.Physics": "Physics bodies, joints, simulation",
+        "Brine2D.Pooling": "Object pooling utilities",
+        "Brine2D.Rendering": "Sprites, cameras, particles, post-processing",
+        "Brine2D.Rendering.PostProcessing": "Post-processing pipeline",
+        "Brine2D.Rendering.SDL": "SDL3 rendering internals",
+        "Brine2D.Rendering.SDL.PostProcessing": "SDL3 post-processing",
+        "Brine2D.Rendering.SDL.PostProcessing.Effects": "Built-in post-processing effects",
+        "Brine2D.Rendering.SDL.PostProcessing.Shaders": "Post-processing shaders",
+        "Brine2D.Rendering.SDL.Shaders": "SDL3 shader support",
+        "Brine2D.Rendering.SDL.Shaders.PostProcessing": "Post-processing shader types",
+        "Brine2D.Rendering.SDL.TextureAtlas": "SDL3 texture atlas runtime",
+        "Brine2D.Rendering.Text": "Text rendering",
+        "Brine2D.Rendering.TextureAtlas": "Texture atlas runtime",
+        "Brine2D.Systems.AI": "AI controller and behaviors",
+        "Brine2D.Systems.Animation": "Animation system",
+        "Brine2D.Systems.Audio": "Audio system",
+        "Brine2D.Systems.Input": "Input system",
+        "Brine2D.Systems.Physics": "Physics system",
+        "Brine2D.Systems.Rendering": "Rendering system",
+        "Brine2D.Threading": "Threading and async utilities",
+        "Brine2D.Tilemap": "Tilemap loading and rendering",
+        "Brine2D.UI": "UI components, layout, input handling",
+    }
+    return descriptions.get(name, "")
+
+
+def main():
+    files = sorted(f for f in os.listdir(API_DIR) if re.match(r"^Brine2D(\..+)?\.md$", f) and f != "index.md")
+
+    rows = []
+    for filename in files:
+        namespace = filename[:-3]  # strip .md
+        description = namespace_description(namespace)
+        rows.append(f"| [{namespace}]({filename}) | {description} |")
+
+    content = """\
+---
+title: API Reference
+description: Auto-generated API reference for Brine2D, built from XML doc comments in the source code.
+---
+
+# API Reference
+
+This reference is generated automatically from the Brine2D source code on every docs build.
+All public types, properties, methods, and events are documented here.
+
+Use the search bar at the top of the page to find a specific type or method, or browse by namespace below.
+
+| Namespace | Contents |
+|---|---|
+"""
+    content += "\n".join(rows) + "\n"
+
+    with open(OUTPUT, "w", encoding="utf-8") as f:
+        f.write(content)
+
+    print(f"Generated {OUTPUT} with {len(rows)} namespaces.")
+
+
+if __name__ == "__main__":
+    main()
