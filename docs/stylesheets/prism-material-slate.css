@@ -43,67 +43,51 @@
    Adds a visible border and a language label (e.g. "C#") to code blocks,
    matching the style of the .NET API reference pages.                       */
 
-/* Visible border on all code blocks in API content */
+/* Visible border on all highlighted code blocks */
 .md-typeset pre.highlight {
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 4px;
-    position: relative;
-    padding-top: 2.2em;
 }
 
 [data-md-color-scheme="default"] .md-typeset pre.highlight {
     border-color: rgba(0, 0, 0, 0.15);
 }
 
-/* Language label via ::before — injected per known language */
-.md-typeset pre.highlight:has(code.language-csharp)::before {
-    content: "C#";
-}
+/* Language label injected before the copy button inside the nav bar.
+   The language class is on the <pre> itself, so we target it from there. */
+.md-typeset pre.language-csharp > .md-code__nav::before  { content: "C#"; }
+.md-typeset pre.language-fsharp > .md-code__nav::before  { content: "F#"; }
+.md-typeset pre.language-vb     > .md-code__nav::before,
+.md-typeset pre.language-vbnet  > .md-code__nav::before  { content: "VB"; }
+.md-typeset pre.language-json   > .md-code__nav::before  { content: "JSON"; }
+.md-typeset pre.language-xml    > .md-code__nav::before  { content: "XML"; }
+.md-typeset pre.language-bash   > .md-code__nav::before,
+.md-typeset pre.language-shell  > .md-code__nav::before,
+.md-typeset pre.language-sh     > .md-code__nav::before  { content: "Shell"; }
 
-.md-typeset pre.highlight:has(code.language-fsharp)::before {
-    content: "F#";
-}
-
-.md-typeset pre.highlight:has(code.language-vb)::before,
-.md-typeset pre.highlight:has(code.language-vbnet)::before {
-    content: "VB";
-}
-
-.md-typeset pre.highlight:has(code.language-json)::before {
-    content: "JSON";
-}
-
-.md-typeset pre.highlight:has(code.language-xml)::before {
-    content: "XML";
-}
-
-.md-typeset pre.highlight:has(code.language-bash)::before,
-.md-typeset pre.highlight:has(code.language-shell)::before,
-.md-typeset pre.highlight:has(code.language-sh)::before {
-    content: "Shell";
-}
-
-/* Shared label styling */
-.md-typeset pre.highlight::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 0.2em 0.75em;
+/* Shared label styling — sits on the left of the nav bar */
+.md-typeset pre[class*="language-"] > .md-code__nav::before {
+    display: inline-block;
+    padding: 0 0.75em;
     font-family: var(--md-text-font);
-    font-size: 0.75em;
+    font-size: 0.72em;
     font-weight: 600;
-    color: var(--md-default-fg-color--light);
-    background: rgba(255, 255, 255, 0.06);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    border-right: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 3px 0 3px 0;
     letter-spacing: 0.03em;
+    color: var(--md-default-fg-color--light);
+    /* push the copy button to the far right */
+    flex: 1;
 }
 
-[data-md-color-scheme="default"] .md-typeset pre.highlight::before {
-    background: rgba(0, 0, 0, 0.04);
-    border-color: rgba(0, 0, 0, 0.15);
-    color: var(--md-default-fg-color--light);
+/* Make the nav bar a flex row so label + button sit on the same line */
+.md-typeset pre[class*="language-"] > .md-code__nav {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0;
+}
+
+[data-md-color-scheme="default"] .md-typeset pre[class*="language-"] > .md-code__nav {
+    border-bottom-color: rgba(0, 0, 0, 0.15);
 }
 
 /* Visual Studio Dark+ JSON Theme for Prism.js */
