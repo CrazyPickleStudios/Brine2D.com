@@ -48,12 +48,17 @@ def process_file(filepath):
 
 
 def main():
+    root_index = os.path.join(API_DIR, "index.md")
     count = 0
     for dirpath, _, filenames in os.walk(API_DIR):
         for filename in filenames:
-            if filename.endswith(".md") and filename != "index.md":
-                process_file(os.path.join(dirpath, filename))
-                count += 1
+            if not filename.endswith(".md"):
+                continue
+            filepath = os.path.join(dirpath, filename)
+            if os.path.abspath(filepath) == os.path.abspath(root_index):
+                continue  # never touch docs/api/index.md — it's hand-written
+            process_file(filepath)
+            count += 1
     print(f"Post-processed {count} API files.")
 
 
