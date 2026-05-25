@@ -125,15 +125,23 @@ Use the search bar at the top of the page to find a specific type or method, or 
     print(f"Generated {OUTPUT} with {len(rows)} namespaces.")
 
     # Inject namespace entries into mkdocs.yml under the API Reference section
-    mkdocs_path = os.path.join(API_DIR, "..", "..", "mkdocs.yml")
-    mkdocs_path = os.path.normpath(mkdocs_path)
+    mkdocs_path = os.path.normpath(os.path.join(API_DIR, "..", "..", "mkdocs.yml"))
 
     with open(mkdocs_path, encoding="utf-8") as f:
         mkdocs = f.read()
 
+    # Group entries: top-level = one dot segment (Brine2D.ECS),
+    # children = two or more dot segments (Brine2D.ECS.Components)
+    top_level = [(ns, lp) for ns, lp in entries if ns.count(".") == 1]
+    children  = [(ns, lp) for ns, lp in entries if ns.count(".") >  1]
+
     nav_lines = ["      - Overview: api/index.md"]
-    for namespace, link_path in entries:
-        nav_lines.append(f"      - {namespace}: api/{link_path}")
+    for ns, lp in top_level:
+        nav_lines.append(f"      - {ns}: api/{lp}")
+        for child_ns, child_lp in children:
+            if child_ns.startswith(ns + ".") and child_ns.count(".") == ns.count(".") + 1:
+                nav_lines.append(f"          - {child_ns}: api/{child_lp}")
+
     new_block = "\n".join(nav_lines)
 
     import re
