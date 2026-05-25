@@ -1,3 +1,13 @@
+/* Hide pilcrow permalink anchors on generated API pages */
+[data-md-color-scheme] .md-content__inner h1 .headerlink,
+[data-md-color-scheme] .md-content__inner h2 .headerlink,
+[data-md-color-scheme] .md-content__inner h3 .headerlink,
+[data-md-color-scheme] .md-content__inner h4 .headerlink,
+[data-md-color-scheme] .md-content__inner h5 .headerlink,
+[data-md-color-scheme] .md-content__inner h6 .headerlink {
+    display: none;
+}
+
 /* Visual Studio Dark+ JSON Theme for Prism.js */
 
 /* C#-specific token styling */

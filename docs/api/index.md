@@ -1,6 +1,8 @@
 ﻿---
 title: API Reference
 description: Auto-generated API reference for Brine2D, built from XML doc comments in the source code.
+hide:
+  - toc
 ---
 
 # API Reference
