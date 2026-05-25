@@ -30,7 +30,7 @@ jobs:
           defaultdocumentation \
             --AssemblyFilePath Brine2D/src/Brine2D/bin/Release/net10.0/Brine2D.dll \
             --OutputDirectoryPath docs/api \
-            --FileNameFactory Directory
+            --FileNameFactory DirectoryName
       - name: Generate API index page
         run: python scripts/generate_api_index.py
       - name: Configure Git Credentials
