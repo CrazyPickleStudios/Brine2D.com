@@ -6,6 +6,10 @@ validation:
   nav:
     not_in_nav: ignore
 
+plugins:
+  - search
+  - awesome-pages
+
 
 theme:
   name: material

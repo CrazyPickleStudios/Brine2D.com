@@ -100,6 +100,7 @@ def main():
         description = namespace_description(namespace)
         rows.append(f"| [{namespace}]({link_path}) | {description} |")
 
+    # Write index.md
     content = """\
 ---
 title: API Reference
@@ -122,6 +123,18 @@ Use the search bar at the top of the page to find a specific type or method, or 
         f.write(content)
 
     print(f"Generated {OUTPUT} with {len(rows)} namespaces.")
+
+    # Write .pages so awesome-pages only shows namespace folders in the left nav
+    namespace_folders = [os.path.dirname(link_path) for _, link_path in entries]
+    pages_content = "nav:\n  - index.md\n"
+    for folder in namespace_folders:
+        pages_content += f"  - {folder}\n"
+
+    pages_path = os.path.join(API_DIR, ".pages")
+    with open(pages_path, "w", encoding="utf-8") as f:
+        f.write(pages_content)
+
+    print(f"Generated {pages_path}.")
 
 
 if __name__ == "__main__":
