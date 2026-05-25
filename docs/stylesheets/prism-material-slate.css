@@ -1,3 +1,13 @@
+/* System font stack — matches the native UI font on every platform
+   (Segoe UI on Windows, SF Pro on macOS/iOS, Roboto on Android).
+   Avoids the Google Fonts Roboto request and improves readability. */
+:root {
+    --md-text-font: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont,
+                    "Helvetica Neue", Arial, sans-serif;
+    --md-code-font: "Cascadia Code", "Fira Code", "Consolas", "Menlo",
+                    "Liberation Mono", monospace;
+}
+
 /* Hide pilcrow permalink anchors on generated API pages */
 [data-md-color-scheme] .md-content__inner h1 .headerlink,
 [data-md-color-scheme] .md-content__inner h2 .headerlink,

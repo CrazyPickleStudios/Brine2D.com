@@ -37,6 +37,7 @@ theme:
         name: Switch to system preference
   logo: images/logo.png
   favicon: images/logo.png
+  font: false
   features:
     - content.code.copy
     - content.code.select
