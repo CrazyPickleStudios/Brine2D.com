@@ -8,6 +8,27 @@
     display: none;
 }
 
+/* API section headings (Parameters, Returns, Definition, etc.)
+   More space above than below so the heading groups visually with its content */
+.md-typeset h2,
+.md-typeset h4 {
+    margin-top: 2.2em;
+    margin-bottom: 0.4em;
+}
+
+/* Definition h2 sits closer to the page title */
+.md-typeset h2:first-of-type {
+    margin-top: 1.2em;
+}
+
+/* Namespace line in the Definition block — smaller, muted, label style */
+.md-typeset h2 + p strong,
+.md-typeset h2 + p > strong:first-child {
+    font-weight: normal;
+    opacity: 0.7;
+    font-size: 0.85em;
+}
+
 /* Visual Studio Dark+ JSON Theme for Prism.js */
 
 /* C#-specific token styling */
