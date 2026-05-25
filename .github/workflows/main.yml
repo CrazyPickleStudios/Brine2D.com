@@ -33,6 +33,8 @@ jobs:
             --FileNameFactory DirectoryName
       - name: Generate API index page
         run: python scripts/generate_api_index.py && sed -n '170,185p' mkdocs.yml
+      - name: Post-process API pages
+        run: python scripts/postprocess_api.py
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
