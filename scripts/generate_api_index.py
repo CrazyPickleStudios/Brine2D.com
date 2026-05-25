@@ -130,24 +130,28 @@ Use the search bar at the top of the page to find a specific type or method, or 
     with open(mkdocs_path, encoding="utf-8") as f:
         mkdocs = f.read()
 
-    # Group entries: top-level = one dot segment (Brine2D.ECS),
-    # children = two or more dot segments (Brine2D.ECS.Components)
-    top_level = [(ns, lp) for ns, lp in entries if ns.count(".") == 1]
-    children  = [(ns, lp) for ns, lp in entries if ns.count(".") >  1]
+    all_namespaces = dict(entries)  # ns -> link_path
 
-    nav_lines = ["      - Overview: api/index.md"]
-    for ns, lp in top_level:
-        ns_children = [
-            (child_ns, child_lp) for child_ns, child_lp in children
-            if child_ns.startswith(ns + ".") and child_ns.count(".") == ns.count(".") + 1
-        ]
-        if ns_children:
-            nav_lines.append(f'      - "{ns}":')
-            nav_lines.append(f'          - Overview: api/{lp}')
-            for child_ns, child_lp in ns_children:
-                nav_lines.append(f'          - "{child_ns}": api/{child_lp}')
+    def build_nav_lines(parent_ns, indent):
+        lines = []
+        direct_children = sorted(
+            ns for ns in all_namespaces
+            if ns.startswith(parent_ns + ".") and ns.count(".") == parent_ns.count(".") + 1
+        )
+        lp = all_namespaces[parent_ns]
+        if direct_children:
+            lines.append(f'{indent}- "{parent_ns}":')
+            lines.append(f'{indent}    - Overview: api/{lp}')
+            for child_ns in direct_children:
+                lines.extend(build_nav_lines(child_ns, indent + "    "))
         else:
-            nav_lines.append(f'      - "{ns}": api/{lp}')
+            lines.append(f'{indent}- "{parent_ns}": api/{lp}')
+        return lines
+
+    top_level = sorted(ns for ns in all_namespaces if ns.count(".") == 1)
+    nav_lines = ["      - Overview: api/index.md"]
+    for ns in top_level:
+        nav_lines.extend(build_nav_lines(ns, "      "))
 
     import re
 
