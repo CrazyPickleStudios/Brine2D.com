@@ -137,10 +137,17 @@ Use the search bar at the top of the page to find a specific type or method, or 
 
     nav_lines = ["      - Overview: api/index.md"]
     for ns, lp in top_level:
-        nav_lines.append(f'      - "{ns}": api/{lp}')
-        for child_ns, child_lp in children:
-            if child_ns.startswith(ns + ".") and child_ns.count(".") == ns.count(".") + 1:
+        ns_children = [
+            (child_ns, child_lp) for child_ns, child_lp in children
+            if child_ns.startswith(ns + ".") and child_ns.count(".") == ns.count(".") + 1
+        ]
+        if ns_children:
+            nav_lines.append(f'      - "{ns}":')
+            nav_lines.append(f'          - Overview: api/{lp}')
+            for child_ns, child_lp in ns_children:
                 nav_lines.append(f'          - "{child_ns}": api/{child_lp}')
+        else:
+            nav_lines.append(f'      - "{ns}": api/{lp}')
 
     import re
 
