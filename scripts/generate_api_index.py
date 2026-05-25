@@ -61,6 +61,19 @@ def folder_to_namespace(rel_path: str) -> str:
     return rel_path.replace(os.sep, ".").replace("/", ".")
 
 
+def is_namespace_page(filepath: str) -> bool:
+    try:
+        with open(filepath, encoding="utf-8") as f:
+            for line in f:
+                if line.startswith("## ") and "Namespace" in line:
+                    return True
+                if line.startswith("### ") or line.startswith("| "):
+                    break  # past the heading area, not a namespace page
+    except OSError:
+        pass
+    return False
+
+
 def main():
     entries = []
 
@@ -70,7 +83,10 @@ def main():
             continue
         rel = os.path.relpath(dirpath, API_DIR)
         if rel == ".":
-            continue  # skip the api root — that's the file we're writing
+            continue
+        index_path = os.path.join(dirpath, "index.md")
+        if not is_namespace_page(index_path):
+            continue
         namespace = folder_to_namespace(rel)
         if not namespace.startswith("Brine2D"):
             continue
