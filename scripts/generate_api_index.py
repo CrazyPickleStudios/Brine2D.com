@@ -1,12 +1,10 @@
 """
-Generates docs/api/index.md by scanning the DefaultDocumentation output
-for namespace-level pages (files matching Brine2D.*.md).
+Generates docs/api/index.md by scanning the DefaultDocumentation Directory-factory output.
+With the Directory factory, each namespace becomes a folder with its own index.md.
 Run after defaultdocumentation and before mkdocs build.
 """
 
 import os
-import re
-import sys
 
 API_DIR = os.path.join(os.path.dirname(__file__), "..", "docs", "api")
 OUTPUT = os.path.join(API_DIR, "index.md")
@@ -14,6 +12,7 @@ OUTPUT = os.path.join(API_DIR, "index.md")
 
 def namespace_description(name: str) -> str:
     descriptions = {
+        "Brine2D": "Root namespace — SDL3 service extensions and engine entry points",
         "Brine2D.Animation": "Clips, frames, animator component, state machines, blend trees",
         "Brine2D.Assets": "Asset loading, caching, manifests",
         "Brine2D.Audio": "Sound effects, music, spatial audio",
@@ -58,14 +57,32 @@ def namespace_description(name: str) -> str:
     return descriptions.get(name, "")
 
 
+def folder_to_namespace(rel_path: str) -> str:
+    return rel_path.replace(os.sep, ".").replace("/", ".")
+
+
 def main():
-    files = sorted(f for f in os.listdir(API_DIR) if re.match(r"^Brine2D(\..+)?\.md$", f) and f != "index.md")
+    entries = []
+
+    for dirpath, dirnames, filenames in os.walk(API_DIR):
+        dirnames.sort()
+        if "index.md" not in filenames:
+            continue
+        rel = os.path.relpath(dirpath, API_DIR)
+        if rel == ".":
+            continue  # skip the api root — that's the file we're writing
+        namespace = folder_to_namespace(rel)
+        if not namespace.startswith("Brine2D"):
+            continue
+        link_path = os.path.join(rel, "index.md").replace(os.sep, "/")
+        entries.append((namespace, link_path))
+
+    entries.sort(key=lambda e: e[0])
 
     rows = []
-    for filename in files:
-        namespace = filename[:-3]  # strip .md
+    for namespace, link_path in entries:
         description = namespace_description(namespace)
-        rows.append(f"| [{namespace}]({filename}) | {description} |")
+        rows.append(f"| [{namespace}]({link_path}) | {description} |")
 
     content = """\
 ---

@@ -419,3 +419,4 @@ FodyWeavers.xsd
 
 # Generated API reference (DefaultDocumentation output)
 docs/api/*.md
+docs/api/*/
