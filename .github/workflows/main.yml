@@ -32,7 +32,7 @@ jobs:
             --OutputDirectoryPath docs/api \
             --FileNameFactory DirectoryName
       - name: Generate API index page
-        run: python scripts/generate_api_index.py
+        run: python scripts/generate_api_index.py && cat docs/api/.pages && cat docs/api/Brine2D/.pages
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
