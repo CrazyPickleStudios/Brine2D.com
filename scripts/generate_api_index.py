@@ -124,17 +124,28 @@ Use the search bar at the top of the page to find a specific type or method, or 
 
     print(f"Generated {OUTPUT} with {len(rows)} namespaces.")
 
-    # Write .pages so awesome-pages only shows namespace folders in the left nav
-    namespace_folders = [os.path.dirname(link_path) for _, link_path in entries]
-    pages_content = "nav:\n  - index.md\n"
-    for folder in namespace_folders:
-        pages_content += f"  - {folder}\n"
+    # Write docs/api/.pages — points awesome-pages at the Brine2D root folder
+    api_pages_path = os.path.join(API_DIR, ".pages")
+    with open(api_pages_path, "w", encoding="utf-8") as f:
+        f.write("nav:\n  - index.md\n  - Brine2D\n")
+    print(f"Generated {api_pages_path}.")
 
-    pages_path = os.path.join(API_DIR, ".pages")
-    with open(pages_path, "w", encoding="utf-8") as f:
-        f.write(pages_content)
-
-    print(f"Generated {pages_path}.")
+    # Write docs/api/Brine2D/.pages — lists only namespace-level folders in order
+    brine2d_dir = os.path.join(API_DIR, "Brine2D")
+    if os.path.isdir(brine2d_dir):
+        # Namespace folders are immediate children of Brine2D/ that have an index.md
+        # and are namespace pages (e.g. Animation/, Core/) — not type folders
+        ns_folders = sorted(
+            d for d in os.listdir(brine2d_dir)
+            if os.path.isdir(os.path.join(brine2d_dir, d))
+            and is_namespace_page(os.path.join(brine2d_dir, d, "index.md"))
+        )
+        brine2d_pages_path = os.path.join(brine2d_dir, ".pages")
+        with open(brine2d_pages_path, "w", encoding="utf-8") as f:
+            f.write("nav:\n  - index.md\n")
+            for folder in ns_folders:
+                f.write(f"  - {folder}\n")
+        print(f"Generated {brine2d_pages_path} with {len(ns_folders)} namespace folders.")
 
 
 if __name__ == "__main__":

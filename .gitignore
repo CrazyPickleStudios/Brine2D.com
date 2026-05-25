@@ -421,3 +421,4 @@ FodyWeavers.xsd
 docs/api/*.md
 docs/api/*/
 docs/api/.pages
+docs/api/Brine2D/.pages
