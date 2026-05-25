@@ -39,6 +39,73 @@
     font-size: 0.85em;
 }
 
+/* ── API code block chrome ──────────────────────────────────────────────────
+   Adds a visible border and a language label (e.g. "C#") to code blocks,
+   matching the style of the .NET API reference pages.                       */
+
+/* Visible border on all code blocks in API content */
+.md-typeset pre.highlight {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+    position: relative;
+    padding-top: 2.2em;
+}
+
+[data-md-color-scheme="default"] .md-typeset pre.highlight {
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Language label via ::before — injected per known language */
+.md-typeset pre.highlight:has(code.language-csharp)::before {
+    content: "C#";
+}
+
+.md-typeset pre.highlight:has(code.language-fsharp)::before {
+    content: "F#";
+}
+
+.md-typeset pre.highlight:has(code.language-vb)::before,
+.md-typeset pre.highlight:has(code.language-vbnet)::before {
+    content: "VB";
+}
+
+.md-typeset pre.highlight:has(code.language-json)::before {
+    content: "JSON";
+}
+
+.md-typeset pre.highlight:has(code.language-xml)::before {
+    content: "XML";
+}
+
+.md-typeset pre.highlight:has(code.language-bash)::before,
+.md-typeset pre.highlight:has(code.language-shell)::before,
+.md-typeset pre.highlight:has(code.language-sh)::before {
+    content: "Shell";
+}
+
+/* Shared label styling */
+.md-typeset pre.highlight::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.2em 0.75em;
+    font-family: var(--md-text-font);
+    font-size: 0.75em;
+    font-weight: 600;
+    color: var(--md-default-fg-color--light);
+    background: rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 3px 0 3px 0;
+    letter-spacing: 0.03em;
+}
+
+[data-md-color-scheme="default"] .md-typeset pre.highlight::before {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.15);
+    color: var(--md-default-fg-color--light);
+}
+
 /* Visual Studio Dark+ JSON Theme for Prism.js */
 
 /* C#-specific token styling */
