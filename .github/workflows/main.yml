@@ -32,7 +32,7 @@ jobs:
             --OutputDirectoryPath docs/api \
             --FileNameFactory DirectoryName
       - name: Generate API index page
-        run: python scripts/generate_api_index.py && cat docs/api/.pages && cat docs/api/Brine2D/.pages
+        run: python scripts/generate_api_index.py
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
@@ -47,5 +47,5 @@ jobs:
           path: ~/.cache 
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material mkdocs-awesome-pages-plugin
+      - run: pip install mkdocs-material
       - run: mkdocs gh-deploy --force

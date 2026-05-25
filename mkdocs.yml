@@ -8,7 +8,6 @@ validation:
 
 plugins:
   - search
-  - awesome-pages
 
 
 theme:
@@ -167,7 +166,6 @@ nav:
   
   - API Reference:
       - Overview: api/index.md
-      - ...
   
   - Samples:
       - Overview: samples/index.md

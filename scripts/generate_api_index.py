@@ -124,28 +124,30 @@ Use the search bar at the top of the page to find a specific type or method, or 
 
     print(f"Generated {OUTPUT} with {len(rows)} namespaces.")
 
-    # Write docs/api/.pages — points awesome-pages at the Brine2D root folder
-    api_pages_path = os.path.join(API_DIR, ".pages")
-    with open(api_pages_path, "w", encoding="utf-8") as f:
-        f.write("nav:\n  - Brine2D\n")
-    print(f"Generated {api_pages_path}.")
+    # Inject namespace entries into mkdocs.yml under the API Reference section
+    mkdocs_path = os.path.join(API_DIR, "..", "..", "mkdocs.yml")
+    mkdocs_path = os.path.normpath(mkdocs_path)
 
-    # Write docs/api/Brine2D/.pages — lists only namespace-level folders in order
-    brine2d_dir = os.path.join(API_DIR, "Brine2D")
-    if os.path.isdir(brine2d_dir):
-        # Namespace folders are immediate children of Brine2D/ that have an index.md
-        # and are namespace pages (e.g. Animation/, Core/) — not type folders
-        ns_folders = sorted(
-            d for d in os.listdir(brine2d_dir)
-            if os.path.isdir(os.path.join(brine2d_dir, d))
-            and is_namespace_page(os.path.join(brine2d_dir, d, "index.md"))
-        )
-        brine2d_pages_path = os.path.join(brine2d_dir, ".pages")
-        with open(brine2d_pages_path, "w", encoding="utf-8") as f:
-            f.write("nav:\n  - index.md\n")
-            for folder in ns_folders:
-                f.write(f"  - {folder}\n")
-        print(f"Generated {brine2d_pages_path} with {len(ns_folders)} namespace folders.")
+    with open(mkdocs_path, encoding="utf-8") as f:
+        mkdocs = f.read()
+
+    nav_lines = ["      - Overview: api/index.md"]
+    for namespace, link_path in entries:
+        nav_lines.append(f"      - {namespace}: api/{link_path}")
+    new_block = "\n".join(nav_lines)
+
+    import re
+    mkdocs = re.sub(
+        r"(  - API Reference:\n).*?(\n  - [A-Z])",
+        lambda m: f"  - API Reference:\n{new_block}{m.group(2)}",
+        mkdocs,
+        flags=re.DOTALL,
+    )
+
+    with open(mkdocs_path, "w", encoding="utf-8") as f:
+        f.write(mkdocs)
+
+    print(f"Updated {mkdocs_path} with {len(entries)} API nav entries.")
 
 
 if __name__ == "__main__":
