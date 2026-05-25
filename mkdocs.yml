@@ -2,6 +2,10 @@ site_name: Brine2D Documentation
 site_author: CrazyPickleStudios
 docs_dir: docs
 
+validation:
+  nav:
+    not_in_nav: ignore
+
 
 theme:
   name: material
@@ -159,12 +163,6 @@ nav:
   
   - API Reference:
       - Overview: api/index.md
-      - Brine2D.Core: api/core.md
-      - Brine2D.Engine: api/engine.md
-      - Brine2D.Rendering: api/rendering.md
-      - Brine2D.Input: api/input.md
-      - Brine2D.Audio: api/audio.md
-      - Brine2D.ECS: api/ecs.md
   
   - Samples:
       - Overview: samples/index.md

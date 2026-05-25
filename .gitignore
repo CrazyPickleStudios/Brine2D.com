@@ -416,3 +416,6 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Generated API reference (DefaultDocumentation output)
+docs/api/*.md
