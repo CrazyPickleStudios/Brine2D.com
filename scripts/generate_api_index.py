@@ -127,7 +127,7 @@ Use the search bar at the top of the page to find a specific type or method, or 
     # Write docs/api/.pages — points awesome-pages at the Brine2D root folder
     api_pages_path = os.path.join(API_DIR, ".pages")
     with open(api_pages_path, "w", encoding="utf-8") as f:
-        f.write("nav:\n  - index.md\n  - Brine2D\n")
+        f.write("nav:\n  - Brine2D\n")
     print(f"Generated {api_pages_path}.")
 
     # Write docs/api/Brine2D/.pages — lists only namespace-level folders in order
