@@ -35,6 +35,7 @@
     --md-primary-bg-color: rgba(0,0,0,.75);
     --md-primary-bg-color--light: rgba(0,0,0,.54);
     --md-accent-fg-color: #72cd75;
+    --md-code-bg-color: #1e1e1e;
     --pg-light-border: rgb(47, 47, 47);
     --pg-hero-color: #57a85b;
     --pg-green-dark: #3d7a41;
@@ -65,6 +66,22 @@
 .md-header[data-md-state="shadow"],
 .md-header--shadow {
     box-shadow: none;
+}
+
+/* Tab bar — separator line beneath the header */
+.md-tabs {
+    border-bottom: 1px solid var(--pg-light-border);
+}
+
+/* Active tab underline in brand green */
+.md-tabs__link--active,
+.md-tabs__link:focus,
+.md-tabs__link:hover {
+    color: var(--md-accent-fg-color);
+}
+
+.md-tabs__indicator {
+    background-color: var(--md-accent-fg-color);
 }
 
 /* buttons */

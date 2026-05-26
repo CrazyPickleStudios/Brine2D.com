@@ -42,6 +42,8 @@ theme:
     - content.code.select
     - navigation.indexes      
     - navigation.top          
+    - navigation.tabs
+    - navigation.sections
     - search.suggest           
     - search.highlight    
    
@@ -55,104 +57,105 @@ extra_css:
 nav:
   - Home: index.md
 
-  - Get Started:
-      - Overview: getting-started/index.md
-      - Installation: getting-started/installation.md
-      - Quick Start: getting-started/quickstart.md
-      - Your First Game: getting-started/first-game.md
-      - Project Structure: getting-started/project-structure.md
-      - Configuration: getting-started/configuration.md
+  - Learn:
+      - Get Started:
+          - Overview: getting-started/index.md
+          - Installation: getting-started/installation.md
+          - Quick Start: getting-started/quickstart.md
+          - Your First Game: getting-started/first-game.md
+          - Project Structure: getting-started/project-structure.md
+          - Configuration: getting-started/configuration.md
 
-  - Tutorials:
-      - Overview: tutorials/index.md
-      - Moving Sprites: tutorials/moving-sprites.md
-      - Animation System: tutorials/animations.md
-      - Collision Detection: tutorials/collision.md
-      - Building a Platformer: tutorials/platformer.md
-      - Top-Down Adventure: tutorials/top-down.md
+      - Tutorials:
+          - Overview: tutorials/index.md
+          - Moving Sprites: tutorials/moving-sprites.md
+          - Animation System: tutorials/animations.md
+          - Collision Detection: tutorials/collision.md
+          - Building a Platformer: tutorials/platformer.md
+          - Top-Down Adventure: tutorials/top-down.md
 
-  - Fundamentals:
-      - Overview: fundamentals/index.md
-      - Why No Editor?: fundamentals/no-editor.md
-      - Architecture: fundamentals/architecture.md
-      - Dependency Injection: fundamentals/dependency-injection.md
-      - Game Loop: fundamentals/game-loop.md
-      - Builder Pattern: fundamentals/builder-pattern.md
-      - ECS Deep Dive: fundamentals/entity-component-system.md
+      - Fundamentals:
+          - Overview: fundamentals/index.md
+          - Why No Editor?: fundamentals/no-editor.md
+          - Architecture: fundamentals/architecture.md
+          - Dependency Injection: fundamentals/dependency-injection.md
+          - Game Loop: fundamentals/game-loop.md
+          - Builder Pattern: fundamentals/builder-pattern.md
+          - ECS Deep Dive: fundamentals/entity-component-system.md
 
-  - Rendering:
-      - Overview: rendering/index.md
-      - Rendering Architecture: rendering/choosing-renderer.md
-      - GPU Renderer: rendering/gpu-renderer.md
-      - Sprites & Textures: rendering/sprites.md
-      - Texture Atlasing: rendering/texture-atlasing.md
-      - Post-Processing: rendering/post-processing.md
-      - Cameras: rendering/cameras.md
-      - Particles: rendering/particles.md
-      - Drawing Primitives: rendering/primitives.md
+      - Rendering:
+          - Overview: rendering/index.md
+          - Rendering Architecture: rendering/choosing-renderer.md
+          - GPU Renderer: rendering/gpu-renderer.md
+          - Sprites & Textures: rendering/sprites.md
+          - Texture Atlasing: rendering/texture-atlasing.md
+          - Post-Processing: rendering/post-processing.md
+          - Cameras: rendering/cameras.md
+          - Particles: rendering/particles.md
+          - Drawing Primitives: rendering/primitives.md
 
-  - Input:
-      - Overview: input/index.md
-      - Keyboard: input/keyboard.md
-      - Mouse: input/mouse.md
-      - Gamepad Support: input/gamepad.md
-      - Input Actions: input/actions.md
-      - Input Layers: input/layers.md
+      - Input:
+          - Overview: input/index.md
+          - Keyboard: input/keyboard.md
+          - Mouse: input/mouse.md
+          - Gamepad Support: input/gamepad.md
+          - Input Actions: input/actions.md
+          - Input Layers: input/layers.md
 
-  - ECS:
-      - Overview: ecs/index.md
-      - Getting Started: ecs/getting-started.md
-      - Entities: ecs/entities.md
-      - Components: ecs/components.md
-      - Systems: ecs/systems.md
-      - Queries: ecs/queries.md
-      - Multi-Threading: ecs/multi-threading.md
+      - ECS:
+          - Overview: ecs/index.md
+          - Getting Started: ecs/getting-started.md
+          - Entities: ecs/entities.md
+          - Components: ecs/components.md
+          - Systems: ecs/systems.md
+          - Queries: ecs/queries.md
+          - Multi-Threading: ecs/multi-threading.md
 
-  - Assets:
-      - Overview: assets/index.md
-      - Loading Assets: assets/loading.md
-      - Asset Manifests: assets/manifests.md
-      - Brine2D.Build: assets/build-package.md
+      - Assets:
+          - Overview: assets/index.md
+          - Loading Assets: assets/loading.md
+          - Asset Manifests: assets/manifests.md
+          - Brine2D.Build: assets/build-package.md
 
-  - Features:
-      - Animation:
-          - Overview: animation/index.md
-          - Clips & Frames: animation/clips-and-frames.md
-          - Animator Component: animation/animator-component.md
-          - State Machine: animation/state-machine.md
-          - Blend Trees: animation/blend-trees.md
-          - Layers: animation/layers.md
-          - Aseprite Integration: animation/aseprite.md
-          - Clip Events: animation/clip-events.md
-      - Audio:
-          - Overview: audio/index.md
-          - Getting Started: audio/getting-started.md
-          - Sound Effects: audio/sound-effects.md
-          - Music Playback: audio/music.md
-          - Spatial Audio: audio/spatial-audio.md
-      - Scenes:
-          - Overview: scenes/index.md
-          - Scene Transitions: scenes/transitions.md
-      - Collision:
-          - Overview: collision/index.md
-          - Collision System: collision/system.md
-          - Shapes & Bodies: collision/colliders.md
-          - Kinematic Character: collision/kinematic-character.md
-      - Tilemaps:
-          - Overview: tilemaps/index.md
-          - Loading Tilemaps: tilemaps/loading.md
-          - Rendering Tiles: tilemaps/rendering.md
-      - UI:
-          - Overview: ui/index.md
-          - UI Components: ui/components.md
-          - Custom UI: ui/custom.md
-      - Performance:
-          - Overview: performance/index.md
-          - Monitoring: performance/monitoring.md
-          - Optimization: performance/optimization.md
-      - Events:
-          - Overview: events/index.md
-          - Window Events: events/window-events.md
+      - Features:
+          - Animation:
+              - Overview: animation/index.md
+              - Clips & Frames: animation/clips-and-frames.md
+              - Animator Component: animation/animator-component.md
+              - State Machine: animation/state-machine.md
+              - Blend Trees: animation/blend-trees.md
+              - Layers: animation/layers.md
+              - Aseprite Integration: animation/aseprite.md
+              - Clip Events: animation/clip-events.md
+          - Audio:
+              - Overview: audio/index.md
+              - Getting Started: audio/getting-started.md
+              - Sound Effects: audio/sound-effects.md
+              - Music Playback: audio/music.md
+              - Spatial Audio: audio/spatial-audio.md
+          - Scenes:
+              - Overview: scenes/index.md
+              - Scene Transitions: scenes/transitions.md
+          - Collision:
+              - Overview: collision/index.md
+              - Collision System: collision/system.md
+              - Shapes & Bodies: collision/colliders.md
+              - Kinematic Character: collision/kinematic-character.md
+          - Tilemaps:
+              - Overview: tilemaps/index.md
+              - Loading Tilemaps: tilemaps/loading.md
+              - Rendering Tiles: tilemaps/rendering.md
+          - UI:
+              - Overview: ui/index.md
+              - UI Components: ui/components.md
+              - Custom UI: ui/custom.md
+          - Performance:
+              - Overview: performance/index.md
+              - Monitoring: performance/monitoring.md
+              - Optimization: performance/optimization.md
+          - Events:
+              - Overview: events/index.md
+              - Window Events: events/window-events.md
 
   - What's New:
       - Overview: whats-new/index.md
@@ -163,10 +166,10 @@ nav:
       - v0.8.0-beta: whats-new/v-0.8.0-beta.md
       - v0.7.0-beta: whats-new/v-0.7.0-beta.md
       - v0.6.0-beta: whats-new/v-0.6.0-beta.md
-  
+
   - API Reference:
       - Overview: api/index.md
-  
+
   - Samples:
       - Overview: samples/index.md
       - FeatureDemos: samples/feature-demos.md
@@ -174,7 +177,7 @@ nav:
       - Animation Demo: samples/animation-demo.md
       - Collision Demo: samples/collision-demo.md
       - ECS Demo: samples/ecs-demo.md
-  
+
   - Contributing:
       - How to Contribute: contributing/index.md
       - Code Style: contributing/code-style.md
