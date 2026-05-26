@@ -81,7 +81,6 @@ plugins:
     minify_js: true
   macros:
     enabled: true
-    include_dir: macros
 
 markdown_extensions:
   admonition: {}
