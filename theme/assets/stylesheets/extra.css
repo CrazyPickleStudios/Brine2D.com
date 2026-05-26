@@ -1,17 +1,15 @@
+/* Portions of this file are adapted from privacyguides.org, licensed under the MIT License.
+   Copyright (c) Privacy Guides contributors.
+*/
+
 @font-face {
     font-family: 'Bagnard';
     src: url("../brand/fonts/Bagnard/Bold.woff") format("woff");
     font-display: swap;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-
 /* Define brand */
 :root, [data-md-color-scheme="default"] {
-    --md-text-font: "Public Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --md-text-font-family: var(--md-text-font);
-    --md-code-font: ui-monospace, "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, "Liberation Mono", monospace;
-    --md-code-font-family: var(--md-code-font);
     --md-default-bg-color: rgb(247, 247, 252);
     --md-primary-fg-color: rgb(255, 255, 255);
     --md-primary-fg-color--light: #ffd06f;
@@ -36,16 +34,13 @@
 :root, [data-md-color-scheme="slate"] {
     --md-default-bg-color: rgb(26, 26, 27);
     --md-primary-fg-color: rgb(15, 15, 15);
-    --md-primary-fg-color--light: #57a85b;
-    --md-primary-fg-color--dark: #3d7a41;
+    --md-primary-fg-color--light: #ffd06f;
+    --md-primary-fg-color--dark: #db9d21;
     --md-primary-bg-color: rgba(0,0,0,.75);
     --md-primary-bg-color--light: rgba(0,0,0,.54);
-    --md-accent-fg-color: #72cd75;
-    --md-code-bg-color: #1e1e1e;
+    --md-accent-fg-color: #ffdb57;
     --pg-light-border: rgb(47, 47, 47);
-    --pg-hero-color: #57a85b;
-    --pg-green-dark: #3d7a41;
-    --pg-green-subtle: rgba(87, 168, 91, 0.12);
+    --pg-hero-color: #ffd06f;
     --pg-purple: #af94de;
     --pg-red: #ff6c6a;
     --pg-orange: #e97b5a;
@@ -65,29 +60,13 @@
 }
 
 [data-md-color-scheme="slate"] > * {
-    --md-typeset-a-color: #72cd75;
+    --md-typeset-a-color: rgb(255, 208, 111);
 }
 
 /* Hide shadow under navigation */
 .md-header[data-md-state="shadow"],
 .md-header--shadow {
     box-shadow: none;
-}
-
-/* Tab bar — separator line beneath the header */
-.md-tabs {
-    border-bottom: 1px solid var(--pg-light-border);
-}
-
-/* Active tab underline in brand green */
-.md-tabs__link--active,
-.md-tabs__link:focus,
-.md-tabs__link:hover {
-    color: var(--md-accent-fg-color);
-}
-
-.md-tabs__indicator {
-    background-color: var(--md-accent-fg-color);
 }
 
 /* buttons */
@@ -407,17 +386,6 @@ details[class="downloads annotate"] > p .md-annotation span span::before {
 
 [data-md-color-scheme="slate"] .md-nav--primary .md-nav__title[for="__drawer"] {
     color: var(--md-typeset-a-color)
-}
-
-/* Active tab — green underline to match brand accent */
-.md-tabs__link--active {
-    background:
-        radial-gradient(farthest-side, var(--md-accent-fg-color) 98%, transparent 100%) bottom right / 2px 2px,
-        radial-gradient(farthest-side, var(--md-accent-fg-color) 98%, transparent 100%) bottom left  / 2px 2px,
-        linear-gradient(var(--md-accent-fg-color), var(--md-accent-fg-color)) bottom / calc(100% - 2px) 2px;
-    background-repeat: no-repeat;
-    background-origin: padding-box;
-    padding-bottom: 2px;
 }
 
 @media screen and (max-width: 59.9375em) {
@@ -1106,171 +1074,8 @@ path[d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-
             padding-bottom: 1.2rem;
         }
 
-        .dpadirectory-table td:before {
+        .dpadirectory-table td::before {
             content: attr(data-cell) ": ";
             font-weight: 700;
         }
 }
-
-/* ── Code block chrome ──────────────────────────────────────────────────────
-   Bordered box with a language label (C#, JSON, etc.) on the left and the
-   copy button on the right, in a header bar above the code.                */
-
-.md-typeset pre[class*="language-"] {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    border: 1px solid var(--pg-light-border);
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.md-typeset pre[class*="language-"] > .md-code__nav {
-    position: static;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    padding: 0 0.5em 0 0;
-    background: rgba(255, 255, 255, 0.04);
-    border-bottom: 1px solid var(--pg-light-border);
-    box-sizing: border-box;
-    flex-shrink: 0;
-}
-
-[data-md-color-scheme="default"] .md-typeset pre[class*="language-"] > .md-code__nav {
-    background: rgba(0, 0, 0, 0.04);
-}
-
-.md-typeset pre.language-csharp > .md-code__nav::before { content: "C#"; }
-.md-typeset pre.language-fsharp > .md-code__nav::before { content: "F#"; }
-.md-typeset pre.language-vb     > .md-code__nav::before,
-.md-typeset pre.language-vbnet  > .md-code__nav::before { content: "VB"; }
-.md-typeset pre.language-json   > .md-code__nav::before { content: "JSON"; }
-.md-typeset pre.language-xml    > .md-code__nav::before { content: "XML"; }
-.md-typeset pre.language-bash   > .md-code__nav::before,
-.md-typeset pre.language-shell  > .md-code__nav::before,
-.md-typeset pre.language-sh     > .md-code__nav::before { content: "Shell"; }
-
-.md-typeset pre[class*="language-"] > .md-code__nav::before {
-    flex: 1;
-    padding: 0.3em 0.75em;
-    font-family: var(--md-text-font);
-    font-size: 0.72em;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    color: var(--md-default-fg-color--light);
-}
-
-.md-typeset pre[class*="language-"] > code {
-    display: block;
-    overflow-x: auto;
-    padding: 0.8em 1em;
-    margin: 0;
-    border-radius: 0;
-}
-
-/* Visual Studio syntax theme — Dark+ for slate, Light for default */
-
-[data-md-color-scheme="slate"] {
-    --vs-keyword: #569cd6;
-    --vs-control: #c586c0;
-    --vs-class: #4ec9b0;
-    --vs-string: #ce9178;
-    --vs-number: #b5cea8;
-    --vs-comment: #6a9955;
-    --vs-function: #dcdcaa;
-    --vs-property: #9cdcfe;
-    --vs-operator: #d4d4d4;
-    --vs-punctuation: #d4d4d4;
-    --vs-namespace: #d4d4d4;
-    --vs-directive: #9b9b9b;
-    --vs-interpolation: #d4d4d4;
-    --vs-json-prop: #d7ba7d;
-    --vs-json-string: #d69d85;
-    --vs-json-op: #b4b4b4;
-    --vs-xml-attr: #92caf4;
-    --vs-xml-value: #c8c8c8;
-    --vs-xml-punct: #808080;
-    --vs-xml-entity: #d7ba7d;
-    --vs-xml-cdata: #e9d585;
-    --md-code-bg-color: #1c1c1c;
-}
-
-[data-md-color-scheme="default"] {
-    --vs-keyword:      #0000ff;
-    --vs-control:      #af00db;
-    --vs-class:        #267f99;
-    --vs-string:       #a31515;
-    --vs-number:       #098658;
-    --vs-comment:      #008000;
-    --vs-function:     #795e26;
-    --vs-property:     #001080;
-    --vs-operator:     #000000;
-    --vs-punctuation:  #000000;
-    --vs-namespace:    #000000;
-    --vs-directive:    #808080;
-    --vs-interpolation:#000000;
-    --vs-json-prop:    #0451a5;
-    --vs-json-string:  #a31515;
-    --vs-json-op:      #000000;
-    --vs-xml-attr:     #ff0000;
-    --vs-xml-value:    #0000ff;
-    --vs-xml-punct:    #800000;
-    --vs-xml-entity:   #ff0000;
-    --vs-xml-cdata:    #808000;
-}
-
-.language-csharp .token.keyword { color: var(--vs-keyword); }
-.language-csharp .token.keyword.control { color: var(--vs-control); }
-.language-csharp .token.keyword.this,
-.language-csharp .token.keyword.base { color: var(--vs-keyword); font-style: italic; }
-.language-csharp .token.class-name { color: var(--vs-class); }
-.language-csharp .token.string { color: var(--vs-string); }
-.language-csharp .token.number { color: var(--vs-number); }
-.language-csharp .token.comment { color: var(--vs-comment); font-style: italic; }
-.language-csharp .token.doc-comment { color: var(--vs-comment); font-style: italic; }
-.language-csharp .token.function { color: var(--vs-function); }
-.language-csharp .token.property { color: var(--vs-property); }
-.language-csharp .token.variable,
-.language-csharp .token.parameter { color: var(--vs-property); }
-.language-csharp .token.operator { color: var(--vs-operator); }
-.language-csharp .token.punctuation { color: var(--vs-punctuation); }
-.language-csharp .token.annotation,
-.language-csharp .token.attr-name { color: var(--vs-class); }
-.language-csharp .token.namespace { color: var(--vs-namespace); }
-.language-csharp .token.generic { color: var(--vs-class); }
-.language-csharp .token.boolean,
-.language-csharp .token.null { color: var(--vs-keyword); }
-.language-csharp .token.directive { color: var(--vs-directive); }
-.language-csharp .token.directive .token.keyword { color: var(--vs-directive); }
-.language-csharp .token.interpolation { color: var(--vs-interpolation); }
-.language-csharp .token.interpolation .token.punctuation { color: var(--vs-keyword); }
-
-.language-json .token.property,
-.language-json .token.property.string { color: var(--vs-json-prop); }
-.language-json .token.string { color: var(--vs-json-string); }
-.language-json .token.number { color: var(--vs-number); }
-.language-json .token.boolean { color: var(--vs-keyword); }
-.language-json .token.null { color: var(--vs-keyword); }
-.language-json .token.punctuation { color: var(--vs-punctuation); }
-.language-json .token.operator { color: var(--vs-json-op); }
-.language-json .token.comment { color: var(--vs-comment); font-style: italic; }
-
-.language-xml .token.tag { color: var(--vs-xml-punct); }
-.language-xml .token.tag .token.tag { color: var(--vs-xml-punct); }
-.language-xml .token.tag .token.punctuation { color: var(--vs-xml-punct); }
-.language-xml .token.attr-name { color: var(--vs-xml-attr); }
-.language-xml .token.attr-value { color: var(--vs-xml-value); }
-.language-xml .token.attr-value .token.punctuation { color: var(--vs-xml-punct); }
-.language-xml .token.punctuation { color: var(--vs-xml-punct); }
-.language-xml .token.comment { color: var(--vs-comment); font-style: italic; }
-.language-xml .token.cdata { color: var(--vs-xml-cdata); }
-.language-xml .token.doctype { color: var(--vs-keyword); }
-.language-xml .token.prolog { color: var(--vs-keyword); }
-.language-xml .token.entity { color: var(--vs-xml-entity); }
-.language-xml .token.tag.project,
-.language-xml .token.tag.propertygroup,
-.language-xml .token.tag.itemgroup,
-.language-xml .token.tag.projectreference { color: var(--vs-class); }
-

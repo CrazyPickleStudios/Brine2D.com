@@ -1,39 +1,128 @@
-site_name: Brine2D Documentation
-site_author: CrazyPickleStudios
 docs_dir: docs
+site_url: https://www.Brine2D.com/
+site_dir: site
 
-validation:
-  nav:
-    not_in_nav: ignore
+site_name: Brine2D
+site_description: A modern, high-performance 2D game engine for C# and .NET.
+site_author: CrazyPickle Studios
 
-plugins:
-  - search
-
+repo_url: https://github.com/CrazyPickleStudios/Brine2D.com
+repo_name: ""
 
 theme:
   name: material
-  custom_dir: overrides
+  language: en
+  custom_dir: theme
+  font:
+    text: Public Sans
+    code: DM Mono
   palette:
     - media: "(prefers-color-scheme)"
+      scheme: default
+      accent: deep purple
       toggle:
         icon: material/brightness-auto
-        name: Switch to light mode
-
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: custom
-      accent: custom
-      toggle:
-        icon: material/brightness-7
         name: Switch to dark mode
-
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: custom
-      accent: custom
+      accent: amber
       toggle:
-        icon: material/brightness-4
-        name: Switch to system preference
+        icon: material/brightness-2
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      accent: deep purple
+      toggle:
+        icon: material/brightness-5
+        name: Switch to system theme
+  favicon: assets/brand/logos/png/favicon-32x32.png
+  icon:
+    repo: simple/github
+  features:
+    - announce.dismiss
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.path
+    - navigation.indexes
+    - navigation.footer
+    - content.tabs.link
+    - content.tooltips
+    - search.highlight
+
+extra_css:
+  - assets/stylesheets/extra.css?v=20260303
+extra_javascript:
+  - path: assets/javascripts/randomize-element.js?v=20250306
+    defer: true
+  - path: assets/javascripts/feedback.js?v=20250306
+    defer: true
+
+watch:
+  - theme
+  - includes
+
+plugins:
+  tags:
+    enabled: true
+  search:
+    lang: en
+    separator: '[\s\-\.]+'
+  privacy:
+    enabled: true 
+  offline:
+    enabled: false
+  git-revision-date-localized:
+    enabled: true
+    locale: en
+  minify:
+    enabled: true
+    minify_html: true
+    minify_css: true
+    minify_js: true
+  macros:
+    enabled: true
+    include_dir: macros
+
+markdown_extensions:
+  admonition: {}
+  pymdownx.details: {}
+  pymdownx.superfences:
+    custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format 
+  pymdownx.tabbed:
+    alternate_style: true
+  pymdownx.arithmatex:
+    generic: true
+  pymdownx.critic: {}
+  pymdownx.caret: {}
+  pymdownx.keys: {}
+  pymdownx.mark: {}
+  pymdownx.tilde: {}
+  pymdownx.snippets:
+    auto_append:
+      - includes/abbreviations.en.txt
+  pymdownx.tasklist:
+    custom_checkbox: true
+  attr_list: {}
+  def_list: {}
+  md_in_html: {}
+  meta: {}
+  abbr: {}
+  pymdownx.emoji:
+    emoji_index: !!python/name:material.extensions.emoji.twemoji 
+    emoji_generator: !!python/name:material.extensions.emoji.to_svg 
+    options:
+      custom_icons:
+        - theme/icons
+  tables: {}
+  footnotes: {}
+  toc:
+    toc_depth: 4
+
+
   logo: images/logo.png
   favicon: images/logo.png
   font: false
@@ -47,13 +136,6 @@ theme:
     - search.suggest           
     - search.highlight    
    
-extra_javascript:
-  - https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js
-
-extra_css:
-  - stylesheets/prism-material-slate.css
-
 nav:
   - Home: index.md
 
@@ -183,29 +265,8 @@ nav:
       - Code Style: contributing/code-style.md
       - Building from Source: contributing/building.md
 
-plugins:
-  - search:
-      lang: en
-      separator: '[\s\-\.]+'
-
-markdown_extensions:  
-  - admonition
-  - attr_list
-  - toc:
-      permalink: true
-  - pymdownx.highlight:
-      use_pygments: false
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.details
-  - md_in_html
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+validation:
+  nav:
+    not_found: info
+    omitted_files: ignore
+    absolute_links: ignore
