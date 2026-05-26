@@ -4,8 +4,14 @@
     font-display: swap;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* Define brand */
 :root, [data-md-color-scheme="default"] {
+    --md-text-font: "Public Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --md-text-font-family: var(--md-text-font);
+    --md-code-font: ui-monospace, "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, "Liberation Mono", monospace;
+    --md-code-font-family: var(--md-code-font);
     --md-default-bg-color: rgb(247, 247, 252);
     --md-primary-fg-color: rgb(255, 255, 255);
     --md-primary-fg-color--light: #ffd06f;
