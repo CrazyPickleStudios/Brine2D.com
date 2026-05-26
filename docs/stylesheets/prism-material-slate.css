@@ -1072,8 +1072,67 @@ path[d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-
             padding-bottom: 1.2rem;
         }
 
-        .dpadirectory-table td::before {
+        .dpadirectory-table td:before {
             content: attr(data-cell) ": ";
             font-weight: 700;
         }
 }
+
+/* ── Code block chrome ──────────────────────────────────────────────────────
+   Bordered box with a language label (C#, JSON, etc.) on the left and the
+   copy button on the right, in a header bar above the code.                */
+
+.md-typeset pre[class*="language-"] {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    border: 1px solid var(--pg-light-border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.md-typeset pre[class*="language-"] > .md-code__nav {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 0 0.5em 0 0;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid var(--pg-light-border);
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+[data-md-color-scheme="default"] .md-typeset pre[class*="language-"] > .md-code__nav {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.md-typeset pre.language-csharp > .md-code__nav::before { content: "C#"; }
+.md-typeset pre.language-fsharp > .md-code__nav::before { content: "F#"; }
+.md-typeset pre.language-vb     > .md-code__nav::before,
+.md-typeset pre.language-vbnet  > .md-code__nav::before { content: "VB"; }
+.md-typeset pre.language-json   > .md-code__nav::before { content: "JSON"; }
+.md-typeset pre.language-xml    > .md-code__nav::before { content: "XML"; }
+.md-typeset pre.language-bash   > .md-code__nav::before,
+.md-typeset pre.language-shell  > .md-code__nav::before,
+.md-typeset pre.language-sh     > .md-code__nav::before { content: "Shell"; }
+
+.md-typeset pre[class*="language-"] > .md-code__nav::before {
+    flex: 1;
+    padding: 0.3em 0.75em;
+    font-family: var(--md-text-font);
+    font-size: 0.72em;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--md-default-fg-color--light);
+}
+
+.md-typeset pre[class*="language-"] > code {
+    display: block;
+    overflow-x: auto;
+    padding: 0.8em 1em;
+    margin: 0;
+    border-radius: 0;
+}
+
