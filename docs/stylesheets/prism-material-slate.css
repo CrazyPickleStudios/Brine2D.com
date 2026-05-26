@@ -1136,3 +1136,106 @@ path[d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-
     border-radius: 0;
 }
 
+/* Visual Studio syntax theme — Dark+ for slate, Light for default */
+
+[data-md-color-scheme="slate"] {
+    --vs-keyword:      #569cd6;
+    --vs-control:      #c586c0;
+    --vs-class:        #4ec9b0;
+    --vs-string:       #ce9178;
+    --vs-number:       #b5cea8;
+    --vs-comment:      #6a9955;
+    --vs-function:     #dcdcaa;
+    --vs-property:     #9cdcfe;
+    --vs-operator:     #d4d4d4;
+    --vs-punctuation:  #d4d4d4;
+    --vs-namespace:    #d4d4d4;
+    --vs-directive:    #9b9b9b;
+    --vs-interpolation:#d4d4d4;
+    --vs-json-prop:    #d7ba7d;
+    --vs-json-string:  #d69d85;
+    --vs-json-op:      #b4b4b4;
+    --vs-xml-attr:     #92caf4;
+    --vs-xml-value:    #c8c8c8;
+    --vs-xml-punct:    #808080;
+    --vs-xml-entity:   #d7ba7d;
+    --vs-xml-cdata:    #e9d585;
+}
+
+[data-md-color-scheme="default"] {
+    --vs-keyword:      #0000ff;
+    --vs-control:      #af00db;
+    --vs-class:        #267f99;
+    --vs-string:       #a31515;
+    --vs-number:       #098658;
+    --vs-comment:      #008000;
+    --vs-function:     #795e26;
+    --vs-property:     #001080;
+    --vs-operator:     #000000;
+    --vs-punctuation:  #000000;
+    --vs-namespace:    #000000;
+    --vs-directive:    #808080;
+    --vs-interpolation:#000000;
+    --vs-json-prop:    #0451a5;
+    --vs-json-string:  #a31515;
+    --vs-json-op:      #000000;
+    --vs-xml-attr:     #ff0000;
+    --vs-xml-value:    #0000ff;
+    --vs-xml-punct:    #800000;
+    --vs-xml-entity:   #ff0000;
+    --vs-xml-cdata:    #808000;
+}
+
+.language-csharp .token.keyword { color: var(--vs-keyword); }
+.language-csharp .token.keyword.control { color: var(--vs-control); }
+.language-csharp .token.keyword.this,
+.language-csharp .token.keyword.base { color: var(--vs-keyword); font-style: italic; }
+.language-csharp .token.class-name { color: var(--vs-class); }
+.language-csharp .token.string { color: var(--vs-string); }
+.language-csharp .token.number { color: var(--vs-number); }
+.language-csharp .token.comment { color: var(--vs-comment); font-style: italic; }
+.language-csharp .token.doc-comment { color: var(--vs-comment); font-style: italic; }
+.language-csharp .token.function { color: var(--vs-function); }
+.language-csharp .token.property { color: var(--vs-property); }
+.language-csharp .token.variable,
+.language-csharp .token.parameter { color: var(--vs-property); }
+.language-csharp .token.operator { color: var(--vs-operator); }
+.language-csharp .token.punctuation { color: var(--vs-punctuation); }
+.language-csharp .token.annotation,
+.language-csharp .token.attr-name { color: var(--vs-class); }
+.language-csharp .token.namespace { color: var(--vs-namespace); }
+.language-csharp .token.generic { color: var(--vs-class); }
+.language-csharp .token.boolean,
+.language-csharp .token.null { color: var(--vs-keyword); }
+.language-csharp .token.directive { color: var(--vs-directive); }
+.language-csharp .token.directive .token.keyword { color: var(--vs-directive); }
+.language-csharp .token.interpolation { color: var(--vs-interpolation); }
+.language-csharp .token.interpolation .token.punctuation { color: var(--vs-keyword); }
+
+.language-json .token.property,
+.language-json .token.property.string { color: var(--vs-json-prop); }
+.language-json .token.string { color: var(--vs-json-string); }
+.language-json .token.number { color: var(--vs-number); }
+.language-json .token.boolean { color: var(--vs-keyword); }
+.language-json .token.null { color: var(--vs-keyword); }
+.language-json .token.punctuation { color: var(--vs-punctuation); }
+.language-json .token.operator { color: var(--vs-json-op); }
+.language-json .token.comment { color: var(--vs-comment); font-style: italic; }
+
+.language-xml .token.tag { color: var(--vs-xml-punct); }
+.language-xml .token.tag .token.tag { color: var(--vs-xml-punct); }
+.language-xml .token.tag .token.punctuation { color: var(--vs-xml-punct); }
+.language-xml .token.attr-name { color: var(--vs-xml-attr); }
+.language-xml .token.attr-value { color: var(--vs-xml-value); }
+.language-xml .token.attr-value .token.punctuation { color: var(--vs-xml-punct); }
+.language-xml .token.punctuation { color: var(--vs-xml-punct); }
+.language-xml .token.comment { color: var(--vs-comment); font-style: italic; }
+.language-xml .token.cdata { color: var(--vs-xml-cdata); }
+.language-xml .token.doctype { color: var(--vs-keyword); }
+.language-xml .token.prolog { color: var(--vs-keyword); }
+.language-xml .token.entity { color: var(--vs-xml-entity); }
+.language-xml .token.tag.project,
+.language-xml .token.tag.propertygroup,
+.language-xml .token.tag.itemgroup,
+.language-xml .token.tag.projectreference { color: var(--vs-class); }
+
