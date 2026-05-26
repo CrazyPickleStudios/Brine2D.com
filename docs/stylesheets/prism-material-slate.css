@@ -409,6 +409,37 @@ details[class="downloads annotate"] > p .md-annotation span span::before {
     color: var(--md-typeset-a-color)
 }
 
+/* Side nav section headers — muted label style like Privacy Guides */
+.md-nav--secondary .md-nav__title,
+.md-nav__item--section > .md-nav__link,
+.md-nav__item--section > label.md-nav__link {
+    color: var(--md-default-fg-color--light);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding-top: 1.2em;
+    margin-bottom: 0.1em;
+    pointer-events: none;
+    cursor: default;
+}
+
+/* Don't apply the muted style to the active/hover state of real links */
+.md-nav__item--section > .md-nav__link[href]:not([href=""]) {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* Slightly more spacing between the section groups */
+.md-nav__item--section {
+    margin-top: 0.4em;
+}
+
+/* Nav links — slightly smaller and lighter than the bold section headers */
+.md-nav__item:not(.md-nav__item--section) > .md-nav__link {
+    font-size: 0.8rem;
+}
+
 @media screen and (max-width: 59.9375em) {
     .md-nav__source {
         display: none;
