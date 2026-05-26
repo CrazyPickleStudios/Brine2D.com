@@ -50,6 +50,16 @@
     --md-footer-bg-color--dark:     hsla(var(--md-hue), 15%, 8%, 1);
 }
 
+/* Frosted glass header on scroll — requires backdrop-filter support */
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+    [data-md-color-scheme="slate"] .md-header,
+    [data-md-color-scheme="slate"] .md-tabs {
+        background-color: hsla(var(--md-hue), 15%, 12%, 0.72);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+    }
+}
+
 /* Hide pilcrow permalink anchors on generated API pages */
 [data-md-color-scheme] .md-content__inner h1 .headerlink,
 [data-md-color-scheme] .md-content__inner h2 .headerlink,
