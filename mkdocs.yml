@@ -35,7 +35,7 @@ theme:
       toggle:
         icon: material/brightness-5
         name: Switch to system theme
-  favicon: assets/brand/logos/png/favicon-32x32.png
+  # favicon: assets/brand/logos/png/favicon-32x32.png
   icon:
     repo: simple/github
   features:
@@ -121,20 +121,6 @@ markdown_extensions:
   footnotes: {}
   toc:
     toc_depth: 4
-
-
-  logo: images/logo.png
-  favicon: images/logo.png
-  font: false
-  features:
-    - content.code.copy
-    - content.code.select
-    - navigation.indexes      
-    - navigation.top          
-    - navigation.tabs
-    - navigation.sections
-    - search.suggest           
-    - search.highlight    
    
 nav:
   - Home: index.md
