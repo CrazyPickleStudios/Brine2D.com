@@ -4,6 +4,11 @@
 :root {
     --md-text-font: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
     --md-code-font: "Cascadia Code", "Fira Code", "Consolas", "Menlo", "Liberation Mono", monospace;
+
+    /* Pickle green — used for hero accents, card hovers, section labels */
+    --pg-green:        #4caf50;
+    --pg-green-dark:   #388e3c;
+    --pg-green-subtle: rgba(76, 175, 80, 0.1);
 }
 
 [data-md-color-scheme="slate"] {
@@ -30,6 +35,33 @@
 [data-md-color-scheme] .md-content__inner h5 .headerlink,
 [data-md-color-scheme] .md-content__inner h6 .headerlink {
     display: none;
+}
+
+/* Pickle green accent — links, active nav, primary buttons */
+.md-typeset a {
+    color: var(--pg-green);
+}
+
+.md-typeset a:hover {
+    color: var(--pg-green-dark);
+}
+
+.md-nav__link--active,
+.md-nav__link:is(:focus, :hover) {
+    color: var(--pg-green) !important;
+}
+
+.md-nav__link--active {
+    font-weight: 600;
+}
+
+.md-tabs__link--active,
+.md-tabs__link:hover {
+    color: var(--pg-green) !important;
+}
+
+.md-search-result__teaser mark {
+    color: var(--pg-green);
 }
 
 /* API section headings (Parameters, Returns, Definition, etc.)

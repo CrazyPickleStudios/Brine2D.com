@@ -1,0 +1,300 @@
+{% extends "main.html" %}
+
+{% block tabs %}
+{{ super() }}
+
+<style>
+.pg-home {
+    padding: 0;
+}
+
+.pg-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 5rem 1.5rem 4rem;
+    background: var(--md-default-bg-color);
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.pg-hero img {
+    width: 120px;
+    height: auto;
+    margin-bottom: 1.5rem;
+}
+
+.pg-hero h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+    color: var(--md-default-fg-color);
+    line-height: 1.2;
+}
+
+.pg-hero h1 span {
+    color: var(--pg-green);
+}
+
+.pg-hero p {
+    font-size: 1.1rem;
+    color: var(--md-default-fg-color--light);
+    max-width: 540px;
+    margin: 0 0 2rem;
+    line-height: 1.6;
+}
+
+.pg-hero-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pg-hero-buttons a {
+    display: inline-block;
+    padding: 0.6em 1.4em;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+}
+
+.pg-btn-primary {
+    background: var(--pg-green);
+    color: #fff !important;
+}
+
+.pg-btn-primary:hover {
+    background: var(--pg-green-dark);
+}
+
+.pg-btn-secondary {
+    background: transparent;
+    color: var(--pg-green) !important;
+    border: 1px solid var(--pg-green);
+}
+
+.pg-btn-secondary:hover {
+    background: var(--pg-green-subtle);
+}
+
+/* ── Feature cards ──────────────────────────────────────────── */
+
+.pg-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem;
+}
+
+.pg-section-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pg-green);
+    margin-bottom: 1.5rem;
+}
+
+.pg-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.pg-card {
+    background: var(--md-code-bg-color);
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 6px;
+    padding: 1.4rem 1.5rem;
+    text-decoration: none !important;
+    color: var(--md-default-fg-color) !important;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.pg-card:hover {
+    border-color: var(--pg-green);
+    box-shadow: 0 0 0 1px var(--pg-green);
+}
+
+.pg-card-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+
+.pg-card-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--md-default-fg-color);
+}
+
+.pg-card-desc {
+    font-size: 0.85rem;
+    color: var(--md-default-fg-color--light);
+    line-height: 1.5;
+}
+
+/* ── Code strip ─────────────────────────────────────────────── */
+
+.pg-code-strip {
+    background: var(--md-code-bg-color);
+    border-top: 1px solid var(--md-default-fg-color--lightest);
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+    padding: 0;
+}
+
+.pg-code-strip .pg-section {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.pg-code-strip .pg-section-title {
+    margin-bottom: 1rem;
+}
+
+.pg-code-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 720px) {
+    .pg-hero h1 { font-size: 1.8rem; }
+    .pg-code-inner { grid-template-columns: 1fr; }
+    .pg-cards { grid-template-columns: 1fr; }
+}
+</style>
+
+<div class="pg-home">
+
+  <!-- Hero -->
+  <section class="pg-hero">
+    <img src="{{ 'images/logo.png' | url }}" alt="Brine2D Logo">
+    <h1>Code-first 2D game engine<br>for <span>.NET 10</span></h1>
+    <p>Everything you need — scenes, ECS, audio, input, collision, particles, and UI — in one NuGet package. No editor. No visual tools. Just C#.</p>
+    <div class="pg-hero-buttons">
+      <a href="{{ 'getting-started/quickstart/' | url }}" class="pg-btn-primary">Get Started</a>
+      <a href="{{ 'api/' | url }}" class="pg-btn-secondary">API Reference</a>
+    </div>
+  </section>
+
+  <!-- Feature cards -->
+  <div class="pg-section">
+    <div class="pg-section-title">What's included</div>
+    <div class="pg-cards">
+
+      <a href="{{ 'rendering/' | url }}" class="pg-card">
+        <div class="pg-card-icon">🖼️</div>
+        <div class="pg-card-title">GPU Rendering</div>
+        <div class="pg-card-desc">Hardware-accelerated via SDL3 GPU — Vulkan, Metal, and D3D12. Sprites, sprite sheets, cameras, particles, and render targets.</div>
+      </a>
+
+      <a href="{{ 'ecs/' | url }}" class="pg-card">
+        <div class="pg-card-icon">🧩</div>
+        <div class="pg-card-title">Hybrid ECS</div>
+        <div class="pg-card-desc">Components for data, Behaviors for per-entity logic with DI, Systems for batch processing. One World per scene.</div>
+      </a>
+
+      <a href="{{ 'input/' | url }}" class="pg-card">
+        <div class="pg-card-icon">🎮</div>
+        <div class="pg-card-title">Input</div>
+        <div class="pg-card-desc">Keyboard, mouse, and gamepad. Polling and event-driven. Input layers for UI-eats-input patterns.</div>
+      </a>
+
+      <a href="{{ 'audio/' | url }}" class="pg-card">
+        <div class="pg-card-icon">🔊</div>
+        <div class="pg-card-title">Spatial Audio</div>
+        <div class="pg-card-desc">Distance attenuation, stereo panning, configurable falloff. Audio source and listener ECS components included.</div>
+      </a>
+
+      <a href="{{ 'collision/' | url }}" class="pg-card">
+        <div class="pg-card-icon">💥</div>
+        <div class="pg-card-title">Collision</div>
+        <div class="pg-card-desc">AABB and circle colliders, spatial queries, collision events. Kinematic character controller built-in.</div>
+      </a>
+
+      <a href="{{ 'animation/' | url }}" class="pg-card">
+        <div class="pg-card-icon">🎬</div>
+        <div class="pg-card-title">Animation</div>
+        <div class="pg-card-desc">Clip-based animation with state machines, blend trees, layers, and direct Aseprite JSON import.</div>
+      </a>
+
+      <a href="{{ 'tilemaps/' | url }}" class="pg-card">
+        <div class="pg-card-icon">🗺️</div>
+        <div class="pg-card-title">Tilemaps</div>
+        <div class="pg-card-desc">Native Tiled map loading and rendering. Multiple layers, tile properties, and object groups.</div>
+      </a>
+
+      <a href="{{ 'ui/' | url }}" class="pg-card">
+        <div class="pg-card-icon">🪟</div>
+        <div class="pg-card-title">UI System</div>
+        <div class="pg-card-desc">Buttons, sliders, text inputs, dialogs, scroll views, tooltips, and dropdowns — all integrated with ECS and DI.</div>
+      </a>
+
+      <a href="{{ 'assets/' | url }}" class="pg-card">
+        <div class="pg-card-icon">📦</div>
+        <div class="pg-card-title">Asset Pipeline</div>
+        <div class="pg-card-desc">Unified loader with ref-counted caching and typed manifests for parallel preloading. Assets release when the scene unloads.</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Code strip -->
+  <div class="pg-code-strip">
+    <div class="pg-section">
+      <div class="pg-section-title">Looks like this</div>
+      <div class="pg-code-inner">
+        <div>
+
+```csharp
+var builder = GameApplication.CreateBuilder(args);
+
+builder.Configure(options =>
+{
+    options.Window.Title = "My Game";
+    options.Window.Width  = 1280;
+    options.Window.Height = 720;
+});
+
+builder.AddScene<GameScene>();
+
+await using var game = builder.Build();
+await game.RunAsync<GameScene>();
+```
+
+        </div>
+        <div>
+
+```csharp
+public class GameScene : Scene
+{
+    protected override void OnRender(GameTime gameTime)
+    {
+        Renderer.DrawText("Hello, Brine2D!", 100, 100, Color.White);
+    }
+
+    protected override void OnUpdate(GameTime gameTime)
+    {
+        if (Input.IsKeyPressed(Key.Escape))
+            Game.RequestExit();
+    }
+}
+```
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
+
+{% block content %}{% endblock %}
+{% block footer %}{{ super() }}{% endblock %}
