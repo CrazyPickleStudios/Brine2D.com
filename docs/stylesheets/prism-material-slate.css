@@ -7,18 +7,19 @@
 }
 
 [data-md-color-scheme="slate"] {
-    /* Page body — #1f1f1f matches Microsoft Learn's dark body background */
-    --md-default-bg-color:          #1f1f1f;
+    --md-default-bg-color: #1f1f1f;
+    --md-primary-fg-color: #292929;
+    --md-primary-fg-color--light: #2e2e2e;
+    --md-primary-fg-color--dark: #242424;
+    --md-primary-bg-color: #e6e6e6;
+    --md-primary-bg-color--light: rgba(230, 230, 230, 0.7);
+    --md-code-bg-color: #242424;
+}
 
-    /* Header bar and sidebar — #292929 matches MS Learn's medium surface */
-    --md-primary-fg-color:          #292929;
-    --md-primary-fg-color--light:   #2e2e2e;
-    --md-primary-fg-color--dark:    #242424;
-    --md-primary-bg-color:          #e6e6e6;
-    --md-primary-bg-color--light:   rgba(230, 230, 230, 0.7);
-
-    /* Code block background — #333 matches MS Learn's code header */
-    --md-code-bg-color:             #242424;
+/* Override the top header bar colour — primary: black computes via hsl,
+   this pins it to the same #292929 used for the sidebar */
+[data-md-color-primary="black"] .md-header {
+    background-color: #292929;
 }
 
 /* Hide pilcrow permalink anchors on generated API pages */
