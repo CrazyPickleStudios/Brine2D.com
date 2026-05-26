@@ -30,13 +30,15 @@
 :root, [data-md-color-scheme="slate"] {
     --md-default-bg-color: rgb(26, 26, 27);
     --md-primary-fg-color: rgb(15, 15, 15);
-    --md-primary-fg-color--light: #ffd06f;
-    --md-primary-fg-color--dark: #db9d21;
+    --md-primary-fg-color--light: #57a85b;
+    --md-primary-fg-color--dark: #3d7a41;
     --md-primary-bg-color: rgba(0,0,0,.75);
     --md-primary-bg-color--light: rgba(0,0,0,.54);
-    --md-accent-fg-color: #ffdb57;
+    --md-accent-fg-color: #72cd75;
     --pg-light-border: rgb(47, 47, 47);
-    --pg-hero-color: #ffd06f;
+    --pg-hero-color: #57a85b;
+    --pg-green-dark: #3d7a41;
+    --pg-green-subtle: rgba(87, 168, 91, 0.12);
     --pg-purple: #af94de;
     --pg-red: #ff6c6a;
     --pg-orange: #e97b5a;
@@ -56,7 +58,7 @@
 }
 
 [data-md-color-scheme="slate"] > * {
-    --md-typeset-a-color: rgb(255, 208, 111);
+    --md-typeset-a-color: #72cd75;
 }
 
 /* Hide shadow under navigation */
