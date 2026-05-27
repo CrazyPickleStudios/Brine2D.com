@@ -46,6 +46,7 @@ theme:
     - navigation.path
     - navigation.indexes
     - navigation.footer
+    - content.code.copy
     - content.tabs.link
     - content.tooltips
     - search.highlight
