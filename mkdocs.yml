@@ -94,7 +94,9 @@ plugins:
 markdown_extensions:
   admonition: {}
   pymdownx.details: {}
-  pymdownx.highlight: {}  
+  pymdownx.highlight:
+    use_pygments: true
+    anchor_linenums: true
   pymdownx.superfences:
     custom_fences:
       - name: mermaid
