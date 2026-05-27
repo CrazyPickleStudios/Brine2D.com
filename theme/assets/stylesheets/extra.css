@@ -3,13 +3,13 @@
 */
 
 /* Copy button repositioned into title bar via JS; style it inline with the title */
-.md-code__title {
+.highlight span.filename {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.md-code__title .md-code__nav {
+.highlight span.filename .md-code__nav {
     position: static;
     opacity: 1;
     padding: 0;
