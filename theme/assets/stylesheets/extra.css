@@ -56,11 +56,11 @@
 
 /* Better contrast link colors */
 [data-md-color-scheme="default"] > * {
-    --md-typeset-a-color: rgb(79, 70, 229);
+    --md-typeset-a-color: rgb(56, 146, 59);
 }
 
 [data-md-color-scheme="slate"] > * {
-    --md-typeset-a-color: rgb(255, 208, 111);
+    --md-typeset-a-color: rgb(134, 225, 137);
 }
 
 /* Hide shadow under navigation */
