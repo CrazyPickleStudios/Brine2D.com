@@ -54,7 +54,7 @@ theme:
 extra_css:
   - assets/stylesheets/extra.css?v=20260303
 extra_javascript:
-  - javascripts/code-lang.js
+  - assets/javascripts/code-lang.js
 
 watch:
   - theme
