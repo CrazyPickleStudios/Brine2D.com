@@ -94,11 +94,13 @@ plugins:
 markdown_extensions:
   admonition: {}
   pymdownx.details: {}
+  pymdownx.highlight: {}  
   pymdownx.superfences:
     custom_fences:
       - name: mermaid
         class: mermaid
         format: !!python/name:pymdownx.superfences.fence_code_format 
+  pymdownx.inlinehilite: {}  
   pymdownx.tabbed:
     alternate_style: true
   pymdownx.arithmatex:
