@@ -54,10 +54,7 @@ theme:
 extra_css:
   - assets/stylesheets/extra.css?v=20260303
 extra_javascript:
-  - path: assets/javascripts/randomize-element.js?v=20250306
-    defer: true
-  - path: assets/javascripts/feedback.js?v=20250306
-    defer: true
+  - javascripts/code-lang.js
 
 watch:
   - theme
