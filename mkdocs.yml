@@ -53,8 +53,6 @@ theme:
 
 extra_css:
   - assets/stylesheets/extra.css?v=20260303
-extra_javascript:
-  - assets/javascripts/code-lang.js
 
 watch:
   - theme
@@ -97,6 +95,7 @@ markdown_extensions:
   pymdownx.highlight:
     use_pygments: true
     anchor_linenums: true
+    auto_title: true
   pymdownx.superfences:
     custom_fences:
       - name: mermaid
