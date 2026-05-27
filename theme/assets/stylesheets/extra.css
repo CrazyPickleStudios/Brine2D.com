@@ -2,6 +2,19 @@
    Copyright (c) Privacy Guides contributors.
 */
 
+/* Copy button repositioned into title bar via JS; style it inline with the title */
+.md-code__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.md-code__title .md-code__nav {
+    position: static;
+    opacity: 1;
+    padding: 0;
+}
+
 @font-face {
     font-family: 'Bagnard';
     src: url("../fonts/Bagnard/Bagnard.otf") format("opentype");
@@ -30,7 +43,7 @@
     --pg-viridian: #40826d;
     --ghost-accent-color: #4f46e5;
     --md-code-bg-color: rgb(245, 247, 250);
-    /*--md-code-border-color: rgba(0,0,0,0.12);*/
+    --md-code-border-color: rgba(0,0,0,0.12);
 }
 
 :root, [data-md-color-scheme="slate"] {
@@ -55,7 +68,7 @@
     --md-footer-bg-color--dark: var(--md-default-bg-color);
     --ghost-accent-color: #4f46e5;
     --md-code-bg-color: rgb(32, 36, 38);
-    /*--md-code-border-color: rgba(255,255,255,0.08);*/
+    --md-code-border-color: rgba(255,255,255,0.08);
 }
 
 /* Better contrast link colors */
