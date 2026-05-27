@@ -29,6 +29,7 @@
     --pg-blue-gray: #546d78;
     --pg-viridian: #40826d;
     --ghost-accent-color: #4f46e5;
+    --md-code-bg-color: rgb(245, 247, 250);
 }
 
 :root, [data-md-color-scheme="slate"] {
@@ -52,15 +53,16 @@
     --pg-viridian: #40826d;
     --md-footer-bg-color--dark: var(--md-default-bg-color);
     --ghost-accent-color: #4f46e5;
+    --md-code-bg-color: rgb(32, 36, 38);
 }
 
 /* Better contrast link colors */
 [data-md-color-scheme="default"] > * {
-    --md-typeset-a-color: rgb(56, 146, 59);
+    --md-typeset-a-color: rgb(56, 146, 59);    
 }
 
 [data-md-color-scheme="slate"] > * {
-    --md-typeset-a-color: rgb(134, 225, 137);
+    --md-typeset-a-color: rgb(134, 225, 137);    
 }
 
 /* Hide shadow under navigation */
