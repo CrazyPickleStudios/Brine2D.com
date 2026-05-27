@@ -30,6 +30,7 @@
     --pg-viridian: #40826d;
     --ghost-accent-color: #4f46e5;
     --md-code-bg-color: rgb(245, 247, 250);
+    --md-code-border-color: rgba(0,0,0,0.12);
 }
 
 :root, [data-md-color-scheme="slate"] {
@@ -54,6 +55,7 @@
     --md-footer-bg-color--dark: var(--md-default-bg-color);
     --ghost-accent-color: #4f46e5;
     --md-code-bg-color: rgb(32, 36, 38);
+    --md-code-border-color: rgba(255,255,255,0.08);
 }
 
 /* Better contrast link colors */
@@ -63,6 +65,40 @@
 
 [data-md-color-scheme="slate"] > * {
     --md-typeset-a-color: rgb(134, 225, 137);    
+}
+
+/* Wrap code blocks with a header showing language + copy button */
+.md-typeset pre {
+    position: relative;
+    border: 1px solid var(--md-code-border-color, rgba(0,0,0,0.1));
+    border-radius: 6px;
+    overflow: hidden;
+    padding-top: 2.2rem; /* space for header */
+}
+
+    /* Header bar */
+    .md-typeset pre::before {
+        content: attr(data-lang);
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 2.2rem;
+        display: flex;
+        align-items: center;
+        padding: 0 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        background: var(--md-code-bg-color);
+        border-bottom: 1px solid var(--md-code-border-color, rgba(0,0,0,0.1));
+        color: var(--md-default-fg-color);
+        opacity: 0.85;
+    }
+
+/* Copy button positioning fix */
+.md-clipboard {
+    top: 0.35rem !important;
+    right: 0.35rem !important;
 }
 
 /* Hide shadow under navigation */
