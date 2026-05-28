@@ -80,7 +80,7 @@ plugins:
         fallback_to_empty: true
         authorship_threshold_percent: 1
       git-revision-date-localized:
-        enabled: false
+        enabled: true
         exclude:
           - index.md
         fallback_to_build_date: true
