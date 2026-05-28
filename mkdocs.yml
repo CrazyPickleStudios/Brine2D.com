@@ -52,7 +52,8 @@ theme:
     - search.highlight
 
 extra_css:
-  - assets/stylesheets/extra.css?v=20260303
+  - assets/stylesheets/pygments.css
+  - assets/stylesheets/extra.css
 extra_javascript:
   - assets/javascripts/code-copy-title.js
 watch:
