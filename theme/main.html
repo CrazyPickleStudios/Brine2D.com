@@ -1,0 +1,57 @@
+<!-- {#
+Portions of this file are adapted from privacyguides.org, licensed under the MIT License.
+Copyright (c) Privacy Guides contributors.
+#} -->
+{% extends "base.html" %}
+
+{% block site_meta %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+{% if page.meta and page.meta.description %}
+<meta name="description" content="{{ page.meta.description }}">
+{% endif %}
+
+{% if page.meta and page.meta.author %}
+<meta name="author" content="{{ page.meta.author }}">
+{% elif page.authors %}
+<meta name="author" content="{{ page.authors[0].name }}">
+{% elif config.site_author %}
+<meta name="author" content="{{ config.site_author }}">
+{% endif %}
+
+{% if page.previous_page %}
+<link rel="prev" href="{{ page.previous_page.url | url }}">
+{% endif %}
+{% if page.next_page %}
+<link rel="next" href="{{ page.next_page.url | url }}">
+{% endif %}
+
+<link rel="icon" href="{{ config.theme.favicon | url }}">
+{% endblock %}
+
+{% block htmltitle %}
+{% if page.meta and page.meta.meta_title and config.theme.language == "en" %}
+<title>{{ page.meta.meta_title }}</title>
+{% elif page.meta and page.meta.title %}
+<title>{{ page.meta.title }} - {{ config.site_name }}</title>
+{% elif page.title and not page.is_homepage %}
+<title>{{ page.title | striptags }} - {{ config.site_name }}</title>
+{% else %}
+<title>{{ config.site_name }}</title>
+{% endif %}
+{% endblock %}
+
+{% block extrahead %}
+{% if page and page.meta and page.meta.robots %}
+<meta name="robots" content="{{ page.meta.robots }}">
+{% else %}
+<meta name="robots" content="max-snippet:-1, max-image-preview:large">
+{% endif %}
+
+{% if page and page.meta and page.meta.schema %}
+<script type="application/ld+json">
+{{ page.meta.schema|tojson }}
+</script>
+{% endif %}
+{% endblock %}
