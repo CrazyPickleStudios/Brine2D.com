@@ -20,18 +20,21 @@ theme:
     - media: "(prefers-color-scheme)"
       scheme: default
       accent: deep purple
+      code: stata-light
       toggle:
         icon: material/brightness-auto
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       accent: green
+      code: stata-dark
       toggle:
         icon: material/brightness-2
         name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
       accent: deep purple
+      code: stata-light
       toggle:
         icon: material/brightness-5
         name: Switch to system theme
@@ -97,9 +100,6 @@ markdown_extensions:
     use_pygments: true
     anchor_linenums: true
     auto_title: true
-    pygments_style:
-      light: stata-light
-      dark: stata-dark
   pymdownx.superfences:
     custom_fences:
       - name: mermaid
