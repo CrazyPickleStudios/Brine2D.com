@@ -6,7 +6,7 @@ site_name: Brine2D
 site_description: A modern, high-performance 2D game engine for C# and .NET.
 site_author: CrazyPickle Studios
 
-repo_url: https://github.com/CrazyPickleStudios/Brine2D.com
+repo_url: https://github.com/CrazyPickleStudios/Brine2D
 repo_name: ""
 
 theme:
