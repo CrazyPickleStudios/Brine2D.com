@@ -34,40 +34,40 @@ Original portions © Privacy Guides contributors, licensed under MIT.
 {% endmacro %}
 
 {% block content %}
-<div class="grid cards" markdown>
+<div class="grid cards">
 	<ul>
 		<li>
-			<p>:material-rocket-launch: <strong>Get Started</strong></p>
+			<p>{% include ".icons/material/rocket-launch.svg" %} <strong>Get Started</strong></p>
 			<hr>
 			<p>Install Brine2D and build your first game.</p>
 			<a href="{{ 'getting-started/' | url }}">Get Started →</a>
 		</li>
 		<li>
-			<p>:material-school: <strong>Tutorials</strong></p>
+			<p>{% include ".icons/material/school.svg" %} <strong>Tutorials</strong></p>
 			<hr>
 			<p>Step-by-step guides for common game patterns.</p>
 			<a href="{{ 'tutorials/' | url }}">Browse Tutorials →</a>
 		</li>
 		<li>
-			<p>:material-book-open-variant: <strong>Fundamentals</strong></p>
+			<p>{% include ".icons/material/book-open-variant.svg" %} <strong>Fundamentals</strong></p>
 			<hr>
 			<p>Understand the architecture and core concepts.</p>
 			<a href="{{ 'fundamentals/' | url }}">Read Fundamentals →</a>
 		</li>
 		<li>
-			<p>:material-api: <strong>API Reference</strong></p>
+			<p>{% include ".icons/material/api.svg" %} <strong>API Reference</strong></p>
 			<hr>
 			<p>Full API documentation for all Brine2D types.</p>
 			<a href="{{ 'api/' | url }}">View API Docs →</a>
 		</li>
 		<li>
-			<p>:material-gift: <strong>What's New</strong></p>
+			<p>{% include ".icons/material/gift.svg" %} <strong>What's New</strong></p>
 			<hr>
 			<p>See the latest changes and release notes.</p>
 			<a href="{{ 'whats-new/' | url }}">See Changelog →</a>
 		</li>
 		<li>
-			<p>:material-gamepad-variant: <strong>Samples</strong></p>
+			<p>{% include ".icons/material/gamepad-variant.svg" %} <strong>Samples</strong></p>
 			<hr>
 			<p>Explore working example projects and demos.</p>
 			<a href="{{ 'samples/' | url }}">View Samples →</a>
