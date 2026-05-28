@@ -1,27 +1,36 @@
 ﻿/* ============================================================
-   Visual Studio Dark+  —  [data-md-color-scheme="slate"]
+   Brine2D Dark  —  [data-md-color-scheme="slate"]
+   Brand greens for keywords/methods; VS palette for types,
+   strings, numbers. Title bar tinted with accent green.
    ============================================================ */
-[data-md-color-scheme="slate"] .highlight { background: #1e1e1e; color: #d4d4d4 }
-[data-md-color-scheme="slate"] .highlight .hll { background-color: #264f78 }
-[data-md-color-scheme="slate"] .highlight .c   { color: #6a9955; font-style: italic }
-[data-md-color-scheme="slate"] .highlight .ch  { color: #6a9955; font-style: italic }
-[data-md-color-scheme="slate"] .highlight .cm  { color: #6a9955; font-style: italic }
-[data-md-color-scheme="slate"] .highlight .c1  { color: #6a9955; font-style: italic }
-[data-md-color-scheme="slate"] .highlight .cs  { color: #6a9955; font-style: italic }
-[data-md-color-scheme="slate"] .highlight .cp  { color: #9b9b9b }
-[data-md-color-scheme="slate"] .highlight .cpf { color: #9b9b9b }
-[data-md-color-scheme="slate"] .highlight .sd  { color: #6a9955; font-style: italic }
+
+[data-md-color-scheme="slate"] .highlight span.filename {
+    background: #1a2e1b;
+    color: #72cd75;
+    border-bottom: 1px solid rgba(114, 205, 117, 0.15);
+}
+
+[data-md-color-scheme="slate"] .highlight { background: #161b17; color: #d4d4d4 }
+[data-md-color-scheme="slate"] .highlight .hll { background-color: #1e3a20 }
+[data-md-color-scheme="slate"] .highlight .c   { color: #5a8f5c; font-style: italic }
+[data-md-color-scheme="slate"] .highlight .ch  { color: #5a8f5c; font-style: italic }
+[data-md-color-scheme="slate"] .highlight .cm  { color: #5a8f5c; font-style: italic }
+[data-md-color-scheme="slate"] .highlight .c1  { color: #5a8f5c; font-style: italic }
+[data-md-color-scheme="slate"] .highlight .cs  { color: #5a8f5c; font-style: italic }
+[data-md-color-scheme="slate"] .highlight .cp  { color: #8a9a8b }
+[data-md-color-scheme="slate"] .highlight .cpf { color: #8a9a8b }
+[data-md-color-scheme="slate"] .highlight .sd  { color: #5a8f5c; font-style: italic }
 [data-md-color-scheme="slate"] .highlight .err { color: #f44747 }
-[data-md-color-scheme="slate"] .highlight .k   { color: #569cd6 }
-[data-md-color-scheme="slate"] .highlight .kc  { color: #569cd6 }
-[data-md-color-scheme="slate"] .highlight .kd  { color: #569cd6 }
-[data-md-color-scheme="slate"] .highlight .kn  { color: #c586c0 }
-[data-md-color-scheme="slate"] .highlight .kp  { color: #569cd6 }
-[data-md-color-scheme="slate"] .highlight .kr  { color: #c586c0 }
-[data-md-color-scheme="slate"] .highlight .kt  { color: #569cd6 }
-[data-md-color-scheme="slate"] .highlight .o   { color: #d4d4d4 }
-[data-md-color-scheme="slate"] .highlight .ow  { color: #569cd6 }
-[data-md-color-scheme="slate"] .highlight .p   { color: #d4d4d4 }
+[data-md-color-scheme="slate"] .highlight .k   { color: #72cd75 }
+[data-md-color-scheme="slate"] .highlight .kc  { color: #72cd75 }
+[data-md-color-scheme="slate"] .highlight .kd  { color: #72cd75 }
+[data-md-color-scheme="slate"] .highlight .kn  { color: #af94de }
+[data-md-color-scheme="slate"] .highlight .kp  { color: #72cd75 }
+[data-md-color-scheme="slate"] .highlight .kr  { color: #af94de }
+[data-md-color-scheme="slate"] .highlight .kt  { color: #72cd75 }
+[data-md-color-scheme="slate"] .highlight .o   { color: #a0b0a1 }
+[data-md-color-scheme="slate"] .highlight .ow  { color: #72cd75 }
+[data-md-color-scheme="slate"] .highlight .p   { color: #8a9a8b }
 [data-md-color-scheme="slate"] .highlight .na  { color: #9cdcfe }
 [data-md-color-scheme="slate"] .highlight .nb  { color: #9cdcfe }
 [data-md-color-scheme="slate"] .highlight .bp  { color: #9cdcfe }
@@ -29,12 +38,12 @@
 [data-md-color-scheme="slate"] .highlight .no  { color: #9cdcfe }
 [data-md-color-scheme="slate"] .highlight .nd  { color: #4ec9b0 }
 [data-md-color-scheme="slate"] .highlight .ne  { color: #4ec9b0 }
-[data-md-color-scheme="slate"] .highlight .nf  { color: #dcdcaa }
-[data-md-color-scheme="slate"] .highlight .fm  { color: #dcdcaa }
+[data-md-color-scheme="slate"] .highlight .nf  { color: #a8d8a8 }
+[data-md-color-scheme="slate"] .highlight .fm  { color: #a8d8a8 }
 [data-md-color-scheme="slate"] .highlight .ni  { color: #d4d4d4 }
 [data-md-color-scheme="slate"] .highlight .nl  { color: #d4d4d4 }
 [data-md-color-scheme="slate"] .highlight .nn  { color: #d4d4d4 }
-[data-md-color-scheme="slate"] .highlight .nt  { color: #569cd6 }
+[data-md-color-scheme="slate"] .highlight .nt  { color: #72cd75 }
 [data-md-color-scheme="slate"] .highlight .nv  { color: #9cdcfe }
 [data-md-color-scheme="slate"] .highlight .vc  { color: #9cdcfe }
 [data-md-color-scheme="slate"] .highlight .vg  { color: #9cdcfe }
@@ -63,37 +72,45 @@
 [data-md-color-scheme="slate"] .highlight .ge  { font-style: italic }
 [data-md-color-scheme="slate"] .highlight .gs  { font-weight: bold }
 [data-md-color-scheme="slate"] .highlight .gd  { color: #f44747 }
-[data-md-color-scheme="slate"] .highlight .gi  { color: #b5cea8 }
-[data-md-color-scheme="slate"] .highlight .go  { color: #d4d4d4 }
-[data-md-color-scheme="slate"] .highlight .gp  { color: #6a9955; font-weight: bold }
+[data-md-color-scheme="slate"] .highlight .gi  { color: #72cd75 }
+[data-md-color-scheme="slate"] .highlight .go  { color: #8a9a8b }
+[data-md-color-scheme="slate"] .highlight .gp  { color: #5a8f5c; font-weight: bold }
 [data-md-color-scheme="slate"] .highlight .gr  { color: #f44747 }
 [data-md-color-scheme="slate"] .highlight .gt  { color: #f44747 }
 [data-md-color-scheme="slate"] .highlight .w   { color: #d4d4d4 }
 
 /* ============================================================
-   Visual Studio Light  —  [data-md-color-scheme="default"]
+   Brine2D Light  —  [data-md-color-scheme="default"]
+   Brand green for keywords; VS Light palette for everything else.
    ============================================================ */
-[data-md-color-scheme="default"] .highlight { background: #ffffff; color: #000000 }
-[data-md-color-scheme="default"] .highlight .hll { background-color: #bdd6ee }
-[data-md-color-scheme="default"] .highlight .c   { color: #008000; font-style: italic }
-[data-md-color-scheme="default"] .highlight .ch  { color: #008000; font-style: italic }
-[data-md-color-scheme="default"] .highlight .cm  { color: #008000; font-style: italic }
-[data-md-color-scheme="default"] .highlight .c1  { color: #008000; font-style: italic }
-[data-md-color-scheme="default"] .highlight .cs  { color: #008000; font-style: italic }
-[data-md-color-scheme="default"] .highlight .cp  { color: #808080 }
-[data-md-color-scheme="default"] .highlight .cpf { color: #808080 }
-[data-md-color-scheme="default"] .highlight .sd  { color: #008000; font-style: italic }
-[data-md-color-scheme="default"] .highlight .err { color: #ff0000 }
-[data-md-color-scheme="default"] .highlight .k   { color: #0000ff }
-[data-md-color-scheme="default"] .highlight .kc  { color: #0000ff }
-[data-md-color-scheme="default"] .highlight .kd  { color: #0000ff }
-[data-md-color-scheme="default"] .highlight .kn  { color: #af00db }
-[data-md-color-scheme="default"] .highlight .kp  { color: #0000ff }
-[data-md-color-scheme="default"] .highlight .kr  { color: #af00db }
-[data-md-color-scheme="default"] .highlight .kt  { color: #0000ff }
-[data-md-color-scheme="default"] .highlight .o   { color: #000000 }
-[data-md-color-scheme="default"] .highlight .ow  { color: #0000ff }
-[data-md-color-scheme="default"] .highlight .p   { color: #000000 }
+
+[data-md-color-scheme="default"] .highlight span.filename {
+    background: #edf7ed;
+    color: #2e7e31;
+    border-bottom: 1px solid rgba(46, 126, 49, 0.15);
+}
+
+[data-md-color-scheme="default"] .highlight { background: #f8fbf8; color: #1a1a1a }
+[data-md-color-scheme="default"] .highlight .hll { background-color: #d4edda }
+[data-md-color-scheme="default"] .highlight .c   { color: #4a7c4e; font-style: italic }
+[data-md-color-scheme="default"] .highlight .ch  { color: #4a7c4e; font-style: italic }
+[data-md-color-scheme="default"] .highlight .cm  { color: #4a7c4e; font-style: italic }
+[data-md-color-scheme="default"] .highlight .c1  { color: #4a7c4e; font-style: italic }
+[data-md-color-scheme="default"] .highlight .cs  { color: #4a7c4e; font-style: italic }
+[data-md-color-scheme="default"] .highlight .cp  { color: #707070 }
+[data-md-color-scheme="default"] .highlight .cpf { color: #707070 }
+[data-md-color-scheme="default"] .highlight .sd  { color: #4a7c4e; font-style: italic }
+[data-md-color-scheme="default"] .highlight .err { color: #cc0000 }
+[data-md-color-scheme="default"] .highlight .k   { color: #2e7e31 }
+[data-md-color-scheme="default"] .highlight .kc  { color: #2e7e31 }
+[data-md-color-scheme="default"] .highlight .kd  { color: #2e7e31 }
+[data-md-color-scheme="default"] .highlight .kn  { color: #603aa0 }
+[data-md-color-scheme="default"] .highlight .kp  { color: #2e7e31 }
+[data-md-color-scheme="default"] .highlight .kr  { color: #603aa0 }
+[data-md-color-scheme="default"] .highlight .kt  { color: #2e7e31 }
+[data-md-color-scheme="default"] .highlight .o   { color: #555555 }
+[data-md-color-scheme="default"] .highlight .ow  { color: #2e7e31 }
+[data-md-color-scheme="default"] .highlight .p   { color: #555555 }
 [data-md-color-scheme="default"] .highlight .na  { color: #001080 }
 [data-md-color-scheme="default"] .highlight .nb  { color: #001080 }
 [data-md-color-scheme="default"] .highlight .bp  { color: #001080 }
@@ -101,12 +118,12 @@
 [data-md-color-scheme="default"] .highlight .no  { color: #001080 }
 [data-md-color-scheme="default"] .highlight .nd  { color: #267f99 }
 [data-md-color-scheme="default"] .highlight .ne  { color: #267f99 }
-[data-md-color-scheme="default"] .highlight .nf  { color: #795e26 }
-[data-md-color-scheme="default"] .highlight .fm  { color: #795e26 }
-[data-md-color-scheme="default"] .highlight .ni  { color: #000000 }
-[data-md-color-scheme="default"] .highlight .nl  { color: #000000 }
-[data-md-color-scheme="default"] .highlight .nn  { color: #000000 }
-[data-md-color-scheme="default"] .highlight .nt  { color: #0000ff }
+[data-md-color-scheme="default"] .highlight .nf  { color: #3a6b3a }
+[data-md-color-scheme="default"] .highlight .fm  { color: #3a6b3a }
+[data-md-color-scheme="default"] .highlight .ni  { color: #1a1a1a }
+[data-md-color-scheme="default"] .highlight .nl  { color: #1a1a1a }
+[data-md-color-scheme="default"] .highlight .nn  { color: #1a1a1a }
+[data-md-color-scheme="default"] .highlight .nt  { color: #2e7e31 }
 [data-md-color-scheme="default"] .highlight .nv  { color: #001080 }
 [data-md-color-scheme="default"] .highlight .vc  { color: #001080 }
 [data-md-color-scheme="default"] .highlight .vg  { color: #001080 }
@@ -121,8 +138,8 @@
 [data-md-color-scheme="default"] .highlight .sh  { color: #a31515 }
 [data-md-color-scheme="default"] .highlight .sx  { color: #a31515 }
 [data-md-color-scheme="default"] .highlight .sc  { color: #a31515 }
-[data-md-color-scheme="default"] .highlight .se  { color: #ee0000 }
-[data-md-color-scheme="default"] .highlight .si  { color: #ee0000 }
+[data-md-color-scheme="default"] .highlight .se  { color: #b5840a }
+[data-md-color-scheme="default"] .highlight .si  { color: #b5840a }
 [data-md-color-scheme="default"] .highlight .sr  { color: #811f3f }
 [data-md-color-scheme="default"] .highlight .ss  { color: #a31515 }
 [data-md-color-scheme="default"] .highlight .m   { color: #098658 }
@@ -134,10 +151,10 @@
 [data-md-color-scheme="default"] .highlight .il  { color: #098658 }
 [data-md-color-scheme="default"] .highlight .ge  { font-style: italic }
 [data-md-color-scheme="default"] .highlight .gs  { font-weight: bold }
-[data-md-color-scheme="default"] .highlight .gd  { color: #ff0000 }
-[data-md-color-scheme="default"] .highlight .gi  { color: #098658 }
-[data-md-color-scheme="default"] .highlight .go  { color: #000000 }
-[data-md-color-scheme="default"] .highlight .gp  { color: #008000; font-weight: bold }
-[data-md-color-scheme="default"] .highlight .gr  { color: #ff0000 }
-[data-md-color-scheme="default"] .highlight .gt  { color: #ff0000 }
-[data-md-color-scheme="default"] .highlight .w   { color: #000000 }
+[data-md-color-scheme="default"] .highlight .gd  { color: #cc0000 }
+[data-md-color-scheme="default"] .highlight .gi  { color: #2e7e31 }
+[data-md-color-scheme="default"] .highlight .go  { color: #707070 }
+[data-md-color-scheme="default"] .highlight .gp  { color: #4a7c4e; font-weight: bold }
+[data-md-color-scheme="default"] .highlight .gr  { color: #cc0000 }
+[data-md-color-scheme="default"] .highlight .gt  { color: #cc0000 }
+[data-md-color-scheme="default"] .highlight .w   { color: #1a1a1a }
