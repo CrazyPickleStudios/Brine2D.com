@@ -75,5 +75,69 @@ Original portions © Privacy Guides contributors, licensed under MIT.
 	</ul>
 </div>
 
+<section class="brine-feature-section">
+	<div class="brine-feature-text">
+		<h2>Managed Code</h2>
+		<p>Brine2D is built entirely in C# on .NET, so you write clean, modern game code using the tools you already know.</p>
+		<ul class="brine-check-list">
+			<li>Visual Studio</li>
+			<li>Visual Studio Code</li>
+			<li>JetBrains Rider</li>
+		</ul>
+	</div>
+	<div class="brine-feature-image">
+		<img src="{{ 'assets/img/managed-code-preview.png' | url }}" alt="C# code in an editor">
+	</div>
+</section>
+
+<section class="brine-feature-section brine-feature-section--reverse">
+	<div class="brine-feature-text">
+		<h2>Cross-Platform</h2>
+		<p>Build your game once and deploy to multiple platforms.</p>
+		<div class="brine-platform-grid">
+			<div>
+				<strong>Desktop</strong>
+				<ul class="brine-check-list">
+					<li>Windows</li>
+					<li>macOS</li>
+					<li>Linux</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="brine-feature-icons">
+		{% include ".icons/fontawesome/brands/windows.svg" %}
+		{% include ".icons/fontawesome/brands/apple.svg" %}
+		{% include ".icons/fontawesome/brands/linux.svg" %}
+	</div>
+</section>
+
+<section class="brine-oss-section">
+	<h2>Open Source</h2>
+	<p>Brine2D is free and open source. Read the code, open issues, or contribute directly on GitHub.</p>
+	<div class="grid cards">
+		<ul>
+			<li>
+				<p>{% include ".icons/fontawesome/brands/github.svg" %} <strong>Source Code</strong></p>
+				<hr>
+				<p>Brine2D is completely free and open source. Browse, clone, or fork the repository.</p>
+				<a href="https://github.com/CrazyPickleStudios/Brine2D">View on GitHub →</a>
+			</li>
+			<li>
+				<p>{% include ".icons/material/scale-balance.svg" %} <strong>License</strong></p>
+				<hr>
+				<p>Brine2D is released under the MIT License.</p>
+				<a href="https://github.com/CrazyPickleStudios/Brine2D/blob/main/LICENSE">View License →</a>
+			</li>
+			<li>
+				<p>{% include ".icons/material/account-group.svg" %} <strong>Contribute</strong></p>
+				<hr>
+				<p>Bug reports, docs improvements, and pull requests are all welcome.</p>
+				<a href="{{ 'contributing/' | url }}">How to Contribute →</a>
+			</li>
+		</ul>
+	</div>
+</section>
+
 {{ page.content }}
 {% endblock %}
