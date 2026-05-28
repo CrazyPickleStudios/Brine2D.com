@@ -97,9 +97,9 @@ markdown_extensions:
     use_pygments: true
     anchor_linenums: true
     auto_title: true
-  pymdownx.pygments:
-    light: github-light
-    dark: github-dark
+    pygments_style:
+      light: stata-light
+      dark: stata-dark
   pymdownx.superfences:
     custom_fences:
       - name: mermaid
