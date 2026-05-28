@@ -62,13 +62,36 @@ watch:
   - theme
 
 plugins:
-  - tags
-  - search
-  - privacy
-  - offline
-  - git-revision-date-localized:
-      enable_creation_date: true
-      fallback_to_build_date: true
+  tags: {}
+  search: {}
+  privacy:
+    enabled: true
+  offline:
+    enabled: true
+  group:
+    enabled: false
+    plugins:
+      macros: {}
+      meta: {}
+      git-authors:
+        enabled: false
+        sort_authors_by: contribution
+        show_contribution: true
+        fallback_to_empty: true
+        authorship_threshold_percent: 1
+      git-revision-date-localized:
+        enabled: false
+        exclude:
+          - index.md
+        fallback_to_build_date: true
+        enable_creation_date: true
+      typeset: {}
+      social:
+        cards: true
+        cards_dir: assets/img/social
+        cards_layout_dir: theme/layouts
+        cards_layout: page
+        # cards_layout: pride
 
 markdown_extensions:
   admonition: {}

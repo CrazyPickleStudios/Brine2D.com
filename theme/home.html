@@ -58,13 +58,15 @@ Original portions © Privacy Guides contributors, licensed under MIT.
 <div class="grid cards">
 	<ul>
 		{% for page in nav.pages
-		| sort(attribute='meta.git_revision_date_localized', reverse=True)
-		| slice(6) %}
+			| selectattr('meta.git_revision_date_localized', 'defined')
+			| sort(attribute='meta.git_revision_date_localized', reverse=True) %}
+		{% if loop.index0 < 6 %}
 		<li>
 			<p><a href="{{ page.url | url }}"><strong>{{ page.title }}</strong></a></p>
 			<hr>
 			<p>Last updated {{ page.meta.git_revision_date_localized }}</p>
 		</li>
+		{% endif %}
 		{% endfor %}
 	</ul>
 </div>
