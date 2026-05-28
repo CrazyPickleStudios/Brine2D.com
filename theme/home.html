@@ -40,16 +40,16 @@ Original portions © Privacy Guides contributors, licensed under MIT.
 </style>
 
 <section class="mdx-container">
-	<div class="md-grid md-typeset">
-		<div class="mdx-hero">
-			<div class="mdx-hero__content">
-				<h1>Brine2D — A modern, high‑performance 2D game engine for C# and .NET.</h1>
-				<p>Build fast, flexible games with a clean architecture and developer‑friendly design.</p>
-				<a href="/getting-started/" class="md-button md-button--primary">Get Started</a>
-				<a href="/tutorials/" class="md-button">View Tutorials</a>
-			</div>
-		</div>
-	</div>
+    <div class="md-grid md-typeset">
+        <div class="mdx-hero">
+            <div class="mdx-hero__content">
+                <h1>Brine2D — A modern, high‑performance 2D game engine for C# and .NET.</h1>
+                <p>Build fast, flexible games with a clean architecture and developer‑friendly design.</p>
+                <a href="/getting-started/" class="md-button md-button--primary">Get Started</a>
+                <a href="/tutorials/" class="md-button">View Tutorials</a>
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock %}
 
@@ -57,7 +57,9 @@ Original portions © Privacy Guides contributors, licensed under MIT.
 <h2>Recently Updated Pages</h2>
 <div class="grid cards">
 	<ul>
-		{% for page in nav.pages | sort(attribute='meta.git_revision_date_localized', reverse=True)[:6] %}
+		{% for page in nav.pages
+		| sort(attribute='meta.git_revision_date_localized', reverse=True)
+		| slice(6) %}
 		<li>
 			<p><a href="{{ page.url | url }}"><strong>{{ page.title }}</strong></a></p>
 			<hr>
@@ -66,6 +68,7 @@ Original portions © Privacy Guides contributors, licensed under MIT.
 		{% endfor %}
 	</ul>
 </div>
+
 
 <hr />
 
