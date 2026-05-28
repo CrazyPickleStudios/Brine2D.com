@@ -1,6 +1,6 @@
 <!-- {#
-Portions of this file are adapted from privacyguides.org, licensed under the MIT License.
-Copyright (c) Privacy Guides contributors.
+Adapted for Brine2D documentation site.
+Original portions © Privacy Guides contributors, licensed under MIT.
 #} -->
 {% macro notice() %}{% if config.extra.offline %}
     You're viewing an offline copy of Brine2D built on {{ build_date_utc.strftime('%B %d, %Y at %I:%M%p') }}.
@@ -84,7 +84,7 @@ Copyright (c) Privacy Guides contributors.
         <!-- Search interface -->
         {% include "partials/search.html" %}
         {% endif %}
-        
+
         <!-- Color palette toggle -->
         {% if config.theme.palette %}
         {% if not config.theme.palette is mapping %}
