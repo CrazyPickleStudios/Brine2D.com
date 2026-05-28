@@ -67,7 +67,7 @@ plugins:
   privacy:
     enabled: true
   offline:
-    enabled: false
+    enabled: true
   group:
     enabled: false
     plugins:
