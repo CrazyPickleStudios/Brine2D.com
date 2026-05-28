@@ -13,39 +13,48 @@ Original portions © Privacy Guides contributors, licensed under MIT.
 {{ super() }}
 
 <section class="mdx-container">
-    <div class="md-grid md-typeset">
-        <div class="mdx-hero">
-            <div class="mdx-hero__content">
-                <h1>Brine2D: A modern, high‑performance 2D game engine for C# and .NET.</h1>
-                <p>Build fast, flexible games with a clean architecture and developer‑friendly design.</p>
-                <a href="/getting-started/" class="md-button md-button--primary">Get Started</a>
-                <a href="/tutorials/" class="md-button">View Tutorials</a>
-            </div>
-        </div>
-    </div>
+	<div class="md-grid md-typeset">
+		<div class="mdx-hero">
+			<div class="mdx-hero__content">
+				<h1>Brine2D: A modern, high‑performance 2D game engine for C# and .NET.</h1>
+				<p>Build fast, flexible games with a clean architecture and developer‑friendly design.</p>
+				<a href="/getting-started/" class="md-button md-button--primary">Get Started</a>
+				<a href="/tutorials/" class="md-button">View Tutorials</a>
+			</div>
+		</div>
+	</div>
 </section>
 {% endblock %}
+
+{% macro collect_pages(nav_items) %}
+{% for nav_item in nav_items %}
+{% if nav_item.is_page and nav_item.title %}<item>{{ nav_item.url }}||{{ nav_item.title }}</item>{% endif %}
+{% if nav_item.children %}{{ collect_pages(nav_item.children) }}{% endif %}
+{% endfor %}
+{% endmacro %}
 
 {% block content %}
 <h2>Recently Updated Pages</h2>
 <div class="grid cards">
 	<ul>
-		{% for page in nav.pages
-			| selectattr('meta.git_revision_date_localized', 'defined')
-			| sort(attribute='meta.git_revision_date_localized', reverse=True) %}
-		{% if loop.index0 < 6 %}
+		{% set count = [0] %}
+		{% for nav_item in nav.items recursive %}
+		{% if nav_item.is_page and nav_item.title and count[0] < 6 %}
+		{% if count.append(count.pop() + 1) %}{% endif %}
 		<li>
-			<p><a href="{{ page.url | url }}"><strong>{{ page.title }}</strong></a></p>
-			<hr>
-			<p>Last updated {{ page.meta.git_revision_date_localized }}</p>
+			<p>
+				<a href="{{ nav_item.url | url }}">
+					<strong>{{ nav_item.title }}</strong>
+				</a>
+			</p>
 		</li>
 		{% endif %}
+		{% if nav_item.children %}{{ loop(nav_item.children) }}{% endif %}
 		{% endfor %}
 	</ul>
 </div>
 
-
-<hr />
+<hr/>
 
 {{ page.content }}
 {% endblock %}
