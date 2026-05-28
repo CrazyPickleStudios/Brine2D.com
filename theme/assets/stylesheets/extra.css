@@ -27,6 +27,13 @@
     margin-bottom: 1em;
 }
 
+/* Constrain inline SVG icons in grid cards */
+.grid.cards li > p > svg {
+    width: 2rem;
+    height: 2rem;
+    vertical-align: middle;
+}
+
 @font-face {
     font-family: 'Bagnard';
     src: url("../fonts/Bagnard/Bagnard.otf") format("opentype");
