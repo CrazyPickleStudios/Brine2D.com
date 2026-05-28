@@ -1,0 +1,120 @@
+/*{#
+    Adapted for Brine2D documentation site.
+    Original portions © Privacy Guides contributors, licensed under MIT.
+#}*/
+
+/* Homepage hero section */
+.mdx-container {
+    background: #ffdd98;
+    background-size: contain;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+[data-md-color-scheme="slate"] .mdx-container {
+    background: rgba(9, 9, 9, 0.95);
+}
+
+.mdx-hero {
+    color: var(--pg-hero-color);
+    margin: 0 0.8rem;
+}
+
+    .mdx-hero h1 {
+        color: currentcolor;
+        margin-bottom: 1rem;
+        font-size: 2.6rem;
+    }
+
+@media screen and (max-width: 29.9375em) {
+    .mdx-hero h1 {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (min-width: 60em) {
+    .mdx-hero {
+        align-items: stretch;
+        display: flex;
+    }
+
+    .mdx-hero__content {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+
+        p, h1 {
+            max-width: 38rem;
+        }
+    }
+
+    .mdx-hero__image {
+        order: 1;
+        transform: translateX(4rem);
+        width: 38rem;
+    }
+}
+
+@media screen and (min-width: 76.25em) {
+    .mdx-hero__image {
+        transform: translateX(8rem);
+    }
+}
+
+.mdx-hero .md-button {
+    color: var(--pg-hero-color);
+    border-color: var(--pg-hero-color);
+}
+
+[data-md-color-scheme="slate"] .mdx-hero .md-button--primary {
+    color: var(--md-primary-fg-color);
+}
+
+.mdx-hero .md-button--primary {
+    color: var(--md-primary-fg-color);
+    background-color: var(--pg-hero-color);
+    border-color: transparent;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+nav[class="md-tabs"] {
+    border-bottom: none;
+}
+
+/* Homepage Body */
+.md-typeset a.headerlink {
+    display: none;
+}
+/* article.md-content__inner {
+    max-width: 50rem;
+    margin: auto;
+    padding-bottom: 3rem;
+}
+@media screen and (max-width: 65rem) {
+    article.md-content__inner {
+        margin-right: 0.8rem;
+        margin-left: 0.8rem;
+    }
+}
+article.md-content__inner > * {
+    max-width: 38rem;
+} */
+/* article.md-content__inner > *:nth-child(n+8):nth-child(-n+12) {
+    margin-left: auto;
+    margin-right: 0;
+    text-align: right;
+} */
+.pg-end-right-align, .mdx-cta {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+    .mdx-cta a:has(.twemoji) {
+        display: inline-block;
+    }
+
+    .mdx-cta .twemoji {
+        --md-icon-size: 1.8em;
+        margin: 0.4rem;
+    }
