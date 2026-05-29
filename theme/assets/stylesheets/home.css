@@ -154,15 +154,25 @@ article.md-content__inner > * {
     }
 
 .brine-check-list {
-    list-style: none;
+    list-style: none !important;
     padding: 0;
+    margin: 0;
 }
 
-    .brine-check-list li::before {
-        content: "✓ ";
-        color: var(--pg-green);
-        font-weight: bold;
+    .brine-check-list li {
+        display: flex;
+        align-items: baseline;
+        gap: 0.35em;
+        padding: 0;
+        margin: 0.25rem 0;
     }
+
+        .brine-check-list li::before {
+            content: "✓";
+            color: var(--pg-green);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
 
 .brine-platform-grid {
     display: flex;
