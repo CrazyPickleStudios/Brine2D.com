@@ -92,39 +92,43 @@ Original portions © Privacy Guides contributors, licensed under MIT.
 	</div>
 </section>
 
-<section class="brine-feature-section brine-feature-section--reverse">
-	<div class="brine-feature-text">
-		<h2>Cross-Platform</h2>
-		<p>Build your game once and deploy to multiple platforms.</p>
-		<div class="brine-platform-grid">
-			<div>
-				<strong>Desktop</strong>
-				<ul class="brine-check-list">
-					<li>Windows</li>
-					<li>macOS</li>
-					<li>Linux</li>
-				</ul>
+<section class="brine-platform-section">
+	<h2>Cross-Platform</h2>
+	<p>Build your game once and deploy to multiple platforms.</p>
+	<div class="brine-platform-grid">
+		<div class="brine-platform-col">
+			<div class="brine-platform-col__icons">
+				<img src="{{ 'assets/icons/windows.svg' | url }}" alt="Windows">
+				<img src="{{ 'assets/icons/apple.svg' | url }}" alt="macOS">
+				<img src="{{ 'assets/icons/linux.svg' | url }}" alt="Linux">
 			</div>
-			<div>
-				<strong>Mobile <span class="brine-badge brine-badge--planned">Planned</span></strong>
-				<ul class="brine-check-list brine-check-list--planned">
-					<li>Android</li>
-					<li>iOS</li>
-				</ul>
-			</div>
-			<div>
-				<strong>Console <span class="brine-badge brine-badge--planned">Planned</span></strong>
-				<ul class="brine-check-list brine-check-list--planned">
-					<li>Xbox <span class="brine-badge brine-badge--gated">GDK Required</span></li>
-				</ul>
-			</div>
+			<strong class="brine-platform-col__heading">Desktop</strong>
+			<ul class="brine-check-list">
+				<li>Windows</li>
+				<li>macOS</li>
+				<li>Linux</li>
+			</ul>
 		</div>
-	</div>
-	<div class="brine-feature-icons">
-		<img src="{{ 'assets/icons/windows.svg' | url }}" alt="Windows">
-		<img src="{{ 'assets/icons/apple.svg' | url }}" alt="macOS">
-		<img src="{{ 'assets/icons/linux.svg' | url }}" alt="Linux">
-		<img src="{{ 'assets/icons/android.svg' | url }}" alt="Android">
+		<div class="brine-platform-col">
+			<div class="brine-platform-col__icons">
+				<img src="{{ 'assets/icons/android.svg' | url }}" alt="Android">
+				<img src="{{ 'assets/icons/apple.svg' | url }}" alt="iOS">
+			</div>
+			<strong class="brine-platform-col__heading">Mobile <span class="brine-badge brine-badge--planned">Planned</span></strong>
+			<ul class="brine-check-list brine-check-list--planned">
+				<li>Android</li>
+				<li>iOS</li>
+			</ul>
+		</div>
+		<div class="brine-platform-col">
+			<div class="brine-platform-col__icons">
+				<img src="{{ 'assets/icons/xbox.svg' | url }}" alt="Xbox">
+			</div>
+			<strong class="brine-platform-col__heading">Console <span class="brine-badge brine-badge--planned">Planned</span></strong>
+			<ul class="brine-check-list brine-check-list--planned">
+				<li>Xbox <span class="brine-badge brine-badge--gated">GDK Required</span></li>
+			</ul>
+		</div>
 	</div>
 </section>
 
