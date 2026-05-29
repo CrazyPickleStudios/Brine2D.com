@@ -40,6 +40,17 @@
     fill: var(--md-typeset-a-color);
 }
 
+    /* Phosphor duotone icon colours */
+    .grid.cards li > p > svg path:first-child {
+        fill: var(--md-accent-fg-color); /* secondary — e.g. lighter green */
+        opacity: 0.4;
+    }
+
+    .grid.cards li > p > svg path:last-child {
+        fill: var(--md-accent-fg-color); /* primary — full colour */
+        opacity: 1;
+    }
+
 @font-face {
     font-family: 'Bagnard';
     src: url("../fonts/Bagnard/Bagnard.otf") format("opentype");
