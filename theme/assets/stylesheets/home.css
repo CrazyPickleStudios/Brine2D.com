@@ -169,6 +169,32 @@ article.md-content__inner > * {
     margin-top: 1rem;
 }
 
+.brine-badge {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: .1em .4em;
+    border-radius: .2rem;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.brine-badge--planned {
+    background: rgba(114, 205, 117, 0.12);
+    color: var(--pg-green);
+    border: 1px solid rgba(114, 205, 117, 0.3);
+}
+
+.brine-badge--gated {
+    background: rgba(255, 200, 80, 0.1);
+    color: #e0a020;
+    border: 1px solid rgba(255, 200, 80, 0.25);
+}
+
+.brine-check-list--planned li {
+    opacity: 0.6;
+}
+
 .brine-oss-section {
     padding: 3rem 0;
     border-top: 1px solid var(--pg-light-border);
