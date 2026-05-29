@@ -146,7 +146,8 @@ article.md-content__inner > * {
     justify-content: center;
 }
 
-    .brine-feature-icons svg {
+    .brine-feature-icons svg,
+    .brine-feature-icons img {
         width: 3rem;
         height: 3rem;
         fill: var(--md-default-fg-color--light);
