@@ -37,37 +37,37 @@ Original portions © Privacy Guides contributors, licensed under MIT.
 <div class="grid cards">
 	<ul>
 		<li>
-			<p>{% include "assets/icons/get-started.svg" %} <strong>Get Started</strong></p>
+			<p><img src="{{ 'assets/icons/get-started.svg' | url }}" alt=""> <strong>Get Started</strong></p>
 			<hr>
 			<p>Install Brine2D and build your first game.</p>
 			<a href="{{ 'getting-started/' | url }}">Get Started →</a>
 		</li>
 		<li>
-			<p>{% include "assets/icons/tutorials.svg" %} <strong>Tutorials</strong></p>
+			<p><img src="{{ 'assets/icons/tutorials.svg' | url }}" alt=""> <strong>Tutorials</strong></p>
 			<hr>
 			<p>Step-by-step guides for common game patterns.</p>
 			<a href="{{ 'tutorials/' | url }}">Browse Tutorials →</a>
 		</li>
 		<li>
-			<p>{% include "assets/icons/fundamentals.svg" %} <strong>Fundamentals</strong></p>
+			<p><img src="{{ 'assets/icons/fundamentals.svg' | url }}" alt=""> <strong>Fundamentals</strong></p>
 			<hr>
 			<p>Understand the architecture and core concepts.</p>
 			<a href="{{ 'fundamentals/' | url }}">Read Fundamentals →</a>
 		</li>
 		<li>
-			<p>{% include "assets/icons/api-reference.svg" %} <strong>API Reference</strong></p>
+			<p><img src="{{ 'assets/icons/api-reference.svg' | url }}" alt=""> <strong>API Reference</strong></p>
 			<hr>
 			<p>Full API documentation for all Brine2D types.</p>
 			<a href="{{ 'api/' | url }}">View API Docs →</a>
 		</li>
 		<li>
-			<p>{% include "assets/icons/whats-new.svg" %} <strong>What's New</strong></p>
+			<p><img src="{{ 'assets/icons/whats-new.svg' | url }}" alt=""> <strong>What's New</strong></p>
 			<hr>
 			<p>See the latest changes and release notes.</p>
 			<a href="{{ 'whats-new/' | url }}">See Changelog →</a>
 		</li>
 		<li>
-			<p>{% include "assets/icons/samples.svg" %} <strong>Samples</strong></p>
+			<p><img src="{{ 'assets/icons/samples.svg' | url }}" alt=""> <strong>Samples</strong></p>
 			<hr>
 			<p>Explore working example projects and demos.</p>
 			<a href="{{ 'samples/' | url }}">View Samples →</a>
@@ -96,40 +96,47 @@ Original portions © Privacy Guides contributors, licensed under MIT.
 	<h2>Cross-Platform</h2>
 	<p>Build your game once and deploy to multiple platforms.</p>
 	<div class="brine-platform-grid">
-		<div class="brine-platform-col">
-			<div class="brine-platform-col__icons">
-				<img src="{{ 'assets/icons/windows.svg' | url }}" alt="Windows">
-				<img src="{{ 'assets/icons/apple.svg' | url }}" alt="macOS">
-				<img src="{{ 'assets/icons/linux.svg' | url }}" alt="Linux">
+		<div class="brine-platform-group">
+			<div class="brine-platform-group__icons">
+				<div class="brine-platform-item" title="Windows">
+					<img src="{{ 'assets/icons/windows.svg' | url }}" alt="Windows">
+				</div>
+				<div class="brine-platform-item" title="macOS">
+					<img src="{{ 'assets/icons/apple.svg' | url }}" alt="macOS">
+				</div>
+				<div class="brine-platform-item" title="Linux">
+					<img src="{{ 'assets/icons/linux.svg' | url }}" alt="Linux">
+				</div>
 			</div>
-			<strong class="brine-platform-col__heading">Desktop</strong>
-			<ul class="brine-check-list">
-				<li>Windows</li>
-				<li>macOS</li>
-				<li>Linux</li>
-			</ul>
+			<span class="brine-platform-group__label">Desktop</span>
 		</div>
-		<div class="brine-platform-col">
-			<div class="brine-platform-col__icons">
-				<img src="{{ 'assets/icons/android.svg' | url }}" alt="Android">
-				<img src="{{ 'assets/icons/apple.svg' | url }}" alt="iOS">
+		<div class="brine-platform-group">
+			<div class="brine-platform-group__icons">
+				<div class="brine-platform-item brine-platform-item--planned" title="Android (Planned)">
+					<img src="{{ 'assets/icons/android.svg' | url }}" alt="Android">
+				</div>
+				<div class="brine-platform-item brine-platform-item--planned" title="iOS (Planned)">
+					<img src="{{ 'assets/icons/apple.svg' | url }}" alt="iOS">
+				</div>
 			</div>
-			<strong class="brine-platform-col__heading">Mobile <span class="brine-badge brine-badge--planned">Planned</span></strong>
-			<ul class="brine-check-list brine-check-list--planned">
-				<li>Android</li>
-				<li>iOS</li>
-			</ul>
+			<span class="brine-platform-group__label">Mobile</span>
 		</div>
-		<div class="brine-platform-col">
-			<div class="brine-platform-col__icons">
-				<img src="{{ 'assets/icons/xbox.svg' | url }}" alt="Xbox">
+		<div class="brine-platform-group">
+			<div class="brine-platform-group__icons">
+				<div class="brine-platform-item brine-platform-item--planned" title="Xbox (Planned — GDK Required)">
+					<img src="{{ 'assets/icons/xbox.svg' | url }}" alt="Xbox">
+				</div>
+				<div class="brine-platform-item brine-platform-item--planned" title="PlayStation (Planned)">
+					<img src="{{ 'assets/icons/playstation.svg' | url }}" alt="PlayStation">
+				</div>
+				<div class="brine-platform-item brine-platform-item--planned" title="Nintendo Switch (Planned)">
+					<img src="{{ 'assets/icons/switch.svg' | url }}" alt="Nintendo Switch">
+				</div>
 			</div>
-			<strong class="brine-platform-col__heading">Console <span class="brine-badge brine-badge--planned">Planned</span></strong>
-			<ul class="brine-check-list brine-check-list--planned">
-				<li>Xbox <span class="brine-badge brine-badge--gated">GDK Required</span></li>
-			</ul>
+			<span class="brine-platform-group__label">Console</span>
 		</div>
 	</div>
+</section>
 </section>
 
 <section class="brine-oss-section">
