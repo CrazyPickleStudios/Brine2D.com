@@ -27,11 +27,17 @@
     margin-bottom: 1em;
 }
 
-/* Constrain inline SVG icons in grid cards */
+.grid.cards li > p:has(> svg) {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
 .grid.cards li > p > svg {
     width: 2rem;
     height: 2rem;
-    vertical-align: middle;
+    flex-shrink: 0;
+    fill: var(--md-typeset-a-color);
 }
 
 @font-face {
