@@ -27,13 +27,15 @@
     margin-bottom: 1em;
 }
 
-.grid.cards li > p:has(> svg) {
+.grid.cards li > p:has(> svg),
+.grid.cards li > p:has(> img) {
     display: flex;
     align-items: center;
     gap: .5rem;
 }
 
-.grid.cards li > p > svg {
+.grid.cards li > p > svg,
+.grid.cards li > p > img {
     width: 2rem;
     height: 2rem;
     flex-shrink: 0;
