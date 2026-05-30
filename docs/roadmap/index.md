@@ -1,23 +1,25 @@
 # Roadmap
 
-Brine2D is currently in active development heading toward a **1.0 release**. The features below represent the remaining planned work before 1.0 is considered complete.
+Brine2D is in a strong pre-release state. The core engine is feature-complete and usable today. The work remaining before **1.0** is focused on polish, refinement, and documentation quality rather than building new systems from scratch.
 
-## Planned for 1.0
+## Status
+
+The following areas exist and are functional. Each is undergoing a documentation and API review pass to ensure they meet the quality bar expected of a 1.0 release.
 
 ### Particles
-Full particle system support including `ParticleSystem` and emitter/component types for visual effects like explosions, trails, and ambient effects.
+`ParticleSystem` and emitter/component types are implemented and usable. The 1.0 pass focuses on API consistency and documentation coverage.
 
 ### Tilemap
-Tilemap authoring and rendering via `Tilemap`, `TilemapLayer`, and `TilemapRenderer`. Includes support for loading tilemaps from external tools.
+`Tilemap`, `TilemapLayer`, and `TilemapRenderer` are in place with external tool support. The 1.0 pass focuses on edge case handling and documenting the full workflow.
 
 ### UI Framework
-A built-in UI system covering `UILabel`, `UIPanel`, `UIButton`, and the `IUIComponent` interface for building in-game menus and HUDs.
+`UILabel`, `UIPanel`, `UIButton`, and `IUIComponent` are available for building in-game menus and HUDs. The 1.0 pass focuses on layout flexibility and documentation.
 
 ### ECS Utilities
-Expanded ECS tooling including `PrefabLibrary`, `SortHelper`, `Behavior`, `ECSOptions`, and the `ISystem`, `IUpdateSystem`, and `IRenderSystem` interfaces.
+`PrefabLibrary`, `SortHelper`, `Behavior`, `ECSOptions`, and the `ISystem`, `IUpdateSystem`, and `IRenderSystem` interfaces are all in use. The 1.0 pass focuses on API ergonomics and comprehensive examples.
 
 ### Render Systems
-Completion of `SpriteRenderingSystem` and any remaining render pipeline work.
+`SpriteRenderingSystem` and the broader render pipeline are operational. The 1.0 pass closes out any remaining gaps in documentation and rendering edge cases.
 
 ## After 1.0
 
