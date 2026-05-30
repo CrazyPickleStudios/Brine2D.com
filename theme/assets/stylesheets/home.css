@@ -5,14 +5,20 @@
 
 /* Homepage hero section */
 .mdx-container {
-    background: #c8e6c9;
+    background:
+        radial-gradient(ellipse at 30% 50%, rgba(114, 205, 117, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 50%, rgba(114, 205, 117, 0.03) 0%, transparent 50%),
+        #c8e6c9;
     background-size: contain;
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
 
 [data-md-color-scheme="slate"] .mdx-container {
-    background: rgba(9, 9, 9, 0.95);
+    background:
+        radial-gradient(ellipse at 30% 50%, rgba(114, 205, 117, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 50%, rgba(114, 205, 117, 0.03) 0%, transparent 50%),
+        rgba(9, 9, 9, 0.95);
 }
 
 .mdx-hero {
@@ -34,7 +40,7 @@
 
 @media screen and (min-width: 60em) {
     .mdx-hero {
-        align-items: stretch;
+        align-items: center;
         display: flex;
     }
 
@@ -49,14 +55,23 @@
 
     .mdx-hero__image {
         order: 1;
-        transform: translateX(4rem);
-        width: 38rem;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 3rem;
     }
+
+        .mdx-hero__image img {
+            width: 22rem;
+            max-width: 100%;
+            filter: drop-shadow(0 0 2rem rgba(114, 205, 117, 0.2));
+        }
 }
 
 @media screen and (min-width: 76.25em) {
-    .mdx-hero__image {
-        transform: translateX(8rem);
+    .mdx-hero__image img {
+        width: 26rem;
     }
 }
 
