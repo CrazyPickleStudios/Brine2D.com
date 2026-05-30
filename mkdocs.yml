@@ -239,6 +239,8 @@ nav:
               - Overview: events/index.md
               - Window Events: events/window-events.md
 
+  - Roadmap: roadmap/index.md
+
   - What's New:
       - Overview: whats-new/index.md
       - v0.9.7-beta: whats-new/v-0.9.7-beta.md
