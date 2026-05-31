@@ -38,7 +38,7 @@ theme:
       toggle:
         icon: material/brightness-5
         name: Switch to system theme
-  # favicon: assets/brand/logos/png/favicon-32x32.png
+  favicon: assets/logos/svg/favicon.svg
   icon:
     repo: simple/github
   features:
