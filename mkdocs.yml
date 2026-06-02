@@ -56,6 +56,7 @@ theme:
 
 extra_css:
   - assets/stylesheets/extra.css
+  - assets/stylesheets/code.css
 extra_javascript:
   - assets/javascripts/code-copy-title.js
 watch:
