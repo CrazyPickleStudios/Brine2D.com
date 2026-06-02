@@ -55,6 +55,7 @@ theme:
     - search.highlight
 
 extra_css:
+  - assets/stylesheets/code.css
   - assets/stylesheets/extra.css
 extra_javascript:
   - assets/javascripts/code-copy-title.js
@@ -102,7 +103,6 @@ markdown_extensions:
     auto_title: true
     line_spans: __span
     pygments_lang_class: true
-    pygments_style: ayu-dark
   pymdownx.superfences:
     custom_fences:
       - name: mermaid

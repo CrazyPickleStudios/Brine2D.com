@@ -1,0 +1,178 @@
+.highlight {
+    background: #0D1017;
+    color: #BFBDB6;
+}
+
+    .highlight pre {
+        background: #0D1017;
+    }
+
+    /* Comments */
+    .highlight .c,
+    .highlight .c1,
+    .highlight .cm {
+        color: #646B73;
+        font-style: italic;
+    }
+
+    .highlight .cp {
+        color: #FF8F40;
+    }
+
+    .highlight .cpf {
+        color: #AAD94C;
+    }
+
+    .highlight .cs {
+        color: #646B73;
+        font-style: italic;
+    }
+
+    /* Keywords */
+    .highlight .k,
+    .highlight .kw,
+    .highlight .kr {
+        color: #FF8F40;
+    }
+
+    .highlight .kc {
+        color: #D2A6FF;
+    }
+
+    .highlight .kd {
+        color: #E6B450;
+    }
+
+    .highlight .kn {
+        color: #FF8F40;
+    }
+
+    .highlight .kt {
+        color: #59C2FF;
+    }
+
+    /* Operators */
+    .highlight .o,
+    .highlight .ow {
+        color: #F29668;
+    }
+
+    /* Names */
+    .highlight .na {
+        color: #FFB454;
+    }
+
+    .highlight .nb {
+        color: #F07178;
+    }
+
+    .highlight .nc {
+        color: #39BAE6;
+    }
+
+    .highlight .no {
+        color: #D2A6FF;
+    }
+
+    .highlight .nd {
+        color: #E6B673;
+    }
+
+    .highlight .nf,
+    .highlight .nx {
+        color: #FFB454;
+    }
+
+    .highlight .nt {
+        color: #39BAE6;
+    }
+
+    .highlight .vi {
+        color: #E6B450;
+    }
+
+    .highlight .vm {
+        color: #39BAE6;
+    }
+
+    /* Strings */
+    .highlight .s,
+    .highlight .s1,
+    .highlight .s2,
+    .highlight .sc,
+    .highlight .se,
+    .highlight .ss {
+        color: #AAD94C;
+    }
+
+    .highlight .sb {
+        color: #F29668;
+    }
+
+    .highlight .sd {
+        color: #95E6CB;
+    }
+
+    .highlight .sr {
+        color: #95E6CB;
+    }
+
+    /* Numbers */
+    .highlight .m,
+    .highlight .mi,
+    .highlight .mf,
+    .highlight .mh,
+    .highlight .mo,
+    .highlight .mb,
+    .highlight .il {
+        color: #D2A6FF;
+    }
+
+    /* Errors */
+    .highlight .err {
+        color: #D95757;
+    }
+
+    /* Generic */
+    .highlight .g {
+        color: #BFBDB6;
+    }
+
+    .highlight .gd {
+        color: #F26D78;
+    }
+
+    .highlight .gi {
+        color: #7FD962;
+    }
+
+    .highlight .ge {
+        color: #FFB454;
+        font-style: italic;
+    }
+
+    .highlight .gs {
+        color: #FFB454;
+        font-weight: bold;
+    }
+
+    .highlight .gh {
+        color: #FFB454;
+        font-weight: bold;
+    }
+
+    .highlight .go {
+        color: #AAD94C;
+    }
+
+    .highlight .gp {
+        color: #646B73;
+    }
+
+    .highlight .gr {
+        color: #D95757;
+    }
+
+    .highlight .gt {
+        color: #D95757;
+    }
