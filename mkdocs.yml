@@ -27,7 +27,7 @@ theme:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       accent: green
-      code: stata-dark
+      code: one-dark
       toggle:
         icon: material/brightness-2
         name: Switch to light mode
