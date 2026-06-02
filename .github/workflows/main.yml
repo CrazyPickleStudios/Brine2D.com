@@ -53,4 +53,5 @@ jobs:
       - run: pip install mkdocs-git-revision-date-localized-plugin
       - run: pip install mkdocs-minify-plugin
       - run: pip install mkdocs-macros-plugin
+      - run: pip install pygments-styles
       - run: mkdocs gh-deploy --force
