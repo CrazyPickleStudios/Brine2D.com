@@ -1,123 +1,118 @@
 .highlight {
-    background: #0D1017;
-    color: #BFBDB6;
+    background: #282c34;
+    color: #abb2bf;
 }
 
     .highlight pre {
-        background: #0D1017;
+        background: #282c34;
     }
 
-    /* Comments */
-    .highlight .c,
-    .highlight .c1,
-    .highlight .cm {
-        color: #646B73;
-        font-style: italic;
+    /* Escape */
+    .highlight .esc {
+        color: #56b6c2;
     }
 
-    .highlight .cp {
-        color: #FF8F40;
-    }
-
-    .highlight .cpf {
-        color: #AAD94C;
-    }
-
-    .highlight .cs {
-        color: #646B73;
-        font-style: italic;
+    /* Errors */
+    .highlight .err {
+        color: #e06c75;
     }
 
     /* Keywords */
     .highlight .k,
     .highlight .kw,
-    .highlight .kr {
-        color: #FF8F40;
+    .highlight .kr,
+    .highlight .kn {
+        color: #c678dd;
     }
 
     .highlight .kc {
-        color: #D2A6FF;
+        color: #d19a66;
     }
 
-    .highlight .kd {
-        color: #E6B450;
-    }
-
-    .highlight .kn {
-        color: #FF8F40;
+    .highlight .kp {
+        color: #61afef;
     }
 
     .highlight .kt {
-        color: #59C2FF;
-    }
-
-    /* Operators */
-    .highlight .o,
-    .highlight .ow {
-        color: #F29668;
+        color: #d19a66;
     }
 
     /* Names */
     .highlight .na {
-        color: #FFB454;
+        color: #d19a66;
     }
 
     .highlight .nb {
-        color: #F07178;
+        color: #56b6c2;
+    }
+
+    .highlight .bp {
+        color: #e5c07b;
     }
 
     .highlight .nc {
-        color: #39BAE6;
+        color: #e5c07b;
     }
 
     .highlight .no {
-        color: #D2A6FF;
+        color: #e5c07b;
     }
 
     .highlight .nd {
-        color: #E6B673;
+        color: #56b6c2;
+    }
+
+    .highlight .ne {
+        color: #56b6c2;
     }
 
     .highlight .nf,
     .highlight .nx {
-        color: #FFB454;
+        color: #61afef;
+    }
+
+    .highlight .nl {
+        color: #61afef;
     }
 
     .highlight .nt {
-        color: #39BAE6;
+        color: #e06c75;
     }
 
-    .highlight .vi {
-        color: #E6B450;
+    .highlight .nv {
+        color: #e06c75;
     }
 
-    .highlight .vm {
-        color: #39BAE6;
+    /* Literals */
+    .highlight .l {
+        color: #98c379;
     }
 
-    /* Strings */
     .highlight .s,
     .highlight .s1,
     .highlight .s2,
+    .highlight .sb,
     .highlight .sc,
-    .highlight .se,
     .highlight .ss {
-        color: #AAD94C;
+        color: #98c379;
     }
 
-    .highlight .sb {
-        color: #F29668;
+    .highlight .sa {
+        color: #c678dd;
     }
 
-    .highlight .sd {
-        color: #95E6CB;
+    .highlight .se {
+        color: #56b6c2;
+    }
+
+    .highlight .si {
+        color: #d19a66;
     }
 
     .highlight .sr {
-        color: #95E6CB;
+        color: #e06c75;
     }
 
-    /* Numbers */
     .highlight .m,
     .highlight .mi,
     .highlight .mf,
@@ -125,54 +120,72 @@
     .highlight .mo,
     .highlight .mb,
     .highlight .il {
-        color: #D2A6FF;
+        color: #d19a66;
     }
 
-    /* Errors */
-    .highlight .err {
-        color: #D95757;
+    /* Operators */
+    .highlight .o,
+    .highlight .ow {
+        color: #56b6c2;
     }
 
-    /* Generic */
-    .highlight .g {
-        color: #BFBDB6;
-    }
-
-    .highlight .gd {
-        color: #F26D78;
-    }
-
-    .highlight .gi {
-        color: #7FD962;
-    }
-
-    .highlight .ge {
-        color: #FFB454;
+    /* Comments */
+    .highlight .c,
+    .highlight .c1,
+    .highlight .cm,
+    .highlight .cs {
+        color: #7f848e;
         font-style: italic;
     }
 
-    .highlight .gs {
-        color: #FFB454;
-        font-weight: bold;
+    .highlight .cp {
+        color: #c678dd;
     }
 
-    .highlight .gh {
-        color: #FFB454;
-        font-weight: bold;
+    .highlight .cpf {
+        color: #98c379;
     }
 
-    .highlight .go {
-        color: #AAD94C;
+    /* Generic */
+    .highlight .gd {
+        color: #e06c75;
     }
 
-    .highlight .gp {
-        color: #646B73;
+    .highlight .ge {
+        color: #c678dd;
+        font-style: italic;
     }
 
     .highlight .gr {
-        color: #D95757;
+        color: #e06c75;
+    }
+
+    .highlight .gh {
+        color: #e06c75;
+        font-weight: bold;
+    }
+
+    .highlight .gi {
+        color: #98c379;
+    }
+
+    .highlight .go {
+        color: #98c379;
+    }
+
+    .highlight .gp {
+        color: #5c6370;
+    }
+
+    .highlight .gs {
+        color: #d19a66;
+        font-weight: bold;
+    }
+
+    .highlight .gu {
+        color: #e06c75;
     }
 
     .highlight .gt {
-        color: #D95757;
+        color: #e06c75;
     }
