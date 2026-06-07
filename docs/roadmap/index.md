@@ -6,9 +6,6 @@ Brine2D is in a strong pre-release state. The core engine is feature-complete an
 
 The following areas exist and are functional. Each is undergoing a documentation and API review pass to ensure they meet the quality bar expected of a 1.0 release.
 
-### Particles
-`ParticleSystem` and emitter/component types are implemented and usable. The 1.0 pass focuses on API consistency and documentation coverage.
-
 ### Tilemap
 `Tilemap`, `TilemapLayer`, and `TilemapRenderer` are in place with external tool support. The 1.0 pass focuses on edge case handling and documenting the full workflow.
 
