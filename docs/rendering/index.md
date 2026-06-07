@@ -230,15 +230,16 @@ protected override void OnRender(GameTime gameTime)
 ### Particle Effects
 
 ```csharp
-var entity = World.CreateEntity("ParticleEmitter");
-var emitter = entity.AddComponent<ParticleEmitterComponent>();
+var entity  = World.CreateEntity("ParticleEmitter");
+entity.AddComponent<ParticleEmitterComponent>();
+var emitter = entity.GetComponent<ParticleEmitterComponent>();
 
-emitter.EmissionRate = 100f;
+emitter.EmissionRate     = 100f;
 emitter.ParticleLifetime = 2f;
-emitter.StartColor = new Color(255, 200, 0, 255);  // Orange
-emitter.EndColor = new Color(255, 50, 0, 0);       // Fade to transparent
-emitter.EmitterShape = EmitterShape.Cone;
-emitter.BlendMode = BlendMode.Additive;  // Fire effect
+emitter.StartColor       = new Color(255, 200, 0, 255);
+emitter.EndColor         = new Color(255,  50, 0,   0);
+emitter.Shape            = EmitterShape.Cone;
+emitter.BlendMode        = BlendMode.Additive;
 ```
 
 [:octicons-arrow-right-24: Full guide: Particles](particles.md)

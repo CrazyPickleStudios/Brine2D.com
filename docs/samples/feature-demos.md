@@ -181,14 +181,14 @@ foreach (var (transform, velocity) in movingEntities)
 **Key Code:**
 
 ```csharp
-// Create particle emitter
-var emitter = entity.AddComponent<ParticleEmitterComponent>();
-emitter.EmissionRate = 100;
-emitter.Lifetime = 2f;
-emitter.StartColor = Color.Red;
-emitter.EndColor = new Color(255, 0, 0, 0);
-emitter.StartSpeed = 100f;
-emitter.SpreadAngle = MathF.PI / 4;
+entity.AddComponent<ParticleEmitterComponent>();
+var emitter = entity.GetComponent<ParticleEmitterComponent>();
+emitter.EmissionRate     = 100f;
+emitter.ParticleLifetime = 2f;
+emitter.StartColor       = Color.Red;
+emitter.EndColor         = new Color(255, 0, 0, 0);
+emitter.InitialVelocity  = new Vector2(0, -100f);
+emitter.VelocitySpread   = 45f;
 ```
 
 ---

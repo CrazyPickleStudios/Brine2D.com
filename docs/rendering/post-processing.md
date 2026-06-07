@@ -226,7 +226,7 @@ The pipeline handles resize automatically. When the renderer recreates its rende
 
 - Each effect is one or more GPU render passes — keep the total pass count low
 - Blur is two passes (horizontal + vertical) plus the pipeline's own source/target management
-- Effects use pre-compiled SPIR-V / DXIL / DXBC / MSL shaders — no runtime compilation
+- Effects compile HLSL at runtime via SDL_ShaderCross, which transpiles to the format required by the active GPU backend (SPIR-V for Vulkan, DXIL for D3D12, DXBC for D3D11, MSL for Metal)
 - Render targets are created once and reused; they're only recreated on resize
 - Disable effects you aren't using — disabled effects are skipped entirely (zero cost)
 
