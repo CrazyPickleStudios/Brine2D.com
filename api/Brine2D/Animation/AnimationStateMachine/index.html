@@ -1,0 +1,5710 @@
+<!--  -->
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+
+
+
+<meta name="author" content="CrazyPickle Studios">
+
+
+
+
+
+<link rel="icon" href="../../../../assets/logos/svg/favicon.svg">
+
+    
+
+<title>AnimationStateMachine Class - Brine2D</title>
+
+
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="../../../../assets/external/unpkg.com/iframe-worker/shim.js"></script>
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="../../../../assets/external/fonts.googleapis.com/css.fcaf90f3.css">
+        <style>:root{--md-text-font:"Public Sans";--md-code-font:"DM Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/code.css">
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+
+<meta name="robots" content="max-snippet:-1, max-image-preview:large">
+
+
+
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#definition" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!--  -->
+
+
+
+
+<!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+    <nav class="md-header__inner md-grid"
+         aria-label="Header">
+
+        <!-- Link to home -->
+        <a href="../../../../index.html"
+           title="Brine2D"
+           class="md-header__button md-logo"
+           aria-label="Brine2D"
+           data-md-component="logo">
+            <!--  -->
+<img src="../../../../assets/logos/svg/brine2d-logo-notext.svg" alt="logo" width="24" height="24">
+        </a>
+
+        <!-- Button to open drawer -->
+        <label class="md-header__button md-icon" for="__drawer">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+        </label>
+
+        <!-- Header title -->
+        <div class="md-header__title" data-md-component="header-title">
+            <div class="md-header__ellipsis">
+                <div class="md-header__topic">
+                    <span class="md-ellipsis">
+                        Brine2D
+                    </span>
+                </div>
+                <div class="md-header__topic" data-md-component="header-topic">
+                    <span class="md-ellipsis">
+                        
+                        AnimationStateMachine Class
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Repository information -->
+        
+        <div class="md-header__source">
+            <a href="https://github.com/CrazyPickleStudios/Brine2D" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+  </div>
+  <div class="md-source__repository">
+    
+  </div>
+</a>
+        </div>
+        
+
+        <!-- Button to open search modal -->
+        
+        <label class="md-header__button md-icon" for="__search">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+
+        <!-- Search interface -->
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+
+        <!-- Color palette toggle -->
+        
+        
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="green"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Switch to system theme"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system theme" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-2.69L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20z"/></svg>
+      </label>
+    
+  
+</form>
+        
+        
+
+        <!-- User preference: color palette -->
+        
+        <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+        
+    </nav>
+
+    <!-- Navigation tabs (sticky) -->
+    
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../getting-started/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Learn
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../roadmap/index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Roadmap
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../samples/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Samples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../contributing/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Contributing
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../index.html" title="Brine2D" class="md-nav__button md-logo" aria-label="Brine2D" data-md-component="logo">
+      <!--  -->
+<img src="../../../../assets/logos/svg/brine2d-logo-notext.svg" alt="logo" width="24" height="24">
+    </a>
+    Brine2D
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CrazyPickleStudios/Brine2D" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+  </div>
+  <div class="md-source__repository">
+    
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learn
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Learn
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../getting-started/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Get Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting-started/installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting-started/quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting-started/first-game.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your First Game
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting-started/project-structure.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting-started/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../tutorials/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tutorials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/moving-sprites.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Moving Sprites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/animations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animation System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/collision.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collision Detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/platformer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building a Platformer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/top-down.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Top-Down Adventure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../fundamentals/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fundamentals
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../fundamentals/no-editor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Why No Editor?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../fundamentals/architecture.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../fundamentals/dependency-injection.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependency Injection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../fundamentals/game-loop.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Game Loop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../fundamentals/builder-pattern.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Builder Pattern
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../fundamentals/entity-component-system.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ECS Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../rendering/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Rendering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rendering/choosing-renderer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rendering/gpu-renderer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPU Renderer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rendering/sprites.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprites & Textures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rendering/texture-atlasing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Texture Atlasing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rendering/post-processing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post-Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rendering/cameras.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cameras
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rendering/particles.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Particles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rendering/primitives.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Drawing Primitives
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../input/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Input
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../input/keyboard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keyboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../input/mouse.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mouse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../input/gamepad.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gamepad Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../input/actions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input Actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../input/layers.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input Layers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../ecs/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ECS
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ECS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../ecs/getting-started.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../ecs/entities.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../ecs/components.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../ecs/systems.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Systems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../ecs/queries.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../ecs/multi-threading.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Threading
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../assets/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assets
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Assets
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../assets/loading.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loading Assets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../assets/manifests.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asset Manifests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../assets/build-package.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brine2D.Build
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../animation/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_8_1" id="__nav_2_8_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Animation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../animation/clips-and-frames.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clips & Frames
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../animation/animator-component.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animator Component
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../animation/state-machine.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../animation/blend-trees.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blend Trees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../animation/layers.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Layers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../animation/aseprite.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aseprite Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../animation/clip-events.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clip Events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../audio/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audio
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_8_2" id="__nav_2_8_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Audio
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../audio/getting-started.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../audio/sound-effects.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sound Effects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../audio/music.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Music Playback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../audio/spatial-audio.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spatial Audio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../scenes/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scenes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_8_3" id="__nav_2_8_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Scenes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../scenes/transitions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scene Transitions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../collision/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collision
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_8_4" id="__nav_2_8_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_8_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Collision
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../collision/system.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collision System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../collision/colliders.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shapes & Bodies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../collision/kinematic-character.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kinematic Character
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../tilemaps/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tilemaps
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_8_5" id="__nav_2_8_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_8_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tilemaps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tilemaps/loading.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loading Tilemaps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tilemaps/rendering.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tilemaps/collision-and-objects.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collision & Objects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../ui/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_8_6" id="__nav_2_8_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_8_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../ui/components.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../ui/custom.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../performance/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_8_7" id="__nav_2_8_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_8_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Performance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../performance/monitoring.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../performance/optimization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../events/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_8_8" id="__nav_2_8_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_8_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Events
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../events/window-events.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Window Events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../roadmap/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Assets/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Audio/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Collision/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Common/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Core/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ECS/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ECS
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ECS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ECS/Components/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_8_2" id="__nav_4_8_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Components
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ECS/Components/Joints/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Joints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ECS/Query/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ECS/Serialization/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Serialization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ECS/Systems/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Systems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Engine/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engine
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engine
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Engine/Transitions/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transitions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Events/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Hosting/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Input/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Performance/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Physics/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pooling/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pooling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Rendering/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_16" id="__nav_4_16_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Rendering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Rendering/PostProcessing/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostProcessing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_16_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Rendering/SDL/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_16_3" id="__nav_4_16_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_16_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_16_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_16_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Rendering/SDL/PostProcessing/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostProcessing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_16_3_2" id="__nav_4_16_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_16_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_16_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PostProcessing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Rendering/SDL/PostProcessing/Effects/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Effects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Rendering/SDL/Shaders/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shaders
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Rendering/SDL/TextureAtlas/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TextureAtlas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Rendering/Text/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Text
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Rendering/TextureAtlas/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TextureAtlas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Threading/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threading
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tilemap/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tilemap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UI/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../samples/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Samples
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Samples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../samples/feature-demos.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FeatureDemos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../samples/basic-game.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Game
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../samples/animation-demo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animation Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../samples/collision-demo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collision Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../samples/ecs-demo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ECS Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../contributing/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Contributing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../contributing/code-style.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Style
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../contributing/building.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building from Source
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remarks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+  
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+  
+  
+
+
+  <h1>AnimationStateMachine Class</h1>
+
+<h2 id="definition">Definition</h2>
+<p><strong>Namespace:</strong> <a href="../">Brine2D.Animation</a></p>
+<p>Lightweight code-driven animation state machine.
+Evaluates transitions each frame and calls <a href="../SpriteAnimator/Play%28string%2Cbool%29.html" title="Brine2D.Animation.SpriteAnimator.Play\(string, bool\)">Play<span class="arithmatex">\(string, bool\)</span></a> automatically.</p>
+<div class="language-csharp highlight"><span class="filename">C#</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">AnimationStateMachine</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="n">IDisposable</span>
+</span></code></pre></div>
+<p>Inheritance <a href="https://learn.microsoft.com/en-us/dotnet/api/system.object" title="System.Object">System.Object</a> → AnimationStateMachine</p>
+<p>Implements <a href="https://learn.microsoft.com/en-us/dotnet/api/system.idisposable" title="System.IDisposable">System.IDisposable</a></p>
+<h3 id="remarks">Remarks</h3>
+<p>Transitions are evaluated in descending <a href="../AnimationTransition/Priority.html" title="Brine2D.Animation.AnimationTransition.Priority">Priority</a> order.
+Within the same priority, they fire in the order they were added. The first passing
+condition wins.</p>
+<p>Non-looping clips block outgoing transitions until they finish unless
+<a href="../AnimationTransition/CanInterrupt.html" title="Brine2D.Animation.AnimationTransition.CanInterrupt">CanInterrupt</a> is <code>true</code>.</p>
+<p><a href="StateTimer.html" title="Brine2D.Animation.AnimationStateMachine.StateTimer">StateTimer</a> only advances while <a href="../SpriteAnimator/IsPlaying.html" title="Brine2D.Animation.SpriteAnimator.IsPlaying">IsPlaying</a> is
+            <code>true</code>, so pausing the animator also freezes the dwell clock.</p>
+<p>AnyState transitions are evaluated after all regular transitions for the current state.</p>
+<p>If the default state is a non-looping clip, it restarts every time it completes with no
+matching transition. To suppress this, add an explicit on-complete transition from it to
+itself with a condition that returns <code>false</code>, or use a looping clip as the default.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Fields</th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="StateHistoryCapacity.html" title="Brine2D.Animation.AnimationStateMachine.StateHistoryCapacity">StateHistoryCapacity</a></td>
+<td style="text-align: left;">Maximum number of state names retained in <a href="StateHistory.html" title="Brine2D.Animation.AnimationStateMachine.StateHistory">StateHistory</a>.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Properties</th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="AnyTransitions.html" title="Brine2D.Animation.AnimationStateMachine.AnyTransitions">AnyTransitions</a></td>
+<td style="text-align: left;">Read-only view of all AnyState transitions, in evaluation order.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="CurrentState.html" title="Brine2D.Animation.AnimationStateMachine.CurrentState">CurrentState</a></td>
+<td style="text-align: left;">Gets the name of the currently active animation, or <code>null</code> if none.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="HasDefaultState.html" title="Brine2D.Animation.AnimationStateMachine.HasDefaultState">HasDefaultState</a></td>
+<td style="text-align: left;">Returns <code>true</code> when a default state has been configured.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="IsDisposed.html" title="Brine2D.Animation.AnimationStateMachine.IsDisposed">IsDisposed</a></td>
+<td style="text-align: left;">Gets whether this instance has been disposed. Useful for external lifetime guards when a reference to the state machine outlives its owning entity or component.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="IsEnabled.html" title="Brine2D.Animation.AnimationStateMachine.IsEnabled">IsEnabled</a></td>
+<td style="text-align: left;">When <code>false</code>, transition evaluation is suspended each frame — the animator keeps playing its current clip normally but no automatic transitions fire and the default-state kickoff is skipped. <a href="ForceState%28string%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceState\(string, bool\)">ForceState<span class="arithmatex">\(string, bool\)</span></a> and <a href="ForceStop%28bool%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceStop\(bool\)">ForceStop<span class="arithmatex">\(bool\)</span></a> still work regardless of this flag. Defaults to <code>true</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="PreviousState.html" title="Brine2D.Animation.AnimationStateMachine.PreviousState">PreviousState</a></td>
+<td style="text-align: left;">Gets the animation that was active before the current one, or <code>null</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="StateHistory.html" title="Brine2D.Animation.AnimationStateMachine.StateHistory">StateHistory</a></td>
+<td style="text-align: left;">Chronological log of the last <a href="StateHistoryCapacity.html" title="Brine2D.Animation.AnimationStateMachine.StateHistoryCapacity">StateHistoryCapacity</a> state names entered. Index 0 is oldest. Cleared by <a href="ClearStateHistory%28%29.html" title="Brine2D.Animation.AnimationStateMachine.ClearStateHistory()">ClearStateHistory()</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="StateTimer.html" title="Brine2D.Animation.AnimationStateMachine.StateTimer">StateTimer</a></td>
+<td style="text-align: left;">Gets the elapsed time in seconds the current state has been active. Only advances while <a href="../SpriteAnimator/IsPlaying.html" title="Brine2D.Animation.SpriteAnimator.IsPlaying">IsPlaying</a> is <code>true</code>, so pausing the animator also freezes this timer. Resets whenever a new animation starts <span class="arithmatex">\(including via direct [Play\(string, bool\)</span>](../SpriteAnimator/Play(string,bool).md 'Brine2D.Animation.SpriteAnimator.Play<span class="arithmatex">\(string, bool\)</span>') calls).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="TransitionCount.html" title="Brine2D.Animation.AnimationStateMachine.TransitionCount">TransitionCount</a></td>
+<td style="text-align: left;">Gets the total number of registered transitions <span class="arithmatex">\(regular \+ AnyState\)</span>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Transitions.html" title="Brine2D.Animation.AnimationStateMachine.Transitions">Transitions</a></td>
+<td style="text-align: left;">Read-only view of all regular <span class="arithmatex">\(source\-specific\)</span> transitions, in evaluation order.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Methods</th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="AddAnyOnCompleteTransition%28string%2CFunc_bool_%2Cfloat%2Cint%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.AddAnyOnCompleteTransition\(string, System\.Func\&lt;bool\&gt;, float, int, bool\)">AddAnyOnCompleteTransition<span class="arithmatex">\(string, Func&lt;bool&gt;, float, int, bool\)</span></a></td>
+<td style="text-align: left;">Adds a transition that fires automatically when any non-looping clip reaches its natural end. Returns the created <a href="../AnimationTransition/index.html" title="Brine2D.Animation.AnimationTransition">AnimationTransition</a> handle for targeted removal.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="AddAnyTransition%28string%2CFunc_bool_%2Cbool%2Cfloat%2Cfloat%2Cfloat%2Cint%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.AddAnyTransition\(string, System\.Func\&lt;bool\&gt;, bool, float, float, float, int, bool\)">AddAnyTransition<span class="arithmatex">\(string, Func&lt;bool&gt;, bool, float, float, float, int, bool\)</span></a></td>
+<td style="text-align: left;">Adds a transition that can fire from any currently playing animation. Returns the created <a href="../AnimationTransition/index.html" title="Brine2D.Animation.AnimationTransition">AnimationTransition</a> handle for targeted removal.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="AddAnyTriggerTransition%28string%2CAnimationParameters%2Cstring%2Cbool%2Cfloat%2Cfloat%2Cfloat%2Cint%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.AddAnyTriggerTransition\(string, Brine2D\.Animation\.AnimationParameters, string, bool, float, float, float, int, bool\)">AddAnyTriggerTransition<span class="arithmatex">\(string, AnimationParameters, string, bool, float, float, float, int, bool\)</span></a></td>
+<td style="text-align: left;">Adds an AnyState transition to <a href="AddAnyTriggerTransition%28string%2CAnimationParameters%2Cstring%2Cbool%2Cfloat%2Cfloat%2Cfloat%2Cint%2Cbool%29.html#Brine2D.Animation.AnimationStateMachine.AddAnyTriggerTransition(string,Brine2D.Animation.AnimationParameters,string,bool,float,float,float,int,bool).to" title="Brine2D.Animation.AnimationStateMachine.AddAnyTriggerTransition\(string, Brine2D\.Animation\.AnimationParameters, string, bool, float, float, float, int, bool\).to">to</a> that fires when the named trigger is armed, consuming it safely via <a href="../AnimationTransition/OnFired.html" title="Brine2D.Animation.AnimationTransition.OnFired">OnFired</a>. Returns the created <a href="../AnimationTransition/index.html" title="Brine2D.Animation.AnimationTransition">AnimationTransition</a> handle for targeted removal.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="AddOnCompleteTransition%28string%2Cstring%2CFunc_bool_%2Cfloat%2Cint%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.AddOnCompleteTransition\(string, string, System\.Func\&lt;bool\&gt;, float, int, bool\)">AddOnCompleteTransition<span class="arithmatex">\(string, string, Func&lt;bool&gt;, float, int, bool\)</span></a></td>
+<td style="text-align: left;">Adds a transition that fires automatically when the non-looping clip named <a href="AddOnCompleteTransition%28string%2Cstring%2CFunc_bool_%2Cfloat%2Cint%2Cbool%29.html#Brine2D.Animation.AnimationStateMachine.AddOnCompleteTransition(string,string,System.Func_bool_,float,int,bool).from" title="Brine2D.Animation.AnimationStateMachine.AddOnCompleteTransition\(string, string, System\.Func\&lt;bool\&gt;, float, int, bool\).from">from</a> reaches its natural end. Returns the created <a href="../AnimationTransition/index.html" title="Brine2D.Animation.AnimationTransition">AnimationTransition</a> handle for targeted removal.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="AddOnCompleteTriggerTransition%28string%2Cstring%2CAnimationParameters%2Cstring%2Cfloat%2Cint%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.AddOnCompleteTriggerTransition\(string, string, Brine2D\.Animation\.AnimationParameters, string, float, int, bool\)">AddOnCompleteTriggerTransition<span class="arithmatex">\(string, string, AnimationParameters, string, float, int, bool\)</span></a></td>
+<td style="text-align: left;">Adds an on-complete transition from <a href="AddOnCompleteTriggerTransition%28string%2Cstring%2CAnimationParameters%2Cstring%2Cfloat%2Cint%2Cbool%29.html#Brine2D.Animation.AnimationStateMachine.AddOnCompleteTriggerTransition(string,string,Brine2D.Animation.AnimationParameters,string,float,int,bool).from" title="Brine2D.Animation.AnimationStateMachine.AddOnCompleteTriggerTransition\(string, string, Brine2D\.Animation\.AnimationParameters, string, float, int, bool\).from">from</a> to <a href="AddOnCompleteTriggerTransition%28string%2Cstring%2CAnimationParameters%2Cstring%2Cfloat%2Cint%2Cbool%29.html#Brine2D.Animation.AnimationStateMachine.AddOnCompleteTriggerTransition(string,string,Brine2D.Animation.AnimationParameters,string,float,int,bool).to" title="Brine2D.Animation.AnimationStateMachine.AddOnCompleteTriggerTransition\(string, string, Brine2D\.Animation\.AnimationParameters, string, float, int, bool\).to">to</a> that additionally requires the named trigger to be armed, consuming it safely on fire. Returns the created <a href="../AnimationTransition/index.html" title="Brine2D.Animation.AnimationTransition">AnimationTransition</a> handle for targeted removal.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="AddTransition%28string%2Cstring%2CFunc_bool_%2Cbool%2Cfloat%2Cfloat%2Cfloat%2Cint%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.AddTransition\(string, string, System\.Func\&lt;bool\&gt;, bool, float, float, float, int, bool\)">AddTransition<span class="arithmatex">\(string, string, Func&lt;bool&gt;, bool, float, float, float, int, bool\)</span></a></td>
+<td style="text-align: left;">Adds a transition from one named animation to another. Returns the created <a href="../AnimationTransition/index.html" title="Brine2D.Animation.AnimationTransition">AnimationTransition</a> handle for targeted removal.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="AddTriggerTransition%28string%2Cstring%2CAnimationParameters%2Cstring%2Cbool%2Cfloat%2Cfloat%2Cfloat%2Cint%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.AddTriggerTransition\(string, string, Brine2D\.Animation\.AnimationParameters, string, bool, float, float, float, int, bool\)">AddTriggerTransition<span class="arithmatex">\(string, string, AnimationParameters, string, bool, float, float, float, int, bool\)</span></a></td>
+<td style="text-align: left;">Adds a transition from <a href="AddTriggerTransition%28string%2Cstring%2CAnimationParameters%2Cstring%2Cbool%2Cfloat%2Cfloat%2Cfloat%2Cint%2Cbool%29.html#Brine2D.Animation.AnimationStateMachine.AddTriggerTransition(string,string,Brine2D.Animation.AnimationParameters,string,bool,float,float,float,int,bool).from" title="Brine2D.Animation.AnimationStateMachine.AddTriggerTransition\(string, string, Brine2D\.Animation\.AnimationParameters, string, bool, float, float, float, int, bool\).from">from</a> to <a href="AddTriggerTransition%28string%2Cstring%2CAnimationParameters%2Cstring%2Cbool%2Cfloat%2Cfloat%2Cfloat%2Cint%2Cbool%29.html#Brine2D.Animation.AnimationStateMachine.AddTriggerTransition(string,string,Brine2D.Animation.AnimationParameters,string,bool,float,float,float,int,bool).to" title="Brine2D.Animation.AnimationStateMachine.AddTriggerTransition\(string, string, Brine2D\.Animation\.AnimationParameters, string, bool, float, float, float, int, bool\).to">to</a> that fires when the named trigger is armed, consuming it via <a href="../AnimationTransition/OnFired.html" title="Brine2D.Animation.AnimationTransition.OnFired">OnFired</a>. Returns the created <a href="../AnimationTransition/index.html" title="Brine2D.Animation.AnimationTransition">AnimationTransition</a> handle for targeted removal.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="CanTransitionTo%28string%29.html" title="Brine2D.Animation.AnimationStateMachine.CanTransitionTo\(string\)">CanTransitionTo<span class="arithmatex">\(string\)</span></a></td>
+<td style="text-align: left;">Returns <code>true</code> if a transition to <a href="CanTransitionTo%28string%29.html#Brine2D.Animation.AnimationStateMachine.CanTransitionTo(string).targetState" title="Brine2D.Animation.AnimationStateMachine.CanTransitionTo\(string\).targetState">targetState</a> is eligible based on loop-block rules, <a href="../AnimationTransition/MinStateDuration.html" title="Brine2D.Animation.AnimationTransition.MinStateDuration">MinStateDuration</a>, and <a href="../AnimationTransition/MinNormalizedTime.html" title="Brine2D.Animation.AnimationTransition.MinNormalizedTime">MinNormalizedTime</a>. Conditions and on-complete transitions are not evaluated.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="CaptureSnapshot%28%29.html" title="Brine2D.Animation.AnimationStateMachine.CaptureSnapshot()">CaptureSnapshot()</a></td>
+<td style="text-align: left;">Captures the current runtime state into an immutable <a href="../AnimationStateMachineSnapshot/index.html" title="Brine2D.Animation.AnimationStateMachineSnapshot">AnimationStateMachineSnapshot</a>. Use with <a href="RestoreSnapshot%28AnimationStateMachineSnapshot%29.html" title="Brine2D.Animation.AnimationStateMachine.RestoreSnapshot\(Brine2D\.Animation\.AnimationStateMachineSnapshot\)">RestoreSnapshot<span class="arithmatex">\(AnimationStateMachineSnapshot\)</span></a> for save/load and rollback systems. Registered transitions, callbacks, and state history are not included.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ClearStateHistory%28%29.html" title="Brine2D.Animation.AnimationStateMachine.ClearStateHistory()">ClearStateHistory()</a></td>
+<td style="text-align: left;">Clears the <a href="StateHistory.html" title="Brine2D.Animation.AnimationStateMachine.StateHistory">StateHistory</a> log.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ClearTransitions%28%29.html" title="Brine2D.Animation.AnimationStateMachine.ClearTransitions()">ClearTransitions()</a></td>
+<td style="text-align: left;">Removes all regular and AnyState transitions.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ForceState%28string%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceState\(string, bool\)">ForceState<span class="arithmatex">\(string, bool\)</span></a></td>
+<td style="text-align: left;">Imperatively drives the state machine to the named animation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ForceStateDirect%28AnimationClip%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceStateDirect\(Brine2D\.Animation\.AnimationClip, bool\)">ForceStateDirect<span class="arithmatex">\(AnimationClip, bool\)</span></a></td>
+<td style="text-align: left;">Imperatively drives the state machine to play a clip instance directly, without requiring it to be pre-registered on the animator.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ForceStateDirectQueued%28AnimationClip%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceStateDirectQueued\(Brine2D\.Animation\.AnimationClip\)">ForceStateDirectQueued<span class="arithmatex">\(AnimationClip\)</span></a></td>
+<td style="text-align: left;">Queues a clip instance to play directly after the current non-looping clip finishes, or immediately if nothing is playing. The clip does not need to be pre-registered.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ForceStateDirectQueuedWithCrossFade%28AnimationClip%2Cfloat%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceStateDirectQueuedWithCrossFade\(Brine2D\.Animation\.AnimationClip, float\)">ForceStateDirectQueuedWithCrossFade<span class="arithmatex">\(AnimationClip, float\)</span></a></td>
+<td style="text-align: left;">Queues a clip instance to play directly with a cross-fade after the current non-looping clip finishes, or immediately if nothing is playing. The clip does not need to be pre-registered.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ForceStateDirectWithCrossFade%28AnimationClip%2Cfloat%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceStateDirectWithCrossFade\(Brine2D\.Animation\.AnimationClip, float, bool\)">ForceStateDirectWithCrossFade<span class="arithmatex">\(AnimationClip, float, bool\)</span></a></td>
+<td style="text-align: left;">Imperatively drives the state machine to play a clip instance directly with a cross-fade, without requiring it to be pre-registered on the animator.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ForceStateFromFrame%28string%2Cint%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceStateFromFrame\(string, int, bool\)">ForceStateFromFrame<span class="arithmatex">\(string, int, bool\)</span></a></td>
+<td style="text-align: left;">Imperatively drives the state machine to the named animation beginning at a specific frame.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ForceStateFromFrameWithCrossFade%28string%2Cint%2Cfloat%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceStateFromFrameWithCrossFade\(string, int, float, bool\)">ForceStateFromFrameWithCrossFade<span class="arithmatex">\(string, int, float, bool\)</span></a></td>
+<td style="text-align: left;">Imperatively drives the state machine to the named animation beginning at a specific frame, with a cross-fade over <a href="ForceStateFromFrameWithCrossFade%28string%2Cint%2Cfloat%2Cbool%29.html#Brine2D.Animation.AnimationStateMachine.ForceStateFromFrameWithCrossFade(string,int,float,bool).fadeDuration" title="Brine2D.Animation.AnimationStateMachine.ForceStateFromFrameWithCrossFade\(string, int, float, bool\).fadeDuration">fadeDuration</a> seconds.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ForceStateFromNormalizedTime%28string%2Cfloat%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceStateFromNormalizedTime\(string, float, bool\)">ForceStateFromNormalizedTime<span class="arithmatex">\(string, float, bool\)</span></a></td>
+<td style="text-align: left;">Imperatively drives the state machine to the named animation beginning at a normalised time.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ForceStateFromNormalizedTimeWithCrossFade%28string%2Cfloat%2Cfloat%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceStateFromNormalizedTimeWithCrossFade\(string, float, float, bool\)">ForceStateFromNormalizedTimeWithCrossFade<span class="arithmatex">\(string, float, float, bool\)</span></a></td>
+<td style="text-align: left;">Imperatively drives the state machine to the named animation beginning at a normalised time, with a cross-fade over <a href="ForceStateFromNormalizedTimeWithCrossFade%28string%2Cfloat%2Cfloat%2Cbool%29.html#Brine2D.Animation.AnimationStateMachine.ForceStateFromNormalizedTimeWithCrossFade(string,float,float,bool).fadeDuration" title="Brine2D.Animation.AnimationStateMachine.ForceStateFromNormalizedTimeWithCrossFade\(string, float, float, bool\).fadeDuration">fadeDuration</a> seconds.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ForceStateQueued%28string%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceStateQueued\(string\)">ForceStateQueued<span class="arithmatex">\(string\)</span></a></td>
+<td style="text-align: left;">Queues the named animation to play after the current non-looping clip finishes, or immediately if nothing is playing.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ForceStateQueuedWithCrossFade%28string%2Cfloat%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceStateQueuedWithCrossFade\(string, float\)">ForceStateQueuedWithCrossFade<span class="arithmatex">\(string, float\)</span></a></td>
+<td style="text-align: left;">Queues the named animation to play with a cross-fade after the current non-looping clip finishes, or immediately if nothing is playing.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ForceStateWithCrossFade%28string%2Cfloat%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceStateWithCrossFade\(string, float, bool\)">ForceStateWithCrossFade<span class="arithmatex">\(string, float, bool\)</span></a></td>
+<td style="text-align: left;">Imperatively drives the state machine to the named animation with a cross-fade.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ForceStop%28bool%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceStop\(bool\)">ForceStop<span class="arithmatex">\(bool\)</span></a></td>
+<td style="text-align: left;">Imperatively stops the animator and clears the active state, firing <a href="OnStateChanged.html" title="Brine2D.Animation.AnimationStateMachine.OnStateChanged">OnStateChanged</a> with the previous state name and <code>null</code> as the new state. The state timer is reset and <a href="../SpriteAnimator/Stop%28bool%29.html" title="Brine2D.Animation.SpriteAnimator.Stop\(bool\)">Stop<span class="arithmatex">\(bool\)</span></a> is called with <a href="ForceStop%28bool%29.html#Brine2D.Animation.AnimationStateMachine.ForceStop(bool).fireCallbacks" title="Brine2D.Animation.AnimationStateMachine.ForceStop\(bool\).fireCallbacks">fireCallbacks</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="GetAvailableTransitions%28%29.html" title="Brine2D.Animation.AnimationStateMachine.GetAvailableTransitions()">GetAvailableTransitions()</a></td>
+<td style="text-align: left;">Returns the names of all destination states reachable via non-complete transitions from the active state <span class="arithmatex">\(including AnyState transitions\)</span>. Conditions are not evaluated.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="IsInState%28string%29.html" title="Brine2D.Animation.AnimationStateMachine.IsInState\(string\)">IsInState<span class="arithmatex">\(string\)</span></a></td>
+<td style="text-align: left;">Returns <code>true</code> when the currently active animation matches <a href="IsInState%28string%29.html#Brine2D.Animation.AnimationStateMachine.IsInState(string).stateName" title="Brine2D.Animation.AnimationStateMachine.IsInState\(string\).stateName">stateName</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="OnStateEnter%28string%2CAction_string_%29.html" title="Brine2D.Animation.AnimationStateMachine.OnStateEnter\(string, System\.Action\&lt;string\&gt;\)">OnStateEnter<span class="arithmatex">\(string, Action&lt;string&gt;\)</span></a></td>
+<td style="text-align: left;">Registers a callback to invoke whenever the named state is entered. The callback receives the name of the previous state (or <code>null</code> if this is the first state entered). Multiple callbacks per state are supported; each call appends to the subscription list. Use <a href="RemoveStateEnterCallback.html#Brine2D.Animation.AnimationStateMachine.RemoveStateEnterCallback(string,System.Action_string_)" title="Brine2D.Animation.AnimationStateMachine.RemoveStateEnterCallback\(string, System\.Action\&lt;string\&gt;\)">RemoveStateEnterCallback<span class="arithmatex">\(string, Action&lt;string&gt;\)</span></a> with the exact delegate to remove a specific subscription.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="OnStateExit%28string%2CAction_string_%29.html" title="Brine2D.Animation.AnimationStateMachine.OnStateExit\(string, System\.Action\&lt;string\&gt;\)">OnStateExit<span class="arithmatex">\(string, Action&lt;string&gt;\)</span></a></td>
+<td style="text-align: left;">Registers a callback to invoke whenever the named state is exited. The callback receives the name of the state being entered next, or <code>null</code> when the animator is stopped rather than transitioning to another state. Multiple callbacks per state are supported.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="RemoveAnyOnCompleteTransition%28string%29.html" title="Brine2D.Animation.AnimationStateMachine.RemoveAnyOnCompleteTransition\(string\)">RemoveAnyOnCompleteTransition<span class="arithmatex">\(string\)</span></a></td>
+<td style="text-align: left;">Removes all AnyState on-complete transitions targeting the given animation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="RemoveAnyTransitions%28string%29.html" title="Brine2D.Animation.AnimationStateMachine.RemoveAnyTransitions\(string\)">RemoveAnyTransitions<span class="arithmatex">\(string\)</span></a></td>
+<td style="text-align: left;">Removes all AnyState condition-based transitions targeting the given animation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="RemoveOnCompleteTransitions%28string%2Cstring%29.html" title="Brine2D.Animation.AnimationStateMachine.RemoveOnCompleteTransitions\(string, string\)">RemoveOnCompleteTransitions<span class="arithmatex">\(string, string\)</span></a></td>
+<td style="text-align: left;">Removes all on-complete transitions from <a href="RemoveOnCompleteTransitions%28string%2Cstring%29.html#Brine2D.Animation.AnimationStateMachine.RemoveOnCompleteTransitions(string,string).from" title="Brine2D.Animation.AnimationStateMachine.RemoveOnCompleteTransitions\(string, string\).from">from</a> to <a href="RemoveOnCompleteTransitions%28string%2Cstring%29.html#Brine2D.Animation.AnimationStateMachine.RemoveOnCompleteTransitions(string,string).to" title="Brine2D.Animation.AnimationStateMachine.RemoveOnCompleteTransitions\(string, string\).to">to</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="RemoveStateEnterCallback.html#Brine2D.Animation.AnimationStateMachine.RemoveStateEnterCallback(string)" title="Brine2D.Animation.AnimationStateMachine.RemoveStateEnterCallback\(string\)">RemoveStateEnterCallback<span class="arithmatex">\(string\)</span></a></td>
+<td style="text-align: left;">Removes all enter callbacks registered for <a href="index.html#Brine2D.Animation.AnimationStateMachine.RemoveStateEnterCallback(string).stateName" title="Brine2D.Animation.AnimationStateMachine.RemoveStateEnterCallback\(string\).stateName">stateName</a>. Returns <code>true</code> if any were registered.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="RemoveStateEnterCallback.html#Brine2D.Animation.AnimationStateMachine.RemoveStateEnterCallback(string,System.Action_string_)" title="Brine2D.Animation.AnimationStateMachine.RemoveStateEnterCallback\(string, System\.Action\&lt;string\&gt;\)">RemoveStateEnterCallback<span class="arithmatex">\(string, Action&lt;string&gt;\)</span></a></td>
+<td style="text-align: left;">Removes a specific enter callback previously registered for <a href="index.html#Brine2D.Animation.AnimationStateMachine.RemoveStateEnterCallback(string,System.Action_string_).stateName" title="Brine2D.Animation.AnimationStateMachine.RemoveStateEnterCallback\(string, System\.Action\&lt;string\&gt;\).stateName">stateName</a>. Returns <code>true</code> if the exact delegate was found and removed.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="RemoveStateExitCallback.html#Brine2D.Animation.AnimationStateMachine.RemoveStateExitCallback(string)" title="Brine2D.Animation.AnimationStateMachine.RemoveStateExitCallback\(string\)">RemoveStateExitCallback<span class="arithmatex">\(string\)</span></a></td>
+<td style="text-align: left;">Removes all exit callbacks registered for <a href="index.html#Brine2D.Animation.AnimationStateMachine.RemoveStateExitCallback(string).stateName" title="Brine2D.Animation.AnimationStateMachine.RemoveStateExitCallback\(string\).stateName">stateName</a>. Returns <code>true</code> if any were registered.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="RemoveStateExitCallback.html#Brine2D.Animation.AnimationStateMachine.RemoveStateExitCallback(string,System.Action_string_)" title="Brine2D.Animation.AnimationStateMachine.RemoveStateExitCallback\(string, System\.Action\&lt;string\&gt;\)">RemoveStateExitCallback<span class="arithmatex">\(string, Action&lt;string&gt;\)</span></a></td>
+<td style="text-align: left;">Removes a specific exit callback previously registered for <a href="index.html#Brine2D.Animation.AnimationStateMachine.RemoveStateExitCallback(string,System.Action_string_).stateName" title="Brine2D.Animation.AnimationStateMachine.RemoveStateExitCallback\(string, System\.Action\&lt;string\&gt;\).stateName">stateName</a>. Returns <code>true</code> if the exact delegate was found and removed.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="RemoveTransition%28AnimationTransition%29.html" title="Brine2D.Animation.AnimationStateMachine.RemoveTransition\(Brine2D\.Animation\.AnimationTransition\)">RemoveTransition<span class="arithmatex">\(AnimationTransition\)</span></a></td>
+<td style="text-align: left;">Removes the specific transition instance obtained from an <code>Add*</code> call.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="RemoveTransitions%28string%2Cstring%29.html" title="Brine2D.Animation.AnimationStateMachine.RemoveTransitions\(string, string\)">RemoveTransitions<span class="arithmatex">\(string, string\)</span></a></td>
+<td style="text-align: left;">Removes all condition-based <span class="arithmatex">\(non\-on\-complete\)</span> transitions from <a href="RemoveTransitions%28string%2Cstring%29.html#Brine2D.Animation.AnimationStateMachine.RemoveTransitions(string,string).from" title="Brine2D.Animation.AnimationStateMachine.RemoveTransitions\(string, string\).from">from</a> that target <a href="RemoveTransitions%28string%2Cstring%29.html#Brine2D.Animation.AnimationStateMachine.RemoveTransitions(string,string).to" title="Brine2D.Animation.AnimationStateMachine.RemoveTransitions\(string, string\).to">to</a>. When <a href="RemoveTransitions%28string%2Cstring%29.html#Brine2D.Animation.AnimationStateMachine.RemoveTransitions(string,string).from" title="Brine2D.Animation.AnimationStateMachine.RemoveTransitions\(string, string\).from">from</a> is <code>null</code>, removes matching AnyState transitions instead.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ResetStateTimer%28%29.html" title="Brine2D.Animation.AnimationStateMachine.ResetStateTimer()">ResetStateTimer()</a></td>
+<td style="text-align: left;">Resets <a href="StateTimer.html" title="Brine2D.Animation.AnimationStateMachine.StateTimer">StateTimer</a> to zero without triggering a transition.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="RestoreSnapshot%28AnimationStateMachineSnapshot%29.html" title="Brine2D.Animation.AnimationStateMachine.RestoreSnapshot\(Brine2D\.Animation\.AnimationStateMachineSnapshot\)">RestoreSnapshot<span class="arithmatex">\(AnimationStateMachineSnapshot\)</span></a></td>
+<td style="text-align: left;">Restores runtime state from a previously captured <a href="../AnimationStateMachineSnapshot/index.html" title="Brine2D.Animation.AnimationStateMachineSnapshot">AnimationStateMachineSnapshot</a>. Does not fire <a href="OnStateChanged.html" title="Brine2D.Animation.AnimationStateMachine.OnStateChanged">OnStateChanged</a>, <a href="OnStateEnter%28string%2CAction_string_%29.html" title="Brine2D.Animation.AnimationStateMachine.OnStateEnter\(string, System\.Action\&lt;string\&gt;\)">OnStateEnter<span class="arithmatex">\(string, Action&lt;string&gt;\)</span></a>, or <a href="OnStateExit%28string%2CAction_string_%29.html" title="Brine2D.Animation.AnimationStateMachine.OnStateExit\(string, System\.Action\&lt;string\&gt;\)">OnStateExit<span class="arithmatex">\(string, Action&lt;string&gt;\)</span></a>. Pair with <a href="../SpriteAnimator/RestorePlaybackSnapshot%28AnimatorPlaybackSnapshot%29.html" title="Brine2D.Animation.SpriteAnimator.RestorePlaybackSnapshot\(Brine2D\.Animation\.AnimatorPlaybackSnapshot\)">RestorePlaybackSnapshot<span class="arithmatex">\(AnimatorPlaybackSnapshot\)</span></a> to perform a full animation restore.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="SetDefaultState%28string%29.html" title="Brine2D.Animation.AnimationStateMachine.SetDefaultState\(string\)">SetDefaultState<span class="arithmatex">\(string\)</span></a></td>
+<td style="text-align: left;">Sets the animation that plays automatically when the animator has no active animation, or when a non-looping clip finishes and no transition fires. Pass <code>null</code> to clear the default state.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="Update%28float%29.html" title="Brine2D.Animation.AnimationStateMachine.Update\(float\)">Update<span class="arithmatex">\(float\)</span></a></td>
+<td style="text-align: left;">Evaluates all transitions and fires the first valid one. Called automatically by <a href="../../Systems/Animation/AnimationSystem/index.html" title="Brine2D.Systems.Animation.AnimationSystem">AnimationSystem</a> each tick. No-op when <a href="IsEnabled.html" title="Brine2D.Animation.AnimationStateMachine.IsEnabled">IsEnabled</a> is <code>false</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="ValidateTransitions%28%29.html" title="Brine2D.Animation.AnimationStateMachine.ValidateTransitions()">ValidateTransitions()</a></td>
+<td style="text-align: left;">Checks that every <code>From</code> and <code>To</code> name in all registered transitions <span class="arithmatex">\(and the default state\)</span> refers to a clip that has actually been added to the underlying animator. Returns a list of human-readable issue strings. An empty list means everything is valid.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Events</th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="OnStateChanged.html" title="Brine2D.Animation.AnimationStateMachine.OnStateChanged">OnStateChanged</a></td>
+<td style="text-align: left;">Raised whenever the active state changes — both via automatic transitions, <a href="ForceState%28string%2Cbool%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceState\(string, bool\)">ForceState<span class="arithmatex">\(string, bool\)</span></a>, and direct <a href="../SpriteAnimator/Play%28string%2Cbool%29.html" title="Brine2D.Animation.SpriteAnimator.Play\(string, bool\)">Play<span class="arithmatex">\(string, bool\)</span></a> calls. Provides the previous state name (or <code>null</code>) and the new state name (or <code>null</code> when the animator is stopped via <a href="ForceStop%28bool%29.html" title="Brine2D.Animation.AnimationStateMachine.ForceStop\(bool\)">ForceStop<span class="arithmatex">\(bool\)</span></a>).</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["announce.dismiss", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.path", "navigation.indexes", "navigation.footer", "content.code.copy", "content.tabs.link", "content.tooltips", "search.highlight"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/code-copy-title.js"></script>
+      
+    
+  </body>
+</html>
