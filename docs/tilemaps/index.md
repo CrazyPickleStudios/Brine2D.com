@@ -1,495 +1,119 @@
----
+﻿---
 title: Tilemaps
-description: Load and render tilemaps from Tiled editor in Brine2D
+description: Load and render Tiled tilemaps in Brine2D
 ---
 
 # Tilemaps
 
-Learn how to use tilemaps from Tiled editor to create levels and worlds for your Brine2D games.
+Brine2D's tilemap system is built around [Tiled Map Editor](https://www.mapeditor.org/). You author levels in Tiled, export as JSON (`.tmj`), and load them at runtime. The ECS integration handles async texture loading, tile animation, and rendering automatically.
 
 ---
 
 ## Quick Start
 
-```csharp
-using Brine2D.Tilemap;
+**1. Register services** (once, in your game builder):
 
-public class TilemapScene : Scene
+```csharp
+builder.Services.AddTilemapServices();
+```
+
+**2. Load the map** in `OnLoadAsync`:
+
+```csharp
+public class GameScene : Scene
 {
-    private Tilemap? _tilemap;
-    
+    private readonly ITilemapLoader _loader;
+
+    public GameScene(ITilemapLoader loader)
+    {
+        _loader = loader;
+    }
+
     protected override async Task OnLoadAsync(CancellationToken ct)
     {
-        // Load tilemap from Tiled JSON
-        _tilemap = await Tilemap.LoadFromFileAsync("assets/level1.tmj", ct);
-        
-        Logger.LogInformation("Loaded tilemap: {Width}x{Height} tiles", 
-            _tilemap.Width, _tilemap.Height);
-    }
-    
-    protected override void OnRender(GameTime gameTime)
-    {
-        if (_tilemap != null)
-        {
-            // Render all layers
-            _tilemap.Render(Renderer);
-        }
+        var tilemap = await _loader.LoadAsync("assets/maps/level1.tmj", ct);
+
+        World.CreateEntity()
+            .AddComponent<TilemapComponent>(c => c.Tilemap = tilemap);
     }
 }
 ```
+
+**3. Add the system** to your world:
+
+```csharp
+protected override void OnEnter()
+{
+    World.AddSystem<TilemapSystem>();
+}
+```
+
+That's it. `TilemapSystem` loads textures asynchronously and renders all `TilemapComponent` entities every frame.
+
+---
+
+## What's Supported
+
+| Feature | Notes |
+|---------|-------|
+| Map format | Tiled JSON (`.tmj`) — orthogonal, fixed-size only |
+| Tilesets | Embedded or external (`.tsj`); single-image only |
+| Tile data | CSV, base64 (uncompressed, zlib, gzip, zstd) |
+| Layer types | Tile layers, object groups, image layers, group layers |
+| Group layers | Flattened automatically; visibility/opacity/tint/offset/parallax inherited |
+| Tile animation | Matches Tiled's per-GID shared clock |
+| Tile flipping | Horizontal, vertical, diagonal (all Tiled combinations) |
+| Parallax | Per-layer X/Y multiplier, fully accounted for in rendering and coord conversion |
+| Collision | Solid and one-way platform rect generation with greedy merge |
+| Coordinate conversion | World to tile with layer offset and parallax overloads |
+| Custom properties | Maps, layers, tilesets, tiles, and objects |
+| Multiple tilesets | Full GID resolution across any number of tilesets |
+
+!!! warning "Unsupported map types"
+    Isometric, hexagonal, and infinite maps will throw `NotSupportedException` at load time.
+    Only `right-down` tile render order is supported (the Tiled default).
 
 ---
 
 ## Topics
 
 | Guide | Description |
-|---|---|
-| **[Loading Tilemaps](loading.md)** | Load tilemaps from Tiled JSON format|
-| **[Rendering Tiles](rendering.md)** | Render tilemap layers efficiently|
+|-------|-------------|
+| [Loading Tilemaps](loading.md) | Register the loader, load `.tmj` files, understand what Tiled settings are required |
+| [Rendering](rendering.md) | How `TilemapSystem` renders, image layers, parallax, `PositionOffset` |
+| [Collision & Objects](collision-and-objects.md) | Collision rect generation, object queries, coordinate conversion, custom properties |
 
 ---
 
-## Key Concepts
+## Tiled Workflow
 
-### Tiled Integration
+### Recommended layer setup
 
-Brine2D supports **Tiled Map Editor** (.tmj JSON format):
+| Layer name | Type | Purpose |
+|------------|------|---------|
+| `Background` | Tile layer | Static background tiles |
+| `Ground` | Tile layer | Main terrain |
+| `Decoration` | Tile layer | Non-colliding decor |
+| `Collision` | Tile layer | Solid/one-way tiles (can be hidden in Tiled) |
+| `Objects` | Object group | Spawn points, triggers, item locations |
+| `Foreground` | Tile layer | Tiles drawn in front of the player |
 
-```mermaid
-graph LR
-    A["Tiled Editor"] --> B["Export as JSON (.tmj)"]
-    B --> C["Tilemap.LoadFromFileAsync()"]
-    C --> D["Tilemap object"]
-    D --> E["Render layers"]
-    
-    style A fill:#2d5016,stroke:#4ec9b0,stroke-width:2px,color:#fff
-    style D fill:#1e3a5f,stroke:#569cd6,stroke-width:2px,color:#fff
-```
+### Export settings
 
-**Download Tiled:** [mapeditor.org](https://www.mapeditor.org/)
+1. **File → Export As → JSON map files (\*.tmj)**
+2. Orientation must be **Orthogonal**
+3. **Tile render order**: leave as default (`right-down`)
+4. Uncheck **Infinite map** — only fixed-size maps load
 
-[:octicons-arrow-right-24: Learn more: Loading Tilemaps](loading.md)
+### External tilesets
 
----
-
-### Tilemap Structure
-
-A tilemap consists of:
-
-| Component | Description |
-|-----------|-------------|
-| **Tileset** | Collection of tiles (spritesheet) |
-| **Layers** | Multiple rendering layers (background, foreground, collision) |
-| **Tiles** | Individual tile references (by ID) |
-| **Properties** | Custom metadata per tile/layer |
-
-```csharp
-// Tilemap structure
-var tilemap = await Tilemap.LoadFromFileAsync("level.tmj");
-
-Logger.LogInformation("Map size: {W}x{H} tiles", tilemap.Width, tilemap.Height);
-Logger.LogInformation("Tile size: {TW}x{TH} pixels", tilemap.TileWidth, tilemap.TileHeight);
-Logger.LogInformation("Layers: {Count}", tilemap.Layers.Count);
-```
-
----
-
-## Common Tasks
-
-### Load Tilemap
-
-```csharp
-protected override async Task OnLoadAsync(CancellationToken ct)
-{
-    // Load from Tiled JSON format
-    _tilemap = await Tilemap.LoadFromFileAsync("assets/maps/level1.tmj", ct);
-    
-    // Verify loaded
-    if (_tilemap == null)
-    {
-        Logger.LogError("Failed to load tilemap");
-        return;
-    }
-    
-    Logger.LogInformation("Loaded {Layers} layers", _tilemap.Layers.Count);
-}
-```
-
-[:octicons-arrow-right-24: Full guide: Loading Tilemaps](loading.md)
-
----
-
-### Render Tilemap
-
-```csharp
-protected override void OnRender(GameTime gameTime)
-{
-    if (_tilemap != null)
-    {
-        // Render all layers
-        _tilemap.Render(Renderer);
-        
-        // Or render specific layer
-        var backgroundLayer = _tilemap.GetLayer("Background");
-        backgroundLayer?.Render(Renderer);
-    }
-}
-```
-
-[:octicons-arrow-right-24: Full guide: Rendering Tiles](rendering.md)
-
----
-
-### Tilemap Collision
-
-```csharp
-protected override Task OnLoadAsync(CancellationToken ct)
-{
-    // Get collision layer
-    var collisionLayer = _tilemap.GetLayer("Collision");
-    
-    // Create colliders from tiles
-    for (int y = 0; y < collisionLayer.Height; y++)
-    {
-        for (int x = 0; x < collisionLayer.Width; x++)
-        {
-            var tileId = collisionLayer.GetTile(x, y);
-            
-            if (tileId > 0)  // Tile exists (non-empty)
-            {
-                // Create collider for solid tile
-                var collider = new BoxCollider(
-                    x * _tilemap.TileWidth,
-                    y * _tilemap.TileHeight,
-                    _tilemap.TileWidth,
-                    _tilemap.TileHeight
-                );
-                
-                _collisionSystem.Register(collider);
-            }
-        }
-    }
-    
-    return Task.CompletedTask;
-}
-```
-
----
-
-### Camera with Tilemap
-
-```csharp
-private Camera2D _camera = new();
-
-protected override void OnUpdate(GameTime gameTime)
-{
-    // Follow player
-    _camera.Position = _playerPosition;
-    
-    // Clamp camera to tilemap bounds
-    var mapWidth = _tilemap.Width * _tilemap.TileWidth;
-    var mapHeight = _tilemap.Height * _tilemap.TileHeight;
-    
-    _camera.Position.X = Math.Clamp(_camera.Position.X, 0, mapWidth - 800);
-    _camera.Position.Y = Math.Clamp(_camera.Position.Y, 0, mapHeight - 600);
-    
-    // Apply camera
-    Renderer.Camera = _camera;
-}
-```
-
----
-
-### Layer Management
-
-```csharp
-// Render layers in specific order
-protected override void OnRender(GameTime gameTime)
-{
-    // Background first
-    var bgLayer = _tilemap.GetLayer("Background");
-    bgLayer?.Render(Renderer);
-    
-    // Draw game objects (player, enemies)
-    DrawGameObjects();
-    
-    // Foreground last (overlays player)
-    var fgLayer = _tilemap.GetLayer("Foreground");
-    fgLayer?.Render(Renderer);
-}
-```
-
----
-
-## Tiled Editor Workflow
-
-### 1. Create Tilemap in Tiled
-
-1. Open Tiled Editor
-2. **File → New → New Map**
-   - Orientation: Orthogonal
-   - Tile size: 16x16 (or your tile size)
-   - Map size: 50x50 tiles (or your map size)
-
-3. **Map → New Tileset**
-   - Load your tileset image
-   - Set tile dimensions
-
-4. Paint tiles on layers
-5. **File → Export As... → JSON (.tmj)**
-
----
-
-### 2. Organize Layers
-
-**Recommended layer structure:**
-
-| Layer | Purpose |
-|-------|---------|
-| **Background** | Static background tiles |
-| **Ground** | Main walkable terrain |
-| **Decoration** | Non-colliding decorations |
-| **Collision** | Invisible collision tiles |
-| **Foreground** | Objects in front of player |
-
----
-
-### 3. Add Custom Properties
-
-```csharp
-// In Tiled: Select tile → Add custom property
-// Property: "damage" = 10
-
-// In Brine2D: Read property
-var tile = layer.GetTile(x, y);
-if (tile.HasProperty("damage"))
-{
-    var damage = tile.GetProperty<int>("damage");
-    _playerHealth -= damage;
-}
-```
-
----
-
-## Performance Tips
-
-### Use Texture Atlasing
-
-```csharp
-// Tilesets are automatically atlased
-// Each tileset = 1 draw call per layer
-// Much faster than individual sprites
-```
-
----
-
-### Cull Off-Screen Tiles
-
-```csharp
-// Only render visible tiles
-var camera = Renderer.Camera;
-var viewport = new Rectangle(
-    (int)camera.Position.X,
-    (int)camera.Position.Y,
-    800,  // Screen width
-    600   // Screen height
-);
-
-_tilemap.RenderViewport(Renderer, viewport);
-```
-
----
-
-### Cache Layer Renders
-
-```csharp
-// For static layers, render to texture once
-private ITexture? _backgroundTexture;
-
-protected override async Task OnLoadAsync(CancellationToken ct)
-{
-    // Render background layer to texture
-    _backgroundTexture = _tilemap.RenderLayerToTexture("Background", Renderer);
-}
-
-protected override void OnRender(GameTime gameTime)
-{
-    // Draw cached texture (much faster!)
-    Renderer.DrawTexture(_backgroundTexture, 0, 0);
-}
-```
-
----
-
-## Best Practices
-
-### ✅ DO
-
-1. **Use Tiled for level design** - Visual editor is faster
-2. **Organize layers logically** - Background, ground, collision, foreground
-3. **Export as JSON (.tmj)** - Brine2D's supported format
-4. **Use collision layer** - Separate from visual tiles
-5. **Add custom properties** - Store metadata in Tiled
-
-```csharp
-// ✅ Good layer organization
-var bg = _tilemap.GetLayer("Background");
-var ground = _tilemap.GetLayer("Ground");
-var collision = _tilemap.GetLayer("Collision");
-var fg = _tilemap.GetLayer("Foreground");
-```
-
----
-
-### ❌ DON'T
-
-1. **Don't create tilemaps manually** - Use Tiled editor
-2. **Don't render every tile** - Cull off-screen tiles
-3. **Don't load huge tilemaps** - Split into chunks
-4. **Don't ignore layer order** - Background before foreground
-5. **Don't forget to export as JSON** - Not .tmx XML
-
-```csharp
-// ❌ Bad - rendering all tiles every frame
-for (int y = 0; y < _tilemap.Height; y++)
-{
-    for (int x = 0; x < _tilemap.Width; x++)
-    {
-        // Renders off-screen tiles too - slow!
-    }
-}
-```
-
----
-
-## Troubleshooting
-
-### Tilemap Not Loading
-
-**Symptom:** `LoadFromFileAsync()` returns null
-
-**Solutions:**
-
-1. **Check file exists:**
-
-```csharp
-if (!File.Exists("assets/maps/level1.tmj"))
-{
-    Logger.LogError("Tilemap file not found");
-}
-```
-
-2. **Verify file format:**
-   - Must be JSON (.tmj), not XML (.tmx)
-   - In Tiled: **File → Export As... → JSON**
-
-3. **Check tileset paths:**
-   - Tileset images must be in correct relative path
-   - Check paths in .tmj file
-
----
-
-### Tiles Not Rendering
-
-**Symptom:** Black screen or missing tiles
-
-**Solutions:**
-
-1. **Verify layer exists:**
-
-```csharp
-var layer = _tilemap.GetLayer("Background");
-if (layer == null)
-{
-    Logger.LogWarning("Layer 'Background' not found");
-}
-```
-
-2. **Check tile IDs:**
-
-```csharp
-var tileId = layer.GetTile(x, y);
-Logger.LogDebug("Tile at ({X},{Y}): ID={ID}", x, y, tileId);
-```
-
-3. **Verify tileset loaded:**
-
-```csharp
-if (_tilemap.Tilesets.Count == 0)
-{
-    Logger.LogError("No tilesets loaded");
-}
-```
-
----
-
-### Performance Issues
-
-**Symptom:** Low FPS with tilemaps
-
-**Solutions:**
-
-1. **Enable culling:**
-
-```csharp
-// Only render visible tiles
-_tilemap.RenderViewport(Renderer, cameraViewport);
-```
-
-2. **Reduce map size:**
-   - Split large maps into chunks
-   - Load/unload chunks as player moves
-
-3. **Cache static layers:**
-
-```csharp
-// Render to texture once
-_cachedBackground = _tilemap.RenderLayerToTexture("Background");
-```
-
----
-
-## File Structure
-
-```
-YourGame/
-├── assets/
-│   ├── maps/
-│   │   ├── level1.tmj         # Tiled JSON map
-│   │   └── level2.tmj
-│   └── tilesets/
-│       ├── terrain.png        # Tileset spritesheet
-│       └── objects.png
-```
-
-**In `.csproj`:**
-
-```xml
-<ItemGroup>
-  <None Update="assets\**\*">
-    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-  </None>
-</ItemGroup>
-```
+If you use an external tileset (`.tsj`), it must be present at the path Tiled recorded, relative to the `.tmj`. Brine2D resolves paths relative to the map file at load time.
 
 ---
 
 ## Related Topics
 
-- [Loading Tilemaps](loading.md) - Load from Tiled
-- [Rendering Tiles](rendering.md) - Efficient rendering
-- [Tutorials: Building a Platformer](../tutorials/platformer.md) - Tilemap example
-- [Cameras](../rendering/cameras.md) - Camera with tilemaps
-- [Collision Detection](../collision/index.md) - Tilemap collision
-
----
-
-## External Resources
-
-- [Tiled Map Editor](https://www.mapeditor.org/) - Download Tiled
-- [Tiled Documentation](https://doc.mapeditor.org/) - Tiled manual
-- [Tiled Tutorials](https://www.gamefromscratch.com/tiled-map-editor-tutorial-series/) - Video tutorials
-
----
-
-**Ready to build levels?** Start with [Loading Tilemaps](loading.md)!
+- [Rendering](rendering.md) — `TilemapSystem`, image layers, parallax
+- [Collision & Objects](collision-and-objects.md) — collision rects, object queries, coordinate conversion
+- [ECS: Systems](../ecs/systems.md) — how systems are registered and ordered
+- [Tutorials: Platformer](../tutorials/platformer.md) — end-to-end tilemap example

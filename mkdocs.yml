@@ -229,7 +229,8 @@ nav:
           - Tilemaps:
               - Overview: tilemaps/index.md
               - Loading Tilemaps: tilemaps/loading.md
-              - Rendering Tiles: tilemaps/rendering.md
+              - Rendering: tilemaps/rendering.md
+              - Collision & Objects: tilemaps/collision-and-objects.md
           - UI:
               - Overview: ui/index.md
               - UI Components: ui/components.md
