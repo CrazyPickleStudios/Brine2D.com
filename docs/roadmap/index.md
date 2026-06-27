@@ -6,12 +6,6 @@ Brine2D is in a strong pre-release state. The core engine is feature-complete an
 
 The following areas exist and are functional. Each is undergoing a documentation and API review pass to ensure they meet the quality bar expected of a 1.0 release.
 
-### Tilemap
-`Tilemap`, `TilemapLayer`, and `TilemapRenderer` are in place with external tool support. The 1.0 pass focuses on edge case handling and documenting the full workflow.
-
-### UI Framework
-`UILabel`, `UIPanel`, `UIButton`, and `IUIComponent` are available for building in-game menus and HUDs. The 1.0 pass focuses on layout flexibility and documentation.
-
 ### ECS Utilities
 `PrefabLibrary`, `SortHelper`, `Behavior`, `ECSOptions`, and the `ISystem`, `IUpdateSystem`, and `IRenderSystem` interfaces are all in use. The 1.0 pass focuses on API ergonomics and comprehensive examples.
 
