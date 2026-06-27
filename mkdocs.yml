@@ -233,7 +233,32 @@ nav:
               - Collision & Objects: tilemaps/collision-and-objects.md
           - UI:
               - Overview: ui/index.md
-              - UI Components: ui/components.md
+              - UICanvas: ui/canvas.md
+              - Positioning & Anchoring: ui/positioning.md
+              - Components:
+                  - Quick Reference: ui/components.md
+                  - Button: ui/button.md
+                  - Label & Rich Text: ui/label.md
+                  - Image: ui/image.md
+                  - Text Input & Area: ui/text-input.md
+                  - Slider & SpinBox: ui/slider.md
+                  - Checkbox & Radio: ui/selection.md
+                  - Dropdown: ui/dropdown.md
+                  - Progress Bar: ui/progress.md
+                  - Tooltip & Toast: ui/tooltip-toast.md
+              - Layout:
+                  - Panel, Stack & Grid: ui/layout.md
+                  - Scroll View: ui/scroll-view.md
+                  - Tab Container: ui/tab-container.md
+              - Dialogs & Menus:
+                  - Dialog: ui/dialog.md
+                  - Menus: ui/menus.md
+              - Advanced:
+                  - Virtual List: ui/virtual-list.md
+                  - Tree View: ui/tree-view.md
+                  - Drag & Drop: ui/drag-drop.md
+                  - World Labels: ui/world-labels.md
+                  - Animation & Tweens: ui/animation.md
               - Custom UI: ui/custom.md
           - Performance:
               - Overview: performance/index.md

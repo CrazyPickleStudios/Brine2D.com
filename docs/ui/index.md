@@ -1,11 +1,11 @@
----
+﻿---
 title: UI Framework
 description: Build user interfaces with Brine2D's UI component system
 ---
 
 # UI Framework
 
-Learn how to create user interfaces with Brine2D's built-in UI framework - buttons, text inputs, dialogs, and more.
+Learn how to create user interfaces with Brine2D's built-in UI framework: buttons, text inputs, dialogs, and more.
 
 ---
 
@@ -13,47 +13,39 @@ Learn how to create user interfaces with Brine2D's built-in UI framework - butto
 
 ```csharp
 using Brine2D.UI;
+using System.Numerics;
 
 public class MenuScene : Scene
 {
-    private readonly UICanvas _uiCanvas;
-    
-    public MenuScene(UICanvas uiCanvas)
+    private readonly UICanvas _canvas;
+
+    public MenuScene(UICanvas canvas)
     {
-        _uiCanvas = uiCanvas;
+        _canvas = canvas;
     }
-    
+
     protected override Task OnLoadAsync(CancellationToken ct)
     {
-        // Create button
-        var playButton = new Button
-        {
-            Text = "Play",
-            X = 350,
-            Y = 250,
-            Width = 100,
-            Height = 40
-        };
-        
+        var playButton = new UIButton("Play", new Vector2(350, 250), new Vector2(100, 40));
+
         playButton.OnClick += () =>
         {
             Logger.LogInformation("Play button clicked!");
-            // Load game scene
         };
-        
-        _uiCanvas.AddElement(playButton);
-        
+
+        _canvas.Add(playButton);
+
         return Task.CompletedTask;
     }
-    
+
     protected override void OnUpdate(GameTime gameTime)
     {
-        _uiCanvas.Update(gameTime);
+        _canvas.Update((float)gameTime.DeltaTime);
     }
-    
+
     protected override void OnRender(GameTime gameTime)
     {
-        _uiCanvas.Render(Renderer);
+        _canvas.Render(Renderer);
     }
 }
 ```
@@ -62,10 +54,53 @@ public class MenuScene : Scene
 
 ## Topics
 
+### System
+
 | Guide | Description |
 |---|---|
-| **[UI Components](components.md)** | 15+ built-in UI components|
-| **[Custom UI](custom.md)** | Create custom UI elements|
+| **[UICanvas](canvas.md)** | DI setup, screen size, input layers, focus, find-by-name |
+| **[Positioning & Anchoring](positioning.md)** | UIAnchor, AnchorOffset, ZOrder, TabIndex |
+
+### Components
+
+| Guide | Description |
+|---|---|
+| **[Quick Reference](components.md)** | All components at a glance |
+| **[Button](button.md)** | UIButton: states, textures, focus |
+| **[Label & Rich Text](label.md)** | UILabel, UIRichTextLabel: BBCode, wrapping, shadows |
+| **[Image](image.md)** | UIImage: tint, rotation, source rect, animation |
+| **[Text Input & Area](text-input.md)** | UITextInput, UITextArea: selection, undo, password |
+| **[Slider & SpinBox](slider.md)** | UISlider, UISpinBox: orientation, step, labels |
+| **[Checkbox & Radio](selection.md)** | UICheckbox, UIRadioButton, UIRadioButtonGroup |
+| **[Dropdown](dropdown.md)** | UIDropdown: items, keyboard navigation |
+| **[Progress Bar](progress.md)** | UIProgressBar: direction, custom text, HUD patterns |
+| **[Tooltip & Toast](tooltip-toast.md)** | UITooltip, UIToast: delay, positioning, dismissal |
+
+### Layout
+
+| Guide | Description |
+|---|---|
+| **[Panel, Stack & Grid](layout.md)** | UIPanel, UIStackPanel, UIGrid |
+| **[Scroll View](scroll-view.md)** | UIScrollView: content sizing, scrollbars |
+| **[Tab Container](tab-container.md)** | UITabContainer: tabs, scrollable tab bar |
+
+### Dialogs & Menus
+
+| Guide | Description |
+|---|---|
+| **[Dialog](dialog.md)** | UIDialog: modal, draggable, custom children |
+| **[Menus](menus.md)** | UIMenuBar, UIContextMenu, UIMenuItem |
+
+### Advanced
+
+| Guide | Description |
+|---|---|
+| **[Virtual List](virtual-list.md)** | UIVirtualList\<T\>: virtualized scrolling, custom row renderer |
+| **[Tree View](tree-view.md)** | UITreeView, UITreeNode: hierarchy, keyboard navigation |
+| **[Drag & Drop](drag-drop.md)** | RegisterDraggable, UIDropTarget, IDragPayload |
+| **[World Labels](world-labels.md)** | UIWorldLabel: world-space projection |
+| **[Animation & Tweens](animation.md)** | UITween, UITweenSequence, UIEasing |
+| **[Custom UI](custom.md)** | Implement IUIComponent and IAnchoredUIComponent |
 
 ---
 
@@ -83,7 +118,7 @@ builder.Services.AddUICanvas();
 public class MenuScene : Scene
 {
     private readonly UICanvas _canvas;
-    
+
     public MenuScene(UICanvas canvas)
     {
         _canvas = canvas;
@@ -103,25 +138,36 @@ public class MenuScene : Scene
 
 ### Available Components
 
-Brine2D includes **15+ production-ready UI components**:
+Brine2D includes **25+ production-ready UI components**:
 
 | Component | Description |
 |-----------|-------------|
-| **Button** | Clickable button with text/icon |
-| **Label** | Static or dynamic text |
-| **TextInput** | Text entry field |
-| **Slider** | Value slider (volume, brightness) |
-| **Checkbox** | Toggle on/off |
-| **RadioButton** | Single selection from group |
-| **ProgressBar** | Loading/health bar |
-| **Panel** | Container for other elements |
-| **Dialog** | Modal popup window |
-| **Tooltip** | Hover information |
-| **Dropdown** | Selection menu |
-| **ScrollView** | Scrollable container |
-| **TabControl** | Tabbed interface |
-| **Image** | Display texture |
-| **LayoutContainer** | Automatic positioning |
+| **UIButton** | Clickable button with text and optional nine-slice textures |
+| **UILabel** | Static or dynamic text |
+| **UIRichTextLabel** | BBCode-formatted text with alignment, shadows, and wrapping |
+| **UITextInput** | Single-line text entry with selection, undo/redo, and password mode |
+| **UITextArea** | Multi-line text editor with selection, scrolling, and undo/redo |
+| **UISlider** | Value slider with optional label and step snapping |
+| **UISpinBox** | Numeric field with increment/decrement buttons |
+| **UICheckbox** | Toggle on/off with label |
+| **UIRadioButton** | Single selection from a `UIRadioButtonGroup` |
+| **UIProgressBar** | Loading or health bar with optional percentage text |
+| **UIDropdown** | Dropdown selection menu |
+| **UIPanel** | Container with background and optional child clipping |
+| **UIScrollView** | Scrollable container with optional horizontal/vertical scrollbars |
+| **UIStackPanel** | Auto-stacks children vertically or horizontally |
+| **UIGrid** | Arranges children in a fixed-column grid |
+| **UITabContainer** | Tabbed interface with scrollable tab bar |
+| **UIDialog** | Modal popup with title bar, message, and buttons |
+| **UIImage** | Display a texture with optional animation, tint, and rotation |
+| **UITooltip** | Hover information attached to any component |
+| **UIToast** | Timed notification shown via `UICanvas.ShowToast` |
+| **UIContextMenu** | Right-click overlay shown via `UICanvas.ShowContextMenu` |
+| **UIMenuBar** | Horizontal menu bar with dropdown submenus |
+| **UIVirtualList\<T\>** | High-performance virtualized scrolling list |
+| **UITreeView** | Hierarchical tree with expand/collapse and keyboard navigation |
+| **UIDropTarget** | Drag-and-drop drop zone |
+| **UIWorldLabel** | World-space label projected to screen coordinates |
 
 [:octicons-arrow-right-24: Full list: UI Components](components.md)
 
@@ -132,14 +178,9 @@ Brine2D includes **15+ production-ready UI components**:
 ### Create Button
 
 ```csharp
-var button = new Button
+var button = new UIButton("Start Game", new Vector2(350, 250), new Vector2(100, 40))
 {
-    Text = "Start Game",
-    X = 350,
-    Y = 250,
-    Width = 100,
-    Height = 40,
-    BackgroundColor = Color.Blue,
+    NormalColor = Color.Blue,
     TextColor = Color.White
 };
 
@@ -148,7 +189,7 @@ button.OnClick += () =>
     Logger.LogInformation("Button clicked!");
 };
 
-_uiCanvas.AddElement(button);
+_canvas.Add(button);
 ```
 
 ---
@@ -156,21 +197,17 @@ _uiCanvas.AddElement(button);
 ### Create Text Input
 
 ```csharp
-var nameInput = new TextInput
+var nameInput = new UITextInput(new Vector2(300, 200), new Vector2(200, 30))
 {
-    X = 300,
-    Y = 200,
-    Width = 200,
-    Height = 30,
     Placeholder = "Enter your name..."
 };
 
-nameInput.OnTextChanged += (text) =>
+nameInput.OnTextChanged += text =>
 {
     Logger.LogInformation("Name: {Name}", text);
 };
 
-_uiCanvas.AddElement(nameInput);
+_canvas.Add(nameInput);
 ```
 
 ---
@@ -178,24 +215,20 @@ _uiCanvas.AddElement(nameInput);
 ### Create Slider
 
 ```csharp
-var volumeSlider = new Slider
+var volumeSlider = new UISlider(new Vector2(300, 250), new Vector2(200, 20))
 {
-    X = 300,
-    Y = 250,
-    Width = 200,
-    Height = 20,
     MinValue = 0f,
     MaxValue = 1f,
     Value = 0.8f
 };
 
-volumeSlider.OnValueChanged += (value) =>
+volumeSlider.OnValueChanged += value =>
 {
     _audio.SetMasterVolume(value);
     Logger.LogInformation("Volume: {Volume:P0}", value);
 };
 
-_uiCanvas.AddElement(volumeSlider);
+_canvas.Add(volumeSlider);
 ```
 
 ---
@@ -203,15 +236,7 @@ _uiCanvas.AddElement(volumeSlider);
 ### Create Dialog
 
 ```csharp
-var dialog = new Dialog
-{
-    Title = "Quit Game?",
-    Message = "Are you sure you want to quit?",
-    X = 250,
-    Y = 200,
-    Width = 300,
-    Height = 150
-};
+var dialog = new UIDialog("Quit Game?", "Are you sure you want to quit?", new Vector2(300, 150));
 
 dialog.AddButton("Yes", () =>
 {
@@ -220,10 +245,10 @@ dialog.AddButton("Yes", () =>
 
 dialog.AddButton("No", () =>
 {
-    dialog.Close();
+    dialog.Visible = false;
 });
 
-_uiCanvas.AddElement(dialog);
+_canvas.Add(dialog);
 ```
 
 ---
@@ -231,33 +256,24 @@ _uiCanvas.AddElement(dialog);
 ### HUD (Health Bar)
 
 ```csharp
-// Health label
-var healthLabel = new Label
+var healthLabel = new UILabel("Health:", new Vector2(10, 10))
 {
-    Text = "Health:",
-    X = 10,
-    Y = 10,
-    TextColor = Color.White
+    Color = Color.White
 };
 
-// Health bar
-var healthBar = new ProgressBar
+var healthBar = new UIProgressBar(new Vector2(80, 10), new Vector2(200, 20))
 {
-    X = 80,
-    Y = 10,
-    Width = 200,
-    Height = 20,
     MinValue = 0,
     MaxValue = 100,
-    Value = 75,  // 75% health
-    ForegroundColor = Color.Green,
-    BackgroundColor = Color.DarkGray
+    Value = 75,
+    FillColor = Color.Green,
+    BackgroundColor = new Color(50, 50, 50)
 };
 
-_uiCanvas.AddElement(healthLabel);
-_uiCanvas.AddElement(healthBar);
+_canvas.Add(healthLabel);
+_canvas.Add(healthBar);
 
-// Update health
+// Update health each frame
 healthBar.Value = _playerHealth;
 ```
 
@@ -267,37 +283,38 @@ healthBar.Value = _playerHealth;
 
 ```csharp
 // Automatic vertical layout
-var menu = new VerticalLayoutContainer
+var menu = new UIStackPanel(new Vector2(350, 200))
 {
-    X = 350,
-    Y = 200,
+    Orientation = StackOrientation.Vertical,
     Spacing = 10
 };
 
-menu.AddChild(new Button { Text = "Play", Width = 100, Height = 40 });
-menu.AddChild(new Button { Text = "Options", Width = 100, Height = 40 });
-menu.AddChild(new Button { Text = "Quit", Width = 100, Height = 40 });
+menu.AddChild(new UIButton("Play",    new Vector2(0, 0), new Vector2(100, 40)));
+menu.AddChild(new UIButton("Options", new Vector2(0, 0), new Vector2(100, 40)));
+menu.AddChild(new UIButton("Quit",    new Vector2(0, 0), new Vector2(100, 40)));
 
-_uiCanvas.AddElement(menu);
-// Buttons automatically positioned vertically with 10px spacing
+_canvas.Add(menu);
+// Buttons are automatically positioned vertically with 10 px spacing
 ```
 
 ---
 
 ## Input Layers
 
-UI elements automatically create input layers for priority handling:
+The `UICanvas` implements `IInputLayer` and should be registered so it can consume input before game logic:
 
 ```csharp
-// UI layer (priority 100 - high)
-var dialog = new Dialog { ... };
-_uiCanvas.AddElement(dialog);
+protected override Task OnLoadAsync(CancellationToken ct)
+{
+    // Register canvas as a high-priority input layer (priority 1000)
+    _inputLayerManager.RegisterLayer(_canvas);
 
-// When dialog is open, game input is blocked
-// Dialog consumes input events first
-
-// When dialog closes, game input resumes
+    // Build UI...
+    return Task.CompletedTask;
+}
 ```
+
+When a `UIDialog` is open it automatically blocks input to anything below it. When the dialog closes, normal input resumes.
 
 [:octicons-arrow-right-24: Learn more: Input Layers](../input/layers.md)
 
@@ -305,58 +322,51 @@ _uiCanvas.AddElement(dialog);
 
 ## Best Practices
 
-### ? DO
+### ✅ DO
 
-1. **Use UICanvas** - One per scene
-2. **Position with X/Y** - Absolute screen coordinates
-3. **Handle events** - OnClick, OnValueChanged, etc.
-4. **Use layouts** - Automatic positioning
-5. **Z-order matters** - Last added = on top
+1. **Use UICanvas**: one per scene, injected via DI
+2. **Position with `Vector2`**: `new Vector2(x, y)` for `Position` and `Size`
+3. **Handle events**: `OnClick`, `OnValueChanged`, `OnTextChanged`, etc.
+4. **Use layout panels**: `UIStackPanel` or `UIGrid` for automatic positioning
+5. **Z-order matters**: last added renders on top when `ZOrder` is equal
 
 ```csharp
-// ? Good pattern
+// ✅ Good pattern
 protected override Task OnLoadAsync(CancellationToken ct)
 {
-    // Create all UI
     CreateMenuUI();
     return Task.CompletedTask;
 }
 
 protected override void OnUpdate(GameTime gameTime)
 {
-    // Update UI
-    _uiCanvas.Update(gameTime);
+    _canvas.Update((float)gameTime.DeltaTime);
 }
 
 protected override void OnRender(GameTime gameTime)
 {
-    // Render game first
     DrawGameObjects();
-    
-    // Render UI last (on top)
-    _uiCanvas.Render(Renderer);
+    _canvas.Render(Renderer); // UI renders on top
 }
 ```
 
 ---
 
-### ? DON'T
+### ❌ DON'T
 
-1. **Don't create multiple UICanvas** - One per scene
-2. **Don't forget to update** - Call Update() in OnUpdate()
-3. **Don't forget to render** - Call Render() in OnRender()
-4. **Don't manually handle input** - UICanvas does it
-5. **Don't hardcode positions** - Use layouts or calculate from screen size
+1. **Don't skip `Update()`**: animations, tooltips, and toasts need it
+2. **Don't skip `Render()`**: nothing will appear
+3. **Don't hardcode positions**: use anchors or layout panels for different screen sizes
 
 ```csharp
-// ? Bad - hardcoded for 800x600
-var button = new Button { X = 400, Y = 300 };
+// ❌ Bad: hardcoded for 1280×720
+var button = new UIButton("Play", new Vector2(640, 360), new Vector2(100, 40));
 
-// ? Good - centered
-var button = new Button 
-{ 
-    X = (screenWidth - buttonWidth) / 2,
-    Y = (screenHeight - buttonHeight) / 2
+// ✅ Good: anchored to center
+var button = new UIButton("Play", Vector2.Zero, new Vector2(100, 40))
+{
+    Anchor = UIAnchor.MiddleCenter,
+    AnchorOffset = new Vector2(-50, -20)
 };
 ```
 
@@ -367,15 +377,12 @@ var button = new Button
 ### Custom Colors
 
 ```csharp
-var button = new Button
+var button = new UIButton("Custom", new Vector2(10, 10), new Vector2(120, 40))
 {
-    Text = "Custom",
-    BackgroundColor = new Color(50, 50, 50, 255),     // Dark gray
-    HoverColor = new Color(70, 70, 70, 255),          // Lighter on hover
-    PressedColor = new Color(30, 30, 30, 255),        // Darker when pressed
-    TextColor = Color.White,
-    BorderColor = Color.Blue,
-    BorderWidth = 2
+    NormalColor  = new Color(50, 50, 50, 255),
+    HoverColor   = new Color(70, 70, 70, 255),
+    PressedColor = new Color(30, 30, 30, 255),
+    TextColor    = Color.White
 };
 ```
 
@@ -384,12 +391,28 @@ var button = new Button
 ### Custom Fonts
 
 ```csharp
-var label = new Label
+var label = new UILabel("Custom Font", new Vector2(100, 100))
 {
-    Text = "Custom Font",
-    Font = await _assets.GetOrLoadFontAsync("assets/fonts/custom.ttf", 24),
-    TextColor = Color.Gold
+    Font  = await _assets.GetOrLoadFontAsync("assets/fonts/custom.ttf", 24),
+    Color = Color.Gold
 };
+```
+
+---
+
+### Anchoring
+
+Every component implementing `IAnchoredUIComponent` supports `Anchor` and `AnchorOffset` for resolution-independent placement:
+
+```csharp
+var label = new UILabel("Score: 0", Vector2.Zero)
+{
+    Anchor       = UIAnchor.TopRight,
+    AnchorOffset = new Vector2(-120, 10)   // 120 px from right edge, 10 px from top
+};
+
+_canvas.Add(label);
+// UICanvas resolves the anchor position automatically during Render
 ```
 
 ---
@@ -398,78 +421,80 @@ var label = new Label
 
 ### UI Not Responding to Input
 
-**Symptom:** Buttons don't respond to clicks
+**Symptom:** Buttons don't respond to clicks.
 
 **Solutions:**
 
-1. **Check Update() is called:**
+1. **Check `Update()` is called:**
 
 ```csharp
 protected override void OnUpdate(GameTime gameTime)
 {
-    _uiCanvas.Update(gameTime);  // Must be called!
+    _canvas.Update((float)gameTime.DeltaTime);  // Must be called!
 }
 ```
 
-2. **Verify element is added:**
+2. **Verify the component is added:**
 
 ```csharp
-_uiCanvas.AddElement(button);  // Don't forget!
+_canvas.Add(button);  // Don't forget!
 ```
 
-3. **Check Z-order:**
+3. **Register the canvas as an input layer:**
 
 ```csharp
-// Elements added last are on top
-_uiCanvas.AddElement(background);  // Bottom
-_uiCanvas.AddElement(button);      // Top (receives input)
+_inputLayerManager.RegisterLayer(_canvas);
+```
+
+4. **Check Z-order: the topmost element receives input first:**
+
+```csharp
+_canvas.Add(background);  // Lower (rendered first)
+_canvas.Add(button);      // Higher (receives input first)
 ```
 
 ---
 
 ### UI Not Visible
 
-**Symptom:** UI elements not drawn
+**Symptom:** UI elements are not drawn.
 
 **Solutions:**
 
-1. **Check Render() is called:**
+1. **Check `Render()` is called:**
 
 ```csharp
 protected override void OnRender(GameTime gameTime)
 {
-    _uiCanvas.Render(Renderer);  // Must be called!
+    _canvas.Render(Renderer);  // Must be called!
 }
 ```
 
-2. **Check coordinates:**
+2. **Check coordinates are on screen:**
 
 ```csharp
-// Make sure element is on screen
-Logger.LogDebug("Button at ({X}, {Y})", button.X, button.Y);
+Logger.LogDebug("Button at {Pos}", button.Position);
 ```
 
 3. **Check visibility:**
 
 ```csharp
-button.Visible = true;  // Default is true
+button.Visible = true;  // Defaults to true
 ```
 
 ---
 
 ### Text Not Showing
 
-**Symptom:** Button has no text
+**Symptom:** Button or label has no text.
 
 **Solutions:**
 
-1. **Check font is loaded:**
+1. **Check font is loaded** (if using a custom font):
 
 ```csharp
 if (button.Font == null)
-{
-    Logger.LogWarning("Button has no font");
-}
+    Logger.LogWarning("Button has no font: using renderer default");
 ```
 
 2. **Check text color:**
@@ -482,10 +507,10 @@ button.TextColor = Color.White;  // Not transparent!
 
 ## Related Topics
 
-- [UI Components](components.md) - Complete component list
-- [Custom UI](custom.md) - Build custom elements
-- [Input Layers](../input/layers.md) - Priority-based input
-- [Mouse Input](../input/mouse.md) - Mouse handling
+- [UI Components](components.md): complete component reference
+- [Custom UI](custom.md): build your own components
+- [Input Layers](../input/layers.md): priority-based input routing
+- [Mouse Input](../input/mouse.md): mouse handling
 
 ---
 
