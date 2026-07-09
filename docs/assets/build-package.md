@@ -7,9 +7,6 @@ description: Optional MSBuild tooling that generates compile-time asset path con
 
 Optional MSBuild package that generates a strongly-typed `Assets` class from your `assets/` folder on every build. Full IntelliSense, compile-time safety, no content pipeline.
 
-!!! note "Not Yet Published"
-    Brine2D.Build will be published alongside Brine2D 1.0 after cross-platform MSBuild validation.
-
 ---
 
 ## Installation

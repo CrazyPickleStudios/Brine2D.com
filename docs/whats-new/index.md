@@ -5,24 +5,17 @@ description: Release history, changelogs, and version information for Brine2D
 
 # What's New in Brine2D
 
-Track Brine2D's evolution from early beta to stable release. See what has changed, what is new, and what is coming next.
+Release history and version information for Brine2D.
 
 ---
 
 ## Latest Release
 
-### [v0.9.7-beta](v-0.9.7-beta.md) — 2026
+### [v1.0](v-1.0.md) — 2026
 
-**Input system solidification + complete Box2D physics integration.**
+**First stable release.** The core engine is feature-complete and the API is locked.
 
-- 🎮 **Input Action Maps** — Rebindable `InputAction` / `InputActionMap` / `InputBinding` layer with 8 binding types
-- 🕹️ **Expanded Gamepad API** — Built-in deadzone on stick helpers, trigger pressed/released, rumble, multi-gamepad lobby helpers
-- 🖱️ **Mouse enhancements** — Horizontal scroll, cursor visibility, relative/captured mode
-- ⚛️ **Box2D 3.x physics** — ECS-native bodies, 5 shape types, collision events, triggers, layers, sub-shapes, one-way platforms, gravity override, joints
-- 🏃 **Kinematic Character Controller** — `KinematicCharacterBody` with `MoveAndSlide`, `MoveAndCollide`, `IsGrounded`, moving platforms, snap, slope lock, step climbing
-- 🔍 **Physics queries** — `OverlapCircle`, `Raycast`, `IgnoreCollision` on `PhysicsWorld`
-
-[:octicons-arrow-right-24: See Full Changelog](v-0.9.7-beta.md)
+[:octicons-arrow-right-24: Release notes](v-1.0.md)
 
 ---
 
@@ -30,6 +23,7 @@ Track Brine2D's evolution from early beta to stable release. See what has change
 
 | Version | Release Date | Highlights |
 |---------|--------------|------------|
+| **[v1.0](v-1.0.md)** | 2026 | Entity persistence, AOT serialization, Brine2D.Build, cross-platform CI |
 | **[v0.9.7-beta](v-0.9.7-beta.md)** | 2026 | Input actions, Box2D physics, kinematic character |
 | **[v0.9.6-beta](v-0.9.6-beta.md)** | 2026 | Complete audio overhaul, post-processing effects |
 | **[v0.9.5-beta](v-0.9.5-beta.md)** | 2026 | Single package, framework properties, asset pipeline |
@@ -44,15 +38,20 @@ Track Brine2D's evolution from early beta to stable release. See what has change
 
 | Version | Status | .NET |
 |---------|--------|------|
-| **v0.9.7-beta** | ✅ Latest | .NET 10 |
-| **v0.9.6-beta** | ⚠️ Maintenance | .NET 10 |
-| **v0.9.5-beta** | ⚠️ Maintenance | .NET 10 |
+| **v1.0** | ✅ Latest (stable) | .NET 10 |
+| **v0.9.7-beta** | ⚠️ Maintenance | .NET 10 |
+| **v0.9.6-beta** | ❌ End of life | .NET 10 |
+| **v0.9.5-beta** | ❌ End of life | .NET 10 |
 | **v0.9.0-beta** | ❌ End of life | .NET 10 |
 | **v0.8.0 and earlier** | ❌ End of life | — |
 
 ---
 
 ## Breaking Changes Log
+
+### v1.0
+
+No breaking changes. v1.0 is the first stable release.
 
 ### v0.9.7
 
@@ -101,16 +100,10 @@ Brine2D follows **Semantic Versioning**:
 - **Minor (0.9, 0.10)** — New features, may include breaking changes in beta
 - **Patch (0.9.1, 0.9.2)** — Bug fixes only, no breaking changes
 
-### Beta Phase (Current)
+### Stable Phase (Current — v1.0+)
 
-- APIs **may change** between releases
-- Major features still being added
-- Performance improvements ongoing
-- Community feedback shapes direction
-
-### Stable Phase (v1.0+)
-
-- **No breaking changes** without major version bump
+- **No breaking changes** without a major version bump
+- Deprecations announced one minor version before removal
 - Long-term support for each major version
 - Predictable release schedule
 - Production-ready stability

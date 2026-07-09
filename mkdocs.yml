@@ -194,6 +194,7 @@ nav:
           - Components: ecs/components.md
           - Systems: ecs/systems.md
           - Queries: ecs/queries.md
+          - Persistence: ecs/persistence.md
           - Multi-Threading: ecs/multi-threading.md
 
       - Assets:
@@ -269,6 +270,17 @@ nav:
               - Window Events: events/window-events.md
 
   - Roadmap: roadmap/index.md
+
+  - What's New:
+      - Overview: whats-new/index.md
+      - v1.0: whats-new/v-1.0.md
+      - v0.9.7-beta: whats-new/v-0.9.7-beta.md
+      - v0.9.6-beta: whats-new/v-0.9.6-beta.md
+      - v0.9.5-beta: whats-new/v-0.9.5-beta.md
+      - v0.9.0-beta: whats-new/v-0.9.0-beta.md
+      - v0.8.0-beta: whats-new/v-0.8.0-beta.md
+      - v0.7.0-beta: whats-new/v-0.7.0-beta.md
+      - v0.6.0-beta: whats-new/v-0.6.0-beta.md
 
   - API Reference:
       - Overview: api/index.md
