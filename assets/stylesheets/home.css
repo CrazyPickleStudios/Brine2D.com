@@ -1,0 +1,299 @@
+/*{#
+    Adapted for Brine2D documentation site.
+    Original portions © Privacy Guides contributors, licensed under MIT.
+#}*/
+
+/* Homepage hero section */
+.mdx-container {
+    background:
+        radial-gradient(ellipse at 30% 50%, rgba(114, 205, 117, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 50%, rgba(114, 205, 117, 0.03) 0%, transparent 50%),
+        #c8e6c9;
+    background-size: contain;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+[data-md-color-scheme="slate"] .mdx-container {
+    background:
+        radial-gradient(ellipse at 30% 50%, rgba(114, 205, 117, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 50%, rgba(114, 205, 117, 0.03) 0%, transparent 50%),
+        rgba(9, 9, 9, 0.95);
+}
+
+.mdx-hero {
+    color: var(--pg-hero-color);
+    margin: 0 0.8rem;
+}
+
+    .mdx-hero h1 {
+        color: currentcolor;
+        margin-bottom: 1rem;
+        font-size: 2.6rem;
+    }
+
+@media screen and (max-width: 29.9375em) {
+    .mdx-hero h1 {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (min-width: 60em) {
+    .mdx-hero {
+        align-items: center;
+        display: flex;
+    }
+
+    .mdx-hero__content {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+
+        p, h1 {
+            max-width: 38rem;
+        }
+    }
+
+    .mdx-hero__image {
+        order: 1;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 3rem;
+    }
+
+        .mdx-hero__image img {
+            width: 22rem;
+            max-width: 100%;
+            filter: drop-shadow(0 0 2rem rgba(114, 205, 117, 0.2));
+        }
+}
+
+@media screen and (min-width: 76.25em) {
+    .mdx-hero__image img {
+        width: 26rem;
+    }
+}
+
+.mdx-hero .md-button {
+    color: var(--pg-hero-color);
+    border-color: var(--pg-hero-color);
+}
+
+[data-md-color-scheme="slate"] .mdx-hero .md-button--primary {
+    color: var(--md-primary-fg-color);
+}
+
+.mdx-hero .md-button--primary {
+    color: var(--md-primary-fg-color);
+    background-color: var(--pg-hero-color);
+    border-color: transparent;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+nav[class="md-tabs"] {
+    border-bottom: none;
+}
+
+/* Homepage Body */
+.md-typeset a.headerlink {
+    display: none;
+}
+/* article.md-content__inner {
+    max-width: 50rem;
+    margin: auto;
+    padding-bottom: 3rem;
+}
+@media screen and (max-width: 65rem) {
+    article.md-content__inner {
+        margin-right: 0.8rem;
+        margin-left: 0.8rem;
+    }
+}
+article.md-content__inner > * {
+    max-width: 38rem;
+} */
+/* article.md-content__inner > *:nth-child(n+8):nth-child(-n+12) {
+    margin-left: auto;
+    margin-right: 0;
+    text-align: right;
+} */
+.pg-end-right-align, .mdx-cta {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+    .mdx-cta a:has(.twemoji) {
+        display: inline-block;
+    }
+
+    .mdx-cta .twemoji {
+        --md-icon-size: 1.8em;
+        margin: 0.4rem;
+    }
+
+/* Feature sections */
+.brine-feature-section {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 3rem 0;
+    border-top: 1px solid var(--pg-light-border);
+}
+
+.brine-feature-section--reverse {
+    flex-direction: row-reverse;
+}
+
+.brine-feature-text {
+    flex: 1;
+}
+
+.brine-feature-image img,
+.brine-feature-icons {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+    .brine-feature-icons svg,
+    .brine-feature-icons img {
+        width: 3rem;
+        height: 3rem;
+        fill: var(--md-default-fg-color--light);
+    }
+
+.brine-check-list {
+    list-style: none !important;
+    padding: 0;
+    margin: 0;
+}
+
+    .brine-check-list li {
+        display: flex;
+        align-items: baseline;
+        gap: 0.35em;
+        padding: 0;
+        margin: 0.25rem 0;
+    }
+
+        .brine-check-list li::before {
+            content: "✓";
+            color: var(--pg-green);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+.brine-platform-section {
+    padding: 3rem 0;
+    border-top: 1px solid var(--pg-light-border);
+}
+
+    .brine-platform-section > p {
+        margin-bottom: 2rem;
+    }
+
+.brine-platform-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.brine-platform-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.brine-platform-group__label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--md-default-fg-color);
+    order: -1;
+}
+
+.brine-platform-group__icons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.brine-platform-item {
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+    .brine-platform-item img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .brine-platform-item--planned {
+        opacity: 0.35;
+    }
+
+        .brine-platform-item--planned::after {
+            content: "⏳";
+            position: absolute;
+            bottom: -0.2rem;
+            right: -0.3rem;
+            font-size: 0.65rem;
+            line-height: 1;
+        }
+
+@media screen and (max-width: 45em) {
+    .brine-platform-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.brine-badge {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: .1em .4em;
+    border-radius: .2rem;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.brine-badge--planned {
+    background: rgba(114, 205, 117, 0.12);
+    color: var(--pg-green);
+    border: 1px solid rgba(114, 205, 117, 0.3);
+}
+
+.brine-badge--gated {
+    background: rgba(255, 200, 80, 0.1);
+    color: #e0a020;
+    border: 1px solid rgba(255, 200, 80, 0.25);
+}
+
+.brine-check-list--planned li {
+    opacity: 0.6;
+}
+
+.brine-oss-section {
+    padding: 3rem 0;
+    border-top: 1px solid var(--pg-light-border);
+}
+
+@media screen and (max-width: 60em) {
+    .brine-feature-section,
+    .brine-feature-section--reverse {
+        flex-direction: column;
+    }
+}
