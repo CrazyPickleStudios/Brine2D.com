@@ -61,13 +61,13 @@ public class GameScene : Scene
 | Event | Payload | When Fired |
 |-------|---------|------------|
 | `WindowResizedEvent` | `int Width, int Height` | The window's client size changed |
-| `WindowFocusGainedEvent` | — | The window gained input focus |
-| `WindowFocusLostEvent` | — | The window lost input focus |
-| `WindowMinimizedEvent` | — | The window was minimized |
-| `WindowRestoredEvent` | — | The window was restored from minimized state |
-| `WindowHiddenEvent` | — | The window was hidden (e.g., system sleep, lock screen, display off) — rendering is suspended until `WindowShownEvent` |
-| `WindowShownEvent` | — | The window became visible again after being hidden |
-| `ApplicationQuitRequestedEvent` | — | The user requested to quit (e.g., clicked the window close button) |
+| `WindowFocusGainedEvent` | â€” | The window gained input focus |
+| `WindowFocusLostEvent` | â€” | The window lost input focus |
+| `WindowMinimizedEvent` | â€” | The window was minimized |
+| `WindowRestoredEvent` | â€” | The window was restored from minimized state |
+| `WindowHiddenEvent` | â€” | The window was hidden (e.g., system sleep, lock screen, display off) â€” rendering is suspended until `WindowShownEvent` |
+| `WindowShownEvent` | â€” | The window became visible again after being hidden |
+| `ApplicationQuitRequestedEvent` | â€” | The user requested to quit (e.g., clicked the window close button) |
 
 ---
 
