@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Validate UTF-8 encoding
+        shell: pwsh
+        run: ./scripts/check_utf8.ps1
       - name: Checkout Brine2D engine
         uses: actions/checkout@v4
         with:

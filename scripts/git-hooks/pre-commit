@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+# Pre-commit hook: validate UTF-8 encoding of documentation source files.
+#
+# To install, run once from the repo root:
+#   git config core.hooksPath scripts/git-hooks
+#
+# This makes git use this directory for all hooks instead of .git/hooks
+# (which isn't tracked by git), so the hook works for every clone.
+
+set -e
+
+if command -v pwsh >/dev/null 2>&1; then
+	pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/check_utf8.ps1
+elif command -v powershell >/dev/null 2>&1; then
+	powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check_utf8.ps1
+else
+	echo "Warning: no PowerShell interpreter found; skipping UTF-8 check." >&2
+	exit 0
+fi
