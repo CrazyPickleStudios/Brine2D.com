@@ -110,7 +110,7 @@ Brine2D provides window and application events out of the box:
 | **WindowFocusLostEvent** | Window lost focus |
 | **WindowMinimizedEvent** | Window minimized |
 | **WindowRestoredEvent** | Window restored from minimize |
-| **WindowHiddenEvent** | Window hidden (e.g., system sleep, lock screen) — rendering suspended |
+| **WindowHiddenEvent** | Window hidden (e.g., system sleep, lock screen) â€” rendering suspended |
 | **WindowShownEvent** | Window becomes visible again after being hidden |
 | **ApplicationQuitRequestedEvent** | Application quit requested (e.g., window close button) |
 
@@ -427,7 +427,7 @@ _subscription = _eventBus.Subscribe<PlayerDiedEvent>(e =>
 **Symptom:** Exception in one handler breaks others
 
 **Good news:** `IEventBus.Publish` already catches and logs exceptions per-handler internally
-— an exception thrown by one subscriber does not prevent the remaining subscribers from
+â€” an exception thrown by one subscriber does not prevent the remaining subscribers from
 running. If you're not seeing this behavior, check your logging configuration for the
 `EventBus` category.
 
