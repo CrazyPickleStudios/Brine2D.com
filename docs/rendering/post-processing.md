@@ -11,6 +11,7 @@ Post-processing effects are applied to the entire screen after the main scene is
 
 - **Grayscale** — adjustable intensity desaturation
 - **Blur** — two-pass Gaussian blur (horizontal + vertical)
+- **Letterbox** — fixed-aspect-ratio/pillarbox scaling, decoupling game-world rendering resolution from window resolution
 
 **Custom effects** are supported via the `ISDL3PostProcessEffect` interface.
 
@@ -105,6 +106,31 @@ builder.Services.AddBlurEffect(blurRadius: 3.0f);
 | `blurRadius` | 2.0f | 1.0 = subtle, 5.0 = heavy blur |
 
 `BlurRadius` can be changed at runtime via the effect instance.
+
+### Letterbox
+
+Fixes your game's rendering to a specific **design resolution**, regardless of the actual window size, and scales the result to fit the window — centered, aspect-ratio preserved, with bars filling the remainder (letterbox bars on top/bottom, or pillarbox bars on left/right, depending on the window's aspect ratio vs. the design resolution).
+
+```csharp
+builder.Services.AddPostProcessing(options => options.Enabled = true);
+builder.Services.AddLetterbox(designWidth: 1280, designHeight: 720);
+```
+
+| Parameter | Default | Description |
+|-----------|---------|--------------|
+| `designWidth` | *required* | Fixed game-world rendering width |
+| `designHeight` | *required* | Fixed game-world rendering height |
+| `barColor` | opaque black | Color used to fill the letterbox/pillarbox bars |
+
+Unlike `AddGrayscaleEffect`/`AddBlurEffect`, registering `AddLetterbox(...)` changes how the *entire rendering pipeline* is set up, not just what happens in one shader pass:
+
+- The main render target (and all ping-pong targets used by other post-processing effects) are sized to the **design resolution**, not the live window size. All game-world drawing — sprites, particles, primitives — happens at that fixed resolution. Window resizes no longer recreate these targets.
+- The letterbox effect always runs last in the pipeline (`Order = int.MaxValue`), regardless of what other effects you've registered or what `Order` you assign them.
+- Every frame, it computes a centered, aspect-preserving fit rect for the design resolution within the current window/swapchain size, clears the swapchain to `BarColor`, then blits the design-resolution image into that centered rect.
+
+This replaces the older pattern of hand-rolling a pair of custom `IRenderSystem`s to coordinate a fixed-size render target and a manual blit — that workaround is no longer necessary.
+
+**Default camera automatically matches the design resolution.** If you're using the framework-provided default `ICamera` (registered by `AddBrine2D()`, not one you construct yourself), it automatically detects when `AddLetterbox(...)` is configured and sizes itself (`ViewportWidth`/`ViewportHeight`) and self-centers `Position` to the *design* resolution rather than the live window size. You don't need to manually reconfigure the camera after opting into letterbox — this only applies to the DI-provided default camera; if you construct your own `Camera2D` directly, pass the design resolution to its constructor yourself.
 
 ---
 

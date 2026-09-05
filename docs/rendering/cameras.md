@@ -174,6 +174,23 @@ protected override void OnInitialize()
 | `ViewportWidth` | `int` | Screen width in pixels (readonly) |
 | `ViewportHeight` | `int` | Screen height in pixels (readonly) |
 
+> **Note — a directly-constructed `Camera2D` starts at `Vector2.Zero`.** `new Camera2D(width, height)` leaves `Position` at the origin, as shown above (you must set `Position` yourself, as in the example). This is different from the **framework-provided default camera** registered by `AddBrine2D()` (resolved via DI, not constructed directly): that camera self-centers automatically, with `Position` set to the middle of the viewport (or the design resolution if [`AddLetterbox(...)`](post-processing.md#letterbox) is configured). If you're relying on the ambient default camera rather than constructing your own, you don't need to manually center it.
+
+### Resizing the Viewport
+
+`SetViewport(width, height)` updates `ViewportWidth`/`ViewportHeight` on an existing camera — useful if you handle window resizing yourself:
+
+```csharp
+_camera.SetViewport(newWidth, newHeight);
+```
+
+**`SetViewport` does not re-center `Position`.** It only updates the viewport dimensions; whatever `Position` the camera already had is left unchanged. This is true even for the framework's self-centering default camera — self-centering only happens once, at construction. If you want the camera to stay centered after a resize, re-center `Position` yourself after calling `SetViewport`:
+
+```csharp
+_camera.SetViewport(newWidth, newHeight);
+_camera.Position = new Vector2(newWidth / 2f, newHeight / 2f);
+```
+
 ---
 
 ## Camera Movement

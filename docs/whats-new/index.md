@@ -11,11 +11,11 @@ Release history and version information for Brine2D.
 
 ## Latest Release
 
-### [v1.1](v-1.1.md) — 2026
+### [v1.1.1](v-1.1.1.md) — 2026
 
-Physics on by default, lazy sprite texture loading, a first-class letterbox/pillarbox post-processing effect, and a documentation pass covering events, default systems, and asset tooling.
+Bug-fix release: the default camera now correctly matches the letterbox design resolution instead of the live window size.
 
-[:octicons-arrow-right-24: Release notes](v-1.1.md)
+[:octicons-arrow-right-24: Release notes](v-1.1.1.md)
 
 ---
 
@@ -23,6 +23,7 @@ Physics on by default, lazy sprite texture loading, a first-class letterbox/pill
 
 | Version | Release Date | Highlights |
 |---------|--------------|------------|
+| **[v1.1.1](v-1.1.1.md)** | 2026 | Fix: default camera respects letterbox design resolution |
 | **[v1.1](v-1.1.md)** | 2026 | Physics on by default, lazy sprite loading, letterbox effect |
 | **[v1.0](v-1.0.md)** | 2026 | Entity persistence, AOT serialization, Brine2D.Build, cross-platform CI |
 
