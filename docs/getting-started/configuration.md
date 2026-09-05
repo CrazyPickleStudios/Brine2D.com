@@ -151,9 +151,18 @@ builder.ConfigureScene(world =>
 
 ### Exclude Default Systems
 
+Seven systems are registered into every scene by default: `SpriteRenderingSystem`, `AudioSystem`, `ParticleSystem`, `Box2DPhysicsSystem`, `AnimationSystem`, `CameraSystem`, and `DebugRenderer` (disabled by default). `ExcludeDefaultSystem<T>()` removes one project-wide, avoiding its construction cost entirely:
+
 ```csharp
 builder.ExcludeDefaultSystem<ParticleSystem>();
-builder.ExcludeDefaultSystem<CollisionDetectionSystem>();
+builder.ExcludeDefaultSystem<Box2DPhysicsSystem>();
+```
+
+To conditionally disable a system at runtime instead (keeping the option to re-enable it later), use `ConfigureScene` with `IsEnabled = false`:
+
+```csharp
+builder.ConfigureScene(world =>
+    world.GetSystem<ParticleSystem>()!.IsEnabled = false);
 ```
 
 ### Add Custom Default Systems

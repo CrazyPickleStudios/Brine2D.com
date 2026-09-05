@@ -121,7 +121,7 @@ For compile-time asset path generation:
 dotnet add package Brine2D.Build
 ```
 
-This auto-generates a strongly-typed `Assets` class from your `assets/` folder, giving you IntelliSense and compile-time safety for asset paths. See the [Brine2D.Build README](https://github.com/CrazyPickleStudios/Brine2D) for details.
+This auto-generates a strongly-typed `Assets` class from your `assets/` folder, giving you IntelliSense and compile-time safety for asset paths. See [Brine2D.Build](../assets/build-package.md) for full details (configuration, generated output, incremental builds).
 
 ---
 

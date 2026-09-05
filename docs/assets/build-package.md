@@ -5,6 +5,11 @@ description: Optional MSBuild tooling that generates compile-time asset path con
 
 # Brine2D.Build
 
+!!! warning "Not yet published"
+    This package is complete and ready, but not yet published to NuGet. It will ship alongside
+    Brine2D 1.0 after cross-platform MSBuild validation (Windows/macOS/Linux, VS/Rider/CLI).
+    Track progress on [GitHub](https://github.com/CrazyPickleStudios/Brine2D).
+
 Optional MSBuild package that generates a strongly-typed `Assets` class from your `assets/` folder on every build. Full IntelliSense, compile-time safety, no content pipeline.
 
 ---
@@ -72,6 +77,14 @@ All optional:
   <Brine2DGenerateAssets>false</Brine2DGenerateAssets>
 </PropertyGroup>
 ```
+
+---
+
+## Incremental Builds
+
+The generation target uses MSBuild `Inputs`/`Outputs`; it only runs when a file in your assets folder is newer than the generated `.cs` file.
+
+Visual Studio's Fast Up-to-Date Check also has full visibility into the assets folder via `UpToDateCheckInput`/`UpToDateCheckBuilt` items, so adding, removing, or renaming an asset reliably triggers regeneration on the next build — no manual `obj`/`bin` clean required.
 
 ---
 

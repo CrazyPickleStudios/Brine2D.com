@@ -229,6 +229,28 @@ These are **available in all lifecycle methods** (after constructor):
 
 **You never inject these** - they're set by SceneManager before any lifecycle methods run.
 
+!!! note "Need to switch scenes?"
+    `ISceneManager` is **not** a framework property - it's a regular service, constructor-injected
+    like any custom service (see [Dependency Injection](../fundamentals/dependency-injection.md)):
+
+    ```csharp
+    public class GameScene : Scene
+    {
+        private readonly ISceneManager _sceneManager;
+
+        public GameScene(ISceneManager sceneManager)
+        {
+            _sceneManager = sceneManager;
+        }
+
+        protected override void OnUpdate(GameTime gameTime)
+        {
+            if (Input.IsKeyPressed(Key.Enter))
+                _sceneManager.LoadScene<NextScene>();
+        }
+    }
+    ```
+
 ---
 
 ### Update Loop

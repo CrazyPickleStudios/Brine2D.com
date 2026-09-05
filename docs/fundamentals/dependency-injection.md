@@ -98,6 +98,22 @@ public class GameScene : Scene
 
 `IEntityWorld` (the `World` property) is also scoped - each scene gets an isolated world that's destroyed on unload.
 
+!!! note "Scoped services get a fresh instance every time you load a scene"
+    `SceneManager` creates a **new DI scope on every `LoadScene<T>()` call** - even when
+    reloading the same scene type. This means a `Scoped` service gets a brand-new instance
+    each time, not a shared instance reused across loads of the same scene:
+
+    ```csharp
+    builder.Services.AddScoped<ILevelManager, LevelManager>();
+
+    // Each call below resolves a DIFFERENT ILevelManager instance -
+    // the previous scene's scope (and its ILevelManager) is disposed first.
+    sceneManager.LoadScene<GameScene>();
+    sceneManager.LoadScene<GameScene>();
+    ```
+
+    If you need state to survive across scene reloads, use a `Singleton` instead.
+
 ---
 
 ## Registering Services

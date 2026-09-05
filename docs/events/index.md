@@ -16,36 +16,33 @@ using Brine2D.Events;
 
 public class GameScene : Scene
 {
-    private readonly EventBus _eventBus;
-    
-    public GameScene(EventBus eventBus)
+    private readonly IEventBus _eventBus;
+    private IDisposable? _subscription;
+
+    public GameScene(IEventBus eventBus)
     {
         _eventBus = eventBus;
     }
-    
-    protected override Task OnInitializeAsync(CancellationToken ct)
+
+    protected override void OnEnter()
     {
         // Subscribe to window resize event
-        _eventBus.Subscribe<WindowResizedEvent>(OnWindowResized);
-        
-        return Task.CompletedTask;
+        _subscription = _eventBus.Subscribe<WindowResizedEvent>(OnWindowResized);
     }
-    
+
     private void OnWindowResized(WindowResizedEvent e)
     {
-        Logger.LogInformation("Window resized to {Width}x{Height}", 
+        Logger.LogInformation("Window resized to {Width}x{Height}",
             e.Width, e.Height);
-        
+
         // Adjust camera, UI, etc.
         UpdateCameraAspectRatio(e.Width, e.Height);
     }
-    
-    protected override Task OnUnloadAsync(CancellationToken ct)
+
+    protected override void OnExit()
     {
-        // Unsubscribe to prevent memory leaks
-        _eventBus.Unsubscribe<WindowResizedEvent>(OnWindowResized);
-        
-        return Task.CompletedTask;
+        // Dispose the subscription token to prevent memory leaks
+        _subscription?.Dispose();
     }
 }
 ```
@@ -54,52 +51,70 @@ public class GameScene : Scene
 
 ## Topics
 
-| Guide | Description |
-|-------|-------------|
-| **[Window Events](window-events.md)** | Handle window resize, focus, minimize, etc. | ⭐ Beginner |
+| Guide | Description | Level |
+|-------|-------------|-------|
+| **[Window Events](window-events.md)** | Handle window resize, focus, minimize, etc. | ? Beginner |
 
 ---
 
 ## Key Concepts
 
-### EventBus
+### IEventBus
 
-The `EventBus` provides pub/sub event system:
+`IEventBus` is the pub/sub abstraction for the engine's event bus. Inject the interface
+(rather than the concrete `EventBus` type) to keep your scenes and systems testable:
 
 ```csharp
-public class EventBus
+public interface IEventBus
 {
-    // Subscribe to events
-    void Subscribe<TEvent>(Action<TEvent> handler);
-    
-    // Unsubscribe
-    void Unsubscribe<TEvent>(Action<TEvent> handler);
-    
+    // Subscribe to events - returns a disposal token that unsubscribes automatically
+    IDisposable Subscribe<TEvent>(Action<TEvent> handler) where TEvent : class;
+
+    // Manually unsubscribe (prefer disposing the Subscribe token instead)
+    void Unsubscribe<TEvent>(Action<TEvent> handler) where TEvent : class;
+
     // Publish events
-    void Publish<TEvent>(TEvent eventData);
+    void Publish<TEvent>(TEvent eventData) where TEvent : class;
+
+    // Clear all subscribers for a specific event type
+    void ClearSubscribers<TEvent>() where TEvent : class;
 }
 ```
 
-**Register as singleton** (shared across scenes):
+**Already registered for you** - `IEventBus` is a framework-provided singleton, automatically
+available across all scenes. You don't need to call `AddSingleton` yourself; just
+constructor-inject `IEventBus` like any other service:
 
 ```csharp
-builder.Services.AddSingleton<EventBus>();
+public class GameScene : Scene
+{
+    private readonly IEventBus _eventBus;
+
+    public GameScene(IEventBus eventBus)
+    {
+        _eventBus = eventBus;
+    }
+}
 ```
 
 ---
 
 ### Built-In Events
 
-Brine2D provides window events out of the box:
+Brine2D provides window and application events out of the box:
 
 | Event | When Fired |
 |-------|------------|
-| **WindowResizedEvent** | Window size changed |
-| **WindowFocusedEvent** | Window gained focus |
-| **WindowUnfocusedEvent** | Window lost focus |
+| **WindowResizedEvent(int Width, int Height)** | Window size changed |
+| **WindowFocusGainedEvent** | Window gained focus |
+| **WindowFocusLostEvent** | Window lost focus |
 | **WindowMinimizedEvent** | Window minimized |
 | **WindowRestoredEvent** | Window restored from minimize |
-| **WindowClosedEvent** | Window close requested |
+| **WindowHiddenEvent** | Window hidden (e.g., system sleep, lock screen) � rendering suspended |
+| **WindowShownEvent** | Window becomes visible again after being hidden |
+| **ApplicationQuitRequestedEvent** | Application quit requested (e.g., window close button) |
+
+All of the above live in the `Brine2D.Events` namespace.
 
 [:octicons-arrow-right-24: Full list: Window Events](window-events.md)
 
@@ -110,19 +125,17 @@ Brine2D provides window events out of the box:
 ### Handle Window Resize
 
 ```csharp
-protected override Task OnInitializeAsync(CancellationToken ct)
+protected override void OnEnter()
 {
-    _eventBus.Subscribe<WindowResizedEvent>(e =>
+    _subscription = _eventBus.Subscribe<WindowResizedEvent>(e =>
     {
         // Update camera aspect ratio
         var aspectRatio = (float)e.Width / e.Height;
         _camera.AspectRatio = aspectRatio;
-        
+
         // Update UI layout
         _uiCanvas.UpdateLayout(e.Width, e.Height);
     });
-    
-    return Task.CompletedTask;
 }
 ```
 
@@ -148,11 +161,11 @@ _eventBus.Publish(new PlayerDiedEvent
 });
 
 // Subscribe to event
-_eventBus.Subscribe<PlayerDiedEvent>(e =>
+_subscription = _eventBus.Subscribe<PlayerDiedEvent>(e =>
 {
-    Logger.LogInformation("Player died at {Pos} with score {Score}", 
+    Logger.LogInformation("Player died at {Pos} with score {Score}",
         e.Position, e.Score);
-    
+
     ShowGameOverScreen(e.Score);
 });
 ```
@@ -166,21 +179,23 @@ _eventBus.Subscribe<PlayerDiedEvent>(e =>
 public class Player
 {
     private readonly GameManager _gameManager;
-    
+
     public void Die()
     {
-        _gameManager.OnPlayerDied(this);  // ❌ Tight coupling
+        _gameManager.OnPlayerDied(this);  // ? Tight coupling
     }
 }
 
 // Use events for loose coupling
 public class Player
 {
-    private readonly EventBus _eventBus;
-    
+    private readonly IEventBus _eventBus;
+
+    public Player(IEventBus eventBus) => _eventBus = eventBus;
+
     public void Die()
     {
-        _eventBus.Publish(new PlayerDiedEvent { ... });  // ✅ Decoupled
+        _eventBus.Publish(new PlayerDiedEvent { ... });  // ? Decoupled
     }
 }
 
@@ -208,7 +223,7 @@ _eventBus.Subscribe<WeaponFiredEvent>(e =>
     foreach (var enemy in _enemies)
     {
         var distance = Vector2.Distance(enemy.Position, e.Position);
-        
+
         if (distance < e.Loudness)
         {
             enemy.Investigate(e.Position);
@@ -221,26 +236,26 @@ _eventBus.Subscribe<WeaponFiredEvent>(e =>
 
 ## Best Practices
 
-### ✅ DO
+### ? DO
 
-1. **Unsubscribe in OnUnloadAsync()** - Prevent memory leaks
-2. **Use EventBus for decoupling** - Loose coupling between systems
+1. **Dispose the Subscribe token in OnExit()** - Prevents memory leaks
+2. **Use IEventBus for decoupling** - Loose coupling between systems
 3. **Create typed events** - Clear event data structure
-4. **Subscribe in OnInitializeAsync()** - Early setup
-5. **Use singleton EventBus** - Shared across scenes
+4. **Subscribe in OnEnter()** - Framework properties and services are available here
+5. **Constructor-inject IEventBus** - It's already registered as a singleton for you
 
 ```csharp
-// ✅ Good pattern
-protected override Task OnInitializeAsync(CancellationToken ct)
+// ? Good pattern
+private IDisposable? _subscription;
+
+protected override void OnEnter()
 {
-    _eventBus.Subscribe<WindowResizedEvent>(OnWindowResized);
-    return Task.CompletedTask;
+    _subscription = _eventBus.Subscribe<WindowResizedEvent>(OnWindowResized);
 }
 
-protected override Task OnUnloadAsync(CancellationToken ct)
+protected override void OnExit()
 {
-    _eventBus.Unsubscribe<WindowResizedEvent>(OnWindowResized);
-    return Task.CompletedTask;
+    _subscription?.Dispose();
 }
 
 private void OnWindowResized(WindowResizedEvent e)
@@ -251,30 +266,29 @@ private void OnWindowResized(WindowResizedEvent e)
 
 ---
 
-### ❌ DON'T
+### ? DON'T
 
-1. **Don't forget to unsubscribe** - Memory leaks
+1. **Don't forget to dispose the subscription** - Memory leaks
 2. **Don't use for high-frequency events** - Performance overhead
 3. **Don't mutate event data** - Events should be immutable
 4. **Don't use generic object events** - Use typed events
 5. **Don't create circular event chains** - Stack overflow
 
 ```csharp
-// ❌ Bad - forgot to unsubscribe
-protected override Task OnInitializeAsync(CancellationToken ct)
+// ? Bad - forgot to dispose the subscription
+protected override void OnEnter()
 {
     _eventBus.Subscribe<WindowResizedEvent>(OnWindowResized);
-    return Task.CompletedTask;
 }
-// OnUnloadAsync missing - memory leak!
+// OnExit missing the Dispose() call - memory leak!
 
-// ❌ Bad - high frequency
+// ? Bad - high frequency
 protected override void OnUpdate(GameTime gameTime)
 {
     _eventBus.Publish(new FrameUpdateEvent());  // 60 times per second - slow!
 }
 
-// ❌ Bad - circular events
+// ? Bad - circular events
 _eventBus.Subscribe<EventA>(e => _eventBus.Publish(new EventB()));
 _eventBus.Subscribe<EventB>(e => _eventBus.Publish(new EventA()));  // Stack overflow!
 ```
@@ -286,7 +300,7 @@ _eventBus.Subscribe<EventB>(e => _eventBus.Publish(new EventA()));  // Stack ove
 ### Observer Pattern
 
 ```csharp
-// Classic observer pattern via EventBus
+// Classic observer pattern via IEventBus
 public class HealthChangedEvent
 {
     public Entity Entity { get; set; }
@@ -297,9 +311,11 @@ public class HealthChangedEvent
 // Publisher
 public class HealthComponent : Component
 {
-    private readonly EventBus _eventBus;
+    private readonly IEventBus _eventBus;
     private int _health;
-    
+
+    public HealthComponent(IEventBus eventBus) => _eventBus = eventBus;
+
     public int Health
     {
         get => _health;
@@ -307,7 +323,7 @@ public class HealthComponent : Component
         {
             var old = _health;
             _health = value;
-            
+
             _eventBus.Publish(new HealthChangedEvent
             {
                 Entity = Entity,
@@ -356,25 +372,21 @@ _eventBus.Subscribe<ICommand>(cmd => cmd.Execute());
 
 **Symptom:** Memory usage grows after scene changes
 
-**Cause:** Event handlers not unsubscribed
+**Cause:** Event subscriptions not disposed
 
 **Solution:**
 
 ```csharp
-// Track handlers to unsubscribe
-private Action<WindowResizedEvent> _resizeHandler;
+private IDisposable? _subscription;
 
-protected override Task OnInitializeAsync(CancellationToken ct)
+protected override void OnEnter()
 {
-    _resizeHandler = OnWindowResized;
-    _eventBus.Subscribe(_resizeHandler);
-    return Task.CompletedTask;
+    _subscription = _eventBus.Subscribe<WindowResizedEvent>(OnWindowResized);
 }
 
-protected override Task OnUnloadAsync(CancellationToken ct)
+protected override void OnExit()
 {
-    _eventBus.Unsubscribe(_resizeHandler);  // ✅ Prevents leak
-    return Task.CompletedTask;
+    _subscription?.Dispose();  // ? Prevents leak
 }
 ```
 
@@ -389,11 +401,11 @@ protected override Task OnUnloadAsync(CancellationToken ct)
 1. **Check event type matches:**
 
 ```csharp
-// ❌ Different types won't match
+// ? Different types won't match
 _eventBus.Publish(new PlayerDiedEvent());
 _eventBus.Subscribe<EnemyDiedEvent>(e => { }); // Won't fire
 
-// ✅ Same type
+// ? Same type
 _eventBus.Publish(new PlayerDiedEvent());
 _eventBus.Subscribe<PlayerDiedEvent>(e => { }); // Will fire
 ```
@@ -402,7 +414,7 @@ _eventBus.Subscribe<PlayerDiedEvent>(e => { }); // Will fire
 
 ```csharp
 Logger.LogInformation("Subscribed to PlayerDiedEvent");
-_eventBus.Subscribe<PlayerDiedEvent>(e =>
+_subscription = _eventBus.Subscribe<PlayerDiedEvent>(e =>
 {
     Logger.LogInformation("Event received!");  // Debug
 });
@@ -414,26 +426,10 @@ _eventBus.Subscribe<PlayerDiedEvent>(e =>
 
 **Symptom:** Exception in one handler breaks others
 
-**Solution:** EventBus should catch and log exceptions
-
-```csharp
-// EventBus implementation should handle exceptions
-public void Publish<TEvent>(TEvent eventData)
-{
-    foreach (var handler in _handlers)
-    {
-        try
-        {
-            handler(eventData);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error in event handler");
-            // Continue to next handler
-        }
-    }
-}
-```
+**Good news:** `IEventBus.Publish` already catches and logs exceptions per-handler internally
+� an exception thrown by one subscriber does not prevent the remaining subscribers from
+running. If you're not seeing this behavior, check your logging configuration for the
+`EventBus` category.
 
 ---
 
@@ -443,18 +439,18 @@ public void Publish<TEvent>(TEvent eventData)
 
 **Cost per event:**
 - Lookup: O(1) - Fast dictionary lookup
-- Notify: O(n) - Iterate all subscribers
+- Notify: O(n) - Iterate all subscribers (allocation-free on the hot path)
 
 **Recommendation:**
-- ✅ Use for infrequent events (player died, level complete)
-- ❌ Avoid for high-frequency events (every frame update)
+- ? Use for infrequent events (player died, level complete)
+- ? Avoid for high-frequency events (every frame update)
 
 ```csharp
-// ✅ Good - infrequent
+// ? Good - infrequent
 _eventBus.Publish(new LevelCompleteEvent());
 _eventBus.Publish(new PlayerDiedEvent());
 
-// ❌ Bad - every frame
+// ? Bad - every frame
 protected override void OnUpdate(GameTime gameTime)
 {
     _eventBus.Publish(new FrameUpdateEvent());  // 60 times per second!
@@ -466,9 +462,5 @@ protected override void OnUpdate(GameTime gameTime)
 ## Related Topics
 
 - [Window Events](window-events.md) - Handle window events
-- [Dependency Injection](../fundamentals/dependency-injection.md) - Inject EventBus
+- [Dependency Injection](../fundamentals/dependency-injection.md) - Inject IEventBus
 - [Architecture](../fundamentals/architecture.md) - Event-driven architecture
-
----
-
-**Ready to use events?** Start with [Window Events](window-events.md)!

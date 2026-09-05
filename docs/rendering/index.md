@@ -111,6 +111,7 @@ Understanding the render loop:
 ```mermaid
 sequenceDiagram
     participant GL as Game Loop
+    participant W as World (Systems)
     participant S as Scene
     participant R as Renderer
 
@@ -119,6 +120,8 @@ sequenceDiagram
         S->>S: Update game logic
 
         GL->>R: BeginFrame()
+        GL->>W: World.Render(renderer, gameTime)
+        W->>W: Render systems (e.g. SpriteRenderingSystem)
         GL->>S: OnRender(gameTime)
         S->>R: DrawTexture(...)
         S->>R: DrawRectangle(...)
@@ -129,7 +132,7 @@ sequenceDiagram
     end
 ```
 
-**Pattern:** Update game state, then render. The framework manages `BeginFrame` / `EndFrame` automatically.
+**Pattern:** Update game state, then render. The framework manages `BeginFrame` / `EndFrame` automatically. **`World.Render()` always runs before `Scene.OnRender()`** — every render system (sprites, particles, debug overlay) draws before your scene's own `OnRender` code, so anything you draw in `OnRender` layers on top of system output by default. This matters if you're doing a mid-frame render-target trick (e.g. a minimap): the target's push/pop state is reset at the start of `BeginFrame`, so any target you push must be popped within the same frame — see [Render Targets](gpu-renderer.md#render-targets) for the full pattern.
 
 ---
 

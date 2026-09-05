@@ -138,6 +138,54 @@ Renderer.PopRenderTarget(); // Restores screen (null)
 !!! tip
     Unmatched push/pop calls are caught at frame boundaries with diagnostic warnings.
 
+!!! warning "Render-target state resets every frame"
+    The push/pop stack is cleared at the start of every `BeginFrame()` — any target left pushed
+    from a previous frame is dropped (with a logged warning) rather than carried over. Always
+    push and pop within the same frame; never push in `OnUpdate` and pop in a later frame's
+    `OnRender`.
+
+---
+
+### Mid-Frame Render-Target Tricks (e.g. a Minimap)
+
+`World.Render()` (the framework's system render pass — sprites, particles, debug overlay) always
+runs **before** `Scene.OnRender()` in the same frame, both after the same `BeginFrame()` call.
+For a minimap or similar off-screen composite that should include the current frame's world
+content, do the push/pop entirely inside `OnRender` so it happens after systems have drawn:
+
+```csharp
+private IRenderTarget? _minimap;
+
+protected override async Task OnLoadAsync(CancellationToken ct, IProgress<float>? progress = null)
+{
+    _minimap = Renderer.CreateRenderTarget(256, 256);
+}
+
+protected override void OnRender(GameTime gameTime)
+{
+    // World.Render() already ran this frame — main scene content is drawn.
+    // Push/pop here targets the *next* draw calls, not what World.Render() already submitted.
+    Renderer.PushRenderTarget(_minimap);
+    RenderMinimapContent();
+    Renderer.PopRenderTarget();
+
+    Renderer.DrawTexture(_minimap!.Texture, x: 10, y: 10);
+}
+
+protected override void OnExit()
+{
+    _minimap?.Dispose();
+    _minimap = null;
+}
+```
+
+!!! note
+    Draw calls are batched and only actually submitted to the GPU when the batch flushes (e.g.
+    on `ApplyPostProcessing()`, a render-target switch, or a blend/scissor state change) — not
+    immediately when you call `DrawTexture`/`DrawRectangleFilled`/etc. Pushing a render target
+    forces a flush of whatever was batched so far, so content queued before the push still lands
+    on the previously active target, not the new one.
+
 ---
 
 ### Render Target Lifecycle

@@ -165,6 +165,7 @@ These systems are added to every scene automatically:
 | `SpriteRenderingSystem` | Render | 0 | Sprite batching and culling |
 | `AudioSystem` | Update | 0 | Spatial audio processing |
 | `ParticleSystem` | Both | 250 / 100 | GPU-instanced particles |
+| `Box2DPhysicsSystem` | Fixed Update | 0 | Box2D physics simulation (no-op until bodies exist) |
 | `AnimationSystem` | Update | 400 | Sprite animation and state machines |
 | `CameraSystem` | Update | 500 | Camera follow and zoom |
 | `DebugRenderer` | Render | 1000 | Debug visualization (disabled by default) |
@@ -179,7 +180,7 @@ protected override void OnEnter()
 }
 ```
 
-> Physics systems are opt-in. Call `builder.Services.AddPhysics()` then `World.AddSystem<Box2DPhysicsSystem>()`.
+> `Box2DPhysicsSystem` is always registered (it's core to Brine2D, not opt-in), but does nothing until an entity has a `RigidBodyComponent`/collider. `builder.Services.AddPhysics()` only *configures* physics (gravity, layers, thresholds) — it doesn't enable the system. To remove its (near-zero) cost entirely, use `builder.ExcludeDefaultSystem<Box2DPhysicsSystem>()`.
 
 ---
 
